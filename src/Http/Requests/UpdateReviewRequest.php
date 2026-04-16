@@ -1,0 +1,81 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class UpdateReviewRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        // User must be authenticated
+        if (! $this->user()) {
+            return false;
+        }
+
+        // Get the review from the route
+        $review = $this->route('review');
+
+        // User must own the review
+        return $review && $review->canBeEditedBy($this->user());
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        $review = $this->route('review');
+
+        $rules = [
+            'rating' => ['required', 'integer', 'min:1', 'max:5'],
+            'title' => ['nullable', 'string', 'max:255'],
+            'content' => ['required', 'string', 'min:10', 'max:5000'],
+            'images.*' => ['nullable', 'image', 'max:5120'],
+            'videos.*' => ['nullable', 'mimetypes:video/mp4,video/mpeg', 'max:51200'],
+            'deleted_media_ids' => ['nullable', 'array'],
+        ];
+
+        // Only add the exists rule if we have a review (route context)
+        if ($review) {
+            $rules['deleted_media_ids.*'] = [
+                'integer',
+                'exists:media_external,id,model_type,App\Models\Review,model_id,'.$review->id,
+            ];
+        } else {
+            $rules['deleted_media_ids.*'] = ['integer'];
+        }
+
+        return $rules;
+    }
+
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'rating.required' => 'Rating is required.',
+            'rating.integer' => 'Rating must be a whole number.',
+            'rating.min' => 'Rating must be at least 1 star.',
+            'rating.max' => 'Rating must be at most 5 stars.',
+            'title.string' => 'Title must be a valid text.',
+            'title.max' => 'Title cannot exceed 255 characters.',
+            'content.required' => 'Review content is required.',
+            'content.string' => 'Review content must be valid text.',
+            'content.min' => 'Review content must be at least 10 characters.',
+            'content.max' => 'Review content cannot exceed 5000 characters.',
+            'images.*.image' => 'Each file must be a valid image.',
+            'images.*.max' => 'Each image must be less than 5MB.',
+            'videos.*.mimetypes' => 'Videos must be in MP4 or MPEG format.',
+            'videos.*.max' => 'Each video must be less than 50MB.',
+        ];
+    }
+}

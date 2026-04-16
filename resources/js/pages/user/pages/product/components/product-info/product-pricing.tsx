@@ -1,0 +1,42 @@
+import { useFormatMoney } from '@/hooks/use-format-money';
+
+interface ProductPricingProps {
+    price: number;
+    mrp?: number;
+    currency?: string;
+}
+
+export default function ProductPricing({
+    price,
+    mrp,
+    currency,
+}: ProductPricingProps) {
+    const { formatMoney, defaultCurrency } = useFormatMoney();
+    const hasDiscount = mrp && mrp - price > 0;
+    const currencySymbol = currency || defaultCurrency;
+
+    return (
+        <div className="flex items-baseline gap-2">
+            <span className="text-4xl font-bold">
+                {formatMoney(price, {
+                    currency: currencySymbol,
+                    showDecimals: false,
+                })}
+            </span>
+            {hasDiscount && (
+                <>
+                    <span className="text-lg text-muted-foreground line-through">
+                        MRP{' '}
+                        {formatMoney(mrp, {
+                            currency: currencySymbol,
+                            showDecimals: false,
+                        })}
+                    </span>
+                    <span className="text-lg font-semibold text-green-600">
+                        {Math.round(((mrp! - price) / mrp!) * 100)}% off
+                    </span>
+                </>
+            )}
+        </div>
+    );
+}

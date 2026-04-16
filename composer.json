@@ -1,0 +1,30 @@
+{
+    "name": "susheelbhai/laravel-ecom",
+    "description": "E-commerce layer for Laravel, designed to extend susheelbhai/laravel-basekit.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Susheelbhai\\Ecom\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Susheelbhai\\Ecom\\EcomServiceProvider",
+                "Susheelbhai\\Ecom\\Providers\\ReviewAggregatesServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Susheel Kumar Singh",
+            "email": "susheelkrsingh306@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^8.2",
+        "susheelbhai/laravel-basekit": "*"
+    }
+}

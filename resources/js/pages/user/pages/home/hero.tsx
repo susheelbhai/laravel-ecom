@@ -1,0 +1,76 @@
+import { FaWhatsapp } from 'react-icons/fa';
+import { Container } from '@/components/ui/container';
+
+interface HeroSectionProps {
+    data?: any;
+}
+
+export default function HeroSection(
+    props: HeroSectionProps = { data: undefined },
+) {
+    const appName = props.data?.appData?.name;
+    const whatsapp = props.data?.appData?.whatsapp;
+    const bannerImage = props.data?.data?.banner_image;
+
+    return (
+        <section
+            id="home"
+            className="relative overflow-hidden py-20 text-left md:py-32"
+            style={{
+                backgroundImage: bannerImage ? `url("${bannerImage}")` : 'none',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundColor: bannerImage
+                    ? 'transparent'
+                    : 'var(--background)',
+            }}
+        >
+            <Container className="grid gap-8 px-4 md:grid-cols-2">
+                {/* LEFT: CONTENT */}
+                <div>
+                    <p className="mb-4 font-semibold text-primary">
+                        Welcome to {appName}
+                    </p>
+
+                    <h1 className="text-4xl leading-tight font-bold md:text-6xl">
+                        <div
+                            dangerouslySetInnerHTML={{
+                                __html: props.data?.data?.banner_heading,
+                            }}
+                        />
+                    </h1>
+
+                    <div className="mt-6 max-w-md text-muted-foreground">
+                        <div
+                            dangerouslySetInnerHTML={{
+                                __html: props.data?.data?.banner_description,
+                            }}
+                        />
+                    </div>
+
+                    <div className="mt-8 flex space-x-4">
+                        <a href={route('product.index')}>
+                            <button className="cursor-pointer rounded-md bg-primary px-6 py-3 font-semibold text-primary-foreground hover:bg-primary/80">
+                                See Products
+                            </button>
+                        </a>
+                        <a
+                            href={'https://wa.me/' + whatsapp}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <button className="cursor-pointer rounded-md border border-primary px-6 py-3 font-semibold text-primary hover:bg-primary hover:text-primary-foreground">
+                                <FaWhatsapp className="mr-2 inline-block" />
+                                Contact Us
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                {/* RIGHT: EMPTY SPACER */}
+                <div className="h-65 md:h-90"></div>
+            </Container>
+        </section>
+    );
+}
