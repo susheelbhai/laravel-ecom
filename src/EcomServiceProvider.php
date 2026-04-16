@@ -2,9 +2,9 @@
 
 namespace Susheelbhai\Ecom;
 
-use App\Console\Commands\RecomputeProductRatings;
 use Illuminate\Support\ServiceProvider;
 use Susheelbhai\Ecom\Commands\install_ecom_package;
+use Susheelbhai\Ecom\Commands\RecomputeProductRatings;
 
 class EcomServiceProvider extends ServiceProvider
 {
