@@ -1,6 +1,5 @@
 {
     "name": "susheelbhai/laravel-ecom",
-    "version": "1.0.0",
     "description": "E-commerce layer for Laravel, designed to extend susheelbhai/laravel-basekit.",
     "type": "library",
     "license": "MIT",
