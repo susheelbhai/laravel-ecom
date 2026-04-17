@@ -1,6 +1,10 @@
 import { useFormatMoney } from '@/hooks/use-format-money';
+import {
+    handleProductImageError,
+    PRODUCT_FALLBACK_IMAGE_URL,
+} from '@/lib/product-image-fallback';
 
-const FALLBACK_IMAGE = '/images/no-image.svg';
+const FALLBACK_IMAGE = PRODUCT_FALLBACK_IMAGE_URL;
 
 interface CartItem {
     id: number;
@@ -40,9 +44,7 @@ export const OrderItemsList = ({ items }: OrderItemsListProps) => {
                                 FALLBACK_IMAGE
                             }
                             alt={item.product.title}
-                            onError={(e) => {
-                                e.currentTarget.src = FALLBACK_IMAGE;
-                            }}
+                            onError={handleProductImageError}
                             className="mr-4 h-16 w-16 rounded border border-border object-cover"
                         />
                         <div className="flex-1">

@@ -2,8 +2,12 @@ import { Link } from '@inertiajs/react';
 import { Star, ShoppingCart } from 'lucide-react';
 import { Container } from '@/components/ui/container';
 import { useFormatMoney } from '@/hooks/use-format-money';
+import {
+    handleProductImageError,
+    PRODUCT_FALLBACK_IMAGE_URL,
+} from '@/lib/product-image-fallback';
 
-const FALLBACK_IMAGE = '/images/no-image.svg';
+const FALLBACK_IMAGE = PRODUCT_FALLBACK_IMAGE_URL;
 
 export default function FeaturedProductsSection({ data }: { data: any }) {
     const { formatMoney } = useFormatMoney();
@@ -34,9 +38,7 @@ export default function FeaturedProductsSection({ data }: { data: any }) {
                                     <img
                                         src={product.image || FALLBACK_IMAGE}
                                         alt={product.name}
-                                        onError={(e) => {
-                                            e.currentTarget.src = FALLBACK_IMAGE;
-                                        }}
+                                        onError={handleProductImageError}
                                         className="h-56 w-full object-cover transition-transform duration-300 group-hover:scale-110"
                                     />
                                 </div>

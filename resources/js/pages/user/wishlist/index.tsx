@@ -2,9 +2,13 @@ import { usePage, Link, router } from '@inertiajs/react';
 import { Heart, ShoppingCart, Trash2 } from 'lucide-react';
 import { Container } from '@/components/ui/container';
 import { useFormatMoney } from '@/hooks/use-format-money';
+import {
+    handleProductImageError,
+    PRODUCT_FALLBACK_IMAGE_URL,
+} from '@/lib/product-image-fallback';
 import AppLayout from '@/layouts/user/app-layout';
 
-const FALLBACK_IMAGE = '/images/no-image.svg';
+const FALLBACK_IMAGE = PRODUCT_FALLBACK_IMAGE_URL;
 
 const WishlistIndex = () => {
     const { wishlist, cartProductIds = [] } = usePage().props as any;
@@ -99,10 +103,7 @@ const WishlistIndex = () => {
                                                         FALLBACK_IMAGE
                                                     }
                                                     alt={item.product.title}
-                                                    onError={(e) => {
-                                                        e.currentTarget.src =
-                                                            FALLBACK_IMAGE;
-                                                    }}
+                                                    onError={handleProductImageError}
                                                     className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
                                                 />
                                             </div>

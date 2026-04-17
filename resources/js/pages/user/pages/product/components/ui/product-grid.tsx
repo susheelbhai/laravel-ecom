@@ -5,10 +5,14 @@ import { AddToCartButton } from '@/components/product/add-to-cart-button';
 import { WishlistButton } from '@/components/product/wishlist-button';
 import AverageRating from '@/components/review/AverageRating';
 import { useFormatMoney } from '@/hooks/use-format-money';
+import {
+    handleProductImageError,
+    PRODUCT_FALLBACK_IMAGE_URL,
+} from '@/lib/product-image-fallback';
 
 type ViewMode = 'grid-2' | 'grid-3' | 'grid-4' | 'grid-5' | 'list';
 
-const FALLBACK_IMAGE = '/images/no-image.svg';
+const FALLBACK_IMAGE = PRODUCT_FALLBACK_IMAGE_URL;
 
 interface ProductGridProps {
     products: any[];
@@ -120,9 +124,7 @@ function ProductCard({
                     <img
                         src={image || FALLBACK_IMAGE}
                         alt={product.title}
-                        onError={(e) => {
-                            e.currentTarget.src = FALLBACK_IMAGE;
-                        }}
+                        onError={handleProductImageError}
                         className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
                         loading="lazy"
                     />
@@ -196,9 +198,7 @@ function ProductListItem({
                     <img
                         src={image || FALLBACK_IMAGE}
                         alt={product.title}
-                        onError={(e) => {
-                            e.currentTarget.src = FALLBACK_IMAGE;
-                        }}
+                        onError={handleProductImageError}
                         className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
                         loading="lazy"
                     />

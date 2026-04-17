@@ -1,10 +1,14 @@
 import { Link, usePage } from '@inertiajs/react';
 import AverageRating from '@/components/review/AverageRating';
 import { useFormatMoney } from '@/hooks/use-format-money';
+import {
+    handleProductImageError,
+    PRODUCT_FALLBACK_IMAGE_URL,
+} from '@/lib/product-image-fallback';
 import { AddToCartButton } from './add-to-cart-button';
 import { WishlistButton } from './wishlist-button';
 
-const FALLBACK_IMAGE = '/images/no-image.svg';
+const FALLBACK_IMAGE = PRODUCT_FALLBACK_IMAGE_URL;
 
 interface ProductCardProps {
     product: {
@@ -46,9 +50,7 @@ export function ProductCard({ product, lazyLoad = true }: ProductCardProps) {
                 <img
                     src={image || FALLBACK_IMAGE}
                     alt={product.title}
-                    onError={(e) => {
-                        e.currentTarget.src = FALLBACK_IMAGE;
-                    }}
+                    onError={handleProductImageError}
                     className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
                     loading={lazyLoad ? 'lazy' : 'eager'}
                 />

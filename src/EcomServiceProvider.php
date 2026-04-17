@@ -2,6 +2,7 @@
 
 namespace Susheelbhai\Ecom;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use Susheelbhai\Ecom\Commands\install_ecom_package;
 use Susheelbhai\Ecom\Commands\RecomputeProductRatings;
@@ -18,6 +19,7 @@ class EcomServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerPublishable();
+        $this->ensurePublicNoImagePlaceholder();
 
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -89,6 +91,28 @@ class EcomServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../assets/public' => public_path(''),
         ], 'ecom_themes');
+    }
+
+    /**
+     * Copy the default product placeholder into public/ so `/images/no-image.svg`
+     * works without running `vendor:publish` (avoids 404 + broken-image retry loops).
+     */
+    protected function ensurePublicNoImagePlaceholder(): void
+    {
+        $source = __DIR__.'/../assets/public/images/no-image.svg';
+        if (! is_file($source)) {
+            return;
+        }
+
+        $destDir = public_path('images');
+        $dest = $destDir.'/no-image.svg';
+
+        if (is_file($dest)) {
+            return;
+        }
+
+        File::ensureDirectoryExists($destDir);
+        @copy($source, $dest);
     }
 
     protected function publishSourceHasFiles(string $path): bool

@@ -1,10 +1,11 @@
 import { router, usePage } from '@inertiajs/react';
 import { ChevronLeft, ChevronRight, Heart } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { handleProductImageError, PRODUCT_FALLBACK_IMAGE_URL } from '@/lib/product-image-fallback';
 import ImageZoom from './image-zoom';
 import ImageZoomExternal from './image-zoom-external';
 
-const DEFAULT_FALLBACK_IMAGE = '/images/no-image.svg';
+const DEFAULT_FALLBACK_IMAGE = PRODUCT_FALLBACK_IMAGE_URL;
 
 interface ProductImage {
     id: number;
@@ -202,9 +203,9 @@ export default function ImageSlider({
                             <img
                                 src={image.thumbnail || image.url || fallbackImage}
                                 alt={`${productTitle} thumbnail ${index + 1}`}
-                                onError={(e) => {
-                                    e.currentTarget.src = fallbackImage;
-                                }}
+                                onError={(e) =>
+                                    handleProductImageError(e, fallbackImage)
+                                }
                                 className="h-20 w-20 object-cover"
                                 loading="lazy"
                             />
@@ -287,9 +288,9 @@ export default function ImageSlider({
                                 <img
                                     src={image.url || fallbackImage}
                                     alt={`${productTitle} - Image ${index + 1}`}
-                                    onError={(e) => {
-                                        e.currentTarget.src = fallbackImage;
-                                    }}
+                                    onError={(e) =>
+                                        handleProductImageError(e, fallbackImage)
+                                    }
                                     className="pointer-events-none h-full w-full object-contain"
                                     loading={index === 0 ? 'eager' : 'lazy'}
                                     draggable="false"

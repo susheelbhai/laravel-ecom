@@ -12,8 +12,9 @@ import ProductPricing from './components/product-info/product-pricing';
 import ProductSections from './components/product-info/product-sections';
 import ProductRecommendationsSection from './components/recommendations/product-recommendations-section';
 import ProductReviewsSection from './components/reviews/product-reviews-section';
+import { PRODUCT_FALLBACK_IMAGE_URL } from '@/lib/product-image-fallback';
 
-const FALLBACK_IMAGE = '/images/no-image.svg';
+const FALLBACK_IMAGE = PRODUCT_FALLBACK_IMAGE_URL;
 
 export default function ProductDetail() {
     const { 

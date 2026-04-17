@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { handleProductImageError, PRODUCT_FALLBACK_IMAGE_URL } from '@/lib/product-image-fallback';
 
 interface ImageZoomProps {
     src: string;
@@ -15,7 +16,7 @@ export default function ImageZoom({
     className = '',
     zoomScale = 2.5,
     enabled = true,
-    fallbackImageUrl = '/images/no-image.svg',
+    fallbackImageUrl = PRODUCT_FALLBACK_IMAGE_URL,
 }: ImageZoomProps) {
     const [isZooming, setIsZooming] = useState(false);
     const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -60,9 +61,9 @@ export default function ImageZoom({
             <img
                 src={src || fallbackImageUrl}
                 alt={alt}
-                onError={(e) => {
-                    e.currentTarget.src = fallbackImageUrl;
-                }}
+                onError={(e) =>
+                    handleProductImageError(e, fallbackImageUrl)
+                }
                 className="pointer-events-none h-full w-full object-contain"
                 loading="lazy"
                 draggable="false"
@@ -80,9 +81,9 @@ export default function ImageZoom({
             <img
                 src={src || fallbackImageUrl}
                 alt={alt}
-                onError={(e) => {
-                    e.currentTarget.src = fallbackImageUrl;
-                }}
+                onError={(e) =>
+                    handleProductImageError(e, fallbackImageUrl)
+                }
                 className="pointer-events-none h-full w-full object-contain transition-opacity duration-200"
                 loading="lazy"
                 style={{

@@ -3,8 +3,12 @@ import { Link } from '@inertiajs/react';
 import { TrendingUp, Star } from 'lucide-react';
 import { Container } from '@/components/ui/container';
 import { useFormatMoney } from '@/hooks/use-format-money';
+import {
+    handleProductImageError,
+    PRODUCT_FALLBACK_IMAGE_URL,
+} from '@/lib/product-image-fallback';
 
-const FALLBACK_IMAGE = '/images/no-image.svg';
+const FALLBACK_IMAGE = PRODUCT_FALLBACK_IMAGE_URL;
 
 export default function BestSellersSection({ data }: { data: any }) {
     const { formatMoney } = useFormatMoney();
@@ -35,9 +39,7 @@ export default function BestSellersSection({ data }: { data: any }) {
                                     <img
                                         src={product.image || FALLBACK_IMAGE}
                                         alt={product.name}
-                                        onError={(e) => {
-                                            e.currentTarget.src = FALLBACK_IMAGE;
-                                        }}
+                                        onError={handleProductImageError}
                                         className="h-40 w-full object-cover transition-transform duration-300 group-hover:scale-110"
                                     />
                                     <div className="absolute left-2 top-2 rounded-full bg-primary px-2 py-1 text-xs font-bold text-primary-foreground">

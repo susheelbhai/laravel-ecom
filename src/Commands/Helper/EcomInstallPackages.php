@@ -4,17 +4,20 @@ namespace Susheelbhai\Ecom\Commands\Helper;
 
 use Illuminate\Console\Command;
 use Susheelbhai\Basekit\Commands\Helper\InstallPackages;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
 class EcomInstallPackages
 {
+    private const WINDOWS_COMPOSER_RETRIES = 3;
+
+    private const WINDOWS_RETRY_DELAY_MICROSECONDS = 2_000_000;
+
     /**
      * Run base kit Composer/NPM installs, then add packages needed for the e-commerce stack.
      */
     public function installAll(Command $command): void
     {
-        (new InstallPackages())->installAll($command);
+        (new InstallPackages)->installAll($command);
         $this->composer($command);
         $this->npm($command);
     }
@@ -40,6 +43,7 @@ class EcomInstallPackages
 
     private function installComposerPackages(Command $command, array $packageNames): void
     {
+        $toInstall = [];
         foreach ($packageNames as $pkg) {
             $name = $this->normalizeComposerPackageName($pkg);
             if ($this->composerPackageInstalled($name)) {
@@ -47,8 +51,20 @@ class EcomInstallPackages
 
                 continue;
             }
-            $this->installPackage($command, ['composer', 'require', $pkg], "Composer package: $pkg");
+            $toInstall[] = $pkg;
         }
+
+        if ($toInstall === []) {
+            return;
+        }
+
+        // One `composer require` reduces Windows file-lock races vs many sequential installs.
+        $args = array_merge(
+            ['composer', 'require', '--no-interaction', '--no-ansi'],
+            $toInstall,
+        );
+        $label = 'Composer packages: '.implode(', ', $toInstall);
+        $this->installPackage($command, $args, $label);
     }
 
     private function installNpmPackages(Command $command, array $packageNames): void
@@ -132,15 +148,86 @@ class EcomInstallPackages
 
     private function runCommand(Command $command, array $cmd, string $label, ?string $workingDir = null): void
     {
-        $process = new Process($cmd, $workingDir ?? base_path());
-        $process->setTimeout(null);
+        $workingDir ??= base_path();
+        $attempt = 0;
+        $lastOutput = '';
+        $isComposer = ($cmd[0] ?? '') === 'composer';
 
-        $process->run(function ($type, $buffer) use ($command, $label) {
-            $command->line("[{$label}] {$buffer}");
-        });
+        while ($attempt < self::WINDOWS_COMPOSER_RETRIES) {
+            $attempt++;
+            $process = new Process($cmd, $workingDir);
+            $process->setTimeout(null);
 
-        if (! $process->isSuccessful()) {
-            throw new ProcessFailedException($process);
+            $process->run(function ($type, $buffer) use ($command, $label) {
+                $command->line("[{$label}] {$buffer}");
+            });
+
+            if ($process->isSuccessful()) {
+                return;
+            }
+
+            $lastOutput = $process->getErrorOutput().$process->getOutput();
+
+            if (
+                PHP_OS_FAMILY === 'Windows'
+                && $attempt < self::WINDOWS_COMPOSER_RETRIES
+                && $this->isLikelyWindowsFileLockFailure($lastOutput)
+            ) {
+                $command->warn(sprintf(
+                    '%s hit a Windows file lock (attempt %d/%d). Retrying in 2s…',
+                    $isComposer ? 'Composer' : 'The installer',
+                    $attempt,
+                    self::WINDOWS_COMPOSER_RETRIES,
+                ));
+                usleep(self::WINDOWS_RETRY_DELAY_MICROSECONDS);
+
+                continue;
+            }
+
+            break;
         }
+
+        $this->throwInstallFailure($command, $label, $lastOutput, $isComposer);
+    }
+
+    private function isLikelyWindowsFileLockFailure(string $output): bool
+    {
+        $needles = [
+            'Could not delete',
+            'antivirus',
+            'Search Indexer',
+            'locking the file',
+            'being used by another process',
+            'Access is denied',
+            'Permission denied',
+        ];
+
+        foreach ($needles as $needle) {
+            if (stripos($output, $needle) !== false) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function throwInstallFailure(Command $command, string $label, string $output, bool $composerContext = true): never
+    {
+        $hint = '';
+        if (PHP_OS_FAMILY === 'Windows' && $composerContext) {
+            $hint = <<<'TEXT'
+
+
+Windows tip: Composer often fails here when antivirus or Windows Search Indexer locks files under `vendor/composer`.
+Try: close IDEs/watchers on the project, pause real-time scanning for this folder, add an exclusion for the project (or at least `vendor/`), then run:
+  composer clear-cache
+  composer require <packages> --no-interaction
+Or run the same `ecom:install_package` again after a few seconds.
+TEXT;
+        }
+
+        $command->error(trim($output) !== '' ? $output : 'Command failed with no output.');
+
+        throw new \RuntimeException("Installing {$label} failed.{$hint}");
     }
 }

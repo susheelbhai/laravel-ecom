@@ -2,9 +2,13 @@ import { usePage, router, Link } from '@inertiajs/react';
 import { X } from 'lucide-react';
 import { Container } from '@/components/ui/container';
 import { useFormatMoney } from '@/hooks/use-format-money';
+import {
+    handleProductImageError,
+    PRODUCT_FALLBACK_IMAGE_URL,
+} from '@/lib/product-image-fallback';
 import AppLayout from '@/layouts/user/app-layout';
 
-const FALLBACK_IMAGE = '/images/no-image.svg';
+const FALLBACK_IMAGE = PRODUCT_FALLBACK_IMAGE_URL;
 
 const CartIndex = () => {
     const { cart } = usePage().props as any;
@@ -87,10 +91,7 @@ const CartIndex = () => {
                                                         FALLBACK_IMAGE
                                                     }
                                                     alt={item.product.title}
-                                                    onError={(e) => {
-                                                        e.currentTarget.src =
-                                                            FALLBACK_IMAGE;
-                                                    }}
+                                                    onError={handleProductImageError}
                                                     className="h-20 w-20 rounded-lg border border-border object-cover"
                                                 />
                                             </Link>
