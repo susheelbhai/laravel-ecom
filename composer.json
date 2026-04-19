@@ -12,6 +12,7 @@
         "laravel": {
             "providers": [
                 "Susheelbhai\\Ecom\\EcomServiceProvider",
+                "Susheelbhai\\Ecom\\Providers\\InertiaSsrGuardServiceProvider",
                 "Susheelbhai\\Ecom\\Providers\\ReviewAggregatesServiceProvider"
             ]
         }

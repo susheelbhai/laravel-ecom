@@ -8,6 +8,9 @@ use App\Http\Controllers\Admin\WarehouseRackController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('stock')->name('stock.')->group(function () {
+    Route::get('products/search', [StockRecordController::class, 'searchProducts'])
+        ->name('products.search');
+
     // Dashboard routes
     Route::get('dashboard', [StockDashboardController::class, 'index'])->name('dashboard.index');
     Route::get('dashboard/warehouse/{warehouse}', [StockDashboardController::class, 'byWarehouse'])->name('dashboard.warehouse');

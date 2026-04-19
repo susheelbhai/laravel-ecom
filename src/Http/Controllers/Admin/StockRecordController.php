@@ -11,6 +11,8 @@ use App\Models\Product;
 use App\Models\StockMovement;
 use App\Models\StockRecord;
 use App\Models\Warehouse;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class StockRecordController extends Controller
 {
@@ -19,48 +21,59 @@ class StockRecordController extends Controller
      */
     public function index()
     {
-        $query = StockRecord::with(['product', 'rack.warehouse']);
+        $warehouseId = request()->integer('warehouse_id');
+        $productId = request()->integer('product_id');
+        $stockStatus = request('stock_status');
+        $search = trim((string) request('search', ''));
+
+        $query = StockRecord::query()
+            ->select(['id', 'product_id', 'rack_id', 'quantity', 'created_at', 'updated_at'])
+            ->with([
+                'product:id,title,sku',
+                'rack:id,warehouse_id,identifier',
+                'rack.warehouse:id,name',
+            ]);
 
         // Filter by warehouse
-        if (request('warehouse_id')) {
-            $query->whereHas('rack', function ($q) {
-                $q->where('warehouse_id', request('warehouse_id'));
-            });
-        }
+        $query->when($warehouseId, function ($q) use ($warehouseId) {
+            $q->whereHas('rack', fn ($rack) => $rack->where('warehouse_id', $warehouseId));
+        });
 
         // Filter by product
-        if (request('product_id')) {
-            $query->where('product_id', request('product_id'));
-        }
+        $query->when($productId, fn ($q) => $q->where('product_id', $productId));
 
         // Filter by stock status
-        if (request('stock_status')) {
-            $query->byStockStatus(request('stock_status'));
-        }
+        $query->when($stockStatus, fn ($q) => $q->byStockStatus($stockStatus));
 
         // Search by product name or SKU
-        if (request('search')) {
-            $query->whereHas('product', function ($q) {
-                $q->where('title', 'like', '%'.request('search').'%')
-                    ->orWhere('sku', 'like', '%'.request('search').'%');
-            });
-        }
+        $query->when($search !== '', function ($q) use ($search) {
+            // Avoid a correlated whereHas() for search; filter by matching product ids.
+            $q->whereIn('product_id', Product::query()
+                ->select('id')
+                ->where('title', 'like', "%{$search}%")
+                ->orWhere('sku', 'like', "%{$search}%"));
+        });
 
-        $stockRecords = $query->paginate(15);
+        // simplePaginate avoids an expensive count(*) on large datasets.
+        $stockRecords = $query
+            ->orderByDesc('id')
+            ->simplePaginate(15)
+            ->withQueryString();
 
-        // Load filter options
-        $warehouses = Warehouse::orderBy('name')->get();
-        $products = Product::orderBy('title')->get();
+        $stockRecords->through(function (StockRecord $record) {
+            $record->product?->withoutAppends();
+
+            return $record;
+        });
 
         return $this->render('admin/resources/stock_record/index', [
             'stockRecords' => $stockRecords,
-            'warehouses' => $warehouses,
-            'products' => $products,
+            'warehouses' => $this->warehouseOptionsForSelect(),
             'filters' => [
-                'warehouse_id' => request('warehouse_id'),
-                'product_id' => request('product_id'),
-                'stock_status' => request('stock_status'),
-                'search' => request('search'),
+                'warehouse_id' => $warehouseId,
+                'product_id' => $productId,
+                'stock_status' => $stockStatus,
+                'search' => $search,
             ],
         ], 'inertia');
     }
@@ -70,12 +83,8 @@ class StockRecordController extends Controller
      */
     public function create()
     {
-        $warehouses = Warehouse::with('racks')->orderBy('name')->get();
-        $products = Product::orderBy('title')->get();
-
         return $this->render('admin/resources/stock_record/create', [
-            'warehouses' => $warehouses,
-            'products' => $products,
+            'warehouses' => $this->warehousesWithRacksForSelect(),
         ], 'inertia');
     }
 
@@ -108,7 +117,7 @@ class StockRecordController extends Controller
      */
     public function edit(StockRecord $record)
     {
-        $record->load(['product', 'rack.warehouse']);
+        $this->loadStockRecordForInertia($record);
 
         return $this->render('admin/resources/stock_record/edit', [
             'stockRecord' => $record,
@@ -157,12 +166,11 @@ class StockRecordController extends Controller
      */
     public function showMoveForm(StockRecord $record)
     {
-        $record->load(['product', 'rack.warehouse']);
-        $warehouses = Warehouse::with('racks')->orderBy('name')->get();
+        $this->loadStockRecordForInertia($record);
 
         return $this->render('admin/resources/stock_record/move', [
             'stockRecord' => $record,
-            'warehouses' => $warehouses,
+            'warehouses' => $this->warehousesWithRacksForSelect(),
         ], 'inertia');
     }
 
@@ -171,7 +179,7 @@ class StockRecordController extends Controller
      */
     public function showAdjustForm(StockRecord $record)
     {
-        $record->load(['product', 'rack.warehouse']);
+        $this->loadStockRecordForInertia($record);
 
         return $this->render('admin/resources/stock_record/adjust', [
             'stockRecord' => $record,
@@ -244,7 +252,7 @@ class StockRecordController extends Controller
      */
     public function history(StockRecord $record)
     {
-        $record->load(['product', 'rack.warehouse']);
+        $this->loadStockRecordForInertia($record);
 
         $movements = StockMovement::where('product_id', $record->product_id)
             ->where('rack_id', $record->rack_id)
@@ -256,5 +264,90 @@ class StockRecordController extends Controller
             'stockRecord' => $record,
             'movements' => $movements,
         ], 'inertia');
+    }
+
+    private function loadStockRecordForInertia(StockRecord $record): void
+    {
+        $record->load([
+            'product:id,title,sku',
+            'rack:id,warehouse_id,identifier',
+            'rack.warehouse:id,name',
+        ]);
+
+        $record->product?->withoutAppends();
+    }
+
+    /**
+     * Lazy product search for async selects (title/SKU). Query: q (min 2 chars).
+     *
+     * @return JsonResponse
+     */
+    public function searchProducts(Request $request)
+    {
+        $q = trim((string) $request->query('q', ''));
+
+        if (mb_strlen($q) < 2) {
+            return response()->json(['results' => []]);
+        }
+
+        $escaped = '%'.addcslashes($q, '%_\\').'%';
+
+        $products = Product::query()
+            ->select(['id', 'title', 'sku'])
+            ->where(function ($query) use ($escaped) {
+                $query->where('title', 'like', $escaped)
+                    ->orWhere('sku', 'like', $escaped);
+            })
+            ->orderBy('title')
+            ->limit(30)
+            ->get();
+
+        return response()->json([
+            'results' => $products->map(fn (Product $p) => [
+                'id' => $p->id,
+                'label' => $p->sku ? "{$p->title} ({$p->sku})" : $p->title,
+            ]),
+        ]);
+    }
+
+    /**
+     * @return array<int, array{id: int, name: string, racks: array<int, array{id: int, name: string}>}>
+     */
+    private function warehousesWithRacksForSelect(): array
+    {
+        return Warehouse::query()
+            ->select(['id', 'name'])
+            ->with([
+                'racks' => fn ($q) => $q
+                    ->select(['id', 'warehouse_id', 'identifier'])
+                    ->orderBy('identifier'),
+            ])
+            ->orderBy('name')
+            ->get()
+            ->map(fn (Warehouse $w) => [
+                'id' => $w->id,
+                'name' => $w->name,
+                'racks' => $w->racks->map(fn ($r) => [
+                    'id' => $r->id,
+                    'name' => $r->identifier,
+                ])->all(),
+            ])
+            ->all();
+    }
+
+    /**
+     * @return array<int, array{id: int, name: string}>
+     */
+    private function warehouseOptionsForSelect(): array
+    {
+        return Warehouse::query()
+            ->select(['id', 'name'])
+            ->orderBy('name')
+            ->get()
+            ->map(fn (Warehouse $w) => [
+                'id' => $w->id,
+                'name' => $w->name,
+            ])
+            ->all();
     }
 }

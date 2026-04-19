@@ -13,6 +13,7 @@ import InputHidden from '../input/input-hidden';
 import InputImage from '../input/input-image';
 import InputMultiImage from '../input/input-image-multiple';
 import InputMultiCheckbox from '../input/input-multi-checkbox';
+import InputAsyncSelect from '../input/input-async-select';
 import InputMultiSelect from '../input/input-multi-select';
 import InputRadio from '../input/input-radio';
 import InputSelect from '../input/input-select';
@@ -74,6 +75,9 @@ export function InputDiv(props: InputDivProps) {
 
         case 'multiselect':
             return <InputMultiSelect {...props} />;
+
+        case 'async-select':
+            return <InputAsyncSelect {...props} />;
 
         case 'checkbox':
             return <InputCheckbox {...props} />;

@@ -1,4 +1,5 @@
 import {
+    ArrowLeftRight,
     BookOpen,
     Box,
     Calendar,
@@ -9,6 +10,7 @@ import {
     FolderTree,
     Home,
     Image,
+    Images,
     ImageUp,
     Info,
     Key,
@@ -20,14 +22,20 @@ import {
     MessageSquare,
     Newspaper,
     Notebook,
+    Package,
+    Percent,
     Phone,
     Server,
     Settings,
     Shield,
     ShieldCheck,
+    ShoppingCart,
+    Sparkles,
+    Star,
     User,
     Users,
     Users2,
+    Warehouse,
     Workflow,
 } from "lucide-react";
 
@@ -63,8 +71,69 @@ const mainNavItems = [
             },
         ],
     },
-    
-      {
+    {
+        title: "Orders",
+        routeName: "admin.order.index",
+        icon: ShoppingCart,
+    },
+    {
+        title: "Stock",
+        icon: Warehouse,
+        children: [
+            {
+                title: "Dashboard",
+                routeName: "admin.stock.dashboard.index",
+                icon: LayoutGrid,
+            },
+            {
+                title: "Warehouses",
+                routeName: "admin.stock.warehouses.index",
+                icon: Warehouse,
+            },
+            {
+                title: "Stock records",
+                routeName: "admin.stock.records.index",
+                icon: Package,
+            },
+            {
+                title: "Movements",
+                routeName: "admin.stock.movements.index",
+                icon: ArrowLeftRight,
+            },
+        ],
+    },
+    {
+        title: "Promo codes",
+        routeName: "admin.promo-code.index",
+        icon: Percent,
+    },
+    {
+        title: "Review moderation",
+        routeName: "admin.reviews.moderation",
+        icon: Star,
+    },
+    {
+        title: "Recommendations",
+        routeName: "admin.recommendation-config.index",
+        icon: Sparkles,
+    },
+    {
+        title: "Sliders",
+        icon: Images,
+        children: [
+            {
+                title: "Slider",
+                routeName: "admin.slider.index",
+                icon: Image,
+            },
+            {
+                title: "Slider 1",
+                routeName: "admin.slider1.index",
+                icon: Image,
+            },
+        ],
+    },
+    {
         title: "Admin",
         routeName: "admin.admin.index",
         icon: Users2,

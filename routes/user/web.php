@@ -7,6 +7,7 @@ use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\ProductController;
+use App\Http\Controllers\User\ProductPageBannerController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\PromoCodeController;
 use App\Http\Controllers\User\ReviewController;
@@ -94,4 +95,4 @@ Route::get('/api/visitors/count', function () {
     ]);
 });
 
-Route::get('/api/product-page-banners', [App\Http\Controllers\User\ProductPageBannerController::class, 'getActiveBanners']);
+Route::get('/api/product-page-banners', [ProductPageBannerController::class, 'getActiveBanners']);

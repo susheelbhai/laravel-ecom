@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\FormsController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ImportantLinkController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Admin\ProductEnquiryController;
 use App\Http\Controllers\Admin\ProductPageBannerController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PromoCodeController;
+use App\Http\Controllers\Admin\RecommendationConfigController;
 use App\Http\Controllers\Admin\ReviewModerationController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SellerController;
@@ -47,21 +49,20 @@ Route::middleware(['web', HandleInertiaRequests::class])->group(function () {
             Route::patch('/trust-badges', 'trustBadgesUpdate');
         });
 
-        // Route::name('forms.')->controller(FormsController::class)->prefix('forms')->group(function () {
-        //     Route::get('/simple', 'simpleCreate')->name('simple');
-        //     Route::get('/editor', 'editorCreate')->name('editor');
-        //     Route::get('/date', 'dateCreate')->name('date');
-        //     Route::get('/select', 'selectCreate')->name('select');
-        //     Route::get('/file', 'fileCreate')->name('file');
-        //     Route::get('/image', 'imageCreate')->name('image');
+        Route::name('forms.')->controller(FormsController::class)->prefix('forms')->group(function () {
+            Route::get('/simple', 'simpleCreate')->name('simple');
+            Route::get('/editor', 'editorCreate')->name('editor');
+            Route::get('/date', 'dateCreate')->name('date');
+            Route::get('/select', 'selectCreate')->name('select');
+            Route::get('/file', 'fileCreate')->name('file');
+            Route::get('/image', 'imageCreate')->name('image');
 
-        //     Route::patch('/simple', 'storeSimpleForm')->name('simple.store');
-        //     Route::patch('/editor', 'storeEditorForm')->name('editor.store');
-        //     Route::get('/wizard', 'wizardForm')->name('wizard');
-        //     Route::patch('/wizard', 'partialUpdateWizard')->name('wizard.partial_update');
-        //     Route::patch('/wizard/store', 'submitWizard')->name('wizard.submit');
-
-        // });
+            Route::patch('/simple', 'storeSimpleForm')->name('simple.store');
+            Route::patch('/editor', 'storeEditorForm')->name('editor.store');
+            Route::get('/wizard', 'wizardForm')->name('wizard');
+            Route::patch('/wizard', 'partialUpdateWizard')->name('wizard.partial_update');
+            Route::patch('/wizard/store', 'submitWizard')->name('wizard.submit');
+        });
 
         Route::name('pages.')->controller(PagesController::class)->prefix('pages')->group(function () {
             Route::get('/authPage', 'authPage')->name('authPage');
@@ -113,8 +114,8 @@ Route::middleware(['web', HandleInertiaRequests::class])->group(function () {
         Route::resource('/product-page-banner', ProductPageBannerController::class);
 
         // Recommendation configuration routes
-        Route::get('/recommendation-config', [\App\Http\Controllers\Admin\RecommendationConfigController::class, 'index'])->name('recommendation-config.index');
-        Route::patch('/recommendation-config', [\App\Http\Controllers\Admin\RecommendationConfigController::class, 'update'])->name('recommendation-config.update');
+        Route::get('/recommendation-config', [RecommendationConfigController::class, 'index'])->name('recommendation-config.index');
+        Route::patch('/recommendation-config', [RecommendationConfigController::class, 'update'])->name('recommendation-config.update');
 
         require __DIR__.'/stock.php';
     });

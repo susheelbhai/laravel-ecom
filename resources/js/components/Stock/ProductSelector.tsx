@@ -1,22 +1,20 @@
-import { InputDiv } from '@/components/form/container/input-div';
-import type { InputDivProps } from '@/components/form/container/input-types';
-
-type Product = {
-    id: number;
-    title: string;
-    sku?: string;
-};
+import InputDiv from '@/components/form/container/input-div';
 
 type ProductSelectorProps = {
-    products: Product[];
-    inputDivData: NonNullable<InputDivProps['inputDivData']>;
+    inputDivData: {
+        data: Record<string, unknown>;
+        setData: (key: string, value: unknown) => void;
+        errors?: Record<string, string[]>;
+    };
     name?: string;
     label?: string;
     disabled?: boolean;
 };
 
+/**
+ * Searchable product picker (server-backed async select). Does not load the full catalog.
+ */
 export function ProductSelector({
-    products,
     inputDivData,
     name = 'product_id',
     label = 'Product',
@@ -24,18 +22,15 @@ export function ProductSelector({
 }: ProductSelectorProps) {
     return (
         <InputDiv
-            type="select"
+            type="async-select"
             label={label}
             name={name}
             inputDivData={inputDivData}
             disabled={disabled}
-            options={[
-                { value: '', label: 'Select a product' },
-                ...products.map((p) => ({
-                    value: p.id.toString(),
-                    label: p.sku ? `${p.title} (${p.sku})` : p.title,
-                })),
-            ]}
+            fetchRouteName="admin.stock.products.search"
+            fetchQueryParam="q"
+            minSearchLength={2}
+            placeholder="Type at least 2 characters to search…"
         />
     );
 }

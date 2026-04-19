@@ -28,7 +28,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 export default function CreateStockRecord() {
-    const { warehouses, products } = usePage<SharedData>().props as any;
+    const { warehouses } = usePage<SharedData>().props as any;
     const [selectedWarehouse, setSelectedWarehouse] = useState('');
 
     const initialValues: FormType = {
@@ -58,11 +58,15 @@ export default function CreateStockRecord() {
                 buttonLabel="Create Stock Record"
             >
                 <InputDiv
-                    type="select"
+                    type="async-select"
                     label="Product"
                     name="product_id"
                     inputDivData={inputDivData}
-                    options={products}
+                    required
+                    fetchRouteName="admin.stock.products.search"
+                    fetchQueryParam="q"
+                    minSearchLength={2}
+                    placeholder="Type at least 2 characters to search…"
                 />
                 <InputDiv
                     type="select"

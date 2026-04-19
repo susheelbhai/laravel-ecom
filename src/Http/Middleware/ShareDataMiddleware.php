@@ -2,8 +2,13 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Admin;
 use App\Models\ImportantLink;
+use App\Models\Partner;
+use App\Models\Review;
+use App\Models\Seller;
 use App\Models\Setting;
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,13 +20,13 @@ class ShareDataMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  Closure(Request): (Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
         Inertia::share([
             'auth' => function () {
-                /** @var \App\Models\User $user */
+                /** @var User $user */
                 $user = Auth::user();
                 $unreadNotifications = $user ? $user->unreadNotifications()->take(10)->get()->map(function ($n) {
                     return $n->toArray();
@@ -36,13 +41,13 @@ class ShareDataMiddleware
                 ];
             },
             'admin' => function () {
-                /** @var \App\Models\Admin $user */
+                /** @var Admin $user */
                 $user = Auth::guard('admin')->user();
                 $unreadNotifications = $user ? $user->unreadNotifications()->take(10)->get()->map(function ($n) {
                     return $n->toArray();
                 }) : [];
                 $unreadCount = $user ? count($unreadNotifications) : 0;
-                $pendingReviewsCount = $user ? \App\Models\Review::where('status', 'pending')->count() : 0;
+                $pendingReviewsCount = $user ? Review::where('status', 'pending')->count() : 0;
 
                 return [
                     'user' => $user, // Admin guard
@@ -54,7 +59,7 @@ class ShareDataMiddleware
                 ];
             },
             'partner' => function () {
-                /** @var \App\Models\Partner $user */
+                /** @var Partner $user */
                 $user = Auth::guard('partner')->user();
                 $unreadNotifications = $user ? $user->unreadNotifications()->take(10)->get()->map(function ($n) {
                     return $n->toArray();
@@ -70,7 +75,7 @@ class ShareDataMiddleware
                 ];
             },
             'seller' => function () {
-                /** @var \App\Models\Seller $user */
+                /** @var Seller $user */
                 $user = Auth::guard('seller')->user();
                 $unreadNotifications = $user ? $user->unreadNotifications()->take(10)->get()->map(function ($n) {
                     return $n->toArray();

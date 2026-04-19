@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use App\Helpers\CartHelper;
 use App\Models\PageAuth;
+use App\Models\Setting;
+use App\Models\Wishlist;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -41,7 +43,7 @@ class HandleInertiaRequests extends Middleware
     {
         [$message, $author] = str(Inspiring::quotes()->random())->explode('-');
 
-        $setting = \App\Models\Setting::find(1);
+        $setting = Setting::find(1);
 
         return [
             ...parent::share($request),
@@ -102,7 +104,7 @@ class HandleInertiaRequests extends Middleware
             return 0;
         }
 
-        $wishlist = \App\Models\Wishlist::where('user_id', $request->user()->id)->first();
+        $wishlist = Wishlist::where('user_id', $request->user()->id)->first();
 
         if (! $wishlist) {
             return 0;
@@ -122,7 +124,7 @@ class HandleInertiaRequests extends Middleware
             return [];
         }
 
-        $wishlist = \App\Models\Wishlist::where('user_id', $request->user()->id)->first();
+        $wishlist = Wishlist::where('user_id', $request->user()->id)->first();
 
         if (! $wishlist) {
             return [];

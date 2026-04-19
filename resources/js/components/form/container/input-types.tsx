@@ -12,6 +12,10 @@ export interface InputDivProps extends InputHTMLAttributes<HTMLInputElement> {
     name?: string;
     children?: React.ReactNode;
     options?: any[];
+    fetchUrl?: string;
+    fetchRouteName?: string;
+    fetchQueryParam?: string;
+    minSearchLength?: number;
     widthMultiplier?: number;
     heightMultiplier?: number;
     readOnly?: boolean;
