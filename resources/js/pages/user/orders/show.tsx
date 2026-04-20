@@ -2,6 +2,7 @@ import { Link, usePage } from '@inertiajs/react';
 import { Container } from '@/components/ui/container';
 import { useFormatMoney } from '@/hooks/use-format-money';
 import AppLayout from '@/layouts/user/app-layout';
+import UserShippingSection from '@/components/shipping/UserShippingSection';
 
 interface OrderItem {
     id: number;
@@ -43,6 +44,15 @@ interface Order {
     updated_at: string;
     items: OrderItem[];
     address: Address;
+    shipment?: {
+        id: number;
+        tracking_number: string;
+        awb_code: string;
+        shipping_provider: string;
+        status: string;
+        created_at: string;
+    };
+
 }
 
 const OrderShow = () => {
@@ -323,6 +333,7 @@ const OrderShow = () => {
                     </div>
                 </div>
             </Container>
+            <UserShippingSection orderId={order.id} shipment={order.shipment} />
         </AppLayout>
     );
 };

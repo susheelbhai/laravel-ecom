@@ -40,7 +40,7 @@ class OrderController extends Controller
             abort(403);
         }
 
-        $order->load(['items.product', 'address']);
+        $order->load(['items.product', 'address', 'shipment']);
 
         // Transform order items to include thumbnails
         $orderData = $order->toArray();

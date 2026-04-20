@@ -12,6 +12,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call([
+            \Database\Seeders\Laraship\LarashipSeeder::class,
+        ]);
         $this->call(NotificationSeeder::class);
         $this->call(NewsletterSeeder::class);
         $this->call(SettingSeeder::class);

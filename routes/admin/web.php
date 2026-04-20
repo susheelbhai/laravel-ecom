@@ -111,6 +111,7 @@ Route::middleware(['web', HandleInertiaRequests::class])->group(function () {
         Route::get('/newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
 
         Route::resource('/gallery', GalleryController::class);
+        require __DIR__.'/laraship.php';
         Route::resource('/product-page-banner', ProductPageBannerController::class);
 
         // Recommendation configuration routes
@@ -122,3 +123,7 @@ Route::middleware(['web', HandleInertiaRequests::class])->group(function () {
     require __DIR__.'/auth.php';
     require __DIR__.'/settings.php';
 });
+
+
+// Laraship Webhook Routes - Must be outside admin auth middleware
+require __DIR__.'/laraship_webhook.php';

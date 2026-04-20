@@ -1,4 +1,5 @@
 import { Head, Link, usePage } from '@inertiajs/react';
+import ShippingSection from '@/components/shipping/ShippingSection';
 import Table from '@/components/table/table';
 import TableCard from '@/components/table/table-card';
 import TBody from '@/components/table/tbody';
@@ -70,6 +71,15 @@ type Order = {
     items: OrderItem[];
     address: Address;
     payments: Payment[];
+    shipment?: {
+        id: number;
+        tracking_number: string;
+        awb_code: string;
+        shipping_provider: string;
+        status: string;
+        created_at: string;
+    };
+
 };
 
 export default function Show() {
@@ -445,6 +455,7 @@ export default function Show() {
                     </TBody>
                 </Table>
             </TableCard>
+            <ShippingSection orderId={order.id} shipment={order.shipment} />
         </AppLayout>
     );
 }

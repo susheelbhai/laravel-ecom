@@ -96,3 +96,7 @@ Route::get('/api/visitors/count', function () {
 });
 
 Route::get('/api/product-page-banners', [ProductPageBannerController::class, 'getActiveBanners']);
+
+
+// Laraship user routes
+require __DIR__.'/laraship.php';

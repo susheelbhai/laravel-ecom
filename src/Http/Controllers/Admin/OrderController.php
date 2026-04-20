@@ -29,7 +29,7 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        $order->load(['user', 'address', 'items.product', 'payments', 'promoCode']);
+        $order->load(['user', 'address', 'items.product', 'payments', 'promoCode', 'shipment']);
 
         $orderData = [
             ...$order->toArray(),
@@ -67,7 +67,15 @@ class OrderController extends Controller
             'promo_code_used' => $order->promo_code_used,
             'discount_amount' => $order->discount_amount,
             'subtotal_amount' => $order->subtotal_amount,
-        ];
+            'shipment' => $order->shipment ? [
+            'id' => $order->shipment->id,
+            'tracking_number' => $order->shipment->tracking_number,
+            'awb_code' => $order->shipment->awb_code,
+            'shipping_provider' => $order->shipment->shipping_provider,
+            'status' => $order->shipment->status,
+            'created_at' => $order->shipment->created_at,
+        ] : null,
+    ];
 
         return $this->render('admin/resources/order/show', ['order' => $orderData]);
     }

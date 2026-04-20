@@ -37,6 +37,7 @@ import {
     Users2,
     Warehouse,
     Workflow,
+    Webhook,
 } from "lucide-react";
 
 const mainNavItems = [
@@ -75,6 +76,27 @@ const mainNavItems = [
         title: "Orders",
         routeName: "admin.order.index",
         icon: ShoppingCart,
+    },
+    {
+        title: "Shipping",
+        icon: Package,
+        children: [
+            {
+                title: "Providers",
+                routeName: "admin.shipping_provider.index",
+                icon: Package,
+            },
+            {
+                title: "Pickup Addresses",
+                routeName: "admin.pickup_address.index",
+                icon: Warehouse,
+            },
+            {
+                title: "Manual Webhook",
+                routeName: "admin.manual_webhook.create",
+                icon: Webhook,
+            },
+        ],
     },
     {
         title: "Stock",

@@ -7,10 +7,13 @@ use App\Traits\HasDynamicMediaAttributes;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+
+use Susheelbhai\Laraship\Traits\HasShippingDimensions;
+
 class Product extends BaseExternalMediaModel
 {
     /** @use HasFactory<\Database\Factories\ProductFactory> */
-    use HasDynamicMediaAttributes, HasFactory;
+    use HasDynamicMediaAttributes, HasFactory, HasShippingDimensions;
 
     protected $mediaAttributes = ['images'];
 

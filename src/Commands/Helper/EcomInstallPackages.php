@@ -28,6 +28,7 @@ class EcomInstallPackages
         $packages = [
             'laravel/wayfinder',
             'susheelbhai/larapay',
+            'susheelbhai/laraship',
         ];
         $this->installComposerPackages($command, $packages);
     }
