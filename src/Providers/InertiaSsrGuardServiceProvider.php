@@ -1,6 +1,6 @@
 <?php
 
-namespace Susheelbhai\Ecom\Providers;
+namespace App\Providers;
 
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;

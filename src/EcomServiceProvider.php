@@ -4,8 +4,9 @@ namespace Susheelbhai\Ecom;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
-use Susheelbhai\Ecom\Commands\install_ecom_package;
-use Susheelbhai\Ecom\Commands\RecomputeProductRatings;
+use Susheelbhai\Ecom\Commands\EcomInitialSettingsCommand;
+use Susheelbhai\Ecom\Commands\InstallEcomPackageCommand;
+use Susheelbhai\Ecom\Commands\RecomputeProductRatingsCommand;
 
 class EcomServiceProvider extends ServiceProvider
 {
@@ -23,8 +24,9 @@ class EcomServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
-                install_ecom_package::class,
-                RecomputeProductRatings::class,
+                InstallEcomPackageCommand::class,
+                EcomInitialSettingsCommand::class,
+                RecomputeProductRatingsCommand::class,
             ]);
         }
     }

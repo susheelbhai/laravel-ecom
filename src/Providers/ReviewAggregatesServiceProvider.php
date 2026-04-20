@@ -1,6 +1,6 @@
 <?php
 
-namespace Susheelbhai\Ecom\Providers;
+namespace App\Providers;
 
 use App\Models\Review;
 use Illuminate\Support\ServiceProvider;

@@ -43,6 +43,20 @@ Publishes the e-commerce application files (controllers, models, routes, views, 
 php artisan vendor:publish --tag=ecom --force
 ```
 
+Registers the e-commerce **service providers** in `bootstrap/providers.php` (Inertia SSR guard during Vite HMR, review aggregate observer). Run this **after** `vendor:publish` so the provider classes already exist under `app/Providers/`. **With no flags**, only `bootstrap/providers.php` is updated (safe and idempotent; Basekit is not run).
+
+```
+php artisan ecom:initial_settings
+```
+
+If you have **not** run Basekit’s environment wizard yet and want it in the same session, use:
+
+```
+php artisan ecom:initial_settings --with-basekit
+```
+
+You should still publish e-com assets when needed; provider files under `app/Providers/` must exist before the app boots.
+
 ### Database
 
 Refresh the database and seed:
@@ -81,6 +95,7 @@ composer require susheelbhai/laravel-ecom
 
 php artisan ecom:install_package
 php artisan vendor:publish --tag=ecom --force
+php artisan ecom:initial_settings
 php artisan migrate:fresh --seed
 npm install
 npm run build

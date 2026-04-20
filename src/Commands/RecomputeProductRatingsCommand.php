@@ -5,7 +5,7 @@ namespace Susheelbhai\Ecom\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
-class RecomputeProductRatings extends Command
+class RecomputeProductRatingsCommand extends Command
 {
     protected $signature = 'products:recompute-ratings {--chunk=1000}';
 
