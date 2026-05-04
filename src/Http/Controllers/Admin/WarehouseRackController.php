@@ -15,6 +15,11 @@ class WarehouseRackController extends Controller
      */
     public function index(Warehouse $warehouse)
     {
+        // Ensure the warehouse belongs to admin
+        if ($warehouse->owner_type !== 'admin') {
+            abort(403, 'Unauthorized access to this warehouse.');
+        }
+
         $racks = $warehouse->racks()->withCount('stockRecords')->paginate(15);
 
         return $this->render('admin/resources/warehouse_rack/index', [
@@ -28,6 +33,11 @@ class WarehouseRackController extends Controller
      */
     public function create(Warehouse $warehouse)
     {
+        // Ensure the warehouse belongs to admin
+        if ($warehouse->owner_type !== 'admin') {
+            abort(403, 'Unauthorized access to this warehouse.');
+        }
+
         return $this->render('admin/resources/warehouse_rack/create', [
             'warehouse' => $warehouse,
         ], 'inertia');
@@ -38,6 +48,11 @@ class WarehouseRackController extends Controller
      */
     public function store(StoreRackRequest $request, Warehouse $warehouse)
     {
+        // Ensure the warehouse belongs to admin
+        if ($warehouse->owner_type !== 'admin') {
+            abort(403, 'Unauthorized access to this warehouse.');
+        }
+
         $warehouse->racks()->create($request->validated());
 
         return redirect()->route('admin.stock.warehouses.racks.index', $warehouse)

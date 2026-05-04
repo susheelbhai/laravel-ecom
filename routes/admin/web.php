@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\DealerController;
+use App\Http\Controllers\Admin\DistributorController;
+use App\Http\Controllers\Admin\DistributorOrderController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\FormsController;
 use App\Http\Controllers\Admin\GalleryController;
@@ -88,6 +91,21 @@ Route::middleware(['web', HandleInertiaRequests::class])->group(function () {
         Route::resource('/slider1', Slider1Controller::class)->except(['show', 'destroy']);
         Route::resource('/slider', SliderController::class);
         Route::resource('/partner', PartnerController::class);
+        Route::get('/distributor', [DistributorController::class, 'index'])->name('distributor.index');
+        Route::patch('/distributor/{distributor}/approve', [DistributorController::class, 'approve'])->name('distributor.approve');
+        Route::patch('/distributor/{distributor}/reject', [DistributorController::class, 'reject'])->name('distributor.reject');
+        Route::get('/dealer', [DealerController::class, 'index'])->name('dealer.index');
+        Route::patch('/dealer/{dealer}/approve', [DealerController::class, 'approve'])->name('dealer.approve');
+        Route::patch('/dealer/{dealer}/reject', [DealerController::class, 'reject'])->name('dealer.reject');
+
+        Route::get('/distributor-orders', [DistributorOrderController::class, 'index'])->name('distributor-orders.index');
+        Route::get('/distributor-orders/create', [DistributorOrderController::class, 'create'])->name('distributor-orders.create');
+        Route::post('/distributor-orders', [DistributorOrderController::class, 'store'])->name('distributor-orders.store');
+        Route::get('/distributor-orders/products/{product}/pricing', [DistributorOrderController::class, 'productPricing'])->name('distributor-orders.products.pricing');
+        Route::get('/distributor-orders/{distributor_order}', [DistributorOrderController::class, 'show'])->name('distributor-orders.show');
+        Route::get('/distributor-orders/{distributor_order}/approve', [DistributorOrderController::class, 'approveForm'])->name('distributor-orders.approve.form');
+        Route::patch('/distributor-orders/{distributor_order}/approve', [DistributorOrderController::class, 'approve'])->name('distributor-orders.approve');
+        Route::patch('/distributor-orders/{distributor_order}/reject', [DistributorOrderController::class, 'reject'])->name('distributor-orders.reject');
         Route::resource('/seller', SellerController::class);
 
         Route::resource('/user', UserController::class);
@@ -123,7 +141,6 @@ Route::middleware(['web', HandleInertiaRequests::class])->group(function () {
     require __DIR__.'/auth.php';
     require __DIR__.'/settings.php';
 });
-
 
 // Laraship Webhook Routes - Must be outside admin auth middleware
 require __DIR__.'/laraship_webhook.php';

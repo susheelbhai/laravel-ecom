@@ -1,0 +1,60 @@
+import { Head, useForm } from '@inertiajs/react';
+import type { FormEventHandler } from 'react';
+
+import { FormContainer } from '@/components/form/container/form-container';
+import InputError from '@/components/form/input/input-error';
+import Button from '@/components/ui/button/button';
+import { Input } from '@/components/form/input/input';
+import { Label } from '@/components/form/input/label';
+import AuthLayout from '@/layouts/distributor/auth-layout';
+
+export default function ConfirmPassword() {
+    const { data, setData, post, processing, errors, reset } = useForm<
+        Required<{ password: string }>
+    >({
+        password: '',
+    });
+
+    const submit: FormEventHandler = (e) => {
+        e.preventDefault();
+
+        post(route('distributor.password.confirm'), {
+            onFinish: () => reset('password'),
+        });
+    };
+
+    return (
+        <AuthLayout
+            title="Confirm your password"
+            description="This is a secure area of the application. Please confirm your password before continuing."
+        >
+            <Head title="Confirm password" />
+
+            <FormContainer
+                onSubmit={submit}
+                processing={processing}
+                buttonLabel="Confirm"
+            >
+                <div className="space-y-6">
+                    <div className="grid gap-2">
+                        <Label htmlFor="password">Password</Label>
+                        <Input
+                            id="password"
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            autoComplete="current-password"
+                            value={data.password}
+                            autoFocus
+                            onChange={(e) =>
+                                setData('password', e.target.value)
+                            }
+                        />
+
+                        <InputError message={errors.password} />
+                    </div>
+                </div>
+            </FormContainer>
+        </AuthLayout>
+    );
+}

@@ -10,7 +10,7 @@ import {
 } from 'react-icons/fa';
 import AppearanceToggleDropdown from '@/components/appearance-dropdown';
 import CartIcon from '@/components/cart-icon';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 import WishlistIcon from '@/components/wishlist-icon';
 import type { MenuItem, ProfileItem } from '@/types';
 import AuthSection from './auth-section';

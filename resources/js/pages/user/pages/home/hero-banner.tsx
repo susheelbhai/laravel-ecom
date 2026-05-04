@@ -1,6 +1,6 @@
 import { Link } from '@inertiajs/react';
 import { ShoppingBag, Sparkles } from 'lucide-react';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 
 export default function HeroBanner(props: any) {
     const appName = props.data?.appData?.name;

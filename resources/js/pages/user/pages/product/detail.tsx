@@ -1,6 +1,6 @@
 import { usePage } from '@inertiajs/react';
 import { useState } from 'react';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 import AppLayout from '@/layouts/user/app-layout';
 import ExternalZoomOverlay from './components/images/external-zoom-overlay';
 import ImageSlider from './components/images/image-slider';
@@ -39,7 +39,7 @@ export default function ProductDetail() {
 
     if (!product) {
         return (
-            <AppLayout title="Product Not Found">
+            <AppLayout>
                 <div className="flex min-h-100 items-center justify-center">
                     <p className="text-lg text-muted-foreground">
                         Product not found
@@ -68,7 +68,7 @@ export default function ProductDetail() {
               : [];
 
     return (
-        <AppLayout title={product.title}>
+        <AppLayout>
             <div className="bg-background text-foreground">
                 <Container className="py-12 lg:py-16">
                     {/* Upper Section: Images and Price */}

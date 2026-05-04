@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 import { useFormatMoney } from '@/hooks/use-format-money';
 import {
     handleProductImageError,
@@ -57,7 +57,7 @@ const OrderSuccess = ({ order }: OrderSuccessProps) => {
     const { formatMoney } = useFormatMoney();
 
     return (
-        <AppLayout title="Order Placed Successfully">
+        <AppLayout>
             <Container className="py-8">
                 <div className="mx-auto max-w-3xl">
                     {/* Success Message */}

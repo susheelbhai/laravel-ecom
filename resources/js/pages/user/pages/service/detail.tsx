@@ -15,7 +15,7 @@ interface ServiceDetailData {
 export default function Create() {
     const service = usePage().props.data as ServiceDetailData;
     return (
-        <AppLayout title={service.title}>
+        <AppLayout>
             <div className="bg-background text-foreground">
                 {/* Banner */}
                 <div

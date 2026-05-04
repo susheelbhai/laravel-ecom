@@ -5,7 +5,7 @@ import Table from '@/components/table/table';
 import TableCard from '@/components/table/table-card';
 import TBody from '@/components/table/tbody';
 import THead from '@/components/table/thead';
-import Button from '@/components/button';
+import Button from '@/components/ui/button/button';
 
 type ShippingRate = {
     provider_id: number;

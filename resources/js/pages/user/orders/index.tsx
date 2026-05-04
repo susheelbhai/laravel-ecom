@@ -1,5 +1,5 @@
 import { Link, usePage } from '@inertiajs/react';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 import { useFormatMoney } from '@/hooks/use-format-money';
 import AppLayout from '@/layouts/user/app-layout';
 
@@ -68,7 +68,7 @@ const OrdersIndex = () => {
     };
 
     return (
-        <AppLayout title="My Orders">
+        <AppLayout>
             <Container className="py-8">
                 <h1 className="mb-6 text-3xl font-bold">My Orders</h1>
 

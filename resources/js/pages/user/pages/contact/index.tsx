@@ -2,8 +2,8 @@ import { usePage } from '@inertiajs/react';
 import { Clock, LoaderCircle, Mail, MapPin, Phone } from 'lucide-react';
 
 import { InputDiv } from '@/components/form/container/input-div';
-import { Button } from '@/components/ui/button';
-import { Container } from '@/components/ui/container';
+import Button from '@/components/ui/button/button';
+import { Container } from '@/components/ui/layout/container';
 import AppLayout from '@/layouts/user/app-layout';
 import { useFormHandler } from '@/lib/use-form-handler';
 
@@ -39,7 +39,7 @@ export default function Create() {
         processing1 = false;
     }
     return (
-        <AppLayout title="Contact Us">
+        <AppLayout>
             <div className="min-h-screen bg-background text-foreground">
                 <Container className="py-12 lg:py-16">
                     {/* Page Heading */}

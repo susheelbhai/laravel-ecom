@@ -1,12 +1,12 @@
 import { Link, usePage } from '@inertiajs/react';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 import AppLayout from '@/layouts/user/app-layout';
 
 export default function Create() {
     const blogs = usePage().props.data as any;
 
     return (
-        <AppLayout title="Blogs">
+        <AppLayout>
             <div className="min-h-screen bg-linear-to-b from-background to-card text-foreground">
                 {/* Banner */}
                 <div

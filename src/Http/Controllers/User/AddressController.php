@@ -14,6 +14,12 @@ class AddressController extends Controller
     {
         $addresses = Auth::user()->addresses()->orderBy('is_default', 'desc')->orderBy('created_at', 'desc')->get();
 
+        $this->seo(
+            title: 'My Addresses',
+            description: 'Manage your saved delivery addresses. Add, edit, or set a default address for faster checkout.',
+            canonical: route('addresses.index'),
+        );
+
         return $this->render('user/addresses/index', [
             'addresses' => $addresses,
         ]);
@@ -21,6 +27,11 @@ class AddressController extends Controller
 
     public function create()
     {
+        $this->seo(
+            title: 'Add New Address',
+            description: 'Add a new delivery address to your account for faster checkout.',
+        );
+
         return $this->render('user/addresses/form', [
             'address' => null,
         ]);
@@ -52,6 +63,11 @@ class AddressController extends Controller
         if ($address->user_id !== Auth::id()) {
             abort(403);
         }
+
+        $this->seo(
+            title: 'Edit Address',
+            description: 'Update your saved delivery address details.',
+        );
 
         return $this->render('user/addresses/form', [
             'address' => $address,

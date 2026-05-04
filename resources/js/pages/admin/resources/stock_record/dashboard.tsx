@@ -1,6 +1,6 @@
 import { Head, usePage } from '@inertiajs/react';
 import { Warehouse, Package, AlertTriangle } from 'lucide-react';
-import TextLink from '@/components/text-link';
+import TextLink from '@/components/ui/button/text-link';
 import AppLayout from '@/layouts/admin/app-layout';
 import { type BreadcrumbItem, type SharedData } from '@/types';
 

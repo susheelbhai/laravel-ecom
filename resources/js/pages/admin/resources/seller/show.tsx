@@ -1,5 +1,5 @@
 import { Head, usePage } from '@inertiajs/react';
-import Button from '@/components/button';
+import Button from '@/components/ui/button/button';
 import EditRow from '@/components/table/edit-row';
 import Table from '@/components/table/table';
 import TableCard from '@/components/table/table-card';

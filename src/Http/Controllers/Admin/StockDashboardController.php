@@ -14,12 +14,15 @@ class StockDashboardController extends Controller
      */
     public function index()
     {
-        $totalWarehouses = Warehouse::count();
-        $totalRacks = Warehouse::withCount('racks')->get()->sum('racks_count');
+        $totalWarehouses = Warehouse::where('owner_type', 'admin')->count();
+        $totalRacks = Warehouse::where('owner_type', 'admin')->withCount('racks')->get()->sum('racks_count');
         $totalProductsInStock = StockRecord::where('quantity', '>', 0)->distinct('product_id')->count('product_id');
         $lowStockAlerts = StockRecord::where('quantity', '>', 0)
             ->where('quantity', '<=', 10)
             ->with(['product', 'rack.warehouse'])
+            ->whereHas('rack.warehouse', function ($query) {
+                $query->where('owner_type', 'admin');
+            })
             ->get();
 
         return $this->render('admin/resources/stock_record/dashboard', [
@@ -35,6 +38,11 @@ class StockDashboardController extends Controller
      */
     public function byWarehouse(Warehouse $warehouse)
     {
+        // Ensure the warehouse belongs to admin
+        if ($warehouse->owner_type !== 'admin') {
+            abort(403, 'Unauthorized access to this warehouse.');
+        }
+
         $stockRecords = StockRecord::whereHas('rack', function ($query) use ($warehouse) {
             $query->where('warehouse_id', $warehouse->id);
         })

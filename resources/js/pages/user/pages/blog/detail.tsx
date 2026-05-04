@@ -1,11 +1,11 @@
 import { usePage } from '@inertiajs/react';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 import AppLayout from '@/layouts/user/app-layout';
 
 export default function Create() {
     const blog = usePage().props.data as any;
     return (
-        <AppLayout title={blog.title}>
+        <AppLayout>
             <div className="bg-background text-foreground">
                 {/* Banner */}
                 <div

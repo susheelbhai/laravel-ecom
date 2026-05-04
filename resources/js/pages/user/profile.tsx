@@ -3,8 +3,8 @@ import { Pencil } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 import { InputDiv } from '@/components/form/container/input-div';
-import { Button } from '@/components/ui/button';
-import { Container } from '@/components/ui/container';
+import Button from '@/components/ui/button/button';
+import { Container } from '@/components/ui/layout/container';
 import AppLayout from '@/layouts/user/app-layout';
 import { useFormHandler } from '@/lib/use-form-handler';
 import { type SharedData } from '@/types';
@@ -74,7 +74,7 @@ export default function Profile({
     };
 
     return (
-        <AppLayout title="Profile">
+        <AppLayout>
             <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 py-8 sm:py-12">
                 <Container className="max-w-5xl">
                     {/* Header Section */}

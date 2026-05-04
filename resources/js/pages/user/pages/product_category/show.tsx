@@ -1,5 +1,5 @@
 import { usePage } from '@inertiajs/react';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 
 import Pagination from '@/components/table/pagination';
 import AppLayout from '@/layouts/user/app-layout';
@@ -22,7 +22,7 @@ export default function ProductCategoryShow() {
     const productsPagination = isPaginated ? productsRaw : null;
 
     return (
-        <AppLayout title={category.title}>
+        <AppLayout>
             <div className="min-h-screen bg-linear-to-br from-slate-50 via-white to-slate-50">
                 {/* Banner */}
                 <section className="relative mb-8 flex h-72 w-full items-center justify-center overflow-hidden md:h-80">

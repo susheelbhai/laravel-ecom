@@ -1,6 +1,6 @@
 import { Link, router, usePage } from '@inertiajs/react';
-import Button from '@/components/button';
-import { Container } from '@/components/ui/container';
+import Button from '@/components/ui/button/button';
+import { Container } from '@/components/ui/layout/container';
 import AppLayout from '@/layouts/user/app-layout';
 
 interface Address {
@@ -33,7 +33,7 @@ const AddressIndex = () => {
     };
 
     return (
-        <AppLayout title="My Addresses">
+        <AppLayout>
             <Container className="py-8">
                 <div className="mb-6 flex items-center justify-between">
                     <h1 className="text-3xl font-bold">My Addresses</h1>

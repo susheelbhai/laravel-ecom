@@ -33,6 +33,12 @@ class CartController extends Controller
             $cart = (object) $cartData;
         }
 
+        $this->seo(
+            title: 'Shopping Cart',
+            description: 'Review the items in your shopping cart and proceed to checkout.',
+            canonical: route('cart.index'),
+        );
+
         return Inertia::render('user/cart/index', [
             'cart' => $cart,
         ]);

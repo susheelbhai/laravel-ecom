@@ -1,7 +1,7 @@
 
 import { Link } from '@inertiajs/react';
 import { TrendingUp, Star } from 'lucide-react';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 import { useFormatMoney } from '@/hooks/use-format-money';
 import {
     handleProductImageError,

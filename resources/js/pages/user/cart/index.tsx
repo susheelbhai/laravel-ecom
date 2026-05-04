@@ -1,6 +1,6 @@
 import { usePage, router, Link } from '@inertiajs/react';
 import { X } from 'lucide-react';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 import { useFormatMoney } from '@/hooks/use-format-money';
 import {
     handleProductImageError,
@@ -45,7 +45,7 @@ const CartIndex = () => {
     };
 
     return (
-        <AppLayout title="Shopping Cart">
+        <AppLayout>
             <div className="bg-background">
                 <Container className="py-8">
                     <h1 className="mb-8 text-3xl font-bold text-foreground">

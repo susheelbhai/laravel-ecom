@@ -2,10 +2,10 @@ import { FormEventHandler } from 'react';
 
 import { Head, useForm } from '@inertiajs/react';
 
-import InputError from '@/components/input-error';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import InputError from '@/components/form/input/input-error';
+import Button from '@/components/ui/button/button';
+import { Input } from '@/components/form/input/input';
+import { Label } from '@/components/form/input/label';
 import AuthLayout from '@/layouts/user/auth-layout';
 
 export default function TwoFactorChallenge() {

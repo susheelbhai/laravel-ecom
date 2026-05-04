@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\StockDashboardController;
 use App\Http\Controllers\Admin\StockMovementController;
 use App\Http\Controllers\Admin\StockRecordController;
+use App\Http\Controllers\Admin\OwnedStockController;
 use App\Http\Controllers\Admin\WarehouseController;
 use App\Http\Controllers\Admin\WarehouseRackController;
 use Illuminate\Support\Facades\Route;
@@ -44,4 +45,10 @@ Route::prefix('stock')->name('stock.')->group(function () {
     Route::post('movements', [StockMovementController::class, 'store'])->name('movements.store');
     Route::get('movements/product/{product}', [StockMovementController::class, 'byProduct'])->name('movements.by-product');
     Route::get('movements/warehouse/{warehouse}', [StockMovementController::class, 'byWarehouse'])->name('movements.by-warehouse');
+
+    // Owned stock (Distributor / Dealer)
+    Route::get('distributors', [OwnedStockController::class, 'distributorsIndex'])->name('distributors.index');
+    Route::get('distributors/{distributor}', [OwnedStockController::class, 'distributorsShow'])->name('distributors.show');
+    Route::get('dealers', [OwnedStockController::class, 'dealersIndex'])->name('dealers.index');
+    Route::get('dealers/{dealer}', [OwnedStockController::class, 'dealersShow'])->name('dealers.show');
 });

@@ -1,6 +1,6 @@
 import { usePage } from '@inertiajs/react';
 import { Target, Flag, Eye, Quote } from 'lucide-react';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 
 import AppLayout from '@/layouts/user/app-layout';
 
@@ -8,7 +8,7 @@ export default function Create() {
     const data = usePage().props.data as any;
 
     return (
-        <AppLayout title="About Us">
+        <AppLayout>
             <div className="min-h-screen bg-background text-foreground">
                 {/* Banner */}
                 <section className="relative h-64 w-full overflow-hidden md:h-80">

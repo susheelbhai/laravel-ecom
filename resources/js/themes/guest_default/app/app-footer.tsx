@@ -7,7 +7,7 @@ import {
     FaTwitter,
     FaYoutube,
 } from 'react-icons/fa';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 
 const Footer: React.FC = () => {
     const appData = (usePage().props as any).appData;

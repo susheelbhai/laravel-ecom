@@ -1,102 +1,58 @@
-import { useForm, usePage } from '@inertiajs/react';
-import { LoaderCircle } from 'lucide-react';
-import type { FormEventHandler } from 'react';
-
+import { Head, usePage } from '@inertiajs/react';
 import { FormContainer } from '@/components/form/container/form-container';
 import { InputDiv } from '@/components/form/container/input-div';
-import { Button } from '@/components/ui/button';
-import { ContainerFluid } from '@/components/ui/container-fluid';
 import AppLayout from '@/layouts/admin/app-layout';
-import { can } from '@/lib/can';
-import { type BreadcrumbItem } from '@/types';
+import { useFormHandler } from '@/lib/use-form-handler';
+import type { BreadcrumbItem } from '@/types';
 
-interface LoginProps {
-    submitUrl?: string;
-    status?: string;
-}
-const submitUrl = route('admin.permission.store');
+type FormType = {
+    name: string;
+    roles: number[];
+};
 
-export default function CreatePermission({ status }: LoginProps) {
-    const { data, setData, post, processing, errors, reset } = useForm({
+const breadcrumbs: BreadcrumbItem[] = [
+    {
+        title: 'Permission',
+        href: '/admin/permission',
+    },
+    {
+        title: 'Create',
+        href: '/dashboard',
+    },
+];
+
+export default function CreatePermission() {
+    const roles = usePage().props.roles as any;
+
+    const initialValues: FormType = {
         name: '',
         roles: [],
+    };
+
+    const { submit, inputDivData, processing } = useFormHandler<FormType>({
+        url: route('admin.permission.store'),
+        initialValues,
+        method: 'POST',
     });
 
-    const submit: FormEventHandler = (e) => {
-        e.preventDefault();
-        if (submitUrl) {
-            post(submitUrl, {});
-        } else {
-            console.error('Submit URL is not defined.');
-        }
-    };
-
-    const inputDivData = {
-        data,
-        setData,
-        errors: Object.fromEntries(
-            Object.entries(errors).map(([key, value]) => [
-                key,
-                value ? [value] : [],
-            ]),
-        ),
-    };
-    const roles = usePage().props.roles as any;
-    const breadcrumbs: BreadcrumbItem[] = [
-        {
-            title: 'Permission',
-            href: '/admin/permission',
-        },
-        {
-            title: 'Create',
-            href: '/dashboard',
-        },
-    ];
-
     return (
-        <AppLayout
-            breadcrumbs={breadcrumbs}
-            title="AIASA Membership Registration"
-        >
-            <ContainerFluid>
-                <FormContainer onSubmit={submit} processing={processing}>
-                    <div className="grid gap-6">
-                        <InputDiv
-                            type="text"
-                            label="Name"
-                            name="name"
-                            inputDivData={inputDivData}
-                        />
-                        <InputDiv
-                            type="multicheckbox"
-                            label="Roles"
-                            name="roles"
-                            inputDivData={inputDivData}
-                            options={roles}
-                        />
-
-                        {can('all rights') && (
-                            <Button
-                                type="submit"
-                                className="mt-4 w-full"
-                                tabIndex={4}
-                                disabled={processing}
-                            >
-                                {processing && (
-                                    <LoaderCircle className="h-4 w-4 animate-spin" />
-                                )}
-                                Create Now
-                            </Button>
-                        )}
-                    </div>
-                </FormContainer>
-
-                {status && (
-                    <div className="mb-4 text-center text-sm font-medium text-green-600">
-                        {status}
-                    </div>
-                )}
-            </ContainerFluid>
+        <AppLayout breadcrumbs={breadcrumbs}>
+            <Head title="Create Permission" />
+            <FormContainer onSubmit={submit} processing={processing}>
+                <InputDiv
+                    type="text"
+                    label="Name"
+                    name="name"
+                    inputDivData={inputDivData}
+                />
+                <InputDiv
+                    type="multicheckbox"
+                    label="Roles"
+                    name="roles"
+                    inputDivData={inputDivData}
+                    options={roles}
+                />
+            </FormContainer>
         </AppLayout>
     );
 }

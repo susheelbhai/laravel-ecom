@@ -1,6 +1,6 @@
 import { usePage } from '@inertiajs/react';
 import { ShieldCheck, Truck, CreditCard, Headphones, Package, Award, Clock, RefreshCw } from 'lucide-react';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 
 const iconMap: Record<string, any> = {
     Truck,

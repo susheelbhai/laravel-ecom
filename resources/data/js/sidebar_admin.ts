@@ -32,6 +32,8 @@ import {
     ShoppingCart,
     Sparkles,
     Star,
+    Store,
+    Truck,
     User,
     Users,
     Users2,
@@ -74,8 +76,19 @@ const mainNavItems = [
     },
     {
         title: "Orders",
-        routeName: "admin.order.index",
         icon: ShoppingCart,
+        children: [
+            {
+                title: "Customer Orders",
+                routeName: "admin.order.index",
+                icon: ShoppingCart,
+            },
+            {
+                title: "Distributor Orders",
+                routeName: "admin.distributor-orders.index",
+                icon: Store,
+            },
+        ],
     },
     {
         title: "Shipping",
@@ -106,6 +119,16 @@ const mainNavItems = [
                 title: "Dashboard",
                 routeName: "admin.stock.dashboard.index",
                 icon: LayoutGrid,
+            },
+            {
+                title: "Distributor stock",
+                routeName: "admin.stock.distributors.index",
+                icon: Users2,
+            },
+            {
+                title: "Dealer stock",
+                routeName: "admin.stock.dealers.index",
+                icon: Users,
             },
             {
                 title: "Warehouses",
@@ -190,6 +213,16 @@ const mainNavItems = [
         title: "Partner",
         routeName: "admin.partner.index",
         icon: Users,
+    },
+    {
+        title: "Distributor",
+        routeName: "admin.distributor.index",
+        icon: Truck,
+    },
+    {
+        title: "Dealer",
+        routeName: "admin.dealer.index",
+        icon: Store,
     },
     {
         title: "User",

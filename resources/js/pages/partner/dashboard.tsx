@@ -1,5 +1,5 @@
 import { Head } from '@inertiajs/react';
-import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
+import { PlaceholderPattern } from '@/components/ui/display/placeholder-pattern';
 import AppLayout from '@/layouts/partner/app-layout';
 import { type BreadcrumbItem } from '@/types';
 

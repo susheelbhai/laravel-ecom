@@ -1,6 +1,6 @@
 import { useForm } from '@inertiajs/react';
 import { useState } from 'react';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 import AppLayout from '@/layouts/user/app-layout';
 import { AddressSelector } from './components/AddressSelector';
 import { OrderItemsList } from './components/OrderItemsList';
@@ -108,7 +108,7 @@ const Checkout = ({ cart, addresses, total }: CheckoutProps) => {
     const finalTotal = promoCodeData?.total || total;
 
     return (
-        <AppLayout title="Checkout">
+        <AppLayout>
             <div className="bg-background">
                 <Container className="py-8">
                     <h1 className="mb-6 text-3xl font-bold text-foreground">

@@ -11,7 +11,7 @@ import TestimonialSection from './pages/home/testimonials';
 const Home = () => {
     const data = usePage().props as any;
     return (
-        <AppLayout title="Home">
+        <AppLayout>
             <HeroSection data={data} />
             <AboutSection />
             <FeatureSection />

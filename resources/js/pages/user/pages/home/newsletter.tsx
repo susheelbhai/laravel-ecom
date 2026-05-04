@@ -1,7 +1,7 @@
 import { usePage } from '@inertiajs/react';
 import { useEffect, useRef } from 'react';
-import { Button } from '@/components/ui/button';
-import { Container } from '@/components/ui/container';
+import Button from '@/components/ui/button/button';
+import { Container } from '@/components/ui/layout/container';
 import { useFormHandler } from '@/lib/use-form-handler';
 
 type NewsletterForm = {

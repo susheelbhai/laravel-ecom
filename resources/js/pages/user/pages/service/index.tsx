@@ -14,7 +14,7 @@ export default function Services() {
   const services = usePage().props.data as ServiceData[];
 
   return (
-    <AppLayout title="Services">
+    <AppLayout>
       <div className="min-h-screen bg-background text-foreground">
         {/* Banner */}
         <section className="relative h-64 md:h-80 w-full overflow-hidden">

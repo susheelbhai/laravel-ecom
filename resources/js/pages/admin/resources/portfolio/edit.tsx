@@ -1,17 +1,15 @@
-import { Head, useForm, usePage } from '@inertiajs/react';
-import { router } from '@inertiajs/react';
-import type { FormEventHandler } from 'react';
+import { Head, usePage } from '@inertiajs/react';
 import { FormContainer } from '@/components/form/container/form-container';
 import { InputDiv } from '@/components/form/container/input-div';
-import { Button } from '@/components/ui/button';
 import AppLayout from '@/layouts/admin/app-layout';
+import { useFormHandler } from '@/lib/use-form-handler';
 import type { BreadcrumbItem, SharedData } from '@/types';
 
-type CreateForm = {
+type FormType = {
     name: string;
     url: string;
-    is_active: number;
     logo: string | File;
+    is_active: number;
 };
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -25,7 +23,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Create() {
+export default function Edit() {
     const portfolio =
         ((usePage<SharedData>().props as any)?.data as {
             id: number;
@@ -33,49 +31,24 @@ export default function Create() {
             url: string;
             is_active: number;
             logo: string;
-        }) || [];
+        }) || {};
 
-    const { setData, post, processing, errors, reset, data } = useForm<
-        Required<CreateForm>
-    >({
-        name: portfolio.name,
-        url: portfolio.url,
+    const initialValues: FormType = {
+        name: portfolio.name || '',
+        url: portfolio.url || '',
         logo: portfolio.logo || '',
-        is_active: portfolio.is_active || 1,
+        is_active: portfolio.is_active ?? 1,
+    };
+
+    const { submit, inputDivData, processing } = useFormHandler<FormType>({
+        url: route('admin.portfolio.update', portfolio.id),
+        initialValues,
+        method: 'PUT',
     });
-
-    const submit: FormEventHandler = (e) => {
-        e.preventDefault();
-
-        const formData = new FormData();
-
-        Object.entries(data).forEach(([key, value]) => {
-            formData.append(key, value as any);
-        });
-
-        // 👇 Spoof the PUT method
-        formData.append('_method', 'PUT');
-
-        router.post(route('admin.portfolio.update', portfolio.id), formData, {
-            forceFormData: true, // Ensures Inertia sends as multipart/form-data
-            onSuccess: () => reset(),
-            onError: (errors) => console.log(errors),
-        });
-    };
-    const inputDivData = {
-        data,
-        setData,
-        errors: Object.fromEntries(
-            Object.entries(errors).map(([key, value]) => [
-                key,
-                value ? [value] : [],
-            ]),
-        ),
-    };
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Create Portfolio" />
+            <Head title="Edit Portfolio" />
             <FormContainer onSubmit={submit} processing={processing}>
                 <InputDiv
                     type="text"
@@ -85,18 +58,16 @@ export default function Create() {
                 />
                 <InputDiv
                     type="text"
-                    label="Url"
+                    label="URL"
                     name="url"
                     inputDivData={inputDivData}
                 />
-
                 <InputDiv
                     type="image"
                     label="Logo"
                     name="logo"
                     inputDivData={inputDivData}
                 />
-
                 <InputDiv
                     type="switch"
                     label="Active"

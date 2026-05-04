@@ -1,4 +1,4 @@
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 export default function TestimonialSection(data: any) {
     return data.data.length === 0 ? null : (
         <section id="testimonials" className="bg-background2 py-20 md:py-28">

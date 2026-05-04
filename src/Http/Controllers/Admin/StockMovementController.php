@@ -54,8 +54,8 @@ class StockMovementController extends Controller
 
         $movements = $query->orderBy('created_at', 'desc')->paginate(20);
 
-        // Load filter options
-        $warehouses = Warehouse::orderBy('name')->get();
+        // Load filter options — only admin-owned warehouses
+        $warehouses = Warehouse::where('owner_type', 'admin')->orderBy('name')->get();
         $products = Product::orderBy('title')->get();
 
         return $this->render('admin/resources/stock_movement/index', [
@@ -122,6 +122,11 @@ class StockMovementController extends Controller
      */
     public function byWarehouse(Warehouse $warehouse)
     {
+        // Ensure the warehouse belongs to admin
+        if ($warehouse->owner_type !== 'admin') {
+            abort(403, 'Unauthorized access to this warehouse.');
+        }
+
         $movements = StockMovement::whereHas('rack', function ($q) use ($warehouse) {
             $q->where('warehouse_id', $warehouse->id);
         })

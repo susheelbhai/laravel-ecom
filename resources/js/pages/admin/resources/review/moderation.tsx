@@ -1,5 +1,6 @@
 import { Head, router } from '@inertiajs/react';
 import { Star, Check, X, Package, User, Calendar } from 'lucide-react';
+import Swal from 'sweetalert2';
 import { useState } from 'react';
 import AppLayout from '@/layouts/admin/app-layout';
 import { cn } from '@/lib/utils';
@@ -8,6 +9,9 @@ import { type BreadcrumbItem, type PaginatedReviews, type Review } from '@/types
 const breadcrumbs: BreadcrumbItem[] = [
     { title: 'Review Moderation', href: route('admin.reviews.moderation') },
 ];
+
+const getCSSVariable = (variable: string): string =>
+    getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
 
 interface ModerationProps {
     pendingReviews: PaginatedReviews;
@@ -35,27 +39,55 @@ export default function Moderation({ pendingReviews }: ModerationProps) {
     };
 
     const handleApprove = (reviewId: number) => {
-        setProcessingId(reviewId);
-        router.patch(
-            route('admin.reviews.approve', reviewId),
-            {},
-            {
-                preserveScroll: true,
-                onFinish: () => setProcessingId(null),
-            },
-        );
+        Swal.fire({
+            title: 'Approve this review?',
+            text: 'It will be visible to customers.',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor:
+                getCSSVariable('--primary') || '#2563eb',
+            cancelButtonColor:
+                getCSSVariable('--muted-foreground') || '#64748b',
+            confirmButtonText: 'Yes, approve',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setProcessingId(reviewId);
+                router.patch(
+                    route('admin.reviews.approve', reviewId),
+                    {},
+                    {
+                        preserveScroll: true,
+                        onFinish: () => setProcessingId(null),
+                    },
+                );
+            }
+        });
     };
 
     const handleReject = (reviewId: number) => {
-        setProcessingId(reviewId);
-        router.patch(
-            route('admin.reviews.reject', reviewId),
-            {},
-            {
-                preserveScroll: true,
-                onFinish: () => setProcessingId(null),
-            },
-        );
+        Swal.fire({
+            title: 'Reject this review?',
+            text: 'It will not be published.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor:
+                getCSSVariable('--destructive') || '#dc2626',
+            cancelButtonColor:
+                getCSSVariable('--muted-foreground') || '#64748b',
+            confirmButtonText: 'Yes, reject',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setProcessingId(reviewId);
+                router.patch(
+                    route('admin.reviews.reject', reviewId),
+                    {},
+                    {
+                        preserveScroll: true,
+                        onFinish: () => setProcessingId(null),
+                    },
+                );
+            }
+        });
     };
 
     const formatDate = (dateString: string) => {

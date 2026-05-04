@@ -1,4 +1,4 @@
-import { Head, router, useForm } from '@inertiajs/react';
+import { router, useForm } from '@inertiajs/react';
 import { Star, X, Image as ImageIcon, Video as VideoIcon, Trash2 } from 'lucide-react';
 import { useState, useRef } from 'react';
 import AppLayout from '@/layouts/user/app-layout';
@@ -155,8 +155,7 @@ export default function EditReview({ review, product }: EditReviewProps) {
     const totalVideos = existingVideos.length + data.videos.length;
 
     return (
-        <AppLayout title='Edit Review'>
-            <Head title={`Edit Review - ${product.title}`} />
+        <AppLayout>
             <div className="container mx-auto px-4 py-8 max-w-4xl">
                 <div className="mb-6">
                     <h1 className="text-3xl font-bold mb-2">Edit Your Review</h1>

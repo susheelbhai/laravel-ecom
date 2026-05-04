@@ -1,7 +1,7 @@
 import { router, usePage } from '@inertiajs/react';
 import { Grid, List, Grid2x2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 import AppLayout from '@/layouts/user/app-layout';
 import SearchBar from './components/filters/search-bar';
 import SidebarFilter from './components/filters/sidebar-filter';
@@ -116,7 +116,7 @@ export default function Products() {
     } = useProductFilters({ initialData, filters });
 
     return (
-        <AppLayout title="Products">
+        <AppLayout>
             <div className="min-h-screen bg-background">
                 {/* Show BannerSlider if banners loaded successfully, otherwise fallback to static banner */}
                 {!bannersLoading && !bannersError && banners.length > 0 ? (

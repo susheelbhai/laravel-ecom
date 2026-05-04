@@ -1,5 +1,5 @@
 import { FaWhatsapp } from 'react-icons/fa';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 
 interface HeroSectionProps {
     data?: any;

@@ -1,6 +1,6 @@
 import { X, Loader2 } from 'lucide-react';
 import { InputDiv } from '@/components/form/container/input-div';
-import { Button } from '@/components/ui/button';
+import Button from '@/components/ui/button/button';
 import { useFormHandler } from '@/lib/use-form-handler';
 
 interface ProductEnquiryModalProps {

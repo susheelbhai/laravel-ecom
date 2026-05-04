@@ -316,6 +316,7 @@ class StockRecordController extends Controller
     private function warehousesWithRacksForSelect(): array
     {
         return Warehouse::query()
+            ->where('owner_type', 'admin')
             ->select(['id', 'name'])
             ->with([
                 'racks' => fn ($q) => $q
@@ -341,6 +342,7 @@ class StockRecordController extends Controller
     private function warehouseOptionsForSelect(): array
     {
         return Warehouse::query()
+            ->where('owner_type', 'admin')
             ->select(['id', 'name'])
             ->orderBy('name')
             ->get()

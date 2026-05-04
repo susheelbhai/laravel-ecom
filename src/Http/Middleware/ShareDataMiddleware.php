@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use App\Models\Admin;
+use App\Models\Dealer;
+use App\Models\Distributor;
 use App\Models\ImportantLink;
 use App\Models\Partner;
 use App\Models\Review;
@@ -86,6 +88,38 @@ class ShareDataMiddleware
                     'user' => $user, // Seller guard
                     'permissions' => $user?->getAllPermissions()->pluck('name'),
                     'dashboard_url' => route('seller.dashboard'),
+                    'unread_notifications_count' => $unreadCount,
+                    'unread_notifications' => $unreadNotifications,
+                ];
+            },
+            'distributor' => function () {
+                /** @var Distributor $user */
+                $user = Auth::guard('distributor')->user();
+                $unreadNotifications = $user ? $user->unreadNotifications()->take(10)->get()->map(function ($n) {
+                    return $n->toArray();
+                }) : [];
+                $unreadCount = $user ? count($unreadNotifications) : 0;
+
+                return [
+                    'user' => $user,
+                    'permissions' => $user?->getAllPermissions()->pluck('name'),
+                    'dashboard_url' => route('distributor.dashboard'),
+                    'unread_notifications_count' => $unreadCount,
+                    'unread_notifications' => $unreadNotifications,
+                ];
+            },
+            'dealer' => function () {
+                /** @var Dealer $user */
+                $user = Auth::guard('dealer')->user();
+                $unreadNotifications = $user ? $user->unreadNotifications()->take(10)->get()->map(function ($n) {
+                    return $n->toArray();
+                }) : [];
+                $unreadCount = $user ? count($unreadNotifications) : 0;
+
+                return [
+                    'user' => $user,
+                    'permissions' => $user?->getAllPermissions()->pluck('name'),
+                    'dashboard_url' => route('dealer.dashboard'),
                     'unread_notifications_count' => $unreadCount,
                     'unread_notifications' => $unreadNotifications,
                 ];

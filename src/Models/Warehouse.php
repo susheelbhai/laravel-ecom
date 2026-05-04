@@ -21,6 +21,8 @@ class Warehouse extends Model
         'state',
         'country',
         'pincode',
+        'owner_type',
+        'owner_id',
     ];
 
     public function racks(): HasMany

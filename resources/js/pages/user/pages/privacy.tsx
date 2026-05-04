@@ -1,11 +1,11 @@
 import { usePage } from '@inertiajs/react';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 import AppLayout from '@/layouts/user/app-layout';
 
 const Dashboard = () => {
     const data = usePage().props.data as any;
     return (
-        <AppLayout title="Privacy Policy">
+        <AppLayout>
             <Container className="py-10 text-foreground">
                 <p className="text-2xl font-bold"> {data.title} </p>
                 <p className="font-bold"> Last Updated : {data.updated_at} </p>

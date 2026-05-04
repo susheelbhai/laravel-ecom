@@ -28,6 +28,12 @@ class OrderController extends Controller
             return $orderData;
         })->toArray();
 
+        $this->seo(
+            title: 'My Orders',
+            description: 'View and track all your past and current orders.',
+            canonical: route('orders.index'),
+        );
+
         return $this->render('user/orders/index', [
             'orders' => $orders,
         ]);
@@ -51,6 +57,11 @@ class OrderController extends Controller
             return $itemData;
         })->toArray();
         $order = (object) $orderData;
+
+        $this->seo(
+            title: "Order #{$order->order_number}",
+            description: "View the details and status of order #{$order->order_number}.",
+        );
 
         return $this->render('user/orders/show', [
             'order' => $order,

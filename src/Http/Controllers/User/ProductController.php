@@ -228,6 +228,12 @@ class ProductController extends Controller
         });
 
         // dd($data);
+        $this->seo(
+            title: 'Products',
+            description: 'Browse our full product catalog.',
+            canonical: route('product.index'),
+        );
+
         $inertia = $this->render('user/pages/product/index', [
             'data' => $data,
             'categories' => $categories,
@@ -294,6 +300,12 @@ class ProductController extends Controller
 
         $data->setRelation('products', $products);
 
+        $this->seo(
+            title: $data->title,
+            description: $data->description ?? $data->title,
+            canonical: route('productCategory.show', $data->slug),
+        );
+
         return $this->render('user/pages/product_category/show', compact('data'));
     }
 
@@ -352,6 +364,12 @@ class ProductController extends Controller
             ->orderBy('display_order')
             ->pluck('section_type')
             ->toArray();
+
+        $this->seo(
+            title: $data->title,
+            description: $data->short_description ?? $data->title,
+            canonical: route('product.show', $data->slug),
+        );
 
         return $this->render('user/pages/product/detail', [
             'data' => $data,

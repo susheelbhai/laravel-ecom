@@ -38,6 +38,12 @@ class HomeController extends Controller
 
     public function home(Request $request)
     {
+        $this->seo(
+            title: 'E-commerse website developed by digamite private limited',
+            description: 'E-commerse website developed by digamite private limited',
+            canonical: route('home'),
+            image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80',
+        );
         $timingEnabled = (bool) $request->boolean('timing');
         $serverTiming = [];
 
@@ -171,12 +177,24 @@ class HomeController extends Controller
     {
         $data = PageAbout::firstOrFail();
 
+        $this->seo(
+            title: 'About Us',
+            description: 'Learn more about who we are, what drives us, and the vision that shapes everything we do.',
+            canonical: route('about'),
+        );
+
         return $this->render('user/pages/about/index', compact('data'));
     }
 
     public function contact()
     {
         $data = PageContact::firstOrFail();
+
+        $this->seo(
+            title: 'Contact Us',
+            description: 'Contact Digamite for websites, mobile apps, and digital marketing. Reach our team by phone, email, or message—we typically reply within 24–48 business hours.',
+            canonical: route('contact'),
+        );
 
         return $this->render('user/pages/contact/index', compact('data'));
     }
@@ -212,6 +230,12 @@ class HomeController extends Controller
     {
         $data = PagePrivacy::whereId(1)->first();
 
+        $this->seo(
+            title: 'Privacy Policy',
+            description: 'Learn how we collect, use, and protect your personal data. Our privacy policy explains cookies, third parties, and your rights.',
+            canonical: route('privacy'),
+        );
+
         return $this->render('user/pages/privacy', compact('data'));
     }
 
@@ -219,12 +243,24 @@ class HomeController extends Controller
     {
         $data = PageTnc::whereId(1)->first();
 
+        $this->seo(
+            title: 'Terms and Conditions',
+            description: 'Read our terms and conditions for using our websites, apps, and digital services—billing, service scope, and your responsibilities.',
+            canonical: route('tnc'),
+        );
+
         return $this->render('user/pages/tnc', compact('data'));
     }
 
     public function refund()
     {
         $data = PageRefund::whereId(1)->first();
+
+        $this->seo(
+            title: 'Refund Policy',
+            description: 'Understand our refund and cancellation policy—eligibility, timelines, and how to request a refund.',
+            canonical: route('refund'),
+        );
 
         return $this->render('user/pages/refund', compact('data'));
     }
@@ -250,6 +286,12 @@ class HomeController extends Controller
             });
 
         $data = $faqs->values();
+
+        $this->seo(
+            title: 'FAQ',
+            description: 'Find answers to frequently asked questions.',
+            canonical: route('faq'),
+        );
 
         return $this->render('user/pages/faq', compact('data'));
     }

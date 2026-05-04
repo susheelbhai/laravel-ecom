@@ -14,6 +14,12 @@ class ProfileController extends Controller
 {
     public function edit(Request $request)
     {
+        $this->seo(
+            title: 'Profile',
+            description: 'View and update your account profile, including your name, email, phone, and profile picture.',
+            canonical: route('profile.edit'),
+        );
+
         return $this->render('user/profile', [
             'user' => $request->user(),
         ]);

@@ -28,6 +28,12 @@ class WishlistController extends Controller
             $wishlist = (object) $wishlistData;
         }
 
+        $this->seo(
+            title: 'Wishlist',
+            description: 'View and manage your saved products. Add items to your cart when you are ready to purchase.',
+            canonical: route('wishlist.index'),
+        );
+
         return Inertia::render('user/wishlist/index', [
             'wishlist' => $wishlist,
         ]);

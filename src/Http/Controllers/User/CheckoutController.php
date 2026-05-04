@@ -6,6 +6,7 @@ use App\Actions\ConfirmOrder;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +14,7 @@ class CheckoutController extends Controller
 {
     public function index()
     {
-        /** @var \App\Models\User $user */
+        /** @var User $user */
         $user = Auth::user();
 
         $cart = Cart::where('user_id', Auth::id())
@@ -41,6 +42,12 @@ class CheckoutController extends Controller
         })->toArray();
         $cart = (object) $cartData;
 
+        $this->seo(
+            title: 'Checkout',
+            description: 'Complete your purchase securely. Select your delivery address and payment method to place your order.',
+            canonical: route('checkout.index'),
+        );
+
         return $this->render('user/checkout/index', [
             'cart' => $cart,
             'addresses' => $addresses,
@@ -50,7 +57,7 @@ class CheckoutController extends Controller
 
     public function store(Request $request)
     {
-        /** @var \App\Models\User $user */
+        /** @var User $user */
         $user = Auth::user();
 
         $request->validate([
@@ -114,6 +121,11 @@ class CheckoutController extends Controller
         // Prepare payment data
         $user = Auth::user();
 
+        $this->seo(
+            title: 'Processing Payment',
+            description: 'Please wait while we redirect you to the payment gateway to complete your order.',
+        );
+
         return $this->render('user/checkout/payment', [
             'order' => $order,
             'paymentData' => [
@@ -147,6 +159,11 @@ class CheckoutController extends Controller
             return $itemData;
         })->toArray();
         $order = (object) $orderData;
+
+        $this->seo(
+            title: 'Order Placed Successfully',
+            description: 'Your order has been placed successfully. Thank you for shopping with us.',
+        );
 
         return $this->render('user/checkout/success', [
             'order' => $order,

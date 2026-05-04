@@ -1,7 +1,7 @@
 import { Head } from '@inertiajs/react';
 
-import AppearanceTabs from '@/components/appearance-tabs';
-import HeadingSmall from '@/components/heading-small';
+import AppearanceToggleTab from '@/components/ui/display/appearance-tabs';
+import HeadingSmall from '@/components/ui/typography/heading-small';
 import AppLayout from '@/layouts/seller/app-layout';
 import { type BreadcrumbItem } from '@/types';
 
@@ -25,7 +25,7 @@ export default function Appearance() {
                         title="Appearance settings"
                         description="Update your account's appearance settings"
                     />
-                    <AppearanceTabs />
+                    <AppearanceToggleTab/>
                 </div>
             </SettingsLayout>
         </AppLayout>

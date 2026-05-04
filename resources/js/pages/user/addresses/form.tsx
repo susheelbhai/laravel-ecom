@@ -1,7 +1,7 @@
 import { useForm, Link } from '@inertiajs/react';
 import type { FormEventHandler } from 'react';
-import InputError from '@/components/input-error';
-import { Container } from '@/components/ui/container';
+import InputError from '@/components/form/input/input-error';
+import { Container } from '@/components/ui/layout/container';
 import AppLayout from '@/layouts/user/app-layout';
 
 interface Address {
@@ -53,7 +53,7 @@ const AddressForm = ({ address }: FormProps) => {
     };
 
     return (
-        <AppLayout title={isEdit ? 'Edit Address' : 'Add New Address'}>
+        <AppLayout>
             <Container className="max-w-3xl py-8">
                 <div className="mb-6">
                     <Link

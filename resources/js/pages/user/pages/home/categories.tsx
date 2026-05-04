@@ -1,7 +1,7 @@
 
 import { Link } from '@inertiajs/react';
 import { ArrowRight } from 'lucide-react';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 
 export default function CategoriesSection({ data }: { data: any }) {
     const categories = Array.isArray(data) ? data : Object.values(data ?? {});

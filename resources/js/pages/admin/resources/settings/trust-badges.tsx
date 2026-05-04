@@ -3,7 +3,7 @@ import { Plus, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 
 import { InputDiv } from '@/components/form/container/input-div';
-import { Button } from '@/components/ui/button';
+import Button from '@/components/ui/button/button';
 import AdminLayout from '@/layouts/admin/app-layout';
 
 const availableIcons = [

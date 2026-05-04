@@ -1,6 +1,6 @@
 import { usePage, Link, router } from '@inertiajs/react';
 import { Heart, ShoppingCart, Trash2 } from 'lucide-react';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 import { useFormatMoney } from '@/hooks/use-format-money';
 import {
     handleProductImageError,
@@ -37,7 +37,7 @@ const WishlistIndex = () => {
     };
 
     return (
-        <AppLayout title="Wishlist">
+        <AppLayout>
             <div className="bg-background">
                 <Container className="py-8 lg:py-12">
                     {/* Header */}

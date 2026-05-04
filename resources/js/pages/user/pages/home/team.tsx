@@ -1,4 +1,4 @@
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 export default function TeamSection(data: any) {
     return data.data.length === 0 ? null : (
         <section id="team" className="bg-background py-20 md:py-28">

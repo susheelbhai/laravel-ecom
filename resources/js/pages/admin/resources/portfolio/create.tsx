@@ -1,18 +1,15 @@
-import { Head, useForm } from '@inertiajs/react';
-import type { FormEventHandler } from 'react';
+import { Head } from '@inertiajs/react';
 import { FormContainer } from '@/components/form/container/form-container';
 import { InputDiv } from '@/components/form/container/input-div';
-import { Button } from '@/components/ui/button';
 import AppLayout from '@/layouts/admin/app-layout';
+import { useFormHandler } from '@/lib/use-form-handler';
 import type { BreadcrumbItem } from '@/types';
 
-type CreateForm = {
+type FormType = {
     name: string;
-    designation: string;
-    organisation: string;
-    message: string;
-    is_active: number;
+    url: string;
     logo: string | File;
+    is_active: number;
 };
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -27,34 +24,18 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 export default function Create() {
-    const { setData, post, processing, errors, reset, data } = useForm<
-        Required<CreateForm>
-    >({
+    const initialValues: FormType = {
         name: '',
-        designation: '',
-        organisation: '',
-        message: '',
+        url: '',
         logo: '',
         is_active: 1,
+    };
+
+    const { submit, inputDivData, processing } = useFormHandler<FormType>({
+        url: route('admin.portfolio.store'),
+        initialValues,
+        method: 'POST',
     });
-
-    const submit: FormEventHandler = (e) => {
-        e.preventDefault();
-        post(route('admin.portfolio.store'), {
-            onSuccess: () => reset(),
-        });
-    };
-
-    const inputDivData = {
-        data,
-        setData,
-        errors: Object.fromEntries(
-            Object.entries(errors).map(([key, value]) => [
-                key,
-                value ? [value] : [],
-            ]),
-        ),
-    };
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -68,18 +49,16 @@ export default function Create() {
                 />
                 <InputDiv
                     type="text"
-                    label="Url"
+                    label="URL"
                     name="url"
                     inputDivData={inputDivData}
                 />
-
                 <InputDiv
                     type="image"
                     label="Logo"
                     name="logo"
                     inputDivData={inputDivData}
                 />
-
                 <InputDiv
                     type="switch"
                     label="Active"

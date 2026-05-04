@@ -1,5 +1,12 @@
 <?php
 
+use App\Models\Admin;
+use App\Models\Dealer;
+use App\Models\Distributor;
+use App\Models\Partner;
+use App\Models\Seller;
+use App\Models\User;
+
 return [
 
     /*
@@ -54,6 +61,14 @@ return [
             'driver' => 'session',
             'provider' => 'partners',
         ],
+        'distributor' => [
+            'driver' => 'session',
+            'provider' => 'distributors',
+        ],
+        'dealer' => [
+            'driver' => 'session',
+            'provider' => 'dealers',
+        ],
         'seller_api' => ['driver' => 'sanctum', 'provider' => 'sellers'],
         'admin_api' => ['driver' => 'sanctum', 'provider' => 'admins'],
         'user_api' => ['driver' => 'sanctum', 'provider' => 'users'],
@@ -81,19 +96,27 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => User::class,
         ],
         'sellers' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Seller::class,
+            'model' => Seller::class,
         ],
         'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
+            'model' => Admin::class,
         ],
         'partners' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Partner::class,
+            'model' => Partner::class,
+        ],
+        'distributors' => [
+            'driver' => 'eloquent',
+            'model' => Distributor::class,
+        ],
+        'dealers' => [
+            'driver' => 'eloquent',
+            'model' => Dealer::class,
         ],
 
         // 'users' => [
@@ -142,6 +165,18 @@ return [
         ],
         'partners' => [
             'provider' => 'partners',
+            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'distributors' => [
+            'provider' => 'distributors',
+            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'dealers' => [
+            'provider' => 'dealers',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
             'expire' => 60,
             'throttle' => 60,

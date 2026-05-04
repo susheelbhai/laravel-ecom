@@ -11,7 +11,7 @@ import TrustBadgesSection from './trust-badges';
 const EcommerceHomePage = () => {
     const data = usePage().props as any;
     return (
-        <AppLayout title="Home">
+        <AppLayout>
             <HeroBanner data={data} />
             <TrustBadgesSection />
             <CategoriesSection data={data.productCategories} />

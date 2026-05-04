@@ -1,6 +1,5 @@
-import { Head } from '@inertiajs/react';
 import { useEffect, useRef } from 'react';
-import { Container } from '@/components/ui/container';
+import { Container } from '@/components/ui/layout/container';
 import { useFormatMoney } from '@/hooks/use-format-money';
 import AppLayout from '@/layouts/user/app-layout';
 
@@ -41,8 +40,7 @@ const Payment = ({ order, paymentData }: PaymentProps) => {
     }, []);
 
     return (
-        <AppLayout title="Processing Payment">
-            <Head title="Processing Payment" />
+        <AppLayout>
             <Container className="py-8">
                 <div className="mx-auto max-w-md">
                     <div className="rounded-lg bg-white p-8 text-center shadow">
