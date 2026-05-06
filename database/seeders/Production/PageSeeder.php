@@ -1,0 +1,37 @@
+<?php
+
+namespace Database\Seeders\Production;
+
+use App\Models\PageAbout;
+use App\Models\PageAuth;
+use App\Models\PageContact;
+use App\Models\PageHome;
+use App\Models\PagePrivacy;
+use App\Models\PageRefund;
+use App\Models\PageTnc;
+use Illuminate\Database\Seeder;
+
+class PageSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $page_auth = [
+            ['id' => 1],
+        ];
+        include __DIR__.'/data/data.php';
+
+        PageAuth::insert($page_auth);
+        PageHome::insert($page_home);
+
+        PageAbout::insert($page_about);
+        PageContact::insert($page_contact);
+        PageTnc::insert($page_tnc);
+        PagePrivacy::insert($page_privacy);
+        PageRefund::insert($page_refund);
+    }
+}
