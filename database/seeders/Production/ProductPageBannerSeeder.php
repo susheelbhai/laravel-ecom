@@ -12,7 +12,8 @@ class ProductPageBannerSeeder extends Seeder
      */
     public function run(): void
     {
-        include __DIR__.'/data/data.php';
+        include 'data/data.php';
+
         ProductPageBanner::insert($product_page_banners);
     }
 }

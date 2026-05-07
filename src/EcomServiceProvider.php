@@ -49,6 +49,7 @@ class EcomServiceProvider extends ServiceProvider
             __DIR__.'/Notifications' => app_path('Notifications'),
             __DIR__.'/Helpers' => app_path('Helpers'),
             __DIR__.'/Events' => app_path('Events'),
+            __DIR__.'/Enums' => app_path('Enums'),
             __DIR__.'/Listeners' => app_path('Listeners'),
             __DIR__.'/Livewire' => app_path('Livewire'),
             __DIR__.'/View' => app_path('View'),

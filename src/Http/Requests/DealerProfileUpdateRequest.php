@@ -33,6 +33,7 @@ class DealerProfileUpdateRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique('dealers', 'email')->ignore($dealer->id)],
             'phone' => ['nullable', 'string', 'max:32', Rule::unique('dealers', 'phone')->ignore($dealer->id)],
+            'commission_percentage' => ['nullable', 'numeric', 'min:0', 'max:100'],
         ];
     }
 }

@@ -12,7 +12,7 @@ class ShipmentSeeder extends Seeder
      */
     public function run(): void
     {
-        include __DIR__.'/data/data.php';
+        include __DIR__.'/../data/data.php';
         Shipment::insert($shipments);
     }
 }

@@ -25,6 +25,7 @@ import {
     Package,
     Percent,
     Phone,
+    QrCode,
     Server,
     Settings,
     Shield,
@@ -38,8 +39,10 @@ import {
     Users,
     Users2,
     Warehouse,
-    Workflow,
     Webhook,
+    Workflow,
+    Wrench,
+    AlertTriangle,
 } from "lucide-react";
 
 const mainNavItems = [
@@ -145,6 +148,27 @@ const mainNavItems = [
                 routeName: "admin.stock.movements.index",
                 icon: ArrowLeftRight,
             },
+            {
+                title: "Serial Numbers",
+                icon: QrCode,
+                children: [
+                    {
+                        title: "Lookup",
+                        routeName: "admin.serial-numbers.lookup",
+                        icon: QrCode,
+                    },
+                    {
+                        title: "Damaged",
+                        routeName: "admin.serial-numbers.damaged",
+                        icon: AlertTriangle,
+                    },
+                    {
+                        title: "Stolen",
+                        routeName: "admin.serial-numbers.stolen",
+                        icon: AlertTriangle,
+                    },
+                ],
+            },
         ],
     },
     {
@@ -205,30 +229,43 @@ const mainNavItems = [
         ],
     },
     {
-        title: "Seller",
-        routeName: "admin.seller.index",
-        icon: User,
-    },
-    {
-        title: "Partner",
-        routeName: "admin.partner.index",
-        icon: Users,
-    },
-    {
-        title: "Distributor",
-        routeName: "admin.distributor.index",
-        icon: Truck,
-    },
-    {
-        title: "Dealer",
-        routeName: "admin.dealer.index",
-        icon: Store,
-    },
-    {
         title: "User",
-        routeName: "admin.user.index",
-        icon: User,
+        icon: Users2,
+        permission: ["all rights"],
+        children: [
+            {
+                title: "Seller",
+                routeName: "admin.seller.index",
+                icon: User,
+            },
+            {
+                title: "Partner",
+                routeName: "admin.partner.index",
+                icon: Users,
+            },
+            {
+                title: "Distributor",
+                routeName: "admin.distributor.index",
+                icon: Truck,
+            },
+            {
+                title: "Dealer",
+                routeName: "admin.dealer.index",
+                icon: Store,
+            },
+            {
+                title: "Technician",
+                routeName: "admin.technician.index",
+                icon: Wrench,
+            },
+            {
+                title: "Consumer",
+                routeName: "admin.user.index",
+                icon: User,
+            },
+        ],
     },
+
     {
         title: "User Query",
         routeName: "admin.userQuery.index",

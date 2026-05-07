@@ -5,6 +5,7 @@ use App\Models\Dealer;
 use App\Models\Distributor;
 use App\Models\Partner;
 use App\Models\Seller;
+use App\Models\Technician;
 use App\Models\User;
 
 return [
@@ -69,6 +70,10 @@ return [
             'driver' => 'session',
             'provider' => 'dealers',
         ],
+        'technician' => [
+            'driver' => 'session',
+            'provider' => 'technicians',
+        ],
         'seller_api' => ['driver' => 'sanctum', 'provider' => 'sellers'],
         'admin_api' => ['driver' => 'sanctum', 'provider' => 'admins'],
         'user_api' => ['driver' => 'sanctum', 'provider' => 'users'],
@@ -117,6 +122,10 @@ return [
         'dealers' => [
             'driver' => 'eloquent',
             'model' => Dealer::class,
+        ],
+        'technicians' => [
+            'driver' => 'eloquent',
+            'model' => Technician::class,
         ],
 
         // 'users' => [
@@ -177,6 +186,12 @@ return [
         ],
         'dealers' => [
             'provider' => 'dealers',
+            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'technicians' => [
+            'provider' => 'technicians',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
             'expire' => 60,
             'throttle' => 60,

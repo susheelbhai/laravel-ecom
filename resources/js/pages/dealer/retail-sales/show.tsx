@@ -208,6 +208,60 @@ export default function DealerRetailSaleShow() {
                         </TBody>
                     </Table>
                 </TableCard>
+
+                {/* Warranty Cards */}
+                {data.warranty_cards && data.warranty_cards.length > 0 && (
+                    <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-950">
+                        <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                            Warranty Cards
+                        </div>
+                        <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                            Warranty cards generated for this sale
+                        </p>
+                        <div className="mt-3 space-y-2">
+                            {data.warranty_cards.map((card: any) => (
+                                <div
+                                    key={card.id}
+                                    className="flex items-center justify-between rounded-md border border-gray-200 bg-gray-50/60 p-3 dark:border-gray-700 dark:bg-gray-900/40"
+                                >
+                                    <div className="min-w-0 flex-1">
+                                        <div className="flex items-center gap-2">
+                                            <span className="font-mono text-xs font-medium text-gray-900 dark:text-gray-100">
+                                                {card.card_number}
+                                            </span>
+                                            {card.is_expired ? (
+                                                <span className="inline-flex items-center rounded-full bg-rose-50 px-2 py-0.5 text-xs font-medium text-rose-700 ring-1 ring-inset ring-rose-200 dark:bg-rose-500/10 dark:text-rose-300 dark:ring-rose-500/30">
+                                                    Expired
+                                                </span>
+                                            ) : (
+                                                <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700 ring-1 ring-inset ring-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-300 dark:ring-emerald-500/30">
+                                                    Active
+                                                </span>
+                                            )}
+                                        </div>
+                                        <div className="mt-1 text-xs text-gray-600 dark:text-gray-300">
+                                            {card.product_title}
+                                            {card.serial_number && (
+                                                <span className="ml-2 font-mono">
+                                                    S/N: {card.serial_number}
+                                                </span>
+                                            )}
+                                        </div>
+                                        <div className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
+                                            Valid until {card.warranty_expires_at}
+                                        </div>
+                                    </div>
+                                    <a
+                                        href={route('dealer.warranty-cards.show', card.id)}
+                                        className="ml-3 text-xs text-blue-600 hover:underline dark:text-blue-400"
+                                    >
+                                        View
+                                    </a>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
             </div>
         </AppLayout>
     );

@@ -2,6 +2,10 @@
 
 namespace App\Services\Inventory;
 
+use App\Contracts\SerialNumberMovementServiceInterface;
+use App\Models\DealerOrder;
+use App\Models\DistributorOrder;
+use App\Models\SerialNumber;
 use App\Models\StockMovement;
 use App\Models\StockRecord;
 use App\Models\WarehouseRack;
@@ -12,16 +16,21 @@ use RuntimeException;
 
 class StockTransferService
 {
+    public function __construct(
+        private readonly SerialNumberMovementServiceInterface $serialNumberMovementService,
+    ) {}
+
     /**
      * @param  Collection<int,array{product_id:int,quantity:int}>  $items
+     * @param  array<int,string[]>  $serialNumbersByProductId  Map of product_id => serial number strings
      */
-    public function transferStock(int $fromRackId, int $toRackId, Collection $items, Model $reference, string $reason): void
+    public function transferStock(int $fromRackId, int $toRackId, Collection $items, Model $reference, string $reason, array $serialNumbersByProductId = []): void
     {
         if ($fromRackId === $toRackId) {
             throw new RuntimeException('Source and destination rack cannot be the same.');
         }
 
-        DB::transaction(function () use ($fromRackId, $toRackId, $items, $reference, $reason) {
+        DB::transaction(function () use ($fromRackId, $toRackId, $items, $reference, $reason, $serialNumbersByProductId) {
             WarehouseRack::query()->whereKey([$fromRackId, $toRackId])->lockForUpdate()->get();
 
             foreach ($items as $item) {
@@ -42,6 +51,33 @@ class StockTransferService
                 $available = $fromRecord?->quantity ?? 0;
                 if ($available < $qty) {
                     throw new RuntimeException("Insufficient stock for product {$productId} in source rack. Available: {$available}, Requested: {$qty}");
+                }
+
+                // Hard guard: if this product has available serials in the source rack
+                // but none were provided, refuse the transfer. Run BEFORE any writes.
+                $serialsForProduct = $serialNumbersByProductId[$productId] ?? [];
+
+                if (empty($serialsForProduct)) {
+                    $serialCount = SerialNumber::where('product_id', $productId)
+                        ->where('rack_id', $fromRackId)
+                        ->where('status', 'available')
+                        ->count();
+
+                    if ($serialCount > 0) {
+                        $nonSerialQty = max(0, $available - $serialCount);
+
+                        if ($nonSerialQty > 0) {
+                            throw new RuntimeException(
+                                "Product {$productId} has {$serialCount} serialised unit(s) and {$nonSerialQty} non-serialised unit(s) in the source rack — ".
+                                'mixing is not allowed. Resolve the data inconsistency before transferring.'
+                            );
+                        }
+
+                        throw new RuntimeException(
+                            "Product {$productId} has serialised units in the source rack. ".
+                            'You must specify which serial numbers are being transferred.'
+                        );
+                    }
                 }
 
                 StockMovement::create([
@@ -68,6 +104,32 @@ class StockTransferService
 
                 StockRecord::getOrCreateForRack($productId, $fromRackId)->recalculateQuantity();
                 StockRecord::getOrCreateForRack($productId, $toRackId)->recalculateQuantity();
+
+                // Update serial numbers rack_id.
+                // Record rack_transfer only for non-order transfers.
+                // DistributorOrder and DealerOrder transfers are captured by validateAndAssign.
+                $isOrderTransfer = $reference instanceof DistributorOrder
+                    || $reference instanceof DealerOrder;
+
+                foreach ($serialsForProduct as $serialString) {
+                    $serialRecord = SerialNumber::where('serial_number', $serialString)
+                        ->where('product_id', $productId)
+                        ->first();
+
+                    if ($serialRecord) {
+                        $serialRecord->rack_id = $toRackId;
+                        $serialRecord->save();
+
+                        if (! $isOrderTransfer) {
+                            $this->serialNumberMovementService->recordMovement(
+                                serialNumber: $serialRecord,
+                                eventType: 'rack_transfer',
+                                reference: $reference,
+                                actor: null,
+                            );
+                        }
+                    }
+                }
             }
         });
     }
@@ -115,4 +177,3 @@ class StockTransferService
         });
     }
 }
-

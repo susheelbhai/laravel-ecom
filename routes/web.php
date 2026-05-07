@@ -40,4 +40,5 @@ Route::middleware([ShareDataMiddleware::class])->group(function () {
     require __DIR__.'/partner/web.php';
     require __DIR__.'/distributor/web.php';
     require __DIR__.'/dealer/web.php';
+    require __DIR__.'/technician/web.php';
 });

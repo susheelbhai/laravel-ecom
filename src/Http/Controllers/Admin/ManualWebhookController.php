@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ManualWebhookRequest;
 use Illuminate\Http\Request;
 use Susheelbhai\Laraship\Models\Shipment;
+use Susheelbhai\Laraship\Services\ShippingManager;
 
 class ManualWebhookController extends Controller
 {
@@ -102,7 +103,7 @@ class ManualWebhookController extends Controller
             $webhookRequest->headers->set('X-Webhook-Signature', $signature);
 
             // Get the shipping manager and process webhook directly
-            $shippingManager = app(\Susheelbhai\Laraship\Services\ShippingManager::class);
+            $shippingManager = app(ShippingManager::class);
 
             try {
                 $shippingManager->processWebhook($providerName, $webhookRequest);
@@ -121,19 +122,5 @@ class ManualWebhookController extends Controller
                 ->withErrors(['webhook' => 'Error sending webhook: '.$e->getMessage()])
                 ->withInput();
         }
-    }
-
-    /**
-     * Render method to support both Inertia and Blade.
-     */
-    protected function render(string $view, array $data = [], $render_type = null)
-    {
-        $renderType = $render_type ?? config('app.render_type', 'inertia');
-
-        if ($renderType === 'inertia') {
-            return inertia($view, $data);
-        }
-
-        return view($view, $data);
     }
 }

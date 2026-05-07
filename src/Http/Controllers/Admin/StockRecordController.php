@@ -2,20 +2,28 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contracts\SerialNumberMovementServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdjustQuantityRequest;
 use App\Http\Requests\MoveStockRecordRequest;
 use App\Http\Requests\StoreStockRecordRequest;
 use App\Http\Requests\UpdateStockRecordRequest;
 use App\Models\Product;
+use App\Models\SerialNumber;
 use App\Models\StockMovement;
 use App\Models\StockRecord;
 use App\Models\Warehouse;
+use App\Services\Inventory\StockTransferService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StockRecordController extends Controller
 {
+    public function __construct(
+        private readonly SerialNumberMovementServiceInterface $serialNumberMovementService,
+    ) {}
+
     /**
      * Display a listing of stock records.
      */
@@ -32,7 +40,10 @@ class StockRecordController extends Controller
                 'product:id,title,sku',
                 'rack:id,warehouse_id,identifier',
                 'rack.warehouse:id,name',
-            ]);
+            ])
+            // Only show stock in admin-owned warehouses — distributor/dealer stock
+            // has its own dedicated menu entries and must not appear here.
+            ->whereHas('rack.warehouse', fn ($q) => $q->where('owner_type', 'admin'));
 
         // Filter by warehouse
         $query->when($warehouseId, function ($q) use ($warehouseId) {
@@ -60,10 +71,43 @@ class StockRecordController extends Controller
             ->simplePaginate(15)
             ->withQueryString();
 
-        $stockRecords->through(function (StockRecord $record) {
-            $record->product?->withoutAppends();
+        // Collect all rack+product combos to batch-load serial numbers in one query.
+        $stockRecords->each(fn ($r) => null); // force collection load before through()
+        $rackProductPairs = $stockRecords->getCollection()->map(
+            fn ($r) => ['product_id' => $r->product_id, 'rack_id' => $r->rack_id]
+        );
 
-            return $record;
+        $serialsByRackProduct = SerialNumber::where('status', 'available')
+            ->whereIn('product_id', $rackProductPairs->pluck('product_id')->unique())
+            ->whereIn('rack_id', $rackProductPairs->pluck('rack_id')->unique())
+            ->orderBy('serial_number')
+            ->get(['serial_number', 'product_id', 'rack_id'])
+            ->groupBy(fn ($s) => $s->product_id.'_'.$s->rack_id);
+
+        $stockRecords->through(function (StockRecord $record) use ($serialsByRackProduct) {
+            $record->product?->withoutAppends();
+            $key = $record->product_id.'_'.$record->rack_id;
+            $serials = ($serialsByRackProduct[$key] ?? collect())->pluck('serial_number')->all();
+
+            return [
+                'id' => $record->id,
+                'product' => $record->product ? [
+                    'id' => $record->product->id,
+                    'title' => $record->product->title,
+                    'sku' => $record->product->sku,
+                ] : null,
+                'rack' => $record->rack ? [
+                    'id' => $record->rack->id,
+                    'identifier' => $record->rack->identifier,
+                    'warehouse' => $record->rack->warehouse ? [
+                        'id' => $record->rack->warehouse->id,
+                        'name' => $record->rack->warehouse->name,
+                    ] : null,
+                ] : null,
+                'quantity' => $record->quantity,
+                'serial_numbers' => $serials,
+                'serial_count' => count($serials),
+            ];
         });
 
         return $this->render('admin/resources/stock_record/index', [
@@ -75,7 +119,7 @@ class StockRecordController extends Controller
                 'stock_status' => $stockStatus,
                 'search' => $search,
             ],
-        ], 'inertia');
+        ]);
     }
 
     /**
@@ -85,7 +129,7 @@ class StockRecordController extends Controller
     {
         return $this->render('admin/resources/stock_record/create', [
             'warehouses' => $this->warehousesWithRacksForSelect(),
-        ], 'inertia');
+        ]);
     }
 
     /**
@@ -96,14 +140,33 @@ class StockRecordController extends Controller
         $stockRecord = StockRecord::getOrCreateForRack($request->product_id, $request->rack_id);
 
         // Create stock movement
-        StockMovement::create([
+        $movement = StockMovement::create([
             'product_id' => $request->product_id,
             'rack_id' => $request->rack_id,
             'type' => 'in',
             'quantity' => $request->quantity,
             'reason' => 'Initial stock entry',
-            'created_by' => auth('admin')->id(),
+            'created_by' => Auth::guard('admin')->id(),
         ]);
+
+        // Save serial numbers if provided
+        $serials = $request->input('serial_numbers', []);
+        foreach ($serials as $serial) {
+            $serialRecord = SerialNumber::create([
+                'product_id' => $request->product_id,
+                'rack_id' => $request->rack_id,
+                'stock_movement_id' => $movement->id,
+                'serial_number' => $serial,
+                'status' => 'available',
+            ]);
+
+            $this->serialNumberMovementService->recordMovement(
+                serialNumber: $serialRecord,
+                eventType: 'stock_in',
+                reference: $movement,
+                actor: Auth::guard('admin')->user(),
+            );
+        }
 
         // Recalculate stock record quantity
         $stockRecord->recalculateQuantity();
@@ -121,7 +184,7 @@ class StockRecordController extends Controller
 
         return $this->render('admin/resources/stock_record/edit', [
             'stockRecord' => $record,
-        ], 'inertia');
+        ]);
     }
 
     /**
@@ -129,6 +192,19 @@ class StockRecordController extends Controller
      */
     public function update(UpdateStockRecordRequest $request, StockRecord $record)
     {
+        $serialCount = SerialNumber::where('product_id', $record->product_id)
+            ->where('rack_id', $record->rack_id)
+            ->count();
+
+        if ($serialCount > 0) {
+            $nonSerialQty = max(0, $record->quantity - $serialCount);
+            $message = $nonSerialQty > 0
+                ? "This rack has {$serialCount} serialised unit(s) and {$nonSerialQty} non-serialised unit(s) of this product — mixing is not allowed. Resolve the data inconsistency first, then use Mark as Damaged, Mark as Stolen, or the retail sale flow to manage individual serialised units."
+                : 'Direct quantity edits are not allowed for serialised products. Use Mark as Damaged, Mark as Stolen, or the retail sale flow to manage individual units.';
+
+            return redirect()->back()->withErrors(['quantity' => $message]);
+        }
+
         $oldQuantity = $record->quantity;
         $newQuantity = $request->quantity;
         $difference = $newQuantity - $oldQuantity;
@@ -140,7 +216,7 @@ class StockRecordController extends Controller
                 'type' => 'adjustment',
                 'quantity' => $difference,
                 'reason' => 'Manual quantity adjustment',
-                'created_by' => auth('admin')->id(),
+                'created_by' => Auth::guard('admin')->id(),
             ]);
 
             $record->recalculateQuantity();
@@ -168,10 +244,23 @@ class StockRecordController extends Controller
     {
         $this->loadStockRecordForInertia($record);
 
+        // Pass available serial numbers in this rack so the move form can show checkboxes.
+        $serialNumbers = SerialNumber::where('product_id', $record->product_id)
+            ->where('rack_id', $record->rack_id)
+            ->where('status', 'available')
+            ->orderBy('serial_number')
+            ->get(['id', 'serial_number'])
+            ->map(fn (SerialNumber $s) => [
+                'id' => $s->id,
+                'serial_number' => $s->serial_number,
+            ])
+            ->all();
+
         return $this->render('admin/resources/stock_record/move', [
             'stockRecord' => $record,
             'warehouses' => $this->warehousesWithRacksForSelect(),
-        ], 'inertia');
+            'availableSerialNumbers' => $serialNumbers,
+        ]);
     }
 
     /**
@@ -183,45 +272,35 @@ class StockRecordController extends Controller
 
         return $this->render('admin/resources/stock_record/adjust', [
             'stockRecord' => $record,
-        ], 'inertia');
+        ]);
     }
 
     /**
      * Move stock record to a different rack.
      */
-    public function move(MoveStockRecordRequest $request, StockRecord $record)
+    public function move(MoveStockRecordRequest $request, StockRecord $record, StockTransferService $stockTransfer)
     {
         $quantityToMove = $request->quantity;
         $reason = $request->reason ?? 'Stock transfer between racks';
 
-        // Create transfer_out movement from source rack
-        StockMovement::create([
-            'product_id' => $record->product_id,
-            'rack_id' => $record->rack_id,
-            'type' => 'transfer_out',
-            'quantity' => -$quantityToMove,
-            'reason' => $reason,
-            'created_by' => auth('admin')->id(),
-        ]);
+        // Build serial numbers map for the transfer service.
+        $serialNumbersByProductId = [];
+        $selectedSerials = $request->input('serial_numbers', []);
 
-        // Recalculate source stock record
-        $record->recalculateQuantity();
+        if (! empty($selectedSerials)) {
+            $serialNumbersByProductId[$record->product_id] = $selectedSerials;
+        }
 
-        // Get or create target stock record
-        $targetRecord = StockRecord::getOrCreateForRack($record->product_id, $request->rack_id);
-
-        // Create transfer_in movement to target rack
-        StockMovement::create([
-            'product_id' => $record->product_id,
-            'rack_id' => $request->rack_id,
-            'type' => 'transfer_in',
-            'quantity' => $quantityToMove,
-            'reason' => $reason,
-            'created_by' => auth('admin')->id(),
-        ]);
-
-        // Recalculate target stock record
-        $targetRecord->recalculateQuantity();
+        // Use a throwaway reference model — the StockTransferService creates its own StockMovements.
+        // We pass the StockRecord itself as the reference.
+        $stockTransfer->transferStock(
+            fromRackId: $record->rack_id,
+            toRackId: $request->rack_id,
+            items: collect([['product_id' => $record->product_id, 'quantity' => $quantityToMove]]),
+            reference: $record,
+            reason: $reason,
+            serialNumbersByProductId: $serialNumbersByProductId,
+        );
 
         return redirect()->route('admin.stock.records.index')
             ->with('success', 'Stock moved successfully.');
@@ -232,13 +311,26 @@ class StockRecordController extends Controller
      */
     public function adjustQuantity(AdjustQuantityRequest $request, StockRecord $record)
     {
+        $serialCount = SerialNumber::where('product_id', $record->product_id)
+            ->where('rack_id', $record->rack_id)
+            ->count();
+
+        if ($serialCount > 0) {
+            $nonSerialQty = max(0, $record->quantity - $serialCount);
+            $message = $nonSerialQty > 0
+                ? "This rack has {$serialCount} serialised unit(s) and {$nonSerialQty} non-serialised unit(s) of this product — mixing is not allowed. Resolve the data inconsistency first, then use Mark as Damaged, Mark as Stolen, or the retail sale flow to manage individual serialised units."
+                : 'Quantity adjustments are not allowed for serialised products. Use Mark as Damaged, Mark as Stolen, or the retail sale flow to manage individual units.';
+
+            return response()->json(['message' => $message], 422);
+        }
+
         StockMovement::create([
             'product_id' => $record->product_id,
             'rack_id' => $record->rack_id,
             'type' => 'adjustment',
             'quantity' => $request->adjustment,
             'reason' => $request->reason ?? 'Manual adjustment',
-            'created_by' => auth('admin')->id(),
+            'created_by' => Auth::guard('admin')->id(),
         ]);
 
         $record->recalculateQuantity();
@@ -263,7 +355,7 @@ class StockRecordController extends Controller
         return $this->render('admin/resources/stock_record/history', [
             'stockRecord' => $record,
             'movements' => $movements,
-        ], 'inertia');
+        ]);
     }
 
     private function loadStockRecordForInertia(StockRecord $record): void

@@ -4,6 +4,7 @@ namespace Susheelbhai\Ecom\Commands\Helper;
 
 use App\Providers\InertiaSsrGuardServiceProvider;
 use App\Providers\ReviewAggregatesServiceProvider;
+use App\Providers\StockServiceProvider;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
@@ -15,6 +16,7 @@ class RegisterEcomBootstrapProviders
     private const ECOM_PROVIDERS = [
         InertiaSsrGuardServiceProvider::class,
         ReviewAggregatesServiceProvider::class,
+        StockServiceProvider::class,
     ];
 
     public static function register(?Command $command = null): bool

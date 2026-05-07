@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRackRequest;
 use App\Http\Requests\UpdateRackRequest;
+use App\Models\SerialNumber;
+use App\Models\StockRecord;
 use App\Models\Warehouse;
 use App\Models\WarehouseRack;
 
@@ -20,12 +22,15 @@ class WarehouseRackController extends Controller
             abort(403, 'Unauthorized access to this warehouse.');
         }
 
-        $racks = $warehouse->racks()->withCount('stockRecords')->paginate(15);
+        $racks = $warehouse->racks()
+            ->withCount('stockRecords')
+            ->withSum('stockRecords', 'quantity')
+            ->paginate(15);
 
         return $this->render('admin/resources/warehouse_rack/index', [
             'racks' => $racks,
             'warehouse' => $warehouse,
-        ], 'inertia');
+        ]);
     }
 
     /**
@@ -40,7 +45,7 @@ class WarehouseRackController extends Controller
 
         return $this->render('admin/resources/warehouse_rack/create', [
             'warehouse' => $warehouse,
-        ], 'inertia');
+        ]);
     }
 
     /**
@@ -60,6 +65,55 @@ class WarehouseRackController extends Controller
     }
 
     /**
+     * Show the detail page for a rack — all available items with serial numbers.
+     *
+     * GET /admin/stock/racks/{rack}
+     */
+    public function show(WarehouseRack $rack)
+    {
+        $rack->load('warehouse:id,name,address');
+
+        // All stock records in this rack with available quantity
+        $stockRecords = StockRecord::where('rack_id', $rack->id)
+            ->where('quantity', '>', 0)
+            ->with('product:id,title,sku')
+            ->orderBy('quantity', 'desc')
+            ->get()
+            ->map(function (StockRecord $record) use ($rack) {
+                $serials = SerialNumber::where('product_id', $record->product_id)
+                    ->where('rack_id', $rack->id)
+                    ->where('status', 'available')
+                    ->orderBy('serial_number')
+                    ->pluck('serial_number')
+                    ->all();
+
+                return [
+                    'id' => $record->id,
+                    'product' => [
+                        'id' => $record->product->id,
+                        'title' => $record->product->title,
+                        'sku' => $record->product->sku,
+                    ],
+                    'quantity' => $record->quantity,
+                    'serial_numbers' => $serials,
+                ];
+            });
+
+        return $this->render('admin/resources/warehouse_rack/show', [
+            'rack' => [
+                'id' => $rack->id,
+                'identifier' => $rack->identifier,
+                'description' => $rack->description,
+                'warehouse' => [
+                    'id' => $rack->warehouse->id,
+                    'name' => $rack->warehouse->name,
+                ],
+            ],
+            'stockRecords' => $stockRecords,
+        ]);
+    }
+
+    /**
      * Show the form for editing the specified rack.
      */
     public function edit(WarehouseRack $rack)
@@ -68,7 +122,7 @@ class WarehouseRackController extends Controller
 
         return $this->render('admin/resources/warehouse_rack/edit', [
             'rack' => $rack,
-        ], 'inertia');
+        ]);
     }
 
     /**

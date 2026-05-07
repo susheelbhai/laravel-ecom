@@ -30,7 +30,7 @@ class StockDashboardController extends Controller
             'totalRacks' => $totalRacks,
             'totalProductsInStock' => $totalProductsInStock,
             'lowStockAlerts' => $lowStockAlerts,
-        ], 'inertia');
+        ]);
     }
 
     /**
@@ -65,7 +65,7 @@ class StockDashboardController extends Controller
         return $this->render('admin/resources/stock_record/warehouse_view', [
             'warehouse' => $warehouse,
             'stockRecords' => $stockRecords->values(),
-        ], 'inertia');
+        ]);
     }
 
     /**
@@ -83,6 +83,6 @@ class StockDashboardController extends Controller
             'product' => $product,
             'stockRecords' => $stockRecords,
             'totalQuantity' => $totalQuantity,
-        ], 'inertia');
+        ]);
     }
 }

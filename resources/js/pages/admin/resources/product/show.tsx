@@ -182,6 +182,47 @@ export default function Show() {
                     </TBody>
                 </Table>
             </TableCard>
+
+            {/* Warranty Section */}
+            <div className="mt-6 rounded-lg border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-gray-950">
+                <div className="flex items-center justify-between">
+                    <div>
+                        <div className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                            Warranty
+                        </div>
+                        <div className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
+                            Warranty duration and terms shown on warranty cards generated at point of sale.
+                        </div>
+                    </div>
+                    <a
+                        href={route('admin.product.warranty.edit', product.id)}
+                        className="rounded-md bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+                    >
+                        {product.warranty ? 'Edit warranty' : 'Add warranty'}
+                    </a>
+                </div>
+
+                {product.warranty ? (
+                    <dl className="mt-4 grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
+                        <div>
+                            <dt className="text-xs text-gray-500 dark:text-gray-400">Duration</dt>
+                            <dd className="mt-0.5 font-medium text-gray-900 dark:text-gray-100">
+                                {product.warranty.duration_label}
+                            </dd>
+                        </div>
+                        <div className="sm:col-span-2">
+                            <dt className="text-xs text-gray-500 dark:text-gray-400">Terms &amp; conditions</dt>
+                            <dd className="mt-1 whitespace-pre-line text-gray-700 dark:text-gray-200">
+                                {product.warranty.terms ?? '—'}
+                            </dd>
+                        </div>
+                    </dl>
+                ) : (
+                    <p className="mt-3 text-sm text-gray-500 dark:text-gray-400">
+                        No warranty configured. Warranty cards will not be generated for this product.
+                    </p>
+                )}
+            </div>
         </AppLayout>
     );
 }

@@ -20,10 +20,11 @@ class PageSeeder extends Seeder
      */
     public function run()
     {
+
         $page_auth = [
             ['id' => 1],
         ];
-        include __DIR__.'/data/data.php';
+        include 'data/data.php';
 
         PageAuth::insert($page_auth);
         PageHome::insert($page_home);

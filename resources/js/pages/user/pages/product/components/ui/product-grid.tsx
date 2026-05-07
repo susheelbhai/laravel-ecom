@@ -132,11 +132,11 @@ function ProductCard({
             </Link>
 
             {/* Content */}
-            <div className="p-4">
+            <div className="p-2">
                 {product.category && (
-                    <p className="mb-1 text-xs uppercase tracking-wide text-muted-foreground">
+                    <span className="mb-1 text-xs uppercase tracking-wide text-muted-foreground">
                         {product.category.title ?? product.category.name}
-                    </p>
+                    </span>
                 )}
                 <Link href={route('product.show', product.slug)}>
                     <h3 className="mb-2 line-clamp-2 text-base font-semibold text-foreground transition-colors hover:text-secondary">

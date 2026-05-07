@@ -1,5 +1,5 @@
 import { Star } from 'lucide-react';
-import type { RatingDistribution } from '@/types';
+import type { RatingDistribution } from '@/types/review';
 
 interface AverageRatingProps {
     averageRating: number;
@@ -72,9 +72,9 @@ export default function AverageRating({
 
     if (reviewCount === 0) {
         return (
-            <div className="flex items-center gap-2 text-gray-500">
+            <div className="flex flex-col items-left gap-2 text-gray-500">
                 <div className="flex gap-1">{renderStars(0)}</div>
-                <span className="text-sm">No reviews yet</span>
+                <div className="text-sm">No reviews yet</div>
             </div>
         );
     }

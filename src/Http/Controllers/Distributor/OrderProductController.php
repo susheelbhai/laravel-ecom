@@ -49,4 +49,12 @@ class OrderProductController extends Controller
             ]),
         ]);
     }
+
+    public function price(Product $product): JsonResponse
+    {
+        return response()->json([
+            'distributor_price' => $product->distributor_price,
+            'price' => $product->price,
+        ]);
+    }
 }

@@ -3,25 +3,13 @@
 namespace App\Models;
 
 use App\Models\BaseModels\BaseInternalMediaModel;
-use App\Traits\HasDynamicMediaAttributes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Setting extends BaseInternalMediaModel
 {
-    use HasDynamicMediaAttributes, HasFactory;
-
-    protected $mediaAttributes = [
-        'square_dark_logo',
-        'square_light_logo',
-        'dark_logo',
-        'light_logo',
-    ];
+    use HasFactory;
 
     protected $guarded = [];
-
-    protected $casts = [
-        'trust_badges' => 'array',
-    ];
 
     protected $appends = ['favicon', 'square_dark_logo', 'square_dark_logo_converted', 'square_light_logo', 'square_light_logo_converted', 'dark_logo', 'dark_logo_converted', 'light_logo', 'light_logo_converted'];
 
@@ -43,8 +31,15 @@ class Setting extends BaseInternalMediaModel
     public function getFaviconAttribute(): string
     {
         $media = $this->getFirstMedia('square_dark_logo');
+        if (! $media) {
+            return '/dummy.png';
+        }
 
-        return $media ? $media->getUrl('thumbSquare') : '/dummy.png';
+        if ($media->mime_type === 'image/svg+xml') {
+            return $media->getUrl();
+        }
+
+        return $media->getUrl('thumbSquare');
     }
 
     public function getSquareDarkLogoAttribute(): string
@@ -96,8 +91,15 @@ class Setting extends BaseInternalMediaModel
     public function getDarkLogoAttribute(): string
     {
         $media = $this->getFirstMedia('dark_logo');
+        if (! $media) {
+            return '/dummy.png';
+        }
 
-        return $media ? $media->getUrl('small') : '/dummy.png';
+        if ($media->mime_type === 'image/svg+xml') {
+            return $media->getUrl();
+        }
+
+        return $media->getUrl('small');
     }
 
     public function getDarkLogoConvertedAttribute(): array
@@ -119,8 +121,15 @@ class Setting extends BaseInternalMediaModel
     public function getLightLogoAttribute(): string
     {
         $media = $this->getFirstMedia('light_logo');
+        if (! $media) {
+            return '/dummy.png';
+        }
 
-        return $media ? $media->getUrl('small') : '/dummy.png';
+        if ($media->mime_type === 'image/svg+xml') {
+            return $media->getUrl();
+        }
+
+        return $media->getUrl('small');
     }
 
     public function getLightLogoConvertedAttribute(): array

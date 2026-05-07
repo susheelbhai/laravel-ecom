@@ -1,6 +1,6 @@
 import { Head, usePage } from '@inertiajs/react';
 import { router } from '@inertiajs/react';
-import { Edit, Trash2 } from 'lucide-react';
+import { Edit, Eye, Trash2 } from 'lucide-react';
 import Pagination from '@/components/table/pagination';
 import Table from '@/components/table/table';
 import TableCard from '@/components/table/table-card';
@@ -40,7 +40,8 @@ export default function RackIndex() {
     const thead = [
         { title: 'Identifier', className: 'p-3' },
         { title: 'Description', className: 'p-3' },
-        { title: 'Stock Records', className: 'p-3' },
+        { title: 'Products', className: 'p-3' },
+        { title: 'Total Units', className: 'p-3' },
         { title: 'Actions', className: 'p-3 text-right' },
     ];
 
@@ -71,7 +72,12 @@ export default function RackIndex() {
                                 className="border-t border-gray-200"
                             >
                                 <td className="p-3 font-medium">
-                                    {rack.identifier}
+                                    <a
+                                        href={route('admin.stock.racks.show', rack.id)}
+                                        className="text-blue-600 hover:underline"
+                                    >
+                                        {rack.identifier}
+                                    </a>
                                 </td>
                                 <td className="p-3">
                                     {rack.description || '-'}
@@ -79,13 +85,19 @@ export default function RackIndex() {
                                 <td className="p-3">
                                     {rack.stock_records_count || 0}
                                 </td>
+                                <td className="p-3">
+                                    {rack.stock_records_sum_quantity || 0}
+                                </td>
                                 <td className="p-3 text-right">
                                     <div className="flex justify-end gap-2">
                                         <TextLink
-                                            href={route(
-                                                'admin.stock.racks.edit',
-                                                rack.id,
-                                            )}
+                                            href={route('admin.stock.racks.show', rack.id)}
+                                            title="View Contents"
+                                        >
+                                            <Eye className="h-4 w-4" />
+                                        </TextLink>
+                                        <TextLink
+                                            href={route('admin.stock.racks.edit', rack.id)}
                                         >
                                             <Edit className="h-4 w-4" />
                                         </TextLink>

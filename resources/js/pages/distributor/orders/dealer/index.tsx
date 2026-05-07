@@ -8,6 +8,7 @@ import THead from '@/components/table/thead';
 import AppLayout from '@/layouts/distributor/app-layout';
 import { type BreadcrumbItem, type SharedData } from '@/types';
 import { useFormatMoney } from '@/hooks/use-format-money';
+import PaymentStatusBadge from '@/components/payment/PaymentStatusBadge';
 
 const breadcrumbs: BreadcrumbItem[] = [
     { title: 'Dealer Orders', href: '/distributor/dealer-orders' },
@@ -24,6 +25,8 @@ export default function DistributorDealerOrdersIndex() {
         { title: 'Dealer', className: 'p-3' },
         { title: 'Status', className: 'p-3' },
         { title: 'Total', className: 'p-3 text-right' },
+        { title: 'Payment Status', className: 'p-3' },
+        { title: 'Remaining Balance', className: 'p-3 text-right' },
         { title: 'Created', className: 'p-3' },
     ];
 
@@ -55,6 +58,12 @@ export default function DistributorDealerOrdersIndex() {
                                 <td className="p-3 capitalize">{row.status}</td>
                                 <td className="p-3 text-right">
                                     {formatMoney(row.total_amount)}
+                                </td>
+                                <td className="p-3">
+                                    <PaymentStatusBadge status={row.payment_status ?? 'unpaid'} />
+                                </td>
+                                <td className="p-3 text-right tabular-nums">
+                                    {formatMoney(row.remaining_balance ?? row.total_amount)}
                                 </td>
                                 <td className="p-3">{row.created_at}</td>
                             </tr>

@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Distributor;
 use App\Http\Controllers\Controller;
 use App\Models\Dealer;
 use App\Models\Product;
+use App\Models\SerialNumber;
 use App\Models\Warehouse;
+use App\Models\WarehouseRack;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class StockController extends Controller
 {
@@ -65,6 +67,23 @@ class StockController extends Controller
 
         $this->attachProductThumbnails($data);
 
+        // Attach available serial numbers per product from distributor's racks
+        $rackIds = WarehouseRack::whereIn('warehouse_id', $warehouseIds)->pluck('id');
+        $serialsByProduct = SerialNumber::whereIn('rack_id', $rackIds)
+            ->where('status', 'available')
+            ->orderBy('serial_number')
+            ->get(['product_id', 'serial_number'])
+            ->groupBy('product_id')
+            ->map(fn ($group) => $group->pluck('serial_number')->all());
+
+        $data->setCollection(
+            collect($data->items())->map(function ($row) use ($serialsByProduct) {
+                $row->serial_numbers = $serialsByProduct->get($row->id, []);
+
+                return $row;
+            })
+        );
+
         return $this->render('distributor/stock/index', compact('data'));
     }
 
@@ -107,4 +126,3 @@ class StockController extends Controller
         ]);
     }
 }
-

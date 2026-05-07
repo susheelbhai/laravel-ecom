@@ -10,6 +10,7 @@ use App\Models\Partner;
 use App\Models\Review;
 use App\Models\Seller;
 use App\Models\Setting;
+use App\Models\Technician;
 use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
@@ -120,6 +121,22 @@ class ShareDataMiddleware
                     'user' => $user,
                     'permissions' => $user?->getAllPermissions()->pluck('name'),
                     'dashboard_url' => route('dealer.dashboard'),
+                    'unread_notifications_count' => $unreadCount,
+                    'unread_notifications' => $unreadNotifications,
+                ];
+            },
+            'technician' => function () {
+                /** @var Technician $user */
+                $user = Auth::guard('technician')->user();
+                $unreadNotifications = $user ? $user->unreadNotifications()->take(10)->get()->map(function ($n) {
+                    return $n->toArray();
+                }) : [];
+                $unreadCount = $user ? count($unreadNotifications) : 0;
+
+                return [
+                    'user' => $user,
+                    'permissions' => $user?->getAllPermissions()->pluck('name'),
+                    'dashboard_url' => route('technician.dashboard'),
                     'unread_notifications_count' => $unreadCount,
                     'unread_notifications' => $unreadNotifications,
                 ];

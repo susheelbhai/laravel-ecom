@@ -36,6 +36,7 @@ class ProfileController extends Controller
         $distributor->name = $request->name;
         $distributor->phone = $request->phone;
         $distributor->email = $request->email;
+        $distributor->commission_percentage = $request->input('commission_percentage', 0);
         $distributor->save();
 
         if ($request->hasFile('profile_pic')) {

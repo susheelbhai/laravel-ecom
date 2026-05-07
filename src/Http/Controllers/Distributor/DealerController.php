@@ -6,8 +6,10 @@ use App\Events\DealerSubmittedForApproval;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreDealerRequest;
 use App\Models\Dealer;
+use App\Models\DealerOrder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class DealerController extends Controller
@@ -32,6 +34,29 @@ class DealerController extends Controller
             });
 
         return $this->render('distributor/resources/dealer/index', compact('data'));
+    }
+
+    public function show(Dealer $dealer)
+    {
+        $distributorId = Auth::guard('distributor')->id();
+        abort_unless($dealer->distributor_id === $distributorId, 403);
+
+        $totalOutstandingBalance = (float) DealerOrder::query()
+            ->where('dealer_id', $dealer->id)
+            ->where('distributor_id', $distributorId)
+            ->sum(DB::raw('total_amount - amount_paid'));
+
+        $data = [
+            'id' => $dealer->id,
+            'name' => $dealer->name,
+            'email' => $dealer->email,
+            'phone' => $dealer->phone,
+            'application_status' => $dealer->application_status,
+            'created_at' => $dealer->created_at?->format('M d, Y'),
+            'total_outstanding_balance' => $totalOutstandingBalance,
+        ];
+
+        return $this->render('distributor/resources/dealer/show', compact('data'));
     }
 
     public function create()

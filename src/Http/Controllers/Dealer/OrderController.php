@@ -35,7 +35,26 @@ class OrderController extends Controller
         $dealerId = Auth::guard('dealer')->id();
         abort_unless($order->dealer_id === $dealerId, 403);
 
-        $order->loadMissing(['items.product', 'distributor']);
+        $order->loadMissing([
+            'items.product',
+            'distributor',
+            'payments.recordedByDistributor',
+            'payments.media',
+        ]);
+
+        $payments = $order->payments
+            ->sortBy('created_at')
+            ->map(fn ($payment) => [
+                'id' => $payment->id,
+                'amount' => (float) $payment->amount,
+                'payment_method' => $payment->payment_method,
+                'note' => $payment->note,
+                'recorded_by_name' => $payment->recordedByDistributor?->name ?? 'Distributor',
+                'created_at' => $payment->created_at?->format('M d, Y H:i'),
+                'payment_proof_url' => $payment->getFirstMediaUrl('payment_proof') ?: null,
+            ])
+            ->values()
+            ->all();
 
         $data = [
             'id' => $order->id,
@@ -58,9 +77,14 @@ class OrderController extends Controller
                 'price_source' => $item->price_source,
             ]),
             'created_at' => $order->created_at?->format('M d, Y H:i'),
+            'payment_summary' => [
+                'payment_status' => $order->payment_status ?? 'unpaid',
+                'amount_paid' => (float) ($order->amount_paid ?? 0),
+                'remaining_balance' => (float) $order->total_amount - (float) ($order->amount_paid ?? 0),
+                'payments' => $payments,
+            ],
         ];
 
         return $this->render('dealer/orders/show', compact('data'));
     }
 }
-

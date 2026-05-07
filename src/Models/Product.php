@@ -3,16 +3,16 @@
 namespace App\Models;
 
 use App\Models\BaseModels\BaseExternalMediaModel;
+use App\Services\ReviewAggregationService;
 use App\Traits\HasDynamicMediaAttributes;
+use Database\Factories\ProductFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
-
 use Susheelbhai\Laraship\Traits\HasShippingDimensions;
 
 class Product extends BaseExternalMediaModel
 {
-    /** @use HasFactory<\Database\Factories\ProductFactory> */
+    /** @use HasFactory<ProductFactory> */
     use HasDynamicMediaAttributes, HasFactory, HasShippingDimensions;
 
     protected $mediaAttributes = ['images'];
@@ -45,24 +45,40 @@ class Product extends BaseExternalMediaModel
     }
 
     /**
+     * Get the warranty configuration for this product.
+     */
+    public function warranty()
+    {
+        return $this->hasOne(ProductWarranty::class);
+    }
+
+    /**
+     * Get the serial numbers for this product.
+     */
+    public function serialNumbers()
+    {
+        return $this->hasMany(SerialNumber::class);
+    }
+
+    /**
      * Get the total available stock across all warehouses.
      */
     public function getTotalStockAttribute(): int
     {
-        $incoming = \App\Models\StockMovement::where('product_id', $this->id)
+        $incoming = StockMovement::where('product_id', $this->id)
             ->whereIn('type', ['in', 'transfer_in'])
             ->sum('quantity');
 
-        $outgoing = \App\Models\StockMovement::where('product_id', $this->id)
+        $outgoing = StockMovement::where('product_id', $this->id)
             ->where('type', 'out')
             ->sum('quantity');
 
         // transfer_out is stored as negative, so we add it (which subtracts from total)
-        $transfers = \App\Models\StockMovement::where('product_id', $this->id)
+        $transfers = StockMovement::where('product_id', $this->id)
             ->where('type', 'transfer_out')
             ->sum('quantity');
 
-        $adjustments = \App\Models\StockMovement::where('product_id', $this->id)
+        $adjustments = StockMovement::where('product_id', $this->id)
             ->where('type', 'adjustment')
             ->sum('quantity');
 
@@ -152,7 +168,7 @@ class Product extends BaseExternalMediaModel
     {
         return Attribute::make(
             get: function () {
-                $service = app(\App\Services\ReviewAggregationService::class);
+                $service = app(ReviewAggregationService::class);
 
                 return $service->calculateAverageRating($this);
             }
@@ -166,7 +182,7 @@ class Product extends BaseExternalMediaModel
     {
         return Attribute::make(
             get: function () {
-                $service = app(\App\Services\ReviewAggregationService::class);
+                $service = app(ReviewAggregationService::class);
 
                 return $service->getReviewCount($this);
             }

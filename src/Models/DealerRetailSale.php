@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class DealerRetailSale extends Model
 {
+    use HasFactory;
+
     public static function generateSaleNumber(): string
     {
         return 'SALE-'.time().'-'.uniqid();
@@ -50,5 +53,10 @@ class DealerRetailSale extends Model
     public function items(): HasMany
     {
         return $this->hasMany(DealerRetailSaleItem::class);
+    }
+
+    public function warrantyCards(): HasMany
+    {
+        return $this->hasMany(WarrantyCard::class);
     }
 }

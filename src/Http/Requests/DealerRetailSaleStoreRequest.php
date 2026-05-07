@@ -16,18 +16,20 @@ class DealerRetailSaleStoreRequest extends FormRequest
         $this->merge([
             'customer_email' => $this->filled('customer_email') ? $this->input('customer_email') : null,
             'billing_address_line2' => $this->filled('billing_address_line2') ? $this->input('billing_address_line2') : null,
-            'billing_country' => $this->filled('billing_country') ? $this->input('billing_country') : null,
+            'billing_country' => $this->filled('billing_country') ? $this->input('billing_country') : 'India',
             'customer_gstin' => $this->filled('customer_gstin') ? $this->input('customer_gstin') : null,
+            'unit_price' => $this->filled('unit_price') ? $this->input('unit_price') : null,
         ]);
     }
 
     public function rules(): array
     {
         return [
-            'items' => ['required', 'array', 'min:1'],
-            'items.*.product_id' => ['required', 'integer', 'exists:products,id'],
-            'items.*.quantity' => ['required', 'integer', 'min:1'],
-            'items.*.unit_price' => ['nullable', 'numeric', 'min:0'],
+            'product_id' => ['required', 'integer', 'exists:products,id'],
+            'quantity' => ['required', 'integer', 'min:1'],
+            'unit_price' => ['nullable', 'numeric', 'min:0'],
+            'serial_numbers' => ['nullable', 'array'],
+            'serial_numbers.*' => ['string'],
             'customer_name' => ['required', 'string', 'max:255'],
             'customer_email' => ['nullable', 'email', 'max:255'],
             'customer_phone' => ['required', 'string', 'max:32'],

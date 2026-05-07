@@ -46,6 +46,9 @@ return Application::configure(basePath: dirname(__DIR__))
             if (in_array('dealer', $path)) {
                 return route('dealer.login');
             }
+            if (in_array('technician', $path)) {
+                return route('technician.login');
+            }
         });
     })
     ->withExceptions(function (Exceptions $exceptions) {

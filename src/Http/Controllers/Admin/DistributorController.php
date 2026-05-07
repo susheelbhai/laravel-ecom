@@ -7,10 +7,12 @@ use App\Events\DistributorApplicationRejected;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Distributor;
+use App\Models\DistributorOrder;
 use App\Services\Inventory\DefaultLocationService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DistributorController extends Controller
 {
@@ -36,6 +38,28 @@ class DistributorController extends Controller
             });
 
         return $this->render('admin/resources/distributor/index', compact('data'));
+    }
+
+    public function show(Distributor $distributor)
+    {
+        $totalOutstandingBalance = (float) DistributorOrder::query()
+            ->where('distributor_id', $distributor->id)
+            ->sum(DB::raw('total_amount - amount_paid'));
+
+        $data = [
+            'id' => $distributor->id,
+            'name' => $distributor->name,
+            'legal_business_name' => $distributor->legal_business_name,
+            'gstin' => $distributor->gstin,
+            'email' => $distributor->email,
+            'phone' => $distributor->phone,
+            'application_status' => $distributor->application_status,
+            'created_at' => $distributor->created_at?->format('M d, Y'),
+            'approved_at' => $distributor->approved_at?->format('M d, Y'),
+            'total_outstanding_balance' => $totalOutstandingBalance,
+        ];
+
+        return $this->render('admin/resources/distributor/show', compact('data'));
     }
 
     public function approve(Distributor $distributor): RedirectResponse

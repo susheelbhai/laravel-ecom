@@ -88,13 +88,20 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        $product = Product::with(['category', 'stockRecords'])->findOrFail($id);
+        $product = Product::with(['category', 'stockRecords', 'warranty'])->findOrFail($id);
         $media = $product->getMedia('images');
         $data = [
             ...$product->toArray(),
             'thumbnail' => $media->first()?->getUrl('thumb'),
             'images' => $media->map(fn ($m) => $m->getUrl()),
             'total_stock' => $product->total_stock,
+            'warranty' => $product->warranty ? [
+                'id' => $product->warranty->id,
+                'duration' => $product->warranty->duration,
+                'duration_unit' => $product->warranty->duration_unit,
+                'duration_label' => $product->warranty->duration_label,
+                'terms' => $product->warranty->terms,
+            ] : null,
         ];
 
         return $this->render('admin/resources/product/show', compact('data'));

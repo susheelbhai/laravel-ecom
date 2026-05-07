@@ -12,7 +12,7 @@ class WishlistSeeder extends Seeder
      */
     public function run(): void
     {
-        include __DIR__.'/data/data.php';
+        include 'data/data.php';
         Wishlist::insert($wishlists);
     }
 }

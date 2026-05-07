@@ -12,9 +12,8 @@ class ProductEnquirySeeder extends Seeder
      */
     public function run(): void
     {
-        include __DIR__.'/data/data.php';
-        if (isset($product_enquiries) && is_array($product_enquiries)) {
-            ProductEnquiry::insert($product_enquiries);
-        }
+        include 'data/data.php';
+        $product_enquiries = [];
+        ProductEnquiry::insert($product_enquiries);
     }
 }

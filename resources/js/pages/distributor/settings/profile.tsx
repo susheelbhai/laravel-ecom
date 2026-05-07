@@ -23,6 +23,7 @@ type ProfileForm = {
     name: string;
     email: string;
     phone: string;
+    commission_percentage: string;
 };
 
 export default function Profile({
@@ -40,6 +41,7 @@ export default function Profile({
                   email: string;
                   phone?: string | null;
                   email_verified_at?: string | null;
+                  commission_percentage?: number | null;
               };
           }
         | undefined;
@@ -51,6 +53,7 @@ export default function Profile({
             name: u?.name ?? '',
             email: u?.email ?? '',
             phone: (u?.phone as string) || '',
+            commission_percentage: String(u?.commission_percentage ?? 0),
         });
 
     const submit: FormEventHandler = (e) => {
@@ -132,6 +135,32 @@ export default function Profile({
                             <InputError
                                 className="mt-2"
                                 message={errors.phone}
+                            />
+                        </div>
+
+                        <div className="grid gap-2">
+                            <Label htmlFor="commission_percentage">Commission percentage (%)</Label>
+
+                            <Input
+                                id="commission_percentage"
+                                type="number"
+                                min={0}
+                                max={100}
+                                step="0.01"
+                                className="mt-1 block w-full"
+                                value={data.commission_percentage}
+                                onChange={(e) =>
+                                    setData('commission_percentage', e.target.value)
+                                }
+                                placeholder="e.g. 10"
+                            />
+                            <p className="text-xs text-gray-500">
+                                This percentage will be added on top of the purchase price when creating sell orders.
+                            </p>
+
+                            <InputError
+                                className="mt-2"
+                                message={errors.commission_percentage}
                             />
                         </div>
 

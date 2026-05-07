@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\StockMovement;
 use App\Models\StockRecord;
 use App\Models\Warehouse;
+use Illuminate\Support\Facades\Auth;
 
 class StockMovementController extends Controller
 {
@@ -70,7 +71,7 @@ class StockMovementController extends Controller
                 'date_to' => request('date_to'),
                 'search' => request('search'),
             ],
-        ], 'inertia');
+        ]);
     }
 
     /**
@@ -84,7 +85,7 @@ class StockMovementController extends Controller
             'type' => $request->type,
             'quantity' => $request->quantity,
             'reason' => $request->reason,
-            'created_by' => auth('admin')->id(),
+            'created_by' => Auth::guard('admin')->id(),
         ]);
 
         // Update or create stock record
@@ -114,7 +115,7 @@ class StockMovementController extends Controller
         return $this->render('admin/resources/stock_movement/by_product', [
             'product' => $product,
             'movements' => $movements,
-        ], 'inertia');
+        ]);
     }
 
     /**
@@ -137,6 +138,6 @@ class StockMovementController extends Controller
         return $this->render('admin/resources/stock_movement/by_warehouse', [
             'warehouse' => $warehouse,
             'movements' => $movements,
-        ], 'inertia');
+        ]);
     }
 }

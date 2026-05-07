@@ -8,6 +8,7 @@ import AppLayout from '@/layouts/admin/app-layout';
 import { type BreadcrumbItem, type SharedData } from '@/types';
 import ButtonCreate from '@/components/ui/button/button-create';
 import { useFormatMoney } from '@/hooks/use-format-money';
+import PaymentStatusBadge from '@/components/payment/PaymentStatusBadge';
 
 const breadcrumbs: BreadcrumbItem[] = [
     { title: 'Distributor Orders', href: '/admin/distributor-orders' },
@@ -23,6 +24,8 @@ export default function AdminDistributorOrdersIndex() {
         { title: 'Distributor', className: 'p-3' },
         { title: 'Status', className: 'p-3' },
         { title: 'Total', className: 'p-3 text-right' },
+        { title: 'Payment Status', className: 'p-3' },
+        { title: 'Remaining Balance', className: 'p-3 text-right' },
         { title: 'Created', className: 'p-3' },
     ];
 
@@ -55,6 +58,12 @@ export default function AdminDistributorOrdersIndex() {
                                 <td className="p-3 capitalize">{row.status}</td>
                                 <td className="p-3 text-right">
                                     {formatMoney(row.total_amount)}
+                                </td>
+                                <td className="p-3">
+                                    <PaymentStatusBadge status={row.payment_status ?? 'unpaid'} />
+                                </td>
+                                <td className="p-3 text-right tabular-nums">
+                                    {formatMoney(row.remaining_balance ?? row.total_amount)}
                                 </td>
                                 <td className="p-3">{row.created_at}</td>
                             </tr>

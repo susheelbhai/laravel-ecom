@@ -7,205 +7,119 @@
  */
 
 /**
- * Database `ecom1`
+ * Database `sangam-motors`
  */
 
-/* `ecom1`.`addresses` */
+/* `sangam-motors`.`addresses` */
 $addresses = [
-    ['id' => '1', 'user_id' => '1', 'type' => 'home', 'full_name' => 'Test User', 'phone' => '07979851485', 'alternate_phone' => '08979851485', 'address_line1' => 'House No 123, Sector 45', 'address_line2' => 'Near Central Mall', 'city' => 'Noida', 'state' => 'Uttar Pradesh', 'country' => 'India', 'pincode' => '201301', 'landmark' => 'Opposite City Hospital', 'is_default' => '1', 'created_at' => '2024-03-23 09:22:02', 'updated_at' => '2024-03-23 09:22:02'],
-    ['id' => '2', 'user_id' => '1', 'type' => 'office', 'full_name' => 'Test User', 'phone' => '07979851485', 'alternate_phone' => null, 'address_line1' => 'Tower B, 5th Floor, Tech Park', 'address_line2' => 'Sector 62', 'city' => 'Noida', 'state' => 'Uttar Pradesh', 'country' => 'India', 'pincode' => '201309', 'landmark' => 'Behind Metro Station', 'is_default' => '0', 'created_at' => '2024-03-23 09:22:02', 'updated_at' => '2024-03-23 09:22:02'],
-    ['id' => '3', 'user_id' => '1', 'type' => 'home', 'full_name' => 'Test User', 'phone' => '07979851485', 'alternate_phone' => '09876543210', 'address_line1' => 'Flat 401, Green Valley Apartments', 'address_line2' => 'Indirapuram', 'city' => 'Ghaziabad', 'state' => 'Uttar Pradesh', 'country' => 'India', 'pincode' => '201014', 'landmark' => 'Near Shipra Mall', 'is_default' => '0', 'created_at' => '2024-03-23 09:22:02', 'updated_at' => '2024-03-23 09:22:02'],
 ];
 
-/* `ecom1`.`admins` */
+/* `sangam-motors`.`admins` */
 $admins = [
-    ['id' => '1', 'created_at' => '2024-03-23 09:22:02', 'updated_at' => '2024-04-07 14:24:26', 'name' => 'Susheel Kumar Singh', 'email' => 'admin@gmail.com', 'phone' => '7979851485', 'email_verified_at' => '2024-03-23 09:22:02', 'password' => '$2y$12$hI2X.nQ2/fRRCllbZYCYP.RZMOX5REcBTktcwZ7cpVlNVelY0Y.ki', 'address' => null, 'city' => null, 'state' => null, 'dob' => null, 'avatar' => null, 'remember_token' => 'c983AmI82JJZf7maNXNXqxI5tJaQWcOjjf6yz0DigEGdl4xuzWkCwCnNCoiQ', 'google_id' => null, 'facebook_id' => null, 'x_id' => null, 'linkedin_id' => null, 'github_id' => null, 'gitlab_id' => null, 'bitbucket_id' => null, 'slack_id' => null, 'apple_id' => null, 'amazon_id' => null],
+    ['id' => '1', 'created_at' => '2024-03-23 09:22:02', 'updated_at' => '2026-05-04 23:27:49', 'name' => 'Aamir', 'email' => 'admin@gmail.com', 'phone' => '9661375409', 'email_verified_at' => '2024-03-23 09:22:02', 'password' => '$2y$12$mMzM7K5HZ2bT.q8PBzx32OuKqXvFjvcgDfdgL/UJNMkXfCQuj4Coi', 'address' => null, 'city' => null, 'state' => null, 'dob' => null, 'avatar' => null, 'remember_token' => 'tHjRyJ4fphXVKUrTp3lrqUfEpCUZYGznP6AmUD2c6KxTJ4RY1wDRuwvU8xmJ', 'google_id' => null, 'facebook_id' => null, 'x_id' => null, 'linkedin_id' => null, 'github_id' => null, 'gitlab_id' => null, 'bitbucket_id' => null, 'slack_id' => null, 'apple_id' => null, 'amazon_id' => null],
 ];
 
-/* `ecom1`.`blogs` */
+/* `sangam-motors`.`blogs` */
 $blogs = [
-    ['id' => '1', 'created_at' => '2024-04-06 00:38:32', 'updated_at' => '2026-01-14 19:11:11', 'created_by' => null, 'title' => 'Profitable business makes your profit', 'slug' => 'profitable-business-makes-your-profit', 'category' => 'Business', 'author' => 'Susheel Singh', 'tags' => 'business, profit', 'short_description' => 'Collaboratively pontificate bleeding edge resources with inexpensive methodologies globally initiate multidisciplinary compatible architectures pidiously repurpose leading edge growth strategies with just in time web readiness communicate timely meta services', 'long_description1' => '<p>Collaboratively pontificate bleeding edge resources with inexpensive methodologies globally initiate multidisciplinary compatible architectures pidiously repurpose leading edge growth strategies with just in time web readiness communicate timely meta services</p>
-
-<p>Onubia semper vel donec torquent fusce mauris felis aptent lacinia nisl, lectus himenaeos euismod molestie iaculis interdum in laoreet condimentum dictum, quisque quam risus sollicitudin gravida ut odio per a et. Gravida maecenas lobortis suscipit mus sociosqu convallis, mollis vestibulum donec aliquam risus sapien ridiculus, nulla sollicitudin eget in venenatis. Tortor montes platea iaculis posuere per mauris, eros porta blandit curabitur ullamcorper varius</p>', 'long_description2' => '<p>Ultrices iaculis commodo parturient euismod pulvinar donec cum eget a, accumsan viverra cras praesent cubilia dignissim ad rhoncus. Gravida maecenas lobortis suscipit mus sociosqu convallis, mollis vestibulum donec aliquam risus sapien ridiculus, nulla sollicitudin eget in venenatis. Tortor montes platea iaculis posuere per mauris, eros porta blandit curabitur ullamcorper varius, nostra ante risus egestas suscipit. Quisque interdum nec parturient facilisis nunc ac quam, ad est cubilia mauris himenaeos nascetur vestibulum.</p>', 'long_description3' => '<div class="align-items-center row">
-<div class="col-lg-5">
-<div class="details mb_sm--15 thumbnail">How will activities traditional manufacturing</div>
-</div>
-<div class="col-lg-7">
-<div class="check-area-details"><!-- single check End --><!-- single check -->
-<div class="single-check">All these digital and projects aim to enhance</div>
-<!-- single check End --><!-- single check -->
-<div class="single-check">I monitor my software that takes screenshots</div>
-<!-- single check End --><!-- single check -->
-<div class="single-check">Laoreet dolore niacin sodium glutimate</div>
-<!-- single check End --><!-- single check -->
-<div class="single-check">Minim veniam sodium glutimate nostrud</div>
-<!-- single check End --></div>
-</div>
-</div>', 'highlighted_text1' => '“Placerat pretium tristique mattis tellus accuan metus dictumst vivamus odio nulla fusce auctor into suscipit habitasse class congue potenti iaculis”', 'highlighted_text2' => null, 'ad_url' => 'https://www.qyqetyxovoqe.com.au', 'views' => null, 'is_active' => '1'],
-    ['id' => '2', 'created_at' => '2026-01-14 19:14:01', 'updated_at' => '2026-01-14 19:14:01', 'created_by' => null, 'title' => 'Non iusto quis sunt', 'slug' => 'non-iusto-quis-sunt', 'category' => 'Temporibus magnam pr', 'author' => 'Fugit enim ab dolor', 'tags' => 'Ea dolore reiciendis', 'short_description' => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 'long_description1' => '<div>
-<h2>What is Lorem Ipsum?</h2>
-<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-</div>
-<div>
-<h2>Why do we use it?</h2>
-<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-</div>
-<p>&nbsp;</p>
-<div>
-<h2>Where does it come from?</h2>
-<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
-</div>
-<div>
-<h2>Where can I get some?</h2>
-<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
-</div>', 'long_description2' => '<div>
-<h2>What is Lorem Ipsum?</h2>
-<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-</div>
-<div>
-<h2>Why do we use it?</h2>
-<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-</div>
-<p>&nbsp;</p>
-<div>
-<h2>Where does it come from?</h2>
-<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
-</div>
-<div>
-<h2>Where can I get some?</h2>
-<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
-</div>', 'long_description3' => '<div>
-<h2>What is Lorem Ipsum?</h2>
-<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-</div>
-<div>
-<h2>Why do we use it?</h2>
-<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-</div>
-<p>&nbsp;</p>
-<div>
-<h2>Where does it come from?</h2>
-<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
-</div>
-<div>
-<h2>Where can I get some?</h2>
-<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
-</div>', 'highlighted_text1' => 'Id qui lorem volupt', 'highlighted_text2' => 'Laborum Quasi elige', 'ad_url' => 'https://www.sehyhetuzexyxa.biz', 'views' => null, 'is_active' => '1'],
-    ['id' => '3', 'created_at' => '2026-01-14 19:15:13', 'updated_at' => '2026-01-14 19:15:13', 'created_by' => null, 'title' => 'Impedit aut quis vo', 'slug' => 'impedit-aut-quis-vo', 'category' => 'Anim autem sint nece', 'author' => 'Blanditiis quis eos', 'tags' => 'Reprehenderit cumqu', 'short_description' => 'Et sit qui voluptas', 'long_description1' => '<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>', 'long_description2' => '<div>
-<h2>What is Lorem Ipsum?</h2>
-<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-</div>
-<div>
-<h2>Why do we use it?</h2>
-<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-</div>
-<p>&nbsp;</p>
-<div>
-<h2>Where does it come from?</h2>
-<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
-</div>
-<div>
-<h2>Where can I get some?</h2>
-<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
-</div>', 'long_description3' => '<div>
-<h2>What is Lorem Ipsum?</h2>
-<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-</div>
-<div>
-<h2>Why do we use it?</h2>
-<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-</div>
-<p>&nbsp;</p>
-<div>
-<h2>Where does it come from?</h2>
-<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
-</div>
-<div>
-<h2>Where can I get some?</h2>
-<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
-</div>', 'highlighted_text1' => 'Error optio non ea', 'highlighted_text2' => 'Ut odit inventore vo', 'ad_url' => 'https://www.sehyhetuzexyxa.biz', 'views' => null, 'is_active' => '1'],
 ];
 
-/* `ecom1`.`blog_comments` */
+/* `sangam-motors`.`blog_comments` */
 $blog_comments = [
 ];
 
-/* `ecom1`.`blog_views` */
+/* `sangam-motors`.`blog_views` */
 $blog_views = [
-    ['id' => '1', 'created_at' => '2026-01-14 19:09:42', 'updated_at' => '2026-01-14 19:09:42', 'ip_address' => '127.0.0.1', 'blog_id' => '1'],
-    ['id' => '2', 'created_at' => '2026-01-14 19:11:53', 'updated_at' => '2026-01-14 19:11:53', 'ip_address' => '127.0.0.1', 'blog_id' => '1'],
-    ['id' => '3', 'created_at' => '2026-01-14 19:15:46', 'updated_at' => '2026-01-14 19:15:46', 'ip_address' => '127.0.0.1', 'blog_id' => '3'],
-    ['id' => '4', 'created_at' => '2026-01-14 19:27:59', 'updated_at' => '2026-01-14 19:27:59', 'ip_address' => '127.0.0.1', 'blog_id' => '1'],
-    ['id' => '5', 'created_at' => '2026-01-14 22:35:46', 'updated_at' => '2026-01-14 22:35:46', 'ip_address' => '127.0.0.1', 'blog_id' => '2'],
-    ['id' => '6', 'created_at' => '2026-01-20 22:37:01', 'updated_at' => '2026-01-20 22:37:01', 'ip_address' => '127.0.0.1', 'blog_id' => '2'],
-    ['id' => '7', 'created_at' => '2026-01-20 22:37:28', 'updated_at' => '2026-01-20 22:37:28', 'ip_address' => '127.0.0.1', 'blog_id' => '2'],
-    ['id' => '8', 'created_at' => '2026-01-20 22:37:59', 'updated_at' => '2026-01-20 22:37:59', 'ip_address' => '127.0.0.1', 'blog_id' => '2'],
-    ['id' => '9', 'created_at' => '2026-01-20 22:38:11', 'updated_at' => '2026-01-20 22:38:11', 'ip_address' => '127.0.0.1', 'blog_id' => '2'],
-    ['id' => '10', 'created_at' => '2026-01-20 22:38:42', 'updated_at' => '2026-01-20 22:38:42', 'ip_address' => '127.0.0.1', 'blog_id' => '2'],
-    ['id' => '11', 'created_at' => '2026-01-20 22:39:04', 'updated_at' => '2026-01-20 22:39:04', 'ip_address' => '127.0.0.1', 'blog_id' => '2'],
-    ['id' => '12', 'created_at' => '2026-01-21 07:12:46', 'updated_at' => '2026-01-21 07:12:46', 'ip_address' => '127.0.0.1', 'blog_id' => '1'],
-    ['id' => '13', 'created_at' => '2026-01-21 07:16:10', 'updated_at' => '2026-01-21 07:16:10', 'ip_address' => '127.0.0.1', 'blog_id' => '1'],
-    ['id' => '14', 'created_at' => '2026-01-21 07:17:26', 'updated_at' => '2026-01-21 07:17:26', 'ip_address' => '127.0.0.1', 'blog_id' => '1'],
-    ['id' => '15', 'created_at' => '2026-01-21 07:32:08', 'updated_at' => '2026-01-21 07:32:08', 'ip_address' => '127.0.0.1', 'blog_id' => '3'],
 ];
 
-/* `ecom1`.`booking_attempts` */
+/* `sangam-motors`.`booking_attempts` */
 $booking_attempts = [
 ];
 
-/* `ecom1`.`cache` */
+/* `sangam-motors`.`browsing_histories` */
+$browsing_histories = [
+];
+
+/* `sangam-motors`.`cache` */
 $cache = [
 ];
 
-/* `ecom1`.`cache_locks` */
+/* `sangam-motors`.`cache_locks` */
 $cache_locks = [
 ];
 
-/* `ecom1`.`carts` */
+/* `sangam-motors`.`carts` */
 $carts = [
-    ['id' => '1', 'user_id' => '1', 'ip_address' => '127.0.0.1', 'created_at' => '2026-02-14 20:48:04', 'updated_at' => '2026-02-14 20:48:04'],
 ];
 
-/* `ecom1`.`cart_items` */
+/* `sangam-motors`.`cart_items` */
 $cart_items = [
 ];
 
-/* `ecom1`.`clients` */
+/* `sangam-motors`.`clients` */
 $clients = [
-    ['id' => '1', 'created_at' => '2024-04-07 08:55:42', 'updated_at' => '2024-04-07 08:57:50', 'name' => 'Zoe Hansen', 'url' => 'https://www.dixurono.org.uk', 'is_active' => '1'],
-    ['id' => '2', 'created_at' => '2024-04-07 08:58:31', 'updated_at' => '2024-04-07 08:58:31', 'name' => 'Rashad Randall', 'url' => 'https://www.rexazosyr.com.au', 'is_active' => '1'],
-    ['id' => '3', 'created_at' => '2024-04-07 08:58:56', 'updated_at' => '2024-04-07 08:58:56', 'name' => 'Willa Thompson', 'url' => 'https://www.kec.tv', 'is_active' => '1'],
-    ['id' => '4', 'created_at' => '2024-04-07 08:59:13', 'updated_at' => '2024-04-07 08:59:13', 'name' => 'Xerxes Collier', 'url' => 'https://www.pitepycogapig.net', 'is_active' => '1'],
-    ['id' => '5', 'created_at' => '2024-04-07 08:59:24', 'updated_at' => '2024-04-07 08:59:24', 'name' => 'Tallulah Mcdaniel', 'url' => 'https://www.mazufuvaw.net', 'is_active' => '1'],
 ];
 
-/* `ecom1`.`failed_jobs` */
+/* `sangam-motors`.`dealers` */
+$dealers = [
+    ['id' => '1', 'created_at' => '2026-05-06 07:49:40', 'updated_at' => '2026-05-06 07:49:54', 'distributor_id' => '1', 'name' => 'Susheel Kumar Singh', 'email' => 'test@example.com', 'phone' => '9999999999', 'email_verified_at' => null, 'password' => '$2y$12$IsueN4Rt4cugwfccZScMm.axZmKOqzIF9dPyNpE1Hlhka7EMbucAi', 'application_status' => 'approved', 'approved_at' => '2026-05-06 07:49:54', 'approved_by' => '1', 'rejected_at' => null, 'rejection_note' => null, 'remember_token' => null],
+];
+
+/* `sangam-motors`.`dealer_orders` */
+$dealer_orders = [
+];
+
+/* `sangam-motors`.`dealer_order_items` */
+$dealer_order_items = [
+];
+
+/* `sangam-motors`.`dealer_order_item_serial_numbers` */
+$dealer_order_item_serial_numbers = [
+];
+
+/* `sangam-motors`.`dealer_retail_sales` */
+$dealer_retail_sales = [
+];
+
+/* `sangam-motors`.`dealer_retail_sale_items` */
+$dealer_retail_sale_items = [
+];
+
+/* `sangam-motors`.`distributors` */
+$distributors = [
+    ['id' => '1', 'created_at' => '2026-05-06 07:48:45', 'updated_at' => '2026-05-06 07:49:07', 'name' => 'Susheel Kumar Singh', 'legal_business_name' => 'DIGAMITE PRIVATE LIMITED', 'trade_name' => 'Sandra Mcfarland', 'business_constitution' => 'partnership', 'kyc_id_type' => 'passport', 'kyc_id_number' => '87979', 'pan_number' => 'EZIPS8151P', 'gstin' => '07AAICD5565A1ZT', 'tan_number' => null, 'msme_udyam_number' => null, 'nature_of_business' => 'kljl', 'years_in_business' => '12', 'expected_monthly_purchase_band' => '1l_5l', 'referral_source' => null, 'authorized_signatory_designation' => 'Sapiente autem elit', 'bank_account_holder_name' => 'Kay Kirkland', 'bank_name' => 'Ray Little', 'bank_branch' => 'Nihil in reiciendis', 'bank_account_number' => '7897979879', 'bank_ifsc' => 'SBIN0002322', 'email' => 'test@example.com', 'phone' => '9999999999', 'email_verified_at' => null, 'password' => '$2y$12$mMzM7K5HZ2bT.q8PBzx32OuKqXvFjvcgDfdgL/UJNMkXfCQuj4Coi', 'address' => 'vill- pandh, post- chakbahauddin, district- samastipur', 'warehouse_address' => null, 'city' => 'dalsingh sarai', 'state' => 'BR', 'pincode' => '848114', 'dob' => '06-Apr-2025', 'avatar' => null, 'application_status' => 'approved', 'approved_at' => '2026-05-06 07:49:07', 'approved_by' => '1', 'rejected_at' => null, 'rejection_note' => null, 'google_id' => null, 'facebook_id' => null, 'x_id' => null, 'linkedin_id' => null, 'github_id' => null, 'gitlab_id' => null, 'bitbucket_id' => null, 'slack_id' => null, 'apple_id' => null, 'amazon_id' => null, 'remember_token' => null],
+];
+
+/* `sangam-motors`.`distributor_orders` */
+$distributor_orders = [
+];
+
+/* `sangam-motors`.`distributor_order_items` */
+$distributor_order_items = [
+];
+
+/* `sangam-motors`.`distributor_order_item_serial_numbers` */
+$distributor_order_item_serial_numbers = [
+];
+
+/* `sangam-motors`.`failed_jobs` */
 $failed_jobs = [
 ];
 
-/* `ecom1`.`faqs` */
+/* `sangam-motors`.`faqs` */
 $faqs = [
-    ['id' => '1', 'created_at' => '2025-05-20 12:26:15', 'updated_at' => '2025-05-20 12:26:15', 'faq_category_id' => '1', 'question' => 'What is your return policy?', 'answer' => '<p>We offer a 30-day return policy on all products. If you are not satisfied with your purchase, please contact our support team to initiate the return process.</p>', 'is_active' => '1'],
-    ['id' => '2', 'created_at' => '2025-05-20 12:27:45', 'updated_at' => '2025-05-20 12:27:45', 'faq_category_id' => '1', 'question' => 'How do I track my order?', 'answer' => '<p>You can track your order using the tracking number provided in your order confirmation email. Simply enter the tracking number on our website\'s tracking page to see the status of your shipment.</p>', 'is_active' => '1'],
-    ['id' => '3', 'created_at' => '2025-05-20 12:28:30', 'updated_at' => '2025-05-20 12:28:30', 'faq_category_id' => '2', 'question' => 'Do you offer discounts for bulk purchases?', 'answer' => '<p>Yes, we offer discounts for bulk purchases. Please contact our sales team for more information on pricing and available discounts.</p>', 'is_active' => '1'],
 ];
 
-/* `ecom1`.`faq_categories` */
+/* `sangam-motors`.`faq_categories` */
 $faq_categories = [
     ['id' => '1', 'title' => 'General', 'is_active' => '1'],
     ['id' => '2', 'title' => 'Pricing', 'is_active' => '1'],
 ];
 
-/* `ecom1`.`galleries` */
+/* `sangam-motors`.`galleries` */
 $galleries = [
 ];
 
-/* `ecom1`.`important_links` */
+/* `sangam-motors`.`important_links` */
 $important_links = [
     ['id' => '1', 'created_at' => '2025-05-17 16:40:35', 'updated_at' => '2025-05-17 16:40:35', 'href' => '/tnc', 'name' => 'Terms of Uses', 'is_active' => '1'],
     ['id' => '2', 'created_at' => '2025-05-17 16:40:53', 'updated_at' => '2025-05-17 16:40:53', 'href' => '/privacy', 'name' => 'Privacy Policy', 'is_active' => '1'],
@@ -213,21 +127,46 @@ $important_links = [
     ['id' => '4', 'created_at' => '2025-05-17 16:41:15', 'updated_at' => '2025-05-17 16:41:15', 'href' => '/faq', 'name' => 'FAQ', 'is_active' => '1'],
 ];
 
-/* `ecom1`.`invoices` */
+/* `sangam-motors`.`invoices` */
 $invoices = [
 ];
 
-/* `ecom1`.`jobs` */
+/* `sangam-motors`.`jobs` */
 $jobs = [
 ];
 
-/* `ecom1`.`job_batches` */
+/* `sangam-motors`.`job_batches` */
 $job_batches = [
 ];
 
+/* `sangam-motors`.`media` */
+$media = [
+];
 
+/* `sangam-motors`.`media_external` */
+$media_external = [
+];
 
-/* `ecom1`.`migrations` */
+/* `sangam-motors`.`media_internal` */
+$media_internal = array(
+  array('id' => '1','model_type' => 'App\\Models\\Setting','model_id' => '1','uuid' => '5c6549ff-9e72-4e4c-941f-036e5f1217cd','collection_name' => 'square_dark_logo','name' => 'dark_square','file_name' => 'dark_square.png','mime_type' => 'image/png','disk' => 'internal_media','conversions_disk' => 'internal_media','size' => '245167','manipulations' => '[]','custom_properties' => '[]','generated_conversions' => '{"large": true, "small": true, "thumb": true, "medium": true, "xlarge": true, "thumbSquare": true}','responsive_images' => '[]','order_column' => NULL,'created_at' => '2026-04-12 20:22:03','updated_at' => '2026-04-12 20:22:11'),
+  array('id' => '2','model_type' => 'App\\Models\\Setting','model_id' => '1','uuid' => '4280c3c2-f227-4e64-85bd-b120aa3c4d1c','collection_name' => 'dark_logo','name' => 'logo','file_name' => 'logo.png','mime_type' => 'image/png','disk' => 'internal_media','conversions_disk' => 'internal_media','size' => '38829','manipulations' => '[]','custom_properties' => '[]','generated_conversions' => '{"large": true, "small": true, "thumb": true, "medium": true, "xlarge": true, "thumbSquare": true}','responsive_images' => '[]','order_column' => NULL,'created_at' => '2026-04-12 20:22:11','updated_at' => '2026-04-12 20:22:15'),
+  array('id' => '3','model_type' => 'App\\Models\\Setting','model_id' => '1','uuid' => '6e8b1208-1d4f-47d8-b132-fe9f0a96388e','collection_name' => 'square_light_logo','name' => 'light_square','file_name' => 'light_square.png','mime_type' => 'image/png','disk' => 'internal_media','conversions_disk' => 'internal_media','size' => '13129','manipulations' => '[]','custom_properties' => '[]','generated_conversions' => '{"large": true, "small": true, "thumb": true, "medium": true, "xlarge": true, "thumbSquare": true}','responsive_images' => '[]','order_column' => NULL,'created_at' => '2026-04-12 20:22:15','updated_at' => '2026-04-12 20:22:22'),
+  array('id' => '4','model_type' => 'App\\Models\\Setting','model_id' => '1','uuid' => '3b0e4320-c7aa-4528-bc12-ac8c2640ac9b','collection_name' => 'light_logo','name' => 'light_logo','file_name' => 'light_logo.png','mime_type' => 'image/png','disk' => 'internal_media','conversions_disk' => 'internal_media','size' => '14609','manipulations' => '[]','custom_properties' => '[]','generated_conversions' => '{"large": true, "small": true, "thumb": true, "medium": true, "xlarge": true, "thumbSquare": true}','responsive_images' => '[]','order_column' => NULL,'created_at' => '2026-04-12 20:22:22','updated_at' => '2026-04-12 20:22:26'),
+  array('id' => '5','model_type' => 'App\\Models\\PageAuth','model_id' => '1','uuid' => '416b43fe-2a1e-432b-9404-fa9d11dcd2b5','collection_name' => 'side_image','name' => 'auth','file_name' => 'auth.jpeg','mime_type' => 'image/jpeg','disk' => 'internal_media','conversions_disk' => 'internal_media','size' => '70300','manipulations' => '[]','custom_properties' => '[]','generated_conversions' => '{"large": true, "small": true, "thumb": true, "medium": true, "xlarge": true, "thumbSquare": true}','responsive_images' => '[]','order_column' => NULL,'created_at' => '2026-04-12 20:25:57','updated_at' => '2026-04-12 20:26:02'),
+  array('id' => '6','model_type' => 'App\\Models\\PageHome','model_id' => '1','uuid' => '5bda5310-bbd3-479f-ad3b-513398990e6c','collection_name' => 'banner_image','name' => 'banner','file_name' => 'banner.jpg','mime_type' => 'image/jpeg','disk' => 'internal_media','conversions_disk' => 'internal_media','size' => '202129','manipulations' => '[]','custom_properties' => '[]','generated_conversions' => '{"large": true, "small": true, "thumb": true, "medium": true, "xlarge": true, "thumbSquare": true}','responsive_images' => '[]','order_column' => NULL,'created_at' => '2026-04-12 20:26:53','updated_at' => '2026-04-12 20:26:58'),
+  array('id' => '7','model_type' => 'App\\Models\\PageHome','model_id' => '1','uuid' => '6679637f-9c2e-4c9b-8ce6-0fdfde998e4f','collection_name' => 'about_image','name' => 'about','file_name' => 'about.jpg','mime_type' => 'image/jpeg','disk' => 'internal_media','conversions_disk' => 'internal_media','size' => '82050','manipulations' => '[]','custom_properties' => '[]','generated_conversions' => '{"large": true, "small": true, "thumb": true, "medium": true, "xlarge": true, "thumbSquare": true}','responsive_images' => '[]','order_column' => NULL,'created_at' => '2026-04-12 20:26:58','updated_at' => '2026-04-12 20:27:03'),
+  array('id' => '8','model_type' => 'App\\Models\\PageHome','model_id' => '1','uuid' => '5e9bbcbb-0ee5-41d3-a556-c702d6520979','collection_name' => 'why_us_image','name' => 'about2','file_name' => 'about2.jpg','mime_type' => 'image/jpeg','disk' => 'internal_media','conversions_disk' => 'internal_media','size' => '76936','manipulations' => '[]','custom_properties' => '[]','generated_conversions' => '{"large": true, "small": true, "thumb": true, "medium": true, "xlarge": true, "thumbSquare": true}','responsive_images' => '[]','order_column' => NULL,'created_at' => '2026-04-12 20:27:03','updated_at' => '2026-04-12 20:27:09'),
+  array('id' => '9','model_type' => 'App\\Models\\Testimonial','model_id' => '3','uuid' => 'd07c7b45-3a76-41a8-b05d-eb9b15712ca2','collection_name' => 'image','name' => 'susheel2','file_name' => 'susheel2.jpg','mime_type' => 'image/jpeg','disk' => 'internal_media','conversions_disk' => 'internal_media','size' => '19201','manipulations' => '[]','custom_properties' => '[]','generated_conversions' => '{"large": true, "small": true, "thumb": true, "medium": true, "xlarge": true, "thumbSquare": true}','responsive_images' => '[]','order_column' => NULL,'created_at' => '2026-04-12 20:28:17','updated_at' => '2026-04-12 20:28:24'),
+  array('id' => '10','model_type' => 'App\\Models\\Testimonial','model_id' => '2','uuid' => 'bc851c40-ef83-496d-a013-819482baff80','collection_name' => 'image','name' => 'susheel2','file_name' => 'susheel2.jpg','mime_type' => 'image/jpeg','disk' => 'internal_media','conversions_disk' => 'internal_media','size' => '19201','manipulations' => '[]','custom_properties' => '[]','generated_conversions' => '{"large": true, "small": true, "thumb": true, "medium": true, "xlarge": true, "thumbSquare": true}','responsive_images' => '[]','order_column' => NULL,'created_at' => '2026-04-12 20:28:42','updated_at' => '2026-04-12 20:28:49'),
+  array('id' => '11','model_type' => 'App\\Models\\Testimonial','model_id' => '1','uuid' => '69d0624e-7403-4137-a3c0-9754dc7cf476','collection_name' => 'image','name' => 'susheel2','file_name' => 'susheel2.jpg','mime_type' => 'image/jpeg','disk' => 'internal_media','conversions_disk' => 'internal_media','size' => '19201','manipulations' => '[]','custom_properties' => '[]','generated_conversions' => '{"large": true, "small": true, "thumb": true, "medium": true, "xlarge": true, "thumbSquare": true}','responsive_images' => '[]','order_column' => NULL,'created_at' => '2026-04-12 20:29:01','updated_at' => '2026-04-12 20:29:08'),
+  array('id' => '12','model_type' => 'App\\Models\\Team','model_id' => '4','uuid' => 'ea59f005-bba6-47d7-8373-812eebadda01','collection_name' => 'image','name' => 'susheel','file_name' => 'susheel.jpg','mime_type' => 'image/jpeg','disk' => 'internal_media','conversions_disk' => 'internal_media','size' => '12155','manipulations' => '[]','custom_properties' => '[]','generated_conversions' => '{"large": true, "small": true, "thumb": true, "medium": true, "xlarge": true, "thumbSquare": true}','responsive_images' => '[]','order_column' => NULL,'created_at' => '2026-04-12 20:29:25','updated_at' => '2026-04-12 20:29:30'),
+  array('id' => '13','model_type' => 'App\\Models\\Team','model_id' => '3','uuid' => 'd12d0400-32f4-4120-a618-0f7b5d99db39','collection_name' => 'image','name' => 'susheel','file_name' => 'susheel.jpg','mime_type' => 'image/jpeg','disk' => 'internal_media','conversions_disk' => 'internal_media','size' => '12155','manipulations' => '[]','custom_properties' => '[]','generated_conversions' => '{"large": true, "small": true, "thumb": true, "medium": true, "xlarge": true, "thumbSquare": true}','responsive_images' => '[]','order_column' => NULL,'created_at' => '2026-04-12 20:29:42','updated_at' => '2026-04-12 20:29:48'),
+  array('id' => '14','model_type' => 'App\\Models\\Team','model_id' => '2','uuid' => '5a05a432-a767-48b4-8c4f-a17182c593a1','collection_name' => 'image','name' => 'susheel','file_name' => 'susheel.jpg','mime_type' => 'image/jpeg','disk' => 'internal_media','conversions_disk' => 'internal_media','size' => '12155','manipulations' => '[]','custom_properties' => '[]','generated_conversions' => '{"large": true, "small": true, "thumb": true, "medium": true, "xlarge": true, "thumbSquare": true}','responsive_images' => '[]','order_column' => NULL,'created_at' => '2026-04-12 20:29:59','updated_at' => '2026-04-12 20:30:04'),
+  array('id' => '15','model_type' => 'App\\Models\\Team','model_id' => '1','uuid' => '14200fa9-2a82-4993-8728-e14581332199','collection_name' => 'image','name' => 'susheel','file_name' => 'susheel.jpg','mime_type' => 'image/jpeg','disk' => 'internal_media','conversions_disk' => 'internal_media','size' => '12155','manipulations' => '[]','custom_properties' => '[]','generated_conversions' => '{"large": true, "small": true, "thumb": true, "medium": true, "xlarge": true, "thumbSquare": true}','responsive_images' => '[]','order_column' => NULL,'created_at' => '2026-04-12 20:30:15','updated_at' => '2026-04-12 20:30:20')
+);
+
+/* `sangam-motors`.`migrations` */
 $migrations = [
     ['id' => '1', 'migration' => '0001_01_01_000000_create_states_table', 'batch' => '1'],
     ['id' => '2', 'migration' => '0001_01_01_000000_create_users_table', 'batch' => '1'],
@@ -293,52 +232,96 @@ $migrations = [
     ['id' => '62', 'migration' => '2026_02_14_000005_create_booking_attempts_table', 'batch' => '1'],
     ['id' => '63', 'migration' => '2026_02_14_000006_add_shipping_fields_to_products_table', 'batch' => '1'],
     ['id' => '64', 'migration' => '2026_02_14_000007_add_shipping_fields_to_orders_table', 'batch' => '1'],
+    ['id' => '65', 'migration' => '2026_02_17_000001_create_pickup_addresses_table', 'batch' => '1'],
+    ['id' => '66', 'migration' => '2026_02_18_000001_create_shipment_provider_pickup_addresses_table', 'batch' => '1'],
+    ['id' => '67', 'migration' => '2026_02_18_125153_create_warehouses_table', 'batch' => '1'],
+    ['id' => '68', 'migration' => '2026_02_18_125634_create_warehouse_racks_table', 'batch' => '1'],
+    ['id' => '69', 'migration' => '2026_02_18_131117_create_stock_records_table', 'batch' => '1'],
+    ['id' => '70', 'migration' => '2026_02_19_093043_create_stock_movements_table', 'batch' => '1'],
+    ['id' => '71', 'migration' => '2026_02_19_093112_remove_unique_constraint_from_stock_records_table', 'batch' => '1'],
+    ['id' => '72', 'migration' => '2026_02_19_104014_change_quantity_to_signed_in_stock_movements_table', 'batch' => '1'],
+    ['id' => '73', 'migration' => '2026_02_19_112615_remove_stock_column_from_products_table', 'batch' => '1'],
+    ['id' => '74', 'migration' => '2026_02_19_165711_create_reviews_table', 'batch' => '1'],
+    ['id' => '75', 'migration' => '2026_02_19_170246_create_review_votes_table', 'batch' => '1'],
+    ['id' => '76', 'migration' => '2026_02_21_124423_create_product_page_banners_table', 'batch' => '1'],
+    ['id' => '77', 'migration' => '2026_02_22_160713_create_browsing_histories_table', 'batch' => '1'],
+    ['id' => '78', 'migration' => '2026_02_22_160914_create_recommendation_configs_table', 'batch' => '1'],
+    ['id' => '79', 'migration' => '2026_02_22_161145_add_recommendation_indexes_to_existing_tables', 'batch' => '1'],
+    ['id' => '80', 'migration' => '2026_02_23_231421_add_trust_badges_to_settings_table', 'batch' => '1'],
+    ['id' => '81', 'migration' => '2026_02_25_201646_add_complete_addresses_to_orders_table', 'batch' => '1'],
+    ['id' => '82', 'migration' => '2026_02_25_201710_add_detailed_address_to_warehouses_table', 'batch' => '1'],
+    ['id' => '83', 'migration' => '2026_04_16_120000_add_fulltext_index_to_products_table', 'batch' => '1'],
+    ['id' => '84', 'migration' => '2026_04_16_130000_update_products_fulltext_index_for_search', 'batch' => '1'],
+    ['id' => '85', 'migration' => '2026_04_16_140000_add_rating_aggregates_to_products_table', 'batch' => '1'],
+    ['id' => '86', 'migration' => '2026_04_16_150000_add_products_active_featured_index', 'batch' => '1'],
+    ['id' => '87', 'migration' => '2026_04_17_120000_add_products_active_created_at_index', 'batch' => '1'],
+    ['id' => '88', 'migration' => '2026_04_20_231902_create_distributors_table', 'batch' => '1'],
+    ['id' => '89', 'migration' => '2026_04_20_233244_add_onboarding_fields_to_distributors_table', 'batch' => '1'],
+    ['id' => '90', 'migration' => '2026_04_20_234342_create_dealers_table', 'batch' => '1'],
+    ['id' => '91', 'migration' => '2026_04_21_000001_add_distributor_price_to_products_table', 'batch' => '1'],
+    ['id' => '92', 'migration' => '2026_04_21_000002_add_owner_to_warehouses_table', 'batch' => '1'],
+    ['id' => '93', 'migration' => '2026_04_21_000003_create_distributor_orders_table', 'batch' => '1'],
+    ['id' => '94', 'migration' => '2026_04_21_000004_create_dealer_orders_table', 'batch' => '1'],
+    ['id' => '95', 'migration' => '2026_04_21_000005_create_dealer_retail_sales_table', 'batch' => '1'],
+    ['id' => '96', 'migration' => '2026_04_22_005804_add_customer_billing_to_dealer_retail_sales_table', 'batch' => '1'],
+    ['id' => '97', 'migration' => '2026_05_04_161143_add_source_rack_id_to_distributor_orders_table', 'batch' => '1'],
+    ['id' => '98', 'migration' => '2026_05_05_082854_create_technicians_table', 'batch' => '1'],
+    ['id' => '99', 'migration' => '2026_05_05_090838_add_registration_fields_to_technicians_table', 'batch' => '1'],
+    ['id' => '100', 'migration' => '2026_05_05_172811_create_product_warranties_table', 'batch' => '1'],
+    ['id' => '101', 'migration' => '2026_05_05_172811_create_serial_numbers_table', 'batch' => '1'],
+    ['id' => '102', 'migration' => '2026_05_05_172817_create_warranty_cards_table', 'batch' => '1'],
+    ['id' => '103', 'migration' => '2026_05_05_201202_create_serial_number_movements_table', 'batch' => '1'],
+    ['id' => '104', 'migration' => '2026_05_05_201839_create_distributor_order_item_serial_numbers_table', 'batch' => '1'],
+    ['id' => '105', 'migration' => '2026_05_05_202325_create_dealer_order_item_serial_numbers_table', 'batch' => '1'],
+    ['id' => '106', 'migration' => '2026_05_05_202634_add_serial_number_id_to_dealer_retail_sale_items_table', 'batch' => '1'],
+    ['id' => '107', 'migration' => '2026_05_05_204145_update_status_enum_on_serial_numbers_table', 'batch' => '1'],
+    ['id' => '108', 'migration' => '2026_05_05_211546_create_technician_scans_table', 'batch' => '1'],
 ];
 
-/* `ecom1`.`model_has_permissions` */
+/* `sangam-motors`.`model_has_permissions` */
 $model_has_permissions = [
 ];
 
-/* `ecom1`.`model_has_roles` */
+/* `sangam-motors`.`model_has_roles` */
 $model_has_roles = [
     ['role_id' => '1', 'model_type' => 'App\\Models\\Admin', 'model_id' => '1'],
 ];
 
-/* `ecom1`.`newsletters` */
+/* `sangam-motors`.`newsletters` */
 $newsletters = [
 ];
 
-/* `ecom1`.`notifications` */
+/* `sangam-motors`.`notifications` */
 $notifications = [
-    ['id' => '742de7fb-a49c-4e78-b3c4-63b5eaa61a80', 'type' => 'App\\Notifications\\OrderPlacedNotificationForAdmin', 'notifiable_type' => 'App\\Models\\Admin', 'notifiable_id' => '1', 'data' => '{"type":"order_placed","title":"New Order Placed","url":"https:\\/\\/ecom1.test\\/admin\\/order\\/1","data":{"order_id":1,"order_number":"ORD-1771082343","total_amount":1018}}', 'read_at' => null, 'created_at' => '2026-02-14 20:49:36', 'updated_at' => '2026-02-14 20:49:36'],
+    
 ];
 
-/* `ecom1`.`orders` */
+/* `sangam-motors`.`orders` */
 $orders = [
 ];
 
-/* `ecom1`.`order_items` */
+/* `sangam-motors`.`order_items` */
 $order_items = [
 ];
 
-/* `ecom1`.`page_about` */
+/* `sangam-motors`.`page_about` */
 $page_about = [
     ['id' => '1', 'created_at' => '2025-12-22 14:31:44', 'updated_at' => '2026-01-14 19:33:50', 'para1' => '<h2>What is Lorem Ipsum?</h2>
 <p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>', 'para2' => '<h2>Why do we use it?</h2>
 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>', 'objective' => '<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text.</p>', 'mission' => '<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>', 'vision' => '<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text.</p>', 'founder_message' => '<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>'],
 ];
 
-/* `ecom1`.`page_auth` */
+/* `sangam-motors`.`page_auth` */
 $page_auth = [
     ['id' => '1', 'created_at' => null, 'updated_at' => null],
 ];
 
-/* `ecom1`.`page_contact` */
+/* `sangam-motors`.`page_contact` */
 $page_contact = [
     ['id' => '1', 'created_at' => '2025-12-22 14:31:44', 'updated_at' => '2025-12-22 14:31:44', 'form_heading1' => 'Lets talk about all things!', 'form_paragraph1' => 'Write to us or give us a call. We will reply to you as soon as possible. But yes, it can take up to 24 hours.', 'map_embad_url' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14017.914109416573!2d77.34703302383423!3d28.555389930658254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5ccaf6a0617%3A0x59318c70194d0a95!2sCANARA%20BANK%20-%20NOIDA%20SECTOR%2045!5e0!3m2!1sen!2sin!4v1679114987600!5m2!1sen!2sin', 'working_hour' => 'We are open from 9am — 5pm business days.'],
 ];
 
-/* `ecom1`.`page_home` */
+/* `sangam-motors`.`page_home` */
 $page_home = [
     ['id' => '1', 'created_at' => '2025-12-22 14:31:44', 'updated_at' => '2025-12-22 14:44:21', 'banner_heading' => 'Smart Solutions For
 Your Business Needs', 'banner_description' => '<p>We are a team of talented designers making websites with Bootstrap</p>', 'why_us_heading' => 'We\'re Ready To Grow
@@ -378,7 +361,7 @@ Consulting Agency', 'about_description' => '<p>We help you to grow your business
 </ul>', 'why_us' => '1', 'testimonials' => '1', 'video' => '1', 'blogs' => '1', 'listings' => '1'],
 ];
 
-/* `ecom1`.`page_privacy` */
+/* `sangam-motors`.`page_privacy` */
 $page_privacy = [
     ['id' => '1', 'created_at' => null, 'updated_at' => '2025-05-17 15:11:08', 'title' => 'Privacy Policy', 'content' => '<h1>Who we are</h1>
 
@@ -425,7 +408,7 @@ $page_privacy = [
 <p><strong>Visitor comments may be checked through an automated spam detection service.</strong></p>'],
 ];
 
-/* `ecom1`.`page_refund` */
+/* `sangam-motors`.`page_refund` */
 $page_refund = [
     ['id' => '1', 'created_at' => null, 'updated_at' => '2025-05-17 15:33:35', 'title' => 'Refund Policy', 'content' => '<h1>&nbsp;</h1>
 
@@ -435,7 +418,7 @@ $page_refund = [
 </ul>'],
 ];
 
-/* `ecom1`.`page_tnc` */
+/* `sangam-motors`.`page_tnc` */
 $page_tnc = [
     ['id' => '1', 'created_at' => null, 'updated_at' => '2025-05-17 15:35:40', 'title' => 'Terms and Conditions', 'content' => '<h1>&nbsp;</h1>
 
@@ -463,21 +446,19 @@ $page_tnc = [
 </ul>'],
 ];
 
-/* `ecom1`.`partners` */
+/* `sangam-motors`.`partners` */
 $partners = [
-    ['id' => '1', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-04-07 14:23:25', 'name' => 'Susheel Singh Partner', 'email' => 'partner@gmail.com', 'phone' => '7979851485', 'email_verified_at' => '2024-03-23 09:22:02', 'password' => '$2y$12$hI2X.nQ2/fRRCllbZYCYP.RZMOX5REcBTktcwZ7cpVlNVelY0Y.ki', 'dob' => '2024-12-12', 'avatar' => null, 'remember_token' => 'WfJ08TVEJbrR3aqoyksu3vTBz7CuCM9GTq7nAb3X4OsfxhOH0pbIlRj9twaI', 'google_id' => null, 'facebook_id' => null, 'x_id' => null, 'linkedin_id' => null, 'github_id' => null, 'gitlab_id' => null, 'bitbucket_id' => null, 'slack_id' => null, 'apple_id' => null, 'amazon_id' => null],
 ];
 
-/* `ecom1`.`password_reset_tokens` */
+/* `sangam-motors`.`password_reset_tokens` */
 $password_reset_tokens = [
 ];
 
-/* `ecom1`.`payments` */
+/* `sangam-motors`.`payments` */
 $payments = [
-    ['id' => '1', 'created_at' => '2026-02-14 20:49:36', 'updated_at' => '2026-02-14 20:49:36', 'deleted_at' => null, 'payable_type' => 'App\\Models\\Order', 'payable_id' => '1', 'payment_gateway_id' => '2', 'invoice_id' => null, 'user_id' => null, 'email' => null, 'phone' => null, 'amount' => '1018', 'order_id' => 'order_SG4ZAgmwX2KYHi', 'payment_id' => 'pay_SG4ZMcbzi94Crc', 'product_id' => null, 'receipt' => null, 'billing_gstin' => null, 'billing_name' => null, 'billing_email' => null, 'billing_phone' => null, 'billing_address' => null, 'billing_city' => null, 'billing_pin' => null, 'billing_state_id' => null, 'data' => null, 'payment_status' => '1'],
 ];
 
-/* `ecom1`.`payment_gateways` */
+/* `sangam-motors`.`payment_gateways` */
 $payment_gateways = [
     ['id' => '1', 'name' => 'COD', 'is_active' => '1', 'is_default' => '0'],
     ['id' => '2', 'name' => 'Razorpay', 'is_active' => '1', 'is_default' => '0'],
@@ -489,493 +470,246 @@ $payment_gateways = [
     ['id' => '8', 'name' => 'PayU', 'is_active' => '1', 'is_default' => '0'],
 ];
 
-/* `ecom1`.`payment_refunds` */
+/* `sangam-motors`.`payment_refunds` */
 $payment_refunds = [
 ];
 
-/* `ecom1`.`payment_temps` */
+/* `sangam-motors`.`payment_temps` */
 $payment_temps = [
-    ['id' => '1', 'created_at' => '2026-02-14 20:49:06', 'updated_at' => '2026-02-14 20:49:06', 'payable_type' => 'App\\Models\\Order', 'payable_id' => '1', 'payment_gateway_id' => '2', 'payment_status' => null, 'user_id' => '1', 'email' => 'test@example.com', 'phone' => '07979851485', 'amount' => '1018', 'order_id' => 'order_SG4ZAgmwX2KYHi', 'payment_id' => null, 'product_id' => null, 'receipt' => null, 'billing_gstin' => null, 'billing_name' => null, 'billing_email' => null, 'billing_phone' => null, 'billing_address' => null, 'billing_city' => null, 'billing_pin' => null, 'billing_state_id' => null, 'data' => null],
 ];
 
-/* `ecom1`.`permissions` */
+/* `sangam-motors`.`permissions` */
 $permissions = [
-    ['id' => '1', 'name' => 'all rights', 'guard_name' => 'admin', 'created_at' => '2026-02-14 19:32:23', 'updated_at' => '2026-02-14 19:32:23'],
-    ['id' => '2', 'name' => 'user.create', 'guard_name' => 'admin', 'created_at' => '2026-02-14 19:32:23', 'updated_at' => '2026-02-14 19:32:23'],
+    ['id' => '1', 'name' => 'all rights', 'guard_name' => 'admin', 'created_at' => '2026-05-06 07:44:58', 'updated_at' => '2026-05-06 07:44:58'],
+    ['id' => '2', 'name' => 'user.create', 'guard_name' => 'admin', 'created_at' => '2026-05-06 07:44:58', 'updated_at' => '2026-05-06 07:44:58'],
 ];
 
-/* `ecom1`.`products` */
-$products = [];
+/* `sangam-motors`.`pickup_addresses` */
+$pickup_addresses = [
+];
 
-/* `ecom1`.`product_categories` */
+/* `sangam-motors`.`products` */
+$products = [
+    ['id' => '1', 'seller_id' => null, 'product_category_id' => '1', 'title' => '1 HP SELF PRIMING MONOBLOCK PUMPS', 'slug' => '1-hp-self-priming-monoblock-pumps', 'sku' => '1775', 'short_description' => 'High-performance self-priming monoblock pump ideal for domestic and light agricultural use.', 'description' => '<p>The Sangam Model 1775 is a reliable and efficient self-priming monoblock pump designed for smooth water flow and consistent pressure. Built with durable components, it ensures long life and low maintenance.</p>', 'long_description2' => '<p data-start="630" data-end="651"><strong data-start="630" data-end="649">Specifications:</strong></p>
+<ul data-start="652" data-end="881">
+<li data-section-id="bna0ah" data-start="652" data-end="667">Model: 1775</li>
+<li data-section-id="12qtve3" data-start="668" data-end="693">Power: 0.75 KW / 1 HP</li>
+<li data-section-id="jenibi" data-start="694" data-end="734">Pipe Size: 25mm (Suction &amp; Delivery)</li>
+<li data-section-id="1aexto3" data-start="735" data-end="776">Voltage: 200&ndash;240V, Single Phase, 50Hz</li>
+<li data-section-id="d5vb54" data-start="777" data-end="806">Max Head: Up to 33 meters</li>
+<li data-section-id="1enj2yf" data-start="807" data-end="881">Discharge Range: 2640 &ndash; 1050 LPH</li>
+</ul>', 'long_description3' => '<p data-start="1005" data-end="1024"><strong data-start="1005" data-end="1022">Applications:</strong></p>
+<ul data-start="1025" data-end="1081">
+<li data-section-id="1q0wobp" data-start="1025" data-end="1051">Household water supply</li>
+<li data-section-id="agtgt8" data-start="1052" data-end="1067">Small farms</li>
+<li data-section-id="wrm0b7" data-start="1068" data-end="1081">Gardening</li>
+</ul>', 'features' => '["Self-priming technology", "Energy efficient motor", "Low noise operation", "Durable build quality"]', 'rating_sum' => '0', 'review_count' => '0', 'average_rating' => '0.00', 'price' => '7499.00', 'distributor_price' => null, 'weight_grams' => null, 'length_cm' => null, 'width_cm' => null, 'height_cm' => null, 'original_price' => '8499.00', 'mrp' => '8999.00', 'manage_stock' => '1', 'is_active' => '1', 'is_featured' => '0', 'meta_title' => null, 'meta_description' => null, 'created_by_admin_id' => null, 'created_at' => '2026-05-05 00:20:53', 'updated_at' => '2026-05-05 07:03:08'],
+    ['id' => '3', 'seller_id' => null, 'product_category_id' => '1', 'title' => '0.5 HP SELF PRIMING MONOBLOCK PUMPS', 'slug' => '05-hp-self-priming-monoblock-pumps', 'sku' => '5610', 'short_description' => 'Compact and economical pump for residential water needs.', 'description' => '<p>Model 5610 is designed for efficient water lifting with low power consumption, making it ideal for small homes and daily usage.</p>', 'long_description2' => '<p data-start="1388" data-end="1409"><strong data-start="1388" data-end="1407">Specifications:</strong></p>
+<ul data-start="1410" data-end="1605">
+<li data-section-id="98e2nz" data-start="1410" data-end="1425">Model: 5610</li>
+<li data-section-id="b3dx6f" data-start="1426" data-end="1453">Power: 0.37 KW / 0.5 HP</li>
+<li data-section-id="2njb30" data-start="1454" data-end="1473">Pipe Size: 25mm</li>
+<li data-section-id="1pdsbe0" data-start="1474" data-end="1509">Voltage: 200&ndash;240V, Single Phase</li>
+<li data-section-id="121iqeq" data-start="1510" data-end="1537">Head Range: 6&ndash;28 meters</li>
+<li data-section-id="1r1uq9j" data-start="1538" data-end="1605">Discharge: 1950 &ndash; 350 LPH</li>
+</ul>', 'long_description3' => '<p data-start="1697" data-end="1716"><strong data-start="1697" data-end="1714">Applications:</strong></p>
+<ul data-start="1717" data-end="1768">
+<li data-section-id="4991j4" data-start="1717" data-end="1742">Domestic water supply</li>
+<li data-section-id="1vmhu41" data-start="1743" data-end="1768">Overhead tank filling</li>
+</ul>', 'features' => '["Compact design", "Easy installation", "Low electricity consumption"]', 'rating_sum' => '0', 'review_count' => '0', 'average_rating' => '0.00', 'price' => '6199.00', 'distributor_price' => null, 'weight_grams' => null, 'length_cm' => null, 'width_cm' => null, 'height_cm' => null, 'original_price' => '6999.00', 'mrp' => '7499.00', 'manage_stock' => '1', 'is_active' => '1', 'is_featured' => '0', 'meta_title' => null, 'meta_description' => null, 'created_by_admin_id' => null, 'created_at' => '2026-05-05 00:24:48', 'updated_at' => '2026-05-05 07:05:49'],
+    ['id' => '4', 'seller_id' => null, 'product_category_id' => '1', 'title' => '1.5 HP SELF PRIMING MONOBLOCK PUMPS', 'slug' => '15-hp-self-priming-monoblock-pumps', 'sku' => '1545', 'short_description' => 'High-capacity pump suitable for heavy-duty water transfer.', 'description' => '<p>Model 1545 delivers powerful performance with higher discharge capacity, making it suitable for larger households and agricultural applications.</p>', 'long_description2' => '<p data-start="2094" data-end="2115"><strong data-start="2094" data-end="2113">Specifications:</strong></p>
+<ul data-start="2116" data-end="2312">
+<li data-section-id="blvxug" data-start="2116" data-end="2131">Model: 1545</li>
+<li data-section-id="23k96l" data-start="2132" data-end="2156">Power: 1 KW / 1.5 HP</li>
+<li data-section-id="2njb30" data-start="2157" data-end="2176">Pipe Size: 25mm</li>
+<li data-section-id="1pdsbe0" data-start="2177" data-end="2212">Voltage: 200&ndash;240V, Single Phase</li>
+<li data-section-id="gn1mrq" data-start="2213" data-end="2244">Head Range: Up to 50 meters</li>
+<li data-section-id="s27d3w" data-start="2245" data-end="2312">Discharge: 4450 &ndash; 500 LPH</li>
+</ul>', 'long_description3' => '<p data-start="2412" data-end="2431"><strong data-start="2412" data-end="2429">Applications:</strong></p>
+<ul data-start="2432" data-end="2479">
+<li data-section-id="26bj2x" data-start="2432" data-end="2447">Agriculture</li>
+<li data-section-id="140j8jz" data-start="2448" data-end="2479">Large water storage systems</li>
+</ul>', 'features' => '["High discharge output", "Strong motor performance", "Long operational life"]', 'rating_sum' => '0', 'review_count' => '0', 'average_rating' => '0.00', 'price' => '6199.00', 'distributor_price' => null, 'weight_grams' => null, 'length_cm' => null, 'width_cm' => null, 'height_cm' => null, 'original_price' => '6999.00', 'mrp' => '7499.00', 'manage_stock' => '1', 'is_active' => '1', 'is_featured' => '0', 'meta_title' => null, 'meta_description' => null, 'created_by_admin_id' => null, 'created_at' => '2026-05-05 00:25:15', 'updated_at' => '2026-05-05 07:09:29'],
+    ['id' => '5', 'seller_id' => null, 'product_category_id' => '1', 'title' => '1.5 HP Shallow Well Jet Pump', 'slug' => 'powerful-jet-pump-designed-for-shallow-well-applications', 'sku' => 'Shallow Well Jet Pump', 'short_description' => 'Powerful jet pump designed for shallow well applications.', 'description' => '<p>This shallow well jet pump ensures efficient water lifting from shallow sources with stable pressure and consistent flow.</p>', 'long_description2' => '<p data-start="2771" data-end="2792"><strong data-start="2771" data-end="2790">Specifications:</strong></p>
+<ul data-start="2793" data-end="2970">
+<li data-section-id="g2m26x" data-start="2793" data-end="2824">Type: Shallow Well Jet Pump</li>
+<li data-section-id="23k96l" data-start="2825" data-end="2849">Power: 1 KW / 1.5 HP</li>
+<li data-section-id="2njb30" data-start="2850" data-end="2869">Pipe Size: 25mm</li>
+<li data-section-id="4nn781" data-start="2870" data-end="2902">Head Range: Up to ~48 meters</li>
+<li data-section-id="uz8uj7" data-start="2903" data-end="2970">Discharge: 4850 &ndash; 350 LPH</li>
+</ul>', 'long_description3' => '<p data-start="3072" data-end="3091"><strong data-start="3072" data-end="3089">Applications:</strong></p>
+<ul data-start="3092" data-end="3146">
+<li data-section-id="1kfp7nn" data-start="3092" data-end="3114">Borewell (shallow)</li>
+<li data-section-id="1cnorsi" data-start="3115" data-end="3129">Irrigation</li>
+<li data-section-id="3nmmit" data-start="3130" data-end="3146">Domestic use</li>
+</ul>', 'features' => '["Strong suction capability", "Ideal for shallow wells", "Reliable performance"]', 'rating_sum' => '0', 'review_count' => '0', 'average_rating' => '0.00', 'price' => '7499.00', 'distributor_price' => null, 'weight_grams' => null, 'length_cm' => null, 'width_cm' => null, 'height_cm' => null, 'original_price' => '8499.00', 'mrp' => '8999.00', 'manage_stock' => '1', 'is_active' => '1', 'is_featured' => '0', 'meta_title' => null, 'meta_description' => null, 'created_by_admin_id' => null, 'created_at' => '2026-05-05 07:15:52', 'updated_at' => '2026-05-05 07:15:52'],
+    ['id' => '6', 'seller_id' => null, 'product_category_id' => '1', 'title' => '2 HP Centrifugal Monoblock Pump – Agriculture Model', 'slug' => '2-hp-centrifugal-monoblock-pump-agriculture-model', 'sku' => 'Centrifugal Monoblock Pump', 'short_description' => 'Heavy-duty agricultural pump for high water flow requirements.', 'description' => '<p>Designed specifically for farming applications, this centrifugal pump provides high discharge capacity and robust performance.</p>', 'long_description2' => '<p data-start="3464" data-end="3485"><strong data-start="3464" data-end="3483">Specifications:</strong></p>
+<ul data-start="3486" data-end="3732">
+<li data-section-id="gp2rqe" data-start="3486" data-end="3522">Type: Centrifugal Monoblock Pump</li>
+<li data-section-id="1mvqe4e" data-start="3523" data-end="3547">Power: 1.5 KW / 2 HP</li>
+<li data-section-id="1xvajf7" data-start="3548" data-end="3567">Pipe Size: 80mm</li>
+<li data-section-id="822v3s" data-start="3568" data-end="3593">Head Range: 14 meters</li>
+<li data-section-id="1o2ia0a" data-start="3594" data-end="3615">Suction: 9 meters</li>
+<li data-section-id="8q4z00" data-start="3616" data-end="3638">Discharge: 700 LPM</li>
+<li data-section-id="22dl4h" data-start="3639" data-end="3658">Speed: 2900 RPM</li>
+<li data-section-id="1dm0lki" data-start="3659" data-end="3732">Voltage: 200&ndash;230V, Single Phase</li>
+</ul>', 'long_description3' => '<p data-start="3836" data-end="3855"><strong data-start="3836" data-end="3853">Applications:</strong></p>
+<ul data-start="3856" data-end="3910">
+<li data-section-id="gtz7dv" data-start="3856" data-end="3882">Agriculture irrigation</li>
+<li data-section-id="6pq4yi" data-start="3883" data-end="3910">Water transfer in farms</li>
+</ul>', 'features' => '["High flow rate", "Heavy-duty construction", "Suitable for continuous operation"]', 'rating_sum' => '0', 'review_count' => '0', 'average_rating' => '0.00', 'price' => '12499.00', 'distributor_price' => null, 'weight_grams' => null, 'length_cm' => null, 'width_cm' => null, 'height_cm' => null, 'original_price' => '13999.00', 'mrp' => '14999.00', 'manage_stock' => '1', 'is_active' => '1', 'is_featured' => '0', 'meta_title' => null, 'meta_description' => null, 'created_by_admin_id' => null, 'created_at' => '2026-05-05 07:20:12', 'updated_at' => '2026-05-05 07:20:12'],
+    ['id' => '7', 'seller_id' => null, 'product_category_id' => '1', 'title' => 'V4 Oil Filled Submersible Motor', 'slug' => 'v4-oil-filled-submersible-motor', 'sku' => 'V4 Oil Filled Submersible Motor', 'short_description' => 'Durable and energy-efficient submersible motor.', 'description' => '<p>Sangam V4 oil-filled motor is designed for long life and efficient operation with minimal maintenance.</p>', 'long_description2' => null, 'long_description3' => '<p data-start="4338" data-end="4357"><strong data-start="4338" data-end="4355">Applications:</strong></p>
+<ul data-start="4358" data-end="4406">
+<li data-section-id="1h43cvq" data-start="4358" data-end="4378">Borewell systems</li>
+<li data-section-id="1ohjqa3" data-start="4379" data-end="4406">Submersible pump setups</li>
+</ul>', 'features' => '["More sturdy design", "More power output", "Longer life", "Easy repair", "Low electricity consumption"]', 'rating_sum' => '0', 'review_count' => '0', 'average_rating' => '0.00', 'price' => '12499.00', 'distributor_price' => null, 'weight_grams' => null, 'length_cm' => null, 'width_cm' => null, 'height_cm' => null, 'original_price' => '13999.00', 'mrp' => '14999.00', 'manage_stock' => '1', 'is_active' => '1', 'is_featured' => '0', 'meta_title' => null, 'meta_description' => null, 'created_by_admin_id' => null, 'created_at' => '2026-05-05 07:22:57', 'updated_at' => '2026-05-05 07:22:57'],
+];
+
+/* `sangam-motors`.`product_categories` */
 $product_categories = [
-    ['id' => '1', 'created_at' => '2026-01-15 23:02:23', 'updated_at' => '2026-01-15 23:02:23', 'parent_id' => null, 'title' => 'Vel enim maiores pro', 'slug' => 'et-soluta-repudianda', 'description' => 'Magna temporibus lab', 'long_description' => null, 'position' => '84', 'is_active' => '1', 'is_featured' => '0', 'meta_title' => 'Id explicabo Nostr', 'meta_description' => 'Alias maiores dolore', 'created_by_admin_id' => null],
+    ['id' => '1', 'created_at' => '2026-05-05 00:19:14', 'updated_at' => '2026-05-05 00:19:14', 'parent_id' => null, 'title' => 'Water Pump', 'slug' => 'water-pump', 'description' => null, 'long_description' => null, 'position' => '0', 'is_active' => '1', 'is_featured' => '0', 'meta_title' => null, 'meta_description' => null, 'created_by_admin_id' => null],
 ];
 
-/* `ecom1`.`product_enquiries` */
+/* `sangam-motors`.`product_enquiries` */
 $product_enquiries = [
-    ['id' => '1', 'product_id' => '1', 'name' => 'Claire Clark', 'email' => 'nogamuq@mailinator.com', 'phone' => '+1 (458) 169-3296', 'message' => 'Tempor qui deserunt', 'status' => 'pending', 'created_at' => '2026-01-15 23:03:15', 'updated_at' => '2026-01-15 23:03:15'],
-    ['id' => '2', 'product_id' => '1', 'name' => 'Trevor Sykes', 'email' => 'comupo@mailinator.com', 'phone' => '+1 (661) 519-4128', 'message' => 'Incididunt quia vero', 'status' => 'contacted', 'created_at' => '2026-01-15 23:13:34', 'updated_at' => '2026-01-15 23:18:29'],
-    ['id' => '3', 'product_id' => '1', 'name' => 'Tatyana Knowles', 'email' => 'lucuq@mailinator.com', 'phone' => '+1 (895) 108-2951', 'message' => 'Vel maxime vel ipsum', 'status' => 'pending', 'created_at' => '2026-01-15 23:20:51', 'updated_at' => '2026-01-15 23:20:51'],
-    ['id' => '4', 'product_id' => '1', 'name' => 'Clementine Manning', 'email' => 'juxi@mailinator.com', 'phone' => '+1 (448) 715-4147', 'message' => 'Ut adipisci impedit', 'status' => 'pending', 'created_at' => '2026-01-15 23:35:26', 'updated_at' => '2026-01-15 23:35:26'],
-    ['id' => '5', 'product_id' => '1', 'name' => 'Nash Sosa', 'email' => 'ryzevybi@mailinator.com', 'phone' => '+1 (173) 345-5283', 'message' => 'Maiores vitae illum', 'status' => 'pending', 'created_at' => '2026-01-15 23:59:37', 'updated_at' => '2026-01-15 23:59:37'],
-    ['id' => '6', 'product_id' => '1', 'name' => 'Cullen Witt', 'email' => 'fadyrofo@mailinator.com', 'phone' => '+1 (282) 835-1978', 'message' => 'Aliquid excepteur la', 'status' => 'pending', 'created_at' => '2026-01-16 00:02:44', 'updated_at' => '2026-01-16 00:02:44'],
-    ['id' => '7', 'product_id' => '1', 'name' => 'Richard Bauer', 'email' => 'fiwu@mailinator.com', 'phone' => '+1 (902) 736-8375', 'message' => 'Quod placeat provid', 'status' => 'pending', 'created_at' => '2026-01-16 00:03:04', 'updated_at' => '2026-01-16 00:03:04'],
-    ['id' => '8', 'product_id' => '1', 'name' => 'Tanya Stuart', 'email' => 'lovunelup@mailinator.com', 'phone' => '+1 (713) 696-2584', 'message' => 'Temporibus iure dist', 'status' => 'pending', 'created_at' => '2026-01-16 00:08:01', 'updated_at' => '2026-01-16 00:08:01'],
 ];
 
-/* `ecom1`.`projects` */
+/* `sangam-motors`.`product_page_banners` */
+$product_page_banners = [
+];
+
+/* `sangam-motors`.`product_warranties` */
+$product_warranties = [
+];
+
+/* `sangam-motors`.`projects` */
 $projects = [
-    ['id' => '1', 'created_at' => '2026-01-14 19:24:20', 'updated_at' => '2026-01-14 19:24:20', 'created_by' => null, 'updated_by' => null, 'title' => 'In nostrud illum et', 'slug' => 'in-nostrud-illum-et', 'category' => null, 'author' => 'Recusandae Rerum cu', 'tags' => 'Quia ad distinctio', 'short_description' => 'Error culpa vel volu', 'long_description1' => '<div>
-<h2>What is Lorem Ipsum?</h2>
-<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-</div>
-<div>
-<h2>Why do we use it?</h2>
-<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-</div>
-<p>&nbsp;</p>
-<div>
-<h2>Where does it come from?</h2>
-<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
-</div>
-<div>
-<h2>Where can I get some?</h2>
-<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
-</div>', 'long_description2' => '<div>
-<h2>What is Lorem Ipsum?</h2>
-<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-</div>
-<div>
-<h2>Why do we use it?</h2>
-<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-</div>
-<p>&nbsp;</p>
-<div>
-<h2>Where does it come from?</h2>
-<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
-</div>
-<div>
-<h2>Where can I get some?</h2>
-<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
-</div>', 'long_description3' => '<div>
-<h2>What is Lorem Ipsum?</h2>
-<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-</div>
-<div>
-<h2>Why do we use it?</h2>
-<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-</div>
-<p>&nbsp;</p>
-<div>
-<h2>Where does it come from?</h2>
-<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
-</div>
-<div>
-<h2>Where can I get some?</h2>
-<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
-</div>', 'highlighted_text1' => null, 'highlighted_text2' => null, 'ad_url' => 'https://www.bevenu.tv', 'views' => null, 'is_active' => '1'],
-    ['id' => '2', 'created_at' => '2026-01-14 19:25:34', 'updated_at' => '2026-01-14 19:25:34', 'created_by' => null, 'updated_by' => null, 'title' => 'Voluptatem odit deb', 'slug' => 'voluptatem-odit-deb', 'category' => null, 'author' => 'Ad dolor nesciunt d', 'tags' => 'Eaque cillum minus s', 'short_description' => 'Dolores beatae quia', 'long_description1' => '<div>
-<h2>What is Lorem Ipsum?</h2>
-<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-</div>
-<div>
-<h2>Why do we use it?</h2>
-<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-</div>
-<p>&nbsp;</p>
-<div>
-<h2>Where does it come from?</h2>
-<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
-</div>
-<div>
-<h2>Where can I get some?</h2>
-<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
-</div>', 'long_description2' => '<div>
-<h2>What is Lorem Ipsum?</h2>
-<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-</div>
-<div>
-<h2>Why do we use it?</h2>
-<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-</div>
-<p>&nbsp;</p>
-<div>
-<h2>Where does it come from?</h2>
-<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
-</div>
-<div>
-<h2>Where can I get some?</h2>
-<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
-</div>', 'long_description3' => '<div>
-<h2>What is Lorem Ipsum?</h2>
-<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-</div>
-<div>
-<h2>Why do we use it?</h2>
-<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-</div>
-<p>&nbsp;</p>
-<div>
-<h2>Where does it come from?</h2>
-<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
-</div>
-<div>
-<h2>Where can I get some?</h2>
-<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
-</div>', 'highlighted_text1' => null, 'highlighted_text2' => null, 'ad_url' => 'https://www.selylepyq.com', 'views' => null, 'is_active' => '1'],
-    ['id' => '3', 'created_at' => '2026-01-14 19:26:14', 'updated_at' => '2026-01-14 19:26:14', 'created_by' => null, 'updated_by' => null, 'title' => 'Laboriosam veniam', 'slug' => 'laboriosam-veniam', 'category' => null, 'author' => 'Laborum ab incidunt', 'tags' => 'Labore omnis occaeca', 'short_description' => 'Culpa modi aut est', 'long_description1' => '<div>
-<h2>What is Lorem Ipsum?</h2>
-<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-</div>
-<div>
-<h2>Why do we use it?</h2>
-<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-</div>
-<p>&nbsp;</p>
-<div>
-<h2>Where does it come from?</h2>
-<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
-</div>
-<div>
-<h2>Where can I get some?</h2>
-<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
-</div>', 'long_description2' => null, 'long_description3' => null, 'highlighted_text1' => null, 'highlighted_text2' => null, 'ad_url' => 'https://www.luxykewu.me', 'views' => null, 'is_active' => '1'],
 ];
 
-/* `ecom1`.`promo_codes` */
+/* `sangam-motors`.`promo_codes` */
 $promo_codes = [
-    ['id' => '1', 'code' => 'WELCOME10', 'description' => '10% off for new customers', 'discount_type' => 'percentage', 'discount_value' => '10.00', 'min_order_amount' => '500.00', 'max_discount_amount' => '200.00', 'usage_limit' => '100', 'usage_count' => '0', 'per_user_limit' => '1', 'partner_id' => null, 'is_active' => '1', 'valid_from' => '2026-02-01 00:00:00', 'valid_until' => '2026-12-31 23:59:59', 'created_at' => '2026-02-13 00:00:00', 'updated_at' => '2026-02-13 00:00:00'],
-    ['id' => '2', 'code' => 'SAVE50', 'description' => 'Flat ₹50 off on orders above ₹1000', 'discount_type' => 'fixed', 'discount_value' => '50.00', 'min_order_amount' => '1000.00', 'max_discount_amount' => null, 'usage_limit' => '500', 'usage_count' => '1', 'per_user_limit' => '3', 'partner_id' => null, 'is_active' => '1', 'valid_from' => '2026-02-01 00:00:00', 'valid_until' => '2026-06-30 23:59:59', 'created_at' => '2026-02-13 00:00:00', 'updated_at' => '2026-02-14 20:49:35'],
-    ['id' => '3', 'code' => 'PARTNER20', 'description' => '20% off for partner referrals', 'discount_type' => 'percentage', 'discount_value' => '20.00', 'min_order_amount' => '300.00', 'max_discount_amount' => '500.00', 'usage_limit' => null, 'usage_count' => '0', 'per_user_limit' => null, 'partner_id' => '1', 'is_active' => '1', 'valid_from' => '2026-02-01 00:00:00', 'valid_until' => null, 'created_at' => '2026-02-13 00:00:00', 'updated_at' => '2026-02-13 00:00:00'],
 ];
 
-/* `ecom1`.`promo_code_user` */
+/* `sangam-motors`.`promo_code_user` */
 $promo_code_user = [
-    ['id' => '1', 'promo_code_id' => '2', 'user_id' => '1', 'usage_count' => '1', 'created_at' => '2026-02-14 20:49:35', 'updated_at' => '2026-02-14 20:49:35'],
 ];
 
-/* `ecom1`.`roles` */
+/* `sangam-motors`.`recommendation_configs` */
+$recommendation_configs = [
+    ['id' => '1', 'section_type' => 'frequently_bought_together', 'is_enabled' => '1', 'display_order' => '1', 'created_at' => '2026-05-04 23:04:06', 'updated_at' => '2026-05-04 23:04:06'],
+    ['id' => '2', 'section_type' => 'related_products', 'is_enabled' => '1', 'display_order' => '2', 'created_at' => '2026-05-04 23:04:06', 'updated_at' => '2026-05-04 23:04:06'],
+    ['id' => '3', 'section_type' => 'recently_viewed', 'is_enabled' => '1', 'display_order' => '3', 'created_at' => '2026-05-04 23:04:06', 'updated_at' => '2026-05-04 23:04:06'],
+    ['id' => '4', 'section_type' => 'co_purchase', 'is_enabled' => '1', 'display_order' => '4', 'created_at' => '2026-05-04 23:04:06', 'updated_at' => '2026-05-04 23:04:06'],
+    ['id' => '5', 'section_type' => 'category_best_sellers', 'is_enabled' => '1', 'display_order' => '5', 'created_at' => '2026-05-04 23:04:06', 'updated_at' => '2026-05-04 23:04:06'],
+    ['id' => '6', 'section_type' => 'category_top_rated', 'is_enabled' => '1', 'display_order' => '6', 'created_at' => '2026-05-04 23:04:06', 'updated_at' => '2026-05-04 23:04:06'],
+];
+
+/* `sangam-motors`.`reviews` */
+$reviews = [
+];
+
+/* `sangam-motors`.`review_votes` */
+$review_votes = [
+];
+
+/* `sangam-motors`.`roles` */
 $roles = [
-    ['id' => '1', 'name' => 'Super Admin', 'guard_name' => 'admin', 'created_at' => '2026-02-14 19:32:23', 'updated_at' => '2026-02-14 19:32:23'],
+    ['id' => '1', 'name' => 'Super Admin', 'guard_name' => 'admin', 'created_at' => '2026-05-06 07:44:58', 'updated_at' => '2026-05-06 07:44:58'],
 ];
 
-/* `ecom1`.`role_has_permissions` */
+/* `sangam-motors`.`role_has_permissions` */
 $role_has_permissions = [
     ['permission_id' => '1', 'role_id' => '1'],
 ];
 
-/* `ecom1`.`sellers` */
+/* `sangam-motors`.`sellers` */
 $sellers = [
-    ['id' => '1', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-04-07 14:23:25', 'name' => 'Susheel Singh Seller', 'email' => 'seller@gmail.com', 'phone' => '7979851485', 'email_verified_at' => '2024-03-23 09:22:02', 'password' => '$2y$12$hI2X.nQ2/fRRCllbZYCYP.RZMOX5REcBTktcwZ7cpVlNVelY0Y.ki', 'dob' => '2024-12-12', 'avatar' => null, 'remember_token' => 'WfJ08TVEJbrR3aqoyksu3vTBz7CuCM9GTq7nAb3X4OsfxhOH0pbIlRj9twaI', 'google_id' => null, 'facebook_id' => null, 'x_id' => null, 'linkedin_id' => null, 'github_id' => null, 'gitlab_id' => null, 'bitbucket_id' => null, 'slack_id' => null, 'apple_id' => null, 'amazon_id' => null],
 ];
 
-/* `ecom1`.`services` */
+/* `sangam-motors`.`serial_numbers` */
+$serial_numbers = [
+];
+
+/* `sangam-motors`.`serial_number_movements` */
+$serial_number_movements = [
+];
+
+/* `sangam-motors`.`services` */
 $services = [
-    ['id' => '1', 'created_at' => '2024-04-06 09:23:05', 'updated_at' => '2026-01-14 00:42:23', 'created_by' => null, 'title' => 'Business Growth Mangment', 'slug' => 'business-growth-mangment', 'category' => 'Business', 'tags' => 'jsh,df', 'short_description' => 'Catalysts for change before fully tested markets are maintain wireless scenarios after intermandated applications predominate revolutionary.', 'long_description1' => '<p>Continually myocardinate holistic mindshare with client-based web services. Assertively e-enable catalysts for change before tested markets. Phosfluorescently maintain wireless scenarios after intermandated applications. Conveniently predominate revolutionary quality vectors through future-proof manufactured products. Enthusiastically transform distinctive collaboration.</p>
-
-<p>Intrinsicly coordinate multifunctional functionalities reliable potentialities. Objectively envisioneer high in convergence through collaborative networks. Interactively generate B2C e-tailers for business data restore fully researched relationships through resource maximizing results.</p>
-
-<div class="g-5 mb--40 mt--30 row">
-<div class="col-lg-6"><!-- single service details card -->
-<div class="service-details-card">
-<div class="thumbnail"><img alt="" class="icon" src="assets/images/service/icon/09.svg" /></div>
-
-<div class="details">
-<h6>Instant Business Growth</h6>
-
-<p>Maintain wireless scerios after sure quality vectors future</p>
-</div>
-</div>
-<!-- single service details card End --></div>
-
-<div class="col-lg-6"><!-- single service details card -->
-<div class="service-details-card">
-<div class="thumbnail"><img alt="" class="icon" src="assets/images/service/icon/10.svg" /></div>
-
-<div class="details">
-<h6>24/7 Quality Service</h6>
-
-<p>Maintain wireless scerios after sure quality vectors future</p>
-</div>
-</div>
-<!-- single service details card End --></div>
-
-<div class="col-lg-6"><!-- single service details card -->
-<div class="service-details-card">
-<div class="thumbnail"><img alt="" class="icon" src="assets/images/service/icon/11.svg" /></div>
-
-<div class="details">
-<h6>Easy Customer Service</h6>
-
-<p>Maintain wireless scerios after sure quality vectors future</p>
-</div>
-</div>
-<!-- single service details card End --></div>
-
-<div class="col-lg-6"><!-- single service details card -->
-<div class="service-details-card">
-<div class="thumbnail"><img alt="" class="icon" src="assets/images/service/icon/12.svg" /></div>
-
-<div class="details">
-<h6>Quality Cost Service</h6>
-
-<p>Maintain wireless scerios after sure quality vectors future</p>
-</div>
-</div>
-<!-- single service details card End --></div>
-</div>
-
-<p>Phosfluorescently maintain wireless scenarios after intermandated applications. Conveniently unique predominate revolutionary quality vectors through future-proof manufactured products. Objectively envisioneer high solution convergence through collaborative networks. Interactively generate B2C e-tailers for business data restore fully researched relationships through resource maximizing results.</p>', 'long_description2' => '<h4>3 Simple Steps to Process</h4>
-
-<p>Assertively e-enable catalysts for change before fully tested markets. Phosfluo rescently is maintain solve wireless scenarios after intermandated applications. Conveniently predominate busin revolutionary quality vectors through future-proof manufactured products. Enthusiastically transform distinctive collaboration.</p>
-
-<p>Phosfluorescently maintain wireless scenarios after intermandated applications. Conveniently predominate misslat revolutionary quality vectors through future-proof manufactured products.</p>
-<!-- stem-area start -->
-
-<div class="g-5 mb--40 mb_md--20 mb_sm--20 row">
-<div class="col-12 col-lg-4 col-md-6 col-sm-12">
-<div class="single-service-step text-center">
-<p>01</p>
-
-<h6>STEP ONE</h6>
-
-<p>Tactical services through market web services</p>
-</div>
-</div>
-
-<div class="col-12 col-lg-4 col-md-6 col-sm-12">
-<div class="single-service-step text-center">
-<p>02</p>
-
-<h6>STEP TWO</h6>
-
-<p>Tactical services through market web services</p>
-</div>
-</div>
-
-<div class="col-12 col-lg-4 col-md-6 col-sm-12">
-<div class="single-service-step text-center">
-<p>03</p>
-
-<h6>STEP THREE</h6>
-
-<p>Tactical services through market web services</p>
-</div>
-</div>
-</div>
-
-<p>Conveniently predominate revolutionary quality vectors through future-proof manufactured products. Objectively envisioneer high in convergence through collaborative networks. Interactively generate B2C tailers for business data restore fully researched relationships through</p>', 'long_description3' => '<div class="align-items-center g-5 row">
-<div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xl-6">
-<div class="sm-thumb-service thumbnail"><img alt="Service" src="assets/images/service/sm-01.jpg" /></div>
-</div>
-
-<div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xl-6 mb_md--20 mb_sm--20">
-<h4>Customer Benefits</h4>
-
-<p>Catalysts for change before fully tested markets are maintain wireless scenarios after intermandated applications predominate revolutionary.</p>
-
-<div class="single-banifits">We use the latest diagnostic equipment</div>
-
-<div class="single-banifits">We are a member of Professional Service</div>
-
-<div class="single-banifits">Automotive service our clients receive</div>
-</div>
-</div>', 'is_active' => '1'],
-    ['id' => '2', 'created_at' => '2025-12-11 17:38:20', 'updated_at' => '2025-12-11 17:38:20', 'created_by' => null, 'title' => 'Magna amet adipisic', 'slug' => 'magna-amet-adipisic', 'category' => 'Voluptates dolore op', 'tags' => 'Laborum ipsa iure q', 'short_description' => 'Distinctio Velit si', 'long_description1' => '<p>tryer</p>', 'long_description2' => '<p>ertyer</p>', 'long_description3' => '<p>eryter</p>', 'is_active' => '1'],
-    ['id' => '3', 'created_at' => '2025-12-11 17:38:32', 'updated_at' => '2025-12-11 17:38:32', 'created_by' => null, 'title' => 'Nisi in recusandae', 'slug' => 'nisi-in-recusandae', 'category' => 'Quibusdam porro ab f', 'tags' => 'Quibusdam minus dolo', 'short_description' => 'Doloribus officia en', 'long_description1' => '<p>dsfaasd</p>', 'long_description2' => null, 'long_description3' => null, 'is_active' => '1'],
 ];
 
-/* `ecom1`.`sessions` */
+/* `sangam-motors`.`sessions` */
 $sessions = [
-    ['id' => 'PkZclsZ7GNlNT3ZAWMHCnbev9ebtNTOEyb2Ngqd0', 'user_id' => '1', 'ip_address' => '127.0.0.1', 'user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', 'payload' => 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoid1FSaEJnVW44aFRsSTVwZHRDY2Zkd0pwQkM2TWlCNFdnYU5jUHBudCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Mzc6Imh0dHBzOi8vZWNvbTEudGVzdC9hcGkvdmlzaXRvcnMvY291bnQiO3M6NToicm91dGUiO047fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjA6e31zOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 'last_activity' => '1771082426'],
+    ['id' => 'edITsXfJ6Q95neSOYz47SSkuNkv1qJ3EWPKEbqe6', 'user_id' => '1', 'ip_address' => '127.0.0.1', 'user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'payload' => 'eyJfdG9rZW4iOiJvOVVjR1JnYThSMVdzWjVEQWRpa0IzdjExR05BS3o4UGxPMjVESUJmIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHBzOlwvXC9zYW5nYW0tbW90b3JzLnRlc3RcL3RlY2huaWNpYW5cL2xvZ2luIiwicm91dGUiOiJ0ZWNobmljaWFuLmxvZ2luIn0sIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI6MSwibG9naW5fZGlzdHJpYnV0b3JfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI6MSwibG9naW5fZGVhbGVyXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsImxvZ2luX3RlY2huaWNpYW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI6MX0=', 'last_activity' => '1778034156'],
 ];
 
+/* `sangam-motors`.`settings` */
+$settings = [
+    ['id' => '1', 'created_at' => '2024-03-23 09:24:46', 'updated_at' => '2026-05-04 23:30:07', 'app_name' => 'Sangam Motors', 'title' => null, 'address' => 'Main Road, Araria 854311 (Bihar)', 'detailed_address' => null, 'email' => 'sangamararia@gmail.com', 'phone' => '9661375409', 'short_description' => 'Dolores amet nihil', 'facebook' => 'https://www.facebook.com/digamite', 'instagram' => 'https://www.instagram.com/digamitepvtltd/', 'linkedin' => 'https://www.linkedin.com/company/digamite', 'twitter' => 'https://twitter.com/digamitepvtltd', 'youtube' => null, 'trust_badges' => null, 'google_map' => null, 'whatsapp' => '7979851485', 'admin_theme' => null, 'user_theme' => null, 'partner_theme' => null, 'color1' => null, 'color2' => null, 'color3' => null, 'color4' => null, 'color5' => null, 'color6' => null],
+];
 
-
-/* `ecom1`.`shipments` */
+/* `sangam-motors`.`shipments` */
 $shipments = [
 ];
 
-/* `ecom1`.`shipment_status_history` */
+/* `sangam-motors`.`shipment_provider_pickup_addresses` */
+$shipment_provider_pickup_addresses = [
+];
+
+/* `sangam-motors`.`shipment_status_history` */
 $shipment_status_history = [
 ];
 
-/* `ecom1`.`shipping_providers` */
+/* `sangam-motors`.`shipping_providers` */
 $shipping_providers = [
-    ['id' => '1', 'name' => 'mock-provider', 'display_name' => 'Mock Shipping Service', 'adapter_class' => 'Susheelbhai\\Laraship\\Adapters\\MockAdapter', 'credentials' => 'eyJpdiI6IndEdGVsUUxoU1hSbjltUWFUMEtodmc9PSIsInZhbHVlIjoiQ1oxVXI3c3NHK3Y2alNFeUt6cEpMTGhWQ3hrN0F0Y1RXZDBZRGJpdEo5dmZ1N0g2M2hHUVRmNktveHA0Rjcvb1VWYjdPMnpqcXdkL1l3TmhkQnFNQnc9PSIsIm1hYyI6IjM0YjhiZjJiNjBlMjZhNDE3YjRkN2UzYmZlZDcxYzBlZGNiNTZlNGMwMjY4OTI3MDkyMzMxOTQ0NjhlYTllYzYiLCJ0YWciOiIifQ==', 'config' => '[]', 'is_enabled' => '1', 'priority' => '0', 'tracking_url_template' => 'https://track.example.com/{tracking_number}', 'created_at' => '2026-02-14 19:42:40', 'updated_at' => '2026-02-14 19:45:18'],
 ];
 
-/* `ecom1`.`shipping_webhooks` */
+/* `sangam-motors`.`shipping_webhooks` */
 $shipping_webhooks = [
 ];
 
-/* `ecom1`.`slider1` */
+/* `sangam-motors`.`slider1` */
 $slider1 = [
-    ['id' => '1', 'created_at' => '2025-05-22 18:28:54', 'updated_at' => '2025-05-22 22:05:37', 'heading1' => 'Aspernatur facere ni', 'heading2' => 'Consequuntur commodo', 'paragraph1' => 'Enim animi cum est', 'paragraph2' => 'Quas occaecat quis e', 'btn_name' => 'Praesentium animi a', 'btn_url' => 'Quia accusantium id', 'btn_target' => 'Id quidem quo omnis', 'is_active' => '0'],
-    ['id' => '2', 'created_at' => '2025-05-22 18:30:21', 'updated_at' => '2025-05-22 22:05:32', 'heading1' => 'Vel optio et simili', 'heading2' => 'Natus unde velit exc', 'paragraph1' => 'Nobis tempore verit', 'paragraph2' => 'Nulla minim consequu', 'btn_name' => 'Quia velit minima c', 'btn_url' => 'Voluptates distincti', 'btn_target' => 'Velit ut dolore maxi', 'is_active' => '0'],
-    ['id' => '3', 'created_at' => '2025-05-22 18:43:32', 'updated_at' => '2025-05-22 22:05:27', 'heading1' => 'Ab quia voluptas eli', 'heading2' => 'Eius in saepe nisi n', 'paragraph1' => 'Voluptatibus distinc', 'paragraph2' => 'Voluptate iure eum l', 'btn_name' => 'Dolore doloremque qu', 'btn_url' => 'Ipsum magna nemo qui', 'btn_target' => 'Cillum perspiciatis', 'is_active' => '0'],
-    ['id' => '4', 'created_at' => '2025-05-22 18:45:14', 'updated_at' => '2025-05-22 22:05:22', 'heading1' => 'Rerum elit pariatur', 'heading2' => 'Reprehenderit molli', 'paragraph1' => 'Dolorem porro quas e', 'paragraph2' => 'Inventore nostrum qu', 'btn_name' => 'Labore laudantium d', 'btn_url' => 'Omnis quia aliquid s', 'btn_target' => 'Molestias distinctio', 'is_active' => '0'],
-    ['id' => '5', 'created_at' => '2025-05-22 18:45:57', 'updated_at' => '2025-05-22 22:05:16', 'heading1' => 'Proident sit aut mi', 'heading2' => 'Vitae at voluptate d', 'paragraph1' => 'Omnis eaque in dolor', 'paragraph2' => 'Commodi ut nostrum q', 'btn_name' => 'Ipsum aut quia faci', 'btn_url' => 'Temporibus recusanda', 'btn_target' => 'Mollit eveniet corr', 'is_active' => '0'],
-    ['id' => '6', 'created_at' => '2025-05-22 18:46:12', 'updated_at' => '2025-05-22 22:02:21', 'heading1' => 'Hic adipis', 'heading2' => 'Dicta tempor fuga I', 'paragraph1' => 'Eos et nulla volupt', 'paragraph2' => 'Fugiat enim dolor t', 'btn_name' => 'Accusantium veniam', 'btn_url' => 'Pariatur Mollit vol', 'btn_target' => 'Architecto officia r', 'is_active' => '0'],
 ];
 
-/* `ecom1`.`states` */
+/* `sangam-motors`.`states` */
 $states = [
 ];
 
-/* `ecom1`.`team` */
+/* `sangam-motors`.`stock_movements` */
+$stock_movements = [
+];
+
+/* `sangam-motors`.`stock_records` */
+$stock_records = [
+];
+
+/* `sangam-motors`.`team` */
 $team = [
-    ['id' => '1', 'created_at' => '2025-12-11 15:04:24', 'updated_at' => '2025-12-11 15:05:53', 'name' => 'Malachi Howard', 'designation' => 'Incidunt omnis ad n', 'is_active' => '1'],
-    ['id' => '2', 'created_at' => '2025-12-11 17:35:44', 'updated_at' => '2025-12-11 17:35:44', 'name' => 'Reagan Hess', 'designation' => 'Ullam debitis volupt', 'is_active' => '1'],
-    ['id' => '3', 'created_at' => '2025-12-11 17:35:58', 'updated_at' => '2025-12-11 17:35:58', 'name' => 'Hanae Fox', 'designation' => 'Qui qui suscipit sed', 'is_active' => '1'],
-    ['id' => '4', 'created_at' => '2025-12-11 17:37:09', 'updated_at' => '2025-12-11 17:37:09', 'name' => 'Alfonso Wynn', 'designation' => 'Culpa dicta magnam', 'is_active' => '1'],
 ];
 
-/* `ecom1`.`testimonials` */
+/* `sangam-motors`.`technicians` */
+$technicians = [
+    ['id' => '1', 'created_at' => '2026-05-06 07:52:12', 'updated_at' => '2026-05-06 07:52:29', 'name' => 'Susheel Kumar Singh', 'email' => 'test@example.com', 'phone' => '9999999999', 'specialization' => 'electrical', 'experience_years' => '5', 'certification' => 'Tempora incididunt v', 'address' => 'vill- pandh, post- chakbahauddin, district- samastipur', 'city' => 'dalsingh sarai', 'state' => 'BR', 'pincode' => '848114', 'id_type' => 'passport', 'id_number' => '876', 'referral_source' => null, 'email_verified_at' => null, 'password' => '$2y$12$qvTPhFP3lRKnHJTysVNH8eE3ueNBAjZ0QIRPSjuFJxfpcHDkygHvW', 'application_status' => 'approved', 'approved_at' => '2026-05-06 07:52:29', 'approved_by' => '1', 'rejected_at' => null, 'rejection_note' => null, 'remember_token' => null],
+];
+
+/* `sangam-motors`.`technician_scans` */
+$technician_scans = [
+];
+
+/* `sangam-motors`.`testimonials` */
 $testimonials = [
-    ['id' => '1', 'created_at' => '2025-12-11 14:58:46', 'updated_at' => '2025-12-11 15:06:50', 'name' => 'Lilah Moran', 'designation' => 'Optio laboris cupid', 'organisation' => 'Serrano and Sosa Co', 'message' => 'Molestias quas delec', 'is_active' => '1'],
-    ['id' => '2', 'created_at' => '2025-12-11 14:59:43', 'updated_at' => '2025-12-11 15:06:45', 'name' => 'Autumn Wise', 'designation' => 'Inventore voluptatum', 'organisation' => 'Compton Hampton LLC', 'message' => 'Sint dolor voluptate', 'is_active' => '1'],
-    ['id' => '3', 'created_at' => '2025-12-11 14:59:48', 'updated_at' => '2025-12-11 15:06:38', 'name' => 'Kirsten Farrell', 'designation' => 'Velit nisi facilis r', 'organisation' => 'Underwood and Randolph Traders', 'message' => 'Optio voluptatem ha', 'is_active' => '1'],
 ];
 
-/* `ecom1`.`users` */
+/* `sangam-motors`.`users` */
 $users = [
-    ['id' => '1', 'name' => 'Test User', 'email' => 'test@example.com', 'phone' => '07979851485', 'email_verified_at' => '2024-03-23 09:22:01', 'password' => '$2y$12$QKHQ6ZaxuEkmVgmAn.5OIemMLsLCWP5cMUz9Io2LhKSiwlmT4ysZq', 'two_factor_secret' => null, 'two_factor_recovery_codes' => null, 'two_factor_confirmed_at' => null, 'avatar' => null, 'remember_token' => 'lNOJpST0Sk', 'created_at' => '2024-03-23 09:22:02', 'updated_at' => '2025-12-22 15:04:03', 'google_id' => null, 'facebook_id' => null, 'x_id' => null, 'linkedin_id' => null, 'github_id' => null, 'gitlab_id' => null, 'bitbucket_id' => null, 'slack_id' => null, 'apple_id' => null, 'amazon_id' => null],
 ];
 
-/* `ecom1`.`user_queries` */
+/* `sangam-motors`.`user_queries` */
 $user_queries = [
-    ['id' => '1', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Alexa Wolf I', 'email' => 'brionna74@example.com', 'phone' => '1-930-284-0965', 'message' => 'Calista Powlowski DDS', 'subject' => 'Lizeth Greenfelder II', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '2', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Dr. Cathryn Beer DDS', 'email' => 'apredovic@example.com', 'phone' => '1-480-716-4461', 'message' => 'Alexandro Weber', 'subject' => 'Gabrielle Grant', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '3', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Ila Stokes', 'email' => 'xrunte@example.net', 'phone' => '+1.872.556.4352', 'message' => 'Arnaldo Frami', 'subject' => 'Prof. Raina Rempel DVM', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '4', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Kristina Ankunding', 'email' => 'cedrick.bergnaum@example.net', 'phone' => '770-276-7145', 'message' => 'Tracey McCullough', 'subject' => 'Dr. Donnell Wiegand', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '5', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Dr. Myrtis Rolfson PhD', 'email' => 'roob.manuela@example.org', 'phone' => '+1-980-367-8387', 'message' => 'Prof. Lolita Balistreri', 'subject' => 'Chesley Huels', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '6', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Fernando Bogisich', 'email' => 'waldo20@example.org', 'phone' => '+1.574.725.8414', 'message' => 'Mr. Joe Cruickshank PhD', 'subject' => 'Jazmin Mayert V', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '7', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Jermaine Padberg IV', 'email' => 'katlynn67@example.net', 'phone' => '+12769777340', 'message' => 'Ellen Hyatt', 'subject' => 'Sharon Hane', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '8', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Elza Witting', 'email' => 'elmore33@example.com', 'phone' => '385-528-5126', 'message' => 'Katherine Hermiston', 'subject' => 'Dr. Claud Christiansen', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '9', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Mrs. Violet Jacobson', 'email' => 'tromp.ronaldo@example.org', 'phone' => '+1-520-458-2587', 'message' => 'Jacinthe Stokes', 'subject' => 'Celestino Reilly', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '10', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Vernice Brakus', 'email' => 'rex.kerluke@example.com', 'phone' => '(928) 537-9179', 'message' => 'Prof. Osvaldo Quitzon Sr.', 'subject' => 'Kyler Rogahn', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '11', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Orland Ratke', 'email' => 'christiansen.lina@example.com', 'phone' => '+1.563.594.2407', 'message' => 'Jett Sauer Jr.', 'subject' => 'Nyah Konopelski', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '12', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Reilly Cruickshank', 'email' => 'greenfelder.martin@example.com', 'phone' => '+19842818033', 'message' => 'Lisandro Bayer', 'subject' => 'Dulce West Sr.', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '13', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Jo Zieme', 'email' => 'armstrong.tiana@example.com', 'phone' => '+1-443-740-2028', 'message' => 'Prof. Ruben Beahan MD', 'subject' => 'Prof. Pierre Schowalter', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '14', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Mckayla Reynolds', 'email' => 'dmoen@example.org', 'phone' => '423-672-5370', 'message' => 'Prof. Eloisa McGlynn', 'subject' => 'Raymond Denesik', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '15', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Cara Lehner DVM', 'email' => 'ruecker.darby@example.com', 'phone' => '+1.559.890.9874', 'message' => 'Mr. Khalid Bernhard', 'subject' => 'Ruben Mertz', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '16', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Jailyn Daniel', 'email' => 'bianka.reilly@example.org', 'phone' => '+1.240.201.6559', 'message' => 'Mrs. Elna Heidenreich', 'subject' => 'Wayne Runolfsson', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '17', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Kiley Rice II', 'email' => 'predovic.brando@example.org', 'phone' => '+1-331-499-2351', 'message' => 'Prof. Nyasia Okuneva', 'subject' => 'Mr. Eusebio Lynch', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '18', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Milton Mohr', 'email' => 'tromp.jan@example.org', 'phone' => '(734) 712-5862', 'message' => 'Tre Wuckert', 'subject' => 'Skylar Gaylord', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '19', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Cordie Paucek DDS', 'email' => 'lukas16@example.org', 'phone' => '(913) 479-3090', 'message' => 'Michele Kassulke', 'subject' => 'Jayme Bernhard', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '20', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Pattie Block', 'email' => 'koelpin.kali@example.com', 'phone' => '(423) 832-6336', 'message' => 'Elaina Bergstrom', 'subject' => 'Theo Daugherty', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '21', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Faustino Kub', 'email' => 'legros.josephine@example.net', 'phone' => '260.413.4032', 'message' => 'Dr. Jalyn Kilback', 'subject' => 'Camila Roob', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '22', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Jocelyn Hayes', 'email' => 'hillary.schuster@example.org', 'phone' => '+1.463.542.5052', 'message' => 'Dr. Claudine Walker', 'subject' => 'Mr. Regan Gorczany', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '23', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Axel Nikolaus', 'email' => 'adell03@example.org', 'phone' => '+1.907.275.9450', 'message' => 'Josie Hill', 'subject' => 'Dr. Payton West', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '24', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Prof. Marianna Ernser', 'email' => 'cooper.zemlak@example.net', 'phone' => '(520) 975-5934', 'message' => 'Haylie Ledner', 'subject' => 'Ernesto Jaskolski', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '25', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Berenice Rolfson', 'email' => 'mckenzie.hilton@example.com', 'phone' => '+1-334-921-2959', 'message' => 'Quentin Nikolaus', 'subject' => 'Elta Treutel DDS', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '26', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Bernice Smith', 'email' => 'chadrick98@example.com', 'phone' => '312.825.6455', 'message' => 'Jordane Mills', 'subject' => 'Waylon Gutkowski', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '27', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Dovie Dach', 'email' => 'rhett.huels@example.com', 'phone' => '231.672.1037', 'message' => 'Prof. Dayana Lueilwitz', 'subject' => 'Jovan Lebsack', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '28', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Lauren Pagac', 'email' => 'qkassulke@example.org', 'phone' => '+1-949-596-4921', 'message' => 'Joany Bauch Sr.', 'subject' => 'Jaeden Harris', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '29', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Bailee Trantow DVM', 'email' => 'dino.schultz@example.com', 'phone' => '1-980-230-6460', 'message' => 'Kiera Moen', 'subject' => 'Jena Effertz', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '30', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Nathan Kirlin Sr.', 'email' => 'zgreen@example.com', 'phone' => '978.721.9374', 'message' => 'Cecile Okuneva', 'subject' => 'Ally Ortiz', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '31', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Leonor Jones II', 'email' => 'zella.little@example.net', 'phone' => '678-397-5839', 'message' => 'Riley Rempel III', 'subject' => 'Dr. Heloise White', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '32', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Emmett Wyman II', 'email' => 'tgreenfelder@example.net', 'phone' => '1-618-218-9523', 'message' => 'Junius Rosenbaum', 'subject' => 'Americo Bernhard', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '33', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Guadalupe Morar', 'email' => 'ndubuque@example.org', 'phone' => '+1.586.631.3690', 'message' => 'Dr. Rubie Hill V', 'subject' => 'Dr. Germaine Hodkiewicz II', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '34', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Alejandra Fadel', 'email' => 'gennaro02@example.com', 'phone' => '+1.706.217.7347', 'message' => 'Miss Camylle Thompson', 'subject' => 'Prof. Janie Swift', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '35', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Drew Dicki', 'email' => 'emery.beier@example.org', 'phone' => '1-458-859-4878', 'message' => 'Miss Amanda Ryan II', 'subject' => 'Jazmyn Powlowski', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '36', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Deven Green', 'email' => 'maverick19@example.net', 'phone' => '763.936.0438', 'message' => 'Dr. Winston Kub', 'subject' => 'Abdullah Satterfield', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '37', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Hank Kling', 'email' => 'rupert53@example.net', 'phone' => '+1.662.442.7580', 'message' => 'Twila Dach', 'subject' => 'Tamia Stokes I', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '38', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Dr. Herminio Smitham', 'email' => 'lokon@example.org', 'phone' => '520-408-3988', 'message' => 'Prof. Reva Hermiston DDS', 'subject' => 'Manuela Von V', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '39', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Sidney Halvorson', 'email' => 'salvatore.pfeffer@example.org', 'phone' => '+17405691979', 'message' => 'Kyla Hand', 'subject' => 'Prof. Linnie Reynolds', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '40', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Lilliana Heidenreich', 'email' => 'pthompson@example.com', 'phone' => '469.955.4447', 'message' => 'Salvatore Kiehn', 'subject' => 'Ms. Lydia Kilback', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '41', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Edwina Zboncak', 'email' => 'wisozk.regan@example.org', 'phone' => '1-206-503-9699', 'message' => 'Junior Streich PhD', 'subject' => 'Destin Robel Sr.', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '42', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Diamond Mante', 'email' => 'keara17@example.org', 'phone' => '1-360-432-9827', 'message' => 'Tyrel Volkman Jr.', 'subject' => 'Dr. Ernie O\'Conner I', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '43', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Maria Parisian', 'email' => 'renner.marcella@example.com', 'phone' => '1-480-595-5954', 'message' => 'Seamus Wilkinson II', 'subject' => 'Jayme Zemlak', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '44', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Chanel Barrows', 'email' => 'morgan.hilpert@example.org', 'phone' => '814-785-6189', 'message' => 'Tatum Ullrich', 'subject' => 'Dr. Vernie Smitham', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '45', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Gretchen Schimmel Jr.', 'email' => 'mschimmel@example.org', 'phone' => '+12313380718', 'message' => 'Zora Beer', 'subject' => 'Aubree Prohaska', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '46', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Beth Berge', 'email' => 'ysatterfield@example.org', 'phone' => '283-391-1538', 'message' => 'Peyton West', 'subject' => 'Abel Fadel', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '47', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Dr. Dion Glover', 'email' => 'guido86@example.com', 'phone' => '+1-678-703-8948', 'message' => 'Yasmeen Roob', 'subject' => 'Kelsi Roberts', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '48', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Lila Willms', 'email' => 'virginia.abbott@example.org', 'phone' => '602.226.5820', 'message' => 'Bradley Shields', 'subject' => 'Prof. Kristin Jacobs', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '49', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Beryl Bartoletti', 'email' => 'teagan24@example.org', 'phone' => '847.625.3714', 'message' => 'Deja Reynolds', 'subject' => 'Prof. Domingo Frami', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '50', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Magdalen Lubowitz PhD', 'email' => 'leonor.kertzmann@example.com', 'phone' => '321.323.1180', 'message' => 'Catherine Walker', 'subject' => 'Mr. Keenan Carter', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '51', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Frank Lakin', 'email' => 'jarmstrong@example.com', 'phone' => '+1 (351) 534-1940', 'message' => 'Bessie Borer IV', 'subject' => 'Mustafa McKenzie', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '52', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Antoinette Gottlieb', 'email' => 'nondricka@example.net', 'phone' => '(325) 401-7527', 'message' => 'Yasmeen Miller', 'subject' => 'Lina Barrows', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '53', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Leopold Wehner', 'email' => 'madie80@example.net', 'phone' => '(773) 708-4313', 'message' => 'Miss Elvie Bins IV', 'subject' => 'Loy Koepp', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '54', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Orin Ledner', 'email' => 'lukas54@example.net', 'phone' => '+1 (620) 873-6515', 'message' => 'Mr. Cicero Hansen DVM', 'subject' => 'Cathrine Kovacek IV', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '55', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Miss Margot Koepp', 'email' => 'elinor73@example.com', 'phone' => '(828) 500-5420', 'message' => 'Robyn Lesch', 'subject' => 'Anais Ondricka', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '56', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Kayley Purdy', 'email' => 'archibald.rath@example.com', 'phone' => '+1.775.432.8226', 'message' => 'Name Leffler', 'subject' => 'Crystal Miller', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '57', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Audie Klocko', 'email' => 'ruthe34@example.org', 'phone' => '240.665.9330', 'message' => 'Kenny Weimann', 'subject' => 'Mrs. Cecilia Breitenberg Jr.', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '58', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Ms. Sasha Yundt I', 'email' => 'anastasia64@example.com', 'phone' => '947-397-6118', 'message' => 'Prof. Delia Kutch', 'subject' => 'Ms. Marguerite Haley', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '59', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Geoffrey Hettinger PhD', 'email' => 'theodora.gusikowski@example.com', 'phone' => '1-541-869-0135', 'message' => 'Sophie Jerde', 'subject' => 'Frances Fritsch', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '60', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Mrs. Maya Ullrich', 'email' => 'arnulfo24@example.net', 'phone' => '(707) 573-8566', 'message' => 'Prof. Akeem Jacobs V', 'subject' => 'Laura Hirthe I', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '61', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Mrs. Karli Orn MD', 'email' => 'terrence67@example.org', 'phone' => '463.554.5000', 'message' => 'Garrison Keeling', 'subject' => 'Prof. Samson Pfannerstill Jr.', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '62', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Lavonne Mills', 'email' => 'hansen.camila@example.org', 'phone' => '1-984-398-6817', 'message' => 'Finn Sporer', 'subject' => 'Prof. Enrico Ritchie Jr.', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '63', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Golda Barton', 'email' => 'parker.rowe@example.net', 'phone' => '+1-361-990-4915', 'message' => 'Alessandra Krajcik', 'subject' => 'Clementine Carroll', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '64', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Prof. Bobby Rodriguez', 'email' => 'lolson@example.com', 'phone' => '(520) 917-7925', 'message' => 'Eleonore Nitzsche', 'subject' => 'Dr. Lempi Spinka MD', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '65', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Bertram Jaskolski', 'email' => 'johathan.swaniawski@example.com', 'phone' => '+1 (442) 495-4168', 'message' => 'Freida Stokes DDS', 'subject' => 'Sibyl Barton', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '66', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Dr. Royce Schowalter II', 'email' => 'myrtle.bergstrom@example.net', 'phone' => '631.556.5676', 'message' => 'Mr. Peyton Ferry Jr.', 'subject' => 'Ms. Tressa Gerlach', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '67', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Kris Mitchell', 'email' => 'adelle.heller@example.org', 'phone' => '(863) 481-5153', 'message' => 'Prof. Melvina DuBuque Sr.', 'subject' => 'Enrique Lesch MD', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '68', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Cicero Lowe II', 'email' => 'miracle.thompson@example.org', 'phone' => '559.887.2426', 'message' => 'Liza Schaefer PhD', 'subject' => 'Tremaine Lueilwitz', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '69', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Magali Conn', 'email' => 'giovanny.fisher@example.com', 'phone' => '+1.234.548.0314', 'message' => 'Mr. Sofia Haag MD', 'subject' => 'Aletha Borer', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '70', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Prof. Holden Klocko', 'email' => 'akunze@example.com', 'phone' => '979-591-3453', 'message' => 'Kelly Conn', 'subject' => 'Mr. Randall Lueilwitz', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '71', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Amiya Swaniawski', 'email' => 'tboyer@example.net', 'phone' => '480-471-4033', 'message' => 'Roosevelt Beahan', 'subject' => 'Prof. Maxie Cole', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '72', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Rebekah Corkery', 'email' => 'schumm.elroy@example.com', 'phone' => '260-459-8574', 'message' => 'Maritza Raynor', 'subject' => 'Noe DuBuque', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '73', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Chesley Cruickshank', 'email' => 'tavares.gerlach@example.net', 'phone' => '+1-564-606-2695', 'message' => 'Jevon Jenkins DVM', 'subject' => 'Dexter Veum', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '74', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Alycia Dicki MD', 'email' => 'kirlin.alexandra@example.net', 'phone' => '(352) 784-6549', 'message' => 'Bert O\'Conner IV', 'subject' => 'Prof. Guiseppe Walter', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '75', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Maudie Bechtelar', 'email' => 'baylee06@example.com', 'phone' => '201-737-0686', 'message' => 'Mr. Randy Satterfield III', 'subject' => 'Eleonore Kunde', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '76', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Dr. Abdiel Pfeffer DVM', 'email' => 'jaiden.koepp@example.net', 'phone' => '314-640-9495', 'message' => 'Stephen Hettinger', 'subject' => 'Adeline Schuppe IV', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '77', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Jennyfer Friesen', 'email' => 'rosalinda02@example.org', 'phone' => '856-454-4787', 'message' => 'Arlene Bayer', 'subject' => 'Annamarie Crooks', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '78', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Prof. Hilma Bradtke', 'email' => 'leola.torp@example.net', 'phone' => '+1-540-363-2619', 'message' => 'Betsy Buckridge', 'subject' => 'Stephania Bauch', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '79', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Eleanora Kerluke', 'email' => 'katherine58@example.com', 'phone' => '1-720-205-6332', 'message' => 'Emmalee Morar', 'subject' => 'Filiberto Hermann V', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '80', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Athena Toy', 'email' => 'mossie.ankunding@example.org', 'phone' => '(325) 399-9140', 'message' => 'Sophie Schroeder', 'subject' => 'Vesta Ebert DDS', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '81', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Derek Terry', 'email' => 'lonie22@example.org', 'phone' => '+1.757.927.8571', 'message' => 'Faye Schmidt III', 'subject' => 'Chelsea Wisozk', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '82', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Martina Corkery', 'email' => 'cwhite@example.net', 'phone' => '(864) 270-5715', 'message' => 'Velva Strosin', 'subject' => 'Dr. Bernardo Ruecker', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '83', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Zelma Rolfson PhD', 'email' => 'mollie.harvey@example.com', 'phone' => '571-685-4442', 'message' => 'Dr. Silas Wilkinson', 'subject' => 'Madisen Schoen', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '84', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Eldon Keeling', 'email' => 'hmacejkovic@example.com', 'phone' => '(240) 535-2412', 'message' => 'Nicole Hoeger', 'subject' => 'Celestino VonRueden Sr.', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '85', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Leonora Dicki', 'email' => 'plowe@example.com', 'phone' => '+13324827058', 'message' => 'Prof. Karianne Padberg', 'subject' => 'Nikki Labadie Sr.', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '86', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Walter Bruen', 'email' => 'willms.gabriel@example.net', 'phone' => '(838) 488-2980', 'message' => 'Annabelle Heller IV', 'subject' => 'Clemens Ondricka', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '87', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Frida Barton III', 'email' => 'norma97@example.com', 'phone' => '(256) 253-9952', 'message' => 'Elody Heathcote I', 'subject' => 'Isac Roberts', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '88', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Deion Crist', 'email' => 'schuyler67@example.net', 'phone' => '405-209-0123', 'message' => 'Brooks Toy MD', 'subject' => 'Prof. Wilburn Kub DVM', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '89', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Sydnie Kuphal II', 'email' => 'vinnie30@example.net', 'phone' => '1-385-259-2343', 'message' => 'Scotty Schmidt', 'subject' => 'Dora Rohan', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '90', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Bryon Kuhic', 'email' => 'kassulke.dayton@example.net', 'phone' => '+1-364-401-1848', 'message' => 'Rosalind Borer', 'subject' => 'Pearline Donnelly IV', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '91', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Demario Feeney', 'email' => 'ottilie.wilderman@example.org', 'phone' => '+14253257301', 'message' => 'Jovany Gutmann', 'subject' => 'Malcolm Sporer', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '92', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Iva Roob', 'email' => 'qdicki@example.com', 'phone' => '757.519.7467', 'message' => 'Colin Prohaska', 'subject' => 'Dr. Kaia Cummings III', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '93', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Helmer Volkman', 'email' => 'awiza@example.com', 'phone' => '959-622-7438', 'message' => 'Russell Runolfsson', 'subject' => 'Eli King', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '94', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Dr. Fletcher Schumm MD', 'email' => 'velma.effertz@example.org', 'phone' => '207-500-6482', 'message' => 'Mrs. Jessica Kub', 'subject' => 'Lela Ortiz DDS', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '95', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Whitney Schaden', 'email' => 'drussel@example.net', 'phone' => '(657) 722-5106', 'message' => 'Prof. Jayden Gorczany MD', 'subject' => 'Prof. Porter Yost DVM', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '96', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Addison Herzog', 'email' => 'osvaldo.jacobson@example.com', 'phone' => '+1.504.610.9309', 'message' => 'Mr. Seth Mertz', 'subject' => 'Mr. Arnulfo Jacobs', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '97', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'April Heller', 'email' => 'felipa.lang@example.com', 'phone' => '+13864860890', 'message' => 'Janis Welch', 'subject' => 'Arnulfo Hyatt', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '98', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Ms. Eula Mosciski', 'email' => 'bauch.alfreda@example.org', 'phone' => '+1.657.481.1655', 'message' => 'Mrs. Callie Murphy Sr.', 'subject' => 'Prof. Orion Von', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '99', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Christian Maggio', 'email' => 'thelma.schimmel@example.com', 'phone' => '+1-872-721-2603', 'message' => 'Ms. Erna Huel', 'subject' => 'Magnolia Muller', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '100', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Marge Moore DDS', 'email' => 'aufderhar.brionna@example.net', 'phone' => '463-398-6328', 'message' => 'Johnnie D\'Amore MD', 'subject' => 'Vickie White', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '101', 'created_at' => '2024-03-23 09:22:03', 'updated_at' => '2024-03-23 09:22:03', 'name' => 'Muhammad Hoppe', 'email' => 'mraz.cyril@example.org', 'phone' => '+1-318-784-0552', 'message' => 'Jennifer Kreiger Sr.', 'subject' => 'Reba Feest', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '102', 'created_at' => '2025-12-11 14:16:42', 'updated_at' => '2025-12-11 14:16:42', 'name' => 'Amanda Trevino', 'email' => 'wadimap@mailinator.com', 'phone' => '+1 (556) 944-6046', 'message' => 'Dolore quas ipsum c', 'subject' => 'Repudiandae ipsam ve', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '103', 'created_at' => '2026-01-14 22:52:54', 'updated_at' => '2026-01-14 22:52:54', 'name' => 'Susheel Kumar Singh', 'email' => 'susheelkrsingh306@gmail.com', 'phone' => '09090653356', 'message' => 'm', 'subject' => 'Ut exercitation sapi', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '104', 'created_at' => '2026-01-14 22:53:51', 'updated_at' => '2026-01-14 22:53:51', 'name' => 'Susheel Kumar Singh', 'email' => 'susheelkrsingh306@gmail.com', 'phone' => '09090653356', 'message' => 'b', 'subject' => 'Ut exercitation sapi', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '105', 'created_at' => '2026-01-14 22:57:42', 'updated_at' => '2026-01-14 22:57:42', 'name' => 'Susheel Kumar Singh', 'email' => 'susheelkrsingh306@gmail.com', 'phone' => '09090653356', 'message' => 'm', 'subject' => 'Ut exercitation sapi', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '106', 'created_at' => '2026-01-14 22:59:17', 'updated_at' => '2026-01-14 22:59:17', 'name' => 'Rooney Mcintyre', 'email' => 'toririkah@mailinator.com', 'phone' => '+1 (557) 401-5683', 'message' => 'Officiis quae cumque', 'subject' => 'Incididunt eligendi', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '107', 'created_at' => '2026-01-14 23:01:02', 'updated_at' => '2026-01-14 23:01:02', 'name' => 'India Horn', 'email' => 'nipe@mailinator.com', 'phone' => '+1 (472) 795-1301', 'message' => 'Libero sed adipisici', 'subject' => 'Sit nihil dolorem di', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '108', 'created_at' => '2026-01-14 23:09:14', 'updated_at' => '2026-01-14 23:09:14', 'name' => 'Zelenia Preston', 'email' => 'rexa@mailinator.com', 'phone' => '+1 (745) 674-8225', 'message' => 'Do unde reprehenderi', 'subject' => 'Vero nulla rerum rer', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '109', 'created_at' => '2026-01-14 23:10:11', 'updated_at' => '2026-01-14 23:10:11', 'name' => 'Julie Gallegos', 'email' => 'tedix@mailinator.com', 'phone' => '+1 (952) 307-3069', 'message' => 'Vitae non laborum A', 'subject' => 'Proident quasi reru', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '110', 'created_at' => '2026-01-15 09:55:23', 'updated_at' => '2026-01-15 09:55:23', 'name' => 'Phillip Singleton', 'email' => 'fygo@mailinator.com', 'phone' => '+1 (881) 147-7313', 'message' => 'Ea repudiandae susci', 'subject' => 'Possimus fugit cor', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '111', 'created_at' => '2026-01-15 20:54:59', 'updated_at' => '2026-01-15 20:54:59', 'name' => 'Emily Petty', 'email' => 'cobuzoteda@mailinator.com', 'phone' => '+1 (328) 801-9239', 'message' => 'Sunt quis duis nequ', 'subject' => 'Excepteur sunt fuga', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '112', 'created_at' => '2026-01-15 21:01:57', 'updated_at' => '2026-01-15 21:01:57', 'name' => 'Quinn Tyson', 'email' => 'fyrehol@mailinator.com', 'phone' => '+1 (921) 451-9459', 'message' => 'Nisi repellendus Ad', 'subject' => 'Omnis eos quas itaq', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '113', 'created_at' => '2026-01-15 21:02:03', 'updated_at' => '2026-01-15 21:02:03', 'name' => 'Quinn Tyson', 'email' => 'fyrehol@mailinator.com', 'phone' => '+1 (921) 451-9459', 'message' => 'Nisi repellendus Ad', 'subject' => 'Omnis eos quas itaq', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '114', 'created_at' => '2026-01-15 21:04:01', 'updated_at' => '2026-01-15 21:04:01', 'name' => 'Brenna Lopez', 'email' => 'davekiru@mailinator.com', 'phone' => '+1 (865) 797-9571', 'message' => 'Laborum voluptates v', 'subject' => 'Et molestias nostrud', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '115', 'created_at' => '2026-01-15 21:04:27', 'updated_at' => '2026-01-15 21:04:27', 'name' => 'Brenna Lopez', 'email' => 'davekiru@mailinator.com', 'phone' => '+1 (865) 797-9571', 'message' => 'Laborum voluptates v', 'subject' => 'Et molestias nostrud', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '116', 'created_at' => '2026-01-15 21:07:54', 'updated_at' => '2026-01-15 21:07:54', 'name' => 'Jason Cruz', 'email' => 'resehahy@mailinator.com', 'phone' => '+1 (728) 944-2552', 'message' => 'Eum facere possimus', 'subject' => 'Dolore enim illo qui', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '117', 'created_at' => '2026-01-15 21:12:08', 'updated_at' => '2026-01-15 21:12:08', 'name' => 'Palmer Booth', 'email' => 'latykug@mailinator.com', 'phone' => '+1 (285) 427-9315', 'message' => 'Est minus facilis qu', 'subject' => 'Repudiandae consequa', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '118', 'created_at' => '2026-01-15 22:19:31', 'updated_at' => '2026-01-15 22:19:31', 'name' => 'Damian Vasquez', 'email' => 'quvagyqeki@mailinator.com', 'phone' => '+1 (856) 683-4191', 'message' => 'Cumque omnis numquam', 'subject' => 'Et facere similique', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '119', 'created_at' => '2026-01-15 22:26:12', 'updated_at' => '2026-01-15 22:26:12', 'name' => 'Adena Burnett', 'email' => 'nihefexo@mailinator.com', 'phone' => '+1 (257) 239-9547', 'message' => 'Molestias vitae volu', 'subject' => 'Illum totam quia lo', 'status_id' => '1', 'deleted_at' => null],
-    ['id' => '120', 'created_at' => '2026-01-15 22:38:47', 'updated_at' => '2026-01-15 22:38:47', 'name' => 'Len Cross', 'email' => 'zywame@mailinator.com', 'phone' => '+1 (596) 316-1609', 'message' => 'Voluptatem amet aut', 'subject' => 'Nobis nemo itaque ad', 'status_id' => '1', 'deleted_at' => null],
 ];
 
-/* `ecom1`.`user_query_statuses` */
+/* `sangam-motors`.`user_query_statuses` */
 $user_query_statuses = [
     ['id' => '1', 'name' => 'Unread'],
     ['id' => '2', 'name' => 'Viewd'],
@@ -984,15 +718,32 @@ $user_query_statuses = [
     ['id' => '5', 'name' => 'Closed'],
 ];
 
-/* `ecom1`.`visitors` */
+/* `sangam-motors`.`visitors` */
 $visitors = [
-    ['id' => '1', 'ip_address' => '127.0.0.1', 'created_at' => '2026-02-14 19:32:57', 'updated_at' => '2026-02-14 19:32:57'],
 ];
 
-/* `ecom1`.`wishlists` */
+/* `sangam-motors`.`warehouses` */
+$warehouses = [
+    ['id' => '1', 'name' => 'Main Road, Araria', 'address' => 'Araria', 'phone' => null, 'created_at' => '2026-05-05 13:19:56', 'updated_at' => '2026-05-05 13:19:56', 'email' => null, 'address_line1' => null, 'address_line2' => null, 'city' => null, 'state' => null, 'country' => null, 'pincode' => null, 'owner_type' => 'admin', 'owner_id' => null],
+    ['id' => '2', 'name' => 'Distributor-1', 'address' => 'Auto-created distributor warehouse', 'phone' => null, 'created_at' => '2026-05-06 07:49:07', 'updated_at' => '2026-05-06 07:49:07', 'email' => null, 'address_line1' => null, 'address_line2' => null, 'city' => null, 'state' => null, 'country' => null, 'pincode' => null, 'owner_type' => 'distributor', 'owner_id' => '1'],
+    ['id' => '3', 'name' => 'Dealer-1', 'address' => 'Auto-created dealer warehouse', 'phone' => null, 'created_at' => '2026-05-06 07:49:54', 'updated_at' => '2026-05-06 07:49:54', 'email' => null, 'address_line1' => null, 'address_line2' => null, 'city' => null, 'state' => null, 'country' => null, 'pincode' => null, 'owner_type' => 'dealer', 'owner_id' => '1'],
+];
+
+/* `sangam-motors`.`warehouse_racks` */
+$warehouse_racks = [
+    ['id' => '1', 'warehouse_id' => '1', 'identifier' => 'default', 'description' => 'default', 'created_at' => '2026-05-05 13:20:19', 'updated_at' => '2026-05-05 13:20:19'],
+    ['id' => '2', 'warehouse_id' => '2', 'identifier' => 'DEFAULT', 'description' => 'Default distributor rack', 'created_at' => '2026-05-06 07:49:07', 'updated_at' => '2026-05-06 07:49:07'],
+    ['id' => '3', 'warehouse_id' => '3', 'identifier' => 'DEFAULT', 'description' => 'Default dealer rack', 'created_at' => '2026-05-06 07:49:54', 'updated_at' => '2026-05-06 07:49:54'],
+];
+
+/* `sangam-motors`.`warranty_cards` */
+$warranty_cards = [
+];
+
+/* `sangam-motors`.`wishlists` */
 $wishlists = [
 ];
 
-/* `ecom1`.`wishlist_items` */
+/* `sangam-motors`.`wishlist_items` */
 $wishlist_items = [
 ];

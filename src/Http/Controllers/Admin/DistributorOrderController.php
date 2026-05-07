@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contracts\SerialNumberMovementServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\B2B\AdminDistributorOrderApproveRequest;
 use App\Http\Requests\B2B\AdminDistributorOrderStoreRequest;
 use App\Models\Distributor;
 use App\Models\DistributorOrder;
 use App\Models\Product;
+use App\Models\SerialNumber;
 use App\Models\Warehouse;
 use App\Models\WarehouseRack;
+use App\Services\B2BPaymentService;
 use App\Services\Inventory\DefaultLocationService;
 use App\Services\Inventory\StockTransferService;
 use Illuminate\Http\JsonResponse;
@@ -23,6 +26,10 @@ use RuntimeException;
 
 class DistributorOrderController extends Controller
 {
+    public function __construct(
+        private readonly SerialNumberMovementServiceInterface $serialNumberMovementService,
+    ) {}
+
     public function index()
     {
         $data = DistributorOrder::query()
@@ -37,6 +44,9 @@ class DistributorOrderController extends Controller
                 'distributor_email' => $order->distributor?->email,
                 'subtotal_amount' => $order->subtotal_amount,
                 'total_amount' => $order->total_amount,
+                'payment_status' => $order->payment_status ?? 'unpaid',
+                'amount_paid' => (float) ($order->amount_paid ?? 0),
+                'remaining_balance' => (float) $order->total_amount - (float) ($order->amount_paid ?? 0),
                 'created_at' => $order->created_at?->format('M d, Y'),
             ]);
 
@@ -79,9 +89,32 @@ class DistributorOrderController extends Controller
     }
 
     /**
+     * Return available serial numbers for a product in a given rack.
+     * Used by the create/approve forms to populate serial number selectors.
+     *
+     * GET /admin/distributor-orders/products/{product}/serials?rack_id=X
+     */
+    public function productSerials(Product $product, Request $request): JsonResponse
+    {
+        $rackId = $request->integer('rack_id');
+
+        if (! $rackId) {
+            return response()->json(['serial_numbers' => []]);
+        }
+
+        $serials = SerialNumber::where('product_id', $product->id)
+            ->where('rack_id', $rackId)
+            ->where('status', 'available')
+            ->orderBy('serial_number')
+            ->pluck('serial_number');
+
+        return response()->json(['serial_numbers' => $serials]);
+    }
+
+    /**
      * Admin-initiated order store (places + immediately transfers stock).
      */
-    public function store(AdminDistributorOrderStoreRequest $request, StockTransferService $stockTransfer, DefaultLocationService $defaultLocation): RedirectResponse
+    public function store(AdminDistributorOrderStoreRequest $request, StockTransferService $stockTransfer, DefaultLocationService $defaultLocation, B2BPaymentService $paymentService): RedirectResponse
     {
         $adminId = Auth::guard('admin')->id();
         abort_unless($adminId, 401);
@@ -89,7 +122,7 @@ class DistributorOrderController extends Controller
         $validated = $request->validated();
 
         try {
-            $order = DB::transaction(function () use ($validated, $adminId, $stockTransfer, $defaultLocation) {
+            $order = DB::transaction(function () use ($validated, $adminId, $stockTransfer, $defaultLocation, $paymentService) {
                 $distributor = Distributor::query()->whereKey($validated['distributor_id'])->firstOrFail();
                 abort_unless($distributor->isApproved(), 422, 'Distributor is not approved.');
 
@@ -150,15 +183,60 @@ class DistributorOrderController extends Controller
 
                 $order->items()->createMany($lineItems->all());
 
+                // Build serial numbers map keyed by product_id for the transfer service.
+                $serialNumbersByProductId = [];
+                foreach ($validated['items'] as $itemInput) {
+                    $serials = $itemInput['serial_numbers'] ?? [];
+                    if (! empty($serials)) {
+                        $serialNumbersByProductId[(int) $itemInput['product_id']] = $serials;
+                    }
+                }
+
                 $toRack = $defaultLocation->ensureDistributorDefaultRack($distributor);
 
+                // Transfer stock first (updates rack_id on serial numbers and stock records).
                 $stockTransfer->transferStock(
                     $sourceRack->id,
                     $toRack->id,
                     $itemsInput->map(fn ($x) => ['product_id' => $x['product_id'], 'quantity' => $x['quantity']]),
                     $order,
-                    "Transfer for distributor order #{$order->order_number}"
+                    "Transfer for distributor order #{$order->order_number}",
+                    $serialNumbersByProductId,
                 );
+
+                // Then record the pivot rows and distributor_order movements.
+                $createdItems = $order->items()->get()->keyBy('product_id');
+                foreach ($validated['items'] as $itemInput) {
+                    $serialNumbers = $itemInput['serial_numbers'] ?? [];
+                    if (empty($serialNumbers)) {
+                        continue;
+                    }
+                    $orderItem = $createdItems->get((int) $itemInput['product_id']);
+                    if ($orderItem) {
+                        $this->serialNumberMovementService->validateAndAssign(
+                            serialNumbers: $serialNumbers,
+                            productId: (int) $itemInput['product_id'],
+                            orderItem: $orderItem,
+                            eventType: 'distributor_order',
+                            actor: Auth::guard('admin')->user(),
+                        );
+                    }
+                }
+
+                // Record initial payment if provided
+                $paymentStatusInput = $validated['payment_status'] ?? null;
+                if ($paymentStatusInput && $paymentStatusInput !== 'unpaid') {
+                    $admin = Auth::guard('admin')->user();
+                    $paymentData = [
+                        'amount' => $paymentStatusInput === 'paid'
+                            ? $subtotalAmount
+                            : (float) ($validated['amount_paid'] ?? 0),
+                        'payment_method' => $validated['payment_method'],
+                        'note' => $validated['note'] ?? null,
+                        'payment_proof' => $validated['payment_proof'] ?? null,
+                    ];
+                    $paymentService->recordDistributorOrderPayment($order, $paymentData, $admin);
+                }
 
                 return $order;
             });
@@ -184,7 +262,29 @@ class DistributorOrderController extends Controller
 
     public function show(DistributorOrder $distributor_order)
     {
-        $distributor_order->loadMissing(['items.product', 'distributor', 'sourceWarehouse', 'sourceRack']);
+        $distributor_order->loadMissing([
+            'items.product',
+            'distributor',
+            'sourceWarehouse',
+            'sourceRack',
+            'items.serialNumbers:id,serial_number',
+            'payments.recordedByAdmin',
+            'payments.media',
+        ]);
+
+        $payments = $distributor_order->payments
+            ->sortBy('created_at')
+            ->map(fn ($payment) => [
+                'id' => $payment->id,
+                'amount' => (float) $payment->amount,
+                'payment_method' => $payment->payment_method,
+                'note' => $payment->note,
+                'recorded_by_name' => $payment->recordedByAdmin?->name ?? 'Admin',
+                'created_at' => $payment->created_at?->format('M d, Y H:i'),
+                'payment_proof_url' => $payment->getFirstMediaUrl('payment_proof') ?: null,
+            ])
+            ->values()
+            ->all();
 
         $data = [
             'id' => $distributor_order->id,
@@ -214,10 +314,17 @@ class DistributorOrderController extends Controller
                 'unit_price' => $item->unit_price,
                 'subtotal' => $item->subtotal,
                 'price_source' => $item->price_source,
+                'serial_numbers' => $item->serialNumbers->pluck('serial_number')->all(),
             ]),
             'created_at' => $distributor_order->created_at?->format('M d, Y H:i'),
             'approved_at' => $distributor_order->approved_at?->format('M d, Y H:i'),
             'rejected_at' => $distributor_order->rejected_at?->format('M d, Y H:i'),
+            'payment_summary' => [
+                'payment_status' => $distributor_order->payment_status ?? 'unpaid',
+                'amount_paid' => (float) ($distributor_order->amount_paid ?? 0),
+                'remaining_balance' => (float) $distributor_order->total_amount - (float) ($distributor_order->amount_paid ?? 0),
+                'payments' => $payments,
+            ],
         ];
 
         return $this->render('admin/distributor-orders/show', compact('data'));
@@ -357,13 +464,45 @@ class DistributorOrderController extends Controller
 
                 $toRack = $defaultLocation->ensureDistributorDefaultRack($distributor_order->distributor);
 
+                // Build serial numbers map for the transfer service.
+                $serialNumbersByProductId = [];
+                foreach ($validated['items'] as $itemInput) {
+                    $serials = $itemInput['serial_numbers'] ?? [];
+                    if (! empty($serials)) {
+                        $orderItem = $items->get((int) $itemInput['id']);
+                        if ($orderItem) {
+                            $serialNumbersByProductId[$orderItem->product_id] = $serials;
+                        }
+                    }
+                }
+
+                // Transfer stock first (updates rack_id on serial numbers and stock records).
                 $stockTransfer->transferStock(
                     $sourceRack->id,
                     $toRack->id,
                     $transferItems,
                     $distributor_order,
-                    "Transfer for distributor order #{$distributor_order->order_number}"
+                    "Transfer for distributor order #{$distributor_order->order_number}",
+                    $serialNumbersByProductId,
                 );
+
+                // Then record the pivot rows and distributor_order movements.
+                foreach ($validated['items'] as $itemInput) {
+                    $serialNumbers = $itemInput['serial_numbers'] ?? [];
+                    if (empty($serialNumbers)) {
+                        continue;
+                    }
+                    $orderItem = $items->get((int) $itemInput['id']);
+                    if ($orderItem) {
+                        $this->serialNumberMovementService->validateAndAssign(
+                            serialNumbers: $serialNumbers,
+                            productId: $orderItem->product_id,
+                            orderItem: $orderItem,
+                            eventType: 'distributor_order',
+                            actor: Auth::guard('admin')->user(),
+                        );
+                    }
+                }
             });
         } catch (RuntimeException $e) {
             throw ValidationException::withMessages(['items' => [$e->getMessage()]]);

@@ -12,7 +12,7 @@ class ShipmentStatusHistorySeeder extends Seeder
      */
     public function run(): void
     {
-        include __DIR__.'/data/data.php';
-        ShipmentStatusHistory::insert($shipment_status_histories);
+        include __DIR__.'/../data/data.php';
+        ShipmentStatusHistory::insert($shipment_status_history);
     }
 }

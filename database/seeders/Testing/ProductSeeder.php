@@ -12,7 +12,7 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        include __DIR__.'/data/data.php';
+        include 'data/data.php';
         Product::insert($products);
     }
 }

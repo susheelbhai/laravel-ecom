@@ -1,4 +1,4 @@
-import { LayoutGrid, LogOut, Package, Settings, Store, Warehouse } from 'lucide-react';
+import { AlertTriangle, LayoutGrid, LogOut, Package, Settings, Store, Warehouse } from 'lucide-react';
 
 const mainNavItems = [
     {
@@ -30,6 +30,27 @@ const mainNavItems = [
         title: 'Stock',
         routeName: 'distributor.stock.index',
         icon: Warehouse,
+    },
+    {
+        title: 'Serial Numbers',
+        icon: AlertTriangle,
+        children: [
+            {
+                title: 'Lookup',
+                routeName: 'distributor.serial-numbers.lookup',
+                icon: AlertTriangle,
+            },
+            {
+                title: 'Damaged',
+                routeName: 'distributor.serial-numbers.damaged',
+                icon: AlertTriangle,
+            },
+            {
+                title: 'Stolen',
+                routeName: 'distributor.serial-numbers.stolen',
+                icon: AlertTriangle,
+            },
+        ],
     },
 ];
 

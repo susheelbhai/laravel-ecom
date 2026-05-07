@@ -17,14 +17,14 @@ class WarehouseController extends Controller
 
         return $this->render('admin/resources/warehouse/index', [
             'warehouses' => $warehouses,
-        ], 'inertia');
+        ]);
     }
 
     public function create()
     {
         return $this->render('admin/resources/warehouse/create', [
             'warehouse' => null,
-        ], 'inertia');
+        ]);
     }
 
     public function store(StoreWarehouseRequest $request)
@@ -47,7 +47,7 @@ class WarehouseController extends Controller
 
         return $this->render('admin/resources/warehouse/edit', [
             'warehouse' => $warehouse,
-        ], 'inertia');
+        ]);
     }
 
     public function update(UpdateWarehouseRequest $request, Warehouse $warehouse)

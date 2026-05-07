@@ -7,6 +7,9 @@ import TableCard from '@/components/table/table-card';
 import TBody from '@/components/table/tbody';
 import THead from '@/components/table/thead';
 import { useFormatMoney } from '@/hooks/use-format-money';
+import OrderSummaryCard from '@/components/order/OrderSummaryCard';
+import OrderDetailItem from '@/components/order/OrderDetailItem';
+import PaymentSummarySection from '@/components/payment/PaymentSummarySection';
 
 export default function AdminDistributorOrderShow() {
     const { data } = usePage<SharedData>().props as any;
@@ -44,98 +47,117 @@ export default function AdminDistributorOrderShow() {
     const thead = [
         { title: 'Product', className: 'p-3' },
         { title: 'Qty', className: 'p-3 text-right' },
-        { title: 'Unit price', className: 'p-3 text-right' },
+        { title: 'Unit Price', className: 'p-3 text-right' },
         { title: 'Subtotal', className: 'p-3 text-right' },
-        { title: 'Price source', className: 'p-3' },
+        { title: 'Price Source', className: 'p-3' },
+        { title: 'Serial Numbers', className: 'p-3' },
     ];
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title={data?.order_number ?? 'Distributor order'} />
 
-            <div className="mb-4 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                <div className="space-y-1">
-                    <div className="text-sm text-gray-600">
-                        Distributor: <span className="font-medium">{data.distributor?.name}</span>
-                        {data.distributor?.email ? ` (${data.distributor.email})` : ''}
-                    </div>
-                    {data.source_warehouse?.name && (
-                        <div className="text-sm text-gray-600">
-                            Source warehouse:{' '}
-                            <span className="font-medium">{data.source_warehouse.name}</span>
-                            {data.source_rack?.identifier
-                                ? ` — Rack: ${data.source_rack.identifier}`
-                                : ''}
-                        </div>
+            <OrderSummaryCard
+                orderNumber={data.order_number}
+                status={data.status}
+                rejectionNote={data.rejection_note}
+                actions={
+                    isPending ? (
+                        <>
+                            <a
+                                href={route('admin.distributor-orders.approve.form', data.id)}
+                                className="inline-flex items-center rounded-md bg-emerald-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-emerald-700 focus:outline-none"
+                            >
+                                Approve
+                            </a>
+                            <button
+                                type="button"
+                                disabled={rejectForm.processing}
+                                onClick={handleReject}
+                                className="inline-flex items-center rounded-md border border-rose-300 bg-white px-4 py-2 text-sm font-medium text-rose-700 shadow-sm hover:bg-rose-50 focus:outline-none disabled:opacity-50"
+                            >
+                                Reject
+                            </button>
+                        </>
+                    ) : undefined
+                }
+            >
+                <OrderDetailItem label="Distributor">
+                    {data.distributor?.name ?? '—'}
+                    {data.distributor?.email && (
+                        <span className="block text-xs font-normal text-muted-foreground">
+                            {data.distributor.email}
+                        </span>
                     )}
-                    <div className="text-sm text-gray-600">
-                        Status:{' '}
-                        <span className="capitalize font-medium">{data.status}</span>
-                    </div>
-                    <div className="text-sm text-gray-600">
-                        Total:{' '}
-                        <span className="font-medium">{formatMoney(data.total_amount)}</span>
-                    </div>
-                    <div className="text-sm text-gray-600">Created: {data.created_at}</div>
-                    {data.approved_at && (
-                        <div className="text-sm text-gray-600">
-                            Approved: {data.approved_at}
-                        </div>
-                    )}
-                    {data.rejected_at && (
-                        <div className="text-sm text-gray-600">
-                            Rejected: {data.rejected_at}
-                        </div>
-                    )}
-                    {data.rejection_note && (
-                        <div className="text-sm text-rose-600">
-                            Rejection reason: {data.rejection_note}
-                        </div>
-                    )}
-                </div>
+                </OrderDetailItem>
 
-                {isPending && (
-                    <div className="flex shrink-0 gap-2">
-                        <a
-                            href={route('admin.distributor-orders.approve.form', data.id)}
-                            className="inline-flex items-center rounded-md bg-emerald-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-emerald-700 focus:outline-none"
-                        >
-                            Approve
-                        </a>
-                        <button
-                            type="button"
-                            disabled={rejectForm.processing}
-                            onClick={handleReject}
-                            className="inline-flex items-center rounded-md border border-rose-300 bg-white px-4 py-2 text-sm font-medium text-rose-700 shadow-sm hover:bg-rose-50 focus:outline-none disabled:opacity-50"
-                        >
-                            Reject
-                        </button>
-                    </div>
+                {data.source_warehouse?.name && (
+                    <OrderDetailItem label="Source Warehouse">
+                        {data.source_warehouse.name}
+                        {data.source_rack?.identifier && (
+                            <span className="block text-xs font-normal text-muted-foreground">
+                                Rack: {data.source_rack.identifier}
+                            </span>
+                        )}
+                    </OrderDetailItem>
                 )}
-            </div>
+
+                <OrderDetailItem label="Total">{formatMoney(data.total_amount)}</OrderDetailItem>
+                <OrderDetailItem label="Created">{data.created_at}</OrderDetailItem>
+
+                {data.approved_at && (
+                    <OrderDetailItem label="Approved">{data.approved_at}</OrderDetailItem>
+                )}
+                {data.rejected_at && (
+                    <OrderDetailItem label="Rejected">{data.rejected_at}</OrderDetailItem>
+                )}
+            </OrderSummaryCard>
 
             <TableCard>
                 <Table>
                     <THead data={thead} />
                     <TBody>
                         {data.items.map((row: any) => (
-                            <tr key={row.id} className="border-t border-gray-200">
-                                <td className="p-3">{row.product_title}</td>
-                                <td className="p-3 text-right">{row.quantity}</td>
-                                <td className="p-3 text-right">
-                                    {formatMoney(row.unit_price)}
+                            <tr key={row.id} className="border-t border-gray-200 transition-colors hover:bg-muted/40">
+                                <td className="p-3 font-medium text-foreground">{row.product_title}</td>
+                                <td className="p-3 text-right tabular-nums">{row.quantity}</td>
+                                <td className="p-3 text-right tabular-nums">{formatMoney(row.unit_price)}</td>
+                                <td className="p-3 text-right font-medium tabular-nums">{formatMoney(row.subtotal)}</td>
+                                <td className="p-3">
+                                    <span className="rounded-full bg-muted px-2 py-0.5 text-xs capitalize text-muted-foreground">
+                                        {row.price_source?.replace(/_/g, ' ') ?? '—'}
+                                    </span>
                                 </td>
-                                <td className="p-3 text-right">
-                                    {formatMoney(row.subtotal)}
-                                </td>
-                                <td className="p-3 capitalize text-sm text-gray-500">
-                                    {row.price_source?.replace(/_/g, ' ')}
+                                <td className="p-3">
+                                    {row.serial_numbers?.length > 0 ? (
+                                        <div className="flex flex-wrap gap-1">
+                                            {row.serial_numbers.map((sn: string) => (
+                                                <span
+                                                    key={sn}
+                                                    className="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-xs text-gray-700"
+                                                >
+                                                    {sn}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <span className="text-sm text-muted-foreground">—</span>
+                                    )}
                                 </td>
                             </tr>
                         ))}
                     </TBody>
                 </Table>
             </TableCard>
+
+            {data.payment_summary && (
+                <PaymentSummarySection
+                    summary={data.payment_summary}
+                    storeRoute="admin.distributor-orders.payments.store"
+                    storeRouteParams={{ distributor_order: data.id }}
+                    canAddPayment={true}
+                />
+            )}
         </AppLayout>
     );
 }

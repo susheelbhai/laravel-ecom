@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class DistributorOrder extends Model
 {
+    use HasFactory;
+
     public const STATUS_PENDING = 'pending';
 
     public const STATUS_APPROVED = 'approved';
@@ -36,11 +39,14 @@ class DistributorOrder extends Model
         'rejected_at',
         'subtotal_amount',
         'total_amount',
+        'payment_status',
+        'amount_paid',
     ];
 
     protected $casts = [
         'subtotal_amount' => 'float',
         'total_amount' => 'float',
+        'amount_paid' => 'float',
         'approved_at' => 'datetime',
         'rejected_at' => 'datetime',
     ];
@@ -88,5 +94,10 @@ class DistributorOrder extends Model
     public function items(): HasMany
     {
         return $this->hasMany(DistributorOrderItem::class);
+    }
+
+    public function payments(): HasMany
+    {
+        return $this->hasMany(DistributorOrderPayment::class, 'distributor_order_id');
     }
 }

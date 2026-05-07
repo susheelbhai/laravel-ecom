@@ -26,6 +26,7 @@ Route::prefix('stock')->name('stock.')->group(function () {
     Route::post('warehouses/{warehouse}/racks', [WarehouseRackController::class, 'store'])->name('warehouses.racks.store');
 
     // Rack resource routes (non-nested for edit/update/delete)
+    Route::get('racks/{rack}', [WarehouseRackController::class, 'show'])->name('racks.show');
     Route::get('racks/{rack}/edit', [WarehouseRackController::class, 'edit'])->name('racks.edit');
     Route::put('racks/{rack}', [WarehouseRackController::class, 'update'])->name('racks.update');
     Route::delete('racks/{rack}', [WarehouseRackController::class, 'destroy'])->name('racks.destroy');

@@ -12,7 +12,7 @@ class OrderItemSeeder extends Seeder
      */
     public function run(): void
     {
-        include __DIR__.'/data/data.php';
+        include 'data/data.php';
         OrderItem::insert($order_items);
     }
 }

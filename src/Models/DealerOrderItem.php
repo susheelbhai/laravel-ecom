@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class DealerOrderItem extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'dealer_order_id',
         'product_id',
@@ -31,5 +35,9 @@ class DealerOrderItem extends Model
     {
         return $this->belongsTo(Product::class);
     }
-}
 
+    public function serialNumbers(): BelongsToMany
+    {
+        return $this->belongsToMany(SerialNumber::class, 'dealer_order_item_serial_numbers');
+    }
+}

@@ -33,6 +33,7 @@ class DistributorProfileUpdateRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique('distributors', 'email')->ignore($distributor->id)],
             'phone' => ['nullable', 'string', 'max:32', Rule::unique('distributors', 'phone')->ignore($distributor->id)],
+            'commission_percentage' => ['nullable', 'numeric', 'min:0', 'max:100'],
         ];
     }
 }

@@ -1,46 +1,61 @@
-import { Head, useForm, usePage } from '@inertiajs/react';
-import type { FormEventHandler } from 'react';
-import { useMemo } from 'react';
+import { Head, usePage } from '@inertiajs/react';
+import axios from 'axios';
+import { useRef, useState } from 'react';
 
 import { FormContainer } from '@/components/form/container/form-container';
+import { InputDiv } from '@/components/form/container/input-div';
 import HeadingSmall from '@/components/ui/typography/heading-small';
-import InputError from '@/components/form/input/input-error';
-import Button from '@/components/ui/button/button';
-import { Input } from '@/components/form/input/input';
-import { Label } from '@/components/form/input/label';
 import AppLayout from '@/layouts/dealer/app-layout';
+import { useFormHandler } from '@/lib/use-form-handler';
 import { type BreadcrumbItem, type SharedData } from '@/types';
-import { useFormatMoney } from '@/hooks/use-format-money';
 
-const breadcrumbs: BreadcrumbItem[] = [
-    { title: 'Retail Sales', href: '/dealer/retail-sales' },
-    { title: 'Create', href: '/dealer/retail-sales/create' },
-];
-
-type ItemRow = { product_id: string; quantity: number; unit_price?: number | '' };
-
-type Props = {
-    products: { id: number; title: string; sku?: string; price: number }[];
+type FormType = {
+    // Product / stock
+    product_id: string;
+    quantity: number;
+    unit_price: string;
+    serial_numbers: string[];
+    // Customer details
+    customer_name: string;
+    customer_email: string;
+    customer_phone: string;
+    billing_address_line1: string;
+    billing_address_line2: string;
+    billing_city: string;
+    billing_state: string;
+    billing_pincode: string;
+    billing_country: string;
+    customer_gstin: string;
 };
 
-export default function DealerRetailSaleCreate() {
-    const { products } = usePage<SharedData>().props as any as Props;
-    const { formatMoney } = useFormatMoney();
+type Props = {
+    commissionPercentage: number;
+};
 
-    const { data, setData, post, processing, errors } = useForm<{
-        items: ItemRow[];
-        customer_name: string;
-        customer_email: string;
-        customer_phone: string;
-        billing_address_line1: string;
-        billing_address_line2: string;
-        billing_city: string;
-        billing_state: string;
-        billing_pincode: string;
-        billing_country: string;
-        customer_gstin: string;
-    }>({
-        items: [{ product_id: '', quantity: 1, unit_price: '' }],
+const breadcrumbs: BreadcrumbItem[] = [
+    { title: 'Retail Sales', href: route('dealer.retail-sales.index') },
+    { title: 'Create', href: route('dealer.retail-sales.create') },
+];
+
+/** Apply commission to a purchase price and round up to the next integer. */
+function applyCommission(purchasePrice: number, commissionPct: number): number {
+    if (commissionPct <= 0) {
+        return Math.ceil(purchasePrice);
+    }
+    return Math.ceil(purchasePrice * (1 + commissionPct / 100));
+}
+
+export default function DealerRetailSaleCreate() {
+    const { commissionPercentage } = usePage<SharedData>().props as any as Props;
+
+    const [availableSerials, setAvailableSerials] = useState<string[]>([]);
+    const [purchasePrice, setPurchasePrice] = useState<number | null>(null);
+
+    const initialValues: FormType = {
+        product_id: '',
+        quantity: 1,
+        unit_price: '',
+        serial_numbers: [],
         customer_name: '',
         customer_email: '',
         customer_phone: '',
@@ -51,294 +66,276 @@ export default function DealerRetailSaleCreate() {
         billing_pincode: '',
         billing_country: 'India',
         customer_gstin: '',
+    };
+
+    const { submit, inputDivData, processing, data, setData, errors } = useFormHandler<FormType>({
+        url: route('dealer.retail-sales.store'),
+        initialValues,
+        method: 'POST',
     });
 
-    const productMap = useMemo(() => {
-        const m = new Map<number, any>();
-        products.forEach((p) => m.set(p.id, p));
-        return m;
-    }, [products]);
+    const dataRef = useRef(data);
+    dataRef.current = data;
 
-    const subtotal = useMemo(() => {
-        return data.items.reduce((sum, row) => {
-            const pid = Number(row.product_id);
-            const product = productMap.get(pid);
-            if (!product) return sum;
-            const unitPrice =
-                row.unit_price !== '' && row.unit_price != null
-                    ? Number(row.unit_price)
-                    : Number(product.price);
-            return sum + unitPrice * Number(row.quantity || 0);
-        }, 0);
-    }, [data.items, productMap]);
+    async function fetchSerials(productId: string) {
+        if (!productId) { setAvailableSerials([]); return; }
+        try {
+            const { data: result } = await axios.get(
+                route('dealer.products.serials', productId),
+                { headers: { Accept: 'application/json', 'X-Requested-With': 'XMLHttpRequest' } },
+            );
+            setAvailableSerials(result.serial_numbers ?? []);
+            setData('serial_numbers', []);
+            setData('quantity', 1);
+        } catch {
+            setAvailableSerials([]);
+        }
+    }
 
-    const submit: FormEventHandler = (e) => {
-        e.preventDefault();
-        post(route('dealer.retail-sales.store'));
-    };
+    async function fetchProductPrice(productId: string) {
+        if (!productId) { setPurchasePrice(null); return; }
+        try {
+            const { data: result } = await axios.get(
+                route('dealer.products.price', productId),
+                { headers: { Accept: 'application/json', 'X-Requested-With': 'XMLHttpRequest' } },
+            );
+            const base: number = result.purchase_price ?? 0;
+            setPurchasePrice(base);
+            const sellPrice = applyCommission(base, commissionPercentage);
+            setData('unit_price', String(sellPrice));
+        } catch {
+            setPurchasePrice(null);
+        }
+    }
+
+    function toggleSerial(sn: string) {
+        const current = dataRef.current.serial_numbers;
+        const next = current.includes(sn) ? current.filter(s => s !== sn) : [...current, sn];
+        setData('serial_numbers', next);
+        setData('quantity', next.length || 1);
+    }
+
+    const isSerialized = availableSerials.length > 0;
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Record retail sale" />
+            <HeadingSmall
+                title="Record retail sale"
+                description="Record a consumer sale and reduce your stock."
+            />
 
-            <div className="mx-auto max-w-3xl space-y-6 p-4">
-                <HeadingSmall
-                    title="Record retail sale"
-                    description="Record a consumer sale and reduce your dealer stock."
+            {commissionPercentage > 0 && (
+                <div className="mb-4 rounded-md border border-blue-200 bg-blue-50 px-4 py-2 text-sm text-blue-700 dark:border-blue-800 dark:bg-blue-950/40 dark:text-blue-300">
+                    Commission: <span className="font-semibold">{commissionPercentage}%</span> — sell price is auto-calculated as purchase price + commission, rounded up to the next integer.
+                </div>
+            )}
+
+            <FormContainer onSubmit={submit} processing={processing} buttonLabel="Record sale">
+
+                {/* ── Customer & billing ── */}
+                <div className="space-y-1">
+                    <p className="text-sm font-medium text-gray-900 dark:text-gray-100">Customer &amp; billing</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                        Used for tax invoices and warranty registration.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <InputDiv
+                        type="text"
+                        label="Customer name"
+                        name="customer_name"
+                        inputDivData={inputDivData}
+                        required
+                        placeholder="Full name"
+                    />
+                    <InputDiv
+                        type="tel"
+                        label="Phone"
+                        name="customer_phone"
+                        inputDivData={inputDivData}
+                        required
+                        placeholder="Mobile number"
+                    />
+                    <div className="sm:col-span-2">
+                        <InputDiv
+                            type="email"
+                            label="Email (optional)"
+                            name="customer_email"
+                            inputDivData={inputDivData}
+                            placeholder="customer@example.com"
+                        />
+                    </div>
+                    <div className="sm:col-span-2">
+                        <InputDiv
+                            type="text"
+                            label="Address line 1"
+                            name="billing_address_line1"
+                            inputDivData={inputDivData}
+                            required
+                        />
+                    </div>
+                    <div className="sm:col-span-2">
+                        <InputDiv
+                            type="text"
+                            label="Address line 2 (optional)"
+                            name="billing_address_line2"
+                            inputDivData={inputDivData}
+                        />
+                    </div>
+                    <InputDiv
+                        type="text"
+                        label="City"
+                        name="billing_city"
+                        inputDivData={inputDivData}
+                        required
+                    />
+                    <InputDiv
+                        type="text"
+                        label="State / province"
+                        name="billing_state"
+                        inputDivData={inputDivData}
+                        required
+                    />
+                    <InputDiv
+                        type="text"
+                        label="PIN / postal code"
+                        name="billing_pincode"
+                        inputDivData={inputDivData}
+                        required
+                    />
+                    <InputDiv
+                        type="text"
+                        label="Country"
+                        name="billing_country"
+                        inputDivData={inputDivData}
+                        required
+                    />
+                    <div className="sm:col-span-2">
+                        <InputDiv
+                            type="text"
+                            label="GSTIN (optional)"
+                            name="customer_gstin"
+                            inputDivData={inputDivData}
+                            placeholder="For B2B / tax invoice"
+                        />
+                    </div>
+                </div>
+
+                {/* ── Product ── */}
+                <div className="border-t border-gray-200 pt-4 dark:border-gray-700">
+                    <p className="mb-3 text-sm font-medium text-gray-900 dark:text-gray-100">Product</p>
+                </div>
+
+                <InputDiv
+                    type="async-select"
+                    label="Product"
+                    name="product_id"
+                    inputDivData={{
+                        ...inputDivData,
+                        setData: async (key: string, value: any) => {
+                            (inputDivData.setData as (k: string, v: any) => void)(key, value);
+                            if (key === 'product_id') {
+                                fetchSerials(value);
+                                fetchProductPrice(value);
+                            }
+                        },
+                    }}
+                    required
+                    fetchRouteName="dealer.products.search"
+                    fetchQueryParam="q"
+                    minSearchLength={2}
+                    placeholder="Type at least 2 characters to search…"
                 />
 
-                <FormContainer
-                    onSubmit={submit}
-                    processing={processing}
-                    buttonLabel="Record sale"
-                    className="space-y-4"
-                >
-                    <div className="space-y-3 rounded-lg border border-gray-200 bg-gray-50/80 p-4">
-                        <div className="text-sm font-medium">Customer & billing</div>
-                        <p className="text-xs text-gray-600">
-                            Used for tax invoices and warranty registration. Enter the buyer&apos;s
-                            details as they should appear on documents.
-                        </p>
-                        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                            <div>
-                                <Label>Customer name</Label>
-                                <Input
-                                    className="mt-1"
-                                    value={data.customer_name}
-                                    onChange={(e) => setData('customer_name', e.target.value)}
-                                    autoComplete="name"
-                                />
-                                <InputError message={errors.customer_name} />
-                            </div>
-                            <div>
-                                <Label>Phone</Label>
-                                <Input
-                                    className="mt-1"
-                                    value={data.customer_phone}
-                                    onChange={(e) => setData('customer_phone', e.target.value)}
-                                    autoComplete="tel"
-                                />
-                                <InputError message={errors.customer_phone} />
-                            </div>
-                            <div className="md:col-span-2">
-                                <Label>Email (optional)</Label>
-                                <Input
-                                    className="mt-1"
-                                    type="email"
-                                    value={data.customer_email}
-                                    onChange={(e) => setData('customer_email', e.target.value)}
-                                    autoComplete="email"
-                                />
-                                <InputError message={errors.customer_email} />
-                            </div>
-                            <div className="md:col-span-2">
-                                <Label>Address line 1</Label>
-                                <Input
-                                    className="mt-1"
-                                    value={data.billing_address_line1}
-                                    onChange={(e) =>
-                                        setData('billing_address_line1', e.target.value)
-                                    }
-                                />
-                                <InputError message={errors.billing_address_line1} />
-                            </div>
-                            <div className="md:col-span-2">
-                                <Label>Address line 2 (optional)</Label>
-                                <Input
-                                    className="mt-1"
-                                    value={data.billing_address_line2}
-                                    onChange={(e) =>
-                                        setData('billing_address_line2', e.target.value)
-                                    }
-                                />
-                                <InputError message={errors.billing_address_line2} />
-                            </div>
-                            <div>
-                                <Label>City</Label>
-                                <Input
-                                    className="mt-1"
-                                    value={data.billing_city}
-                                    onChange={(e) => setData('billing_city', e.target.value)}
-                                />
-                                <InputError message={errors.billing_city} />
-                            </div>
-                            <div>
-                                <Label>State / province</Label>
-                                <Input
-                                    className="mt-1"
-                                    value={data.billing_state}
-                                    onChange={(e) => setData('billing_state', e.target.value)}
-                                />
-                                <InputError message={errors.billing_state} />
-                            </div>
-                            <div>
-                                <Label>PIN / postal code</Label>
-                                <Input
-                                    className="mt-1"
-                                    value={data.billing_pincode}
-                                    onChange={(e) => setData('billing_pincode', e.target.value)}
-                                />
-                                <InputError message={errors.billing_pincode} />
-                            </div>
-                            <div>
-                                <Label>Country</Label>
-                                <Input
-                                    className="mt-1"
-                                    value={data.billing_country}
-                                    onChange={(e) => setData('billing_country', e.target.value)}
-                                />
-                                <InputError message={errors.billing_country} />
-                            </div>
-                            <div className="md:col-span-2">
-                                <Label>GSTIN (optional)</Label>
-                                <Input
-                                    className="mt-1"
-                                    value={data.customer_gstin}
-                                    onChange={(e) => setData('customer_gstin', e.target.value)}
-                                    placeholder="For B2B / tax invoice"
-                                />
-                                <InputError message={errors.customer_gstin} />
-                            </div>
+                {/* Serial number selector (checkbox style) */}
+                {isSerialized ? (
+                    <div className="space-y-2 rounded-lg border border-blue-200 bg-blue-50 p-3 dark:border-blue-800 dark:bg-blue-950/40">
+                        <div className="flex items-center justify-between">
+                            <span className="text-sm font-medium text-blue-800 dark:text-blue-300">
+                                Select serial numbers to sell
+                                <span className="ml-1 text-red-500">*</span>
+                            </span>
+                            <span className="text-xs text-gray-500">
+                                {data.serial_numbers.length} of {availableSerials.length} selected
+                            </span>
                         </div>
-                    </div>
-
-                    <div className="space-y-3">
-                        <div className="text-sm font-medium">Items</div>
-                        {data.items.map((row, idx) => (
-                            <div
-                                key={idx}
-                                className="grid grid-cols-1 gap-3 md:grid-cols-12"
+                        <div className="max-h-48 overflow-y-auto rounded-lg border border-gray-200 bg-white p-2 dark:border-gray-700 dark:bg-gray-900">
+                            {availableSerials.map((sn) => (
+                                <label
+                                    key={sn}
+                                    className="flex cursor-pointer items-center gap-2 rounded px-2 py-1 hover:bg-gray-50 dark:hover:bg-gray-800"
+                                >
+                                    <input
+                                        type="checkbox"
+                                        checked={data.serial_numbers.includes(sn)}
+                                        onChange={() => toggleSerial(sn)}
+                                        className="h-4 w-4 rounded border-gray-300 text-blue-600"
+                                    />
+                                    <span className="font-mono text-sm">{sn}</span>
+                                </label>
+                            ))}
+                        </div>
+                        <div className="flex gap-3 text-xs">
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setData('serial_numbers', availableSerials);
+                                    setData('quantity', availableSerials.length);
+                                }}
+                                className="text-blue-600 hover:underline"
                             >
-                                <div className="md:col-span-7">
-                                    <Label>Product</Label>
-                                    <select
-                                        className="mt-1 h-9 w-full rounded-md border border-input bg-transparent px-3 text-sm"
-                                        value={row.product_id}
-                                        onChange={(e) => {
-                                            const next = [...data.items];
-                                            const pid = Number(e.target.value);
-                                            const product = productMap.get(pid);
-                                            const basePrice = product?.price ?? 0;
-                                            next[idx] = {
-                                                ...next[idx],
-                                                product_id: e.target.value,
-                                                unit_price:
-                                                    next[idx].unit_price === '' ||
-                                                    next[idx].unit_price == null
-                                                        ? Number(basePrice)
-                                                        : next[idx].unit_price,
-                                            };
-                                            setData('items', next);
-                                        }}
-                                    >
-                                        <option value="">Select product</option>
-                                        {products.map((p) => (
-                                            <option key={p.id} value={String(p.id)}>
-                                                {p.title}
-                                                {p.sku ? ` (${p.sku})` : ''} — base{' '}
-                                                {formatMoney(p.price, { showDecimals: true })}
-                                            </option>
-                                        ))}
-                                    </select>
-                                    <InputError
-                                        message={(errors as any)[`items.${idx}.product_id`]}
-                                    />
-                                </div>
-                                <div className="md:col-span-2">
-                                    <Label>Qty</Label>
-                                    <Input
-                                        className="mt-1"
-                                        type="number"
-                                        min={1}
-                                        value={row.quantity}
-                                        onChange={(e) => {
-                                            const next = [...data.items];
-                                            next[idx] = {
-                                                ...next[idx],
-                                                quantity: Number(e.target.value),
-                                            };
-                                            setData('items', next);
-                                        }}
-                                    />
-                                    <InputError
-                                        message={(errors as any)[`items.${idx}.quantity`]}
-                                    />
-                                </div>
-                                <div className="md:col-span-2">
-                                    <Label>Unit price (optional)</Label>
-                                    <Input
-                                        className="mt-1"
-                                        type="number"
-                                        min={0}
-                                        step="0.01"
-                                        value={row.unit_price ?? ''}
-                                        onChange={(e) => {
-                                            const next = [...data.items];
-                                            next[idx] = {
-                                                ...next[idx],
-                                                unit_price:
-                                                    e.target.value === ''
-                                                        ? ''
-                                                        : Number(e.target.value),
-                                            };
-                                            setData('items', next);
-                                        }}
-                                        placeholder="Override"
-                                    />
-                                    <InputError
-                                        message={(errors as any)[`items.${idx}.unit_price`]}
-                                    />
-                                </div>
-                                <div className="md:col-span-1 flex items-end">
-                                    <Button
-                                        type="button"
-                                        variant="ghost"
-                                        onClick={() => {
-                                            const next = data.items.filter(
-                                                (_, i) => i !== idx
-                                            );
-                                            setData(
-                                                'items',
-                                                next.length
-                                                    ? next
-                                                    : [
-                                                          {
-                                                              product_id: '',
-                                                              quantity: 1,
-                                                              unit_price: '',
-                                                          },
-                                                      ]
-                                            );
-                                        }}
-                                    >
-                                        Remove
-                                    </Button>
-                                </div>
-                            </div>
-                        ))}
-                        <Button
-                            type="button"
-                            variant="secondary"
-                            onClick={() =>
-                                setData('items', [
-                                    ...data.items,
-                                    { product_id: '', quantity: 1, unit_price: '' },
-                                ])
-                            }
-                        >
-                            Add item
-                        </Button>
+                                Select all
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setData('serial_numbers', []);
+                                    setData('quantity', 1);
+                                }}
+                                className="text-gray-500 hover:underline"
+                            >
+                                Clear
+                            </button>
+                        </div>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                            Quantity: <span className="font-medium">{data.serial_numbers.length}</span>
+                        </p>
+                        {(errors as any)?.serial_numbers && (
+                            <p className="text-sm text-red-600">{(errors as any).serial_numbers}</p>
+                        )}
                     </div>
+                ) : (
+                    <InputDiv
+                        type="number"
+                        label="Quantity"
+                        name="quantity"
+                        inputDivData={inputDivData}
+                        min={1}
+                        required
+                    />
+                )}
 
-                    <div className="text-sm text-gray-700">
-                        Subtotal:{' '}
-                        <span className="font-medium">
-                            {formatMoney(subtotal, { showDecimals: true })}
-                        </span>
-                    </div>
-                </FormContainer>
-            </div>
+                {/* Sell price */}
+                <div className="space-y-1">
+                    <InputDiv
+                        type="number"
+                        label="Sell price"
+                        name="unit_price"
+                        inputDivData={inputDivData}
+                        min={0}
+                        step="1"
+                        placeholder="Auto-calculated from purchase price + commission"
+                    />
+                    {purchasePrice !== null && commissionPercentage > 0 && (
+                        <p className="text-xs text-gray-500">
+                            Purchase price: <span className="font-medium">{purchasePrice}</span> + {commissionPercentage}% commission → rounded up to <span className="font-semibold">{applyCommission(purchasePrice, commissionPercentage)}</span>
+                        </p>
+                    )}
+                </div>
+
+            </FormContainer>
         </AppLayout>
     );
 }
-

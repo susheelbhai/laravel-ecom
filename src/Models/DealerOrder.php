@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class DealerOrder extends Model
 {
+    use HasFactory;
+
     public static function generateOrderNumber(): string
     {
         return 'DLR-'.time().'-'.uniqid();
@@ -21,11 +24,14 @@ class DealerOrder extends Model
         'placed_by_distributor_id',
         'subtotal_amount',
         'total_amount',
+        'payment_status',
+        'amount_paid',
     ];
 
     protected $casts = [
         'subtotal_amount' => 'float',
         'total_amount' => 'float',
+        'amount_paid' => 'float',
     ];
 
     public function distributor(): BelongsTo
@@ -47,5 +53,9 @@ class DealerOrder extends Model
     {
         return $this->hasMany(DealerOrderItem::class);
     }
-}
 
+    public function payments(): HasMany
+    {
+        return $this->hasMany(DealerOrderPayment::class, 'dealer_order_id');
+    }
+}

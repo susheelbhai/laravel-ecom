@@ -66,6 +66,7 @@ class Dealer extends BaseInternalAuthenticatable
         'approved_by',
         'rejected_at',
         'rejection_note',
+        'commission_percentage',
     ];
 
     /**
@@ -83,6 +84,7 @@ class Dealer extends BaseInternalAuthenticatable
             'password' => 'hashed',
             'approved_at' => 'datetime',
             'rejected_at' => 'datetime',
+            'commission_percentage' => 'float',
         ];
     }
 

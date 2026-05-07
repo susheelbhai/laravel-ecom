@@ -1,4 +1,4 @@
-import { LayoutGrid, LogOut, Receipt, Settings, ShoppingCart, Warehouse } from 'lucide-react';
+import { AlertTriangle, LayoutGrid, LogOut, Receipt, Settings, ShoppingCart, Warehouse } from 'lucide-react';
 
 const mainNavItems = [
     {
@@ -20,6 +20,27 @@ const mainNavItems = [
         title: 'Retail Sales',
         routeName: 'dealer.retail-sales.index',
         icon: Receipt,
+    },
+    {
+        title: 'Serial Numbers',
+        icon: AlertTriangle,
+        children: [
+            {
+                title: 'Lookup',
+                routeName: 'dealer.serial-numbers.lookup',
+                icon: AlertTriangle,
+            },
+            {
+                title: 'Damaged',
+                routeName: 'dealer.serial-numbers.damaged',
+                icon: AlertTriangle,
+            },
+            {
+                title: 'Stolen',
+                routeName: 'dealer.serial-numbers.stolen',
+                icon: AlertTriangle,
+            },
+        ],
     },
 ];
 

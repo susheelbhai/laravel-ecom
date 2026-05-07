@@ -7,6 +7,9 @@ import TableCard from '@/components/table/table-card';
 import TBody from '@/components/table/tbody';
 import THead from '@/components/table/thead';
 import { useFormatMoney } from '@/hooks/use-format-money';
+import OrderSummaryCard from '@/components/order/OrderSummaryCard';
+import OrderDetailItem from '@/components/order/OrderDetailItem';
+import PaymentSummarySection from '@/components/payment/PaymentSummarySection';
 
 export default function DistributorDealerOrderShow() {
     const { data } = usePage<SharedData>().props as any;
@@ -16,35 +19,6 @@ export default function DistributorDealerOrderShow() {
         { title: 'Dealer Orders', href: '/distributor/dealer-orders' },
         { title: data?.order_number ?? 'Order', href: '#' },
     ];
-
-    const status = String(data?.status ?? '').toLowerCase();
-    const statusUi: Record<string, { label: string; className: string }> = {
-        completed: {
-            label: 'Completed',
-            className:
-                'bg-emerald-50 text-emerald-700 ring-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-300 dark:ring-emerald-500/30',
-        },
-        pending: {
-            label: 'Pending',
-            className:
-                'bg-amber-50 text-amber-700 ring-amber-200 dark:bg-amber-500/10 dark:text-amber-300 dark:ring-amber-500/30',
-        },
-        cancelled: {
-            label: 'Cancelled',
-            className:
-                'bg-rose-50 text-rose-700 ring-rose-200 dark:bg-rose-500/10 dark:text-rose-300 dark:ring-rose-500/30',
-        },
-        processing: {
-            label: 'Processing',
-            className:
-                'bg-blue-50 text-blue-700 ring-blue-200 dark:bg-blue-500/10 dark:text-blue-300 dark:ring-blue-500/30',
-        },
-    };
-    const statusMeta = statusUi[status] ?? {
-        label: data?.status ?? '—',
-        className:
-            'bg-gray-50 text-gray-700 ring-gray-200 dark:bg-gray-500/10 dark:text-gray-200 dark:ring-gray-500/30',
-    };
 
     const thead = [
         { title: 'Product', className: 'p-3 sm:p-4' },
@@ -58,82 +32,25 @@ export default function DistributorDealerOrderShow() {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title={data?.order_number ?? 'Dealer order'} />
 
-            <div className="w-full space-y-6 p-4">
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-                    <div className="space-y-1">
-                        <div className="text-sm text-gray-600 dark:text-gray-300">
-                            Dealer order
-                        </div>
-                        <div className="flex flex-wrap items-center gap-2">
-                            <h1 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
-                                {data?.order_number ?? 'Order'}
-                            </h1>
-                            <span
-                                className={[
-                                    'inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ring-1 ring-inset',
-                                    statusMeta.className,
-                                ].join(' ')}
-                            >
-                                {statusMeta.label}
+            <div className="w-full space-y-6">
+                <OrderSummaryCard
+                    orderNumber={data?.order_number ?? 'Order'}
+                    status={data?.status ?? ''}
+                >
+                    <OrderDetailItem label="Dealer">
+                        {data.dealer?.name ?? '—'}
+                        {data.dealer?.email && (
+                            <span className="block text-xs font-normal text-muted-foreground">
+                                {data.dealer.email}
                             </span>
-                        </div>
-                        <div className="text-sm text-gray-600 dark:text-gray-300">
-                            Created <span className="font-medium">{data.created_at}</span>
-                        </div>
-                    </div>
-
-                    <div className="rounded-lg border border-gray-200 bg-white p-3 shadow-sm dark:border-gray-800 dark:bg-gray-950">
-                        <div className="text-xs text-gray-500 dark:text-gray-400">Total</div>
-                        <div className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                            {formatMoney(data.total_amount)}
-                        </div>
-                    </div>
-                </div>
-
-                <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-                    <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-950 lg:col-span-2">
-                        <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
-                            Dealer
-                        </div>
-                        <div className="mt-3 grid gap-2 text-sm text-gray-700 dark:text-gray-200 sm:grid-cols-2">
-                            <div className="sm:col-span-2">
-                                <div className="font-medium text-gray-900 dark:text-gray-100">
-                                    {data.dealer?.name ?? '—'}
-                                </div>
-                            </div>
-                            {data.dealer?.email ? (
-                                <div className="truncate">
-                                    <div className="text-xs text-gray-500 dark:text-gray-400">
-                                        Email
-                                    </div>
-                                    <div className="font-medium">{data.dealer.email}</div>
-                                </div>
-                            ) : null}
-                        </div>
-                    </div>
-
-                    <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-950">
-                        <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
-                            Summary
-                        </div>
-                        <div className="mt-3 space-y-3 text-sm">
-                            <div className="flex items-center justify-between gap-3">
-                                <span className="text-gray-600 dark:text-gray-300">Items</span>
-                                <span className="font-medium text-gray-900 dark:text-gray-100">
-                                    {Array.isArray(data?.items) ? data.items.length : 0}
-                                </span>
-                            </div>
-                            <div className="flex items-center justify-between gap-3">
-                                <span className="text-gray-600 dark:text-gray-300">
-                                    Total amount
-                                </span>
-                                <span className="font-semibold text-gray-900 dark:text-gray-100">
-                                    {formatMoney(data.total_amount)}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        )}
+                    </OrderDetailItem>
+                    <OrderDetailItem label="Items">
+                        {Array.isArray(data?.items) ? data.items.length : 0}
+                    </OrderDetailItem>
+                    <OrderDetailItem label="Total">{formatMoney(data.total_amount)}</OrderDetailItem>
+                    <OrderDetailItem label="Created">{data.created_at}</OrderDetailItem>
+                </OrderSummaryCard>
 
                 <TableCard className="min-w-0">
                     <Table className="w-full max-w-full table-fixed">
@@ -181,6 +98,15 @@ export default function DistributorDealerOrderShow() {
                         </TBody>
                     </Table>
                 </TableCard>
+
+                {data.payment_summary && (
+                    <PaymentSummarySection
+                        summary={data.payment_summary}
+                        storeRoute="distributor.dealer-orders.payments.store"
+                        storeRouteParams={{ dealer_order: data.id }}
+                        canAddPayment={true}
+                    />
+                )}
             </div>
         </AppLayout>
     );

@@ -100,7 +100,25 @@ class DistributorOrderController extends Controller
         $distributorId = Auth::guard('distributor')->id();
         abort_unless($purchase_order->distributor_id === $distributorId, 403);
 
-        $purchase_order->loadMissing(['items.product']);
+        $purchase_order->loadMissing([
+            'items.product',
+            'payments.recordedByAdmin',
+            'payments.media',
+        ]);
+
+        $payments = $purchase_order->payments
+            ->sortBy('created_at')
+            ->map(fn ($payment) => [
+                'id' => $payment->id,
+                'amount' => (float) $payment->amount,
+                'payment_method' => $payment->payment_method,
+                'note' => $payment->note,
+                'recorded_by_name' => $payment->recordedByAdmin?->name ?? 'Admin',
+                'created_at' => $payment->created_at?->format('M d, Y H:i'),
+                'payment_proof_url' => $payment->getFirstMediaUrl('payment_proof') ?: null,
+            ])
+            ->values()
+            ->all();
 
         $data = [
             'id' => $purchase_order->id,
@@ -118,6 +136,12 @@ class DistributorOrderController extends Controller
                 'subtotal' => $item->subtotal,
             ]),
             'created_at' => $purchase_order->created_at?->format('M d, Y H:i'),
+            'payment_summary' => [
+                'payment_status' => $purchase_order->payment_status ?? 'unpaid',
+                'amount_paid' => (float) ($purchase_order->amount_paid ?? 0),
+                'remaining_balance' => (float) $purchase_order->total_amount - (float) ($purchase_order->amount_paid ?? 0),
+                'payments' => $payments,
+            ],
         ];
 
         return $this->render('distributor/orders/purchase/show', compact('data'));

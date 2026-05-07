@@ -19,6 +19,8 @@ class AdminDistributorOrderApproveRequest extends FormRequest
             'items.*.id' => ['required', 'integer', 'exists:distributor_order_items,id'],
             'items.*.quantity' => ['required', 'integer', 'min:1'],
             'items.*.unit_price' => ['nullable', 'numeric', 'min:0'],
+            'items.*.serial_numbers' => ['nullable', 'array'],
+            'items.*.serial_numbers.*' => ['string'],
         ];
     }
 }

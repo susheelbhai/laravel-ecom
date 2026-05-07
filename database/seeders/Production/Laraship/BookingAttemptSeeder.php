@@ -12,7 +12,7 @@ class BookingAttemptSeeder extends Seeder
      */
     public function run(): void
     {
-        include __DIR__.'/data/data.php';
+        include __DIR__.'/../data/data.php';
         BookingAttempt::insert($booking_attempts);
     }
 }

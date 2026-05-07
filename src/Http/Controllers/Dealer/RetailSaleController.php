@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers\Dealer;
 
+use App\Contracts\SerialNumberMovementServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DealerRetailSaleStoreRequest;
 use App\Models\DealerRetailSale;
 use App\Models\Product;
+use App\Models\SerialNumber;
 use App\Services\Inventory\DefaultLocationService;
 use App\Services\Inventory\StockTransferService;
+use App\Services\WarrantyCardService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Collection;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
@@ -17,6 +21,10 @@ use RuntimeException;
 
 class RetailSaleController extends Controller
 {
+    public function __construct(
+        private readonly SerialNumberMovementServiceInterface $serialNumberMovementService,
+    ) {}
+
     public function index()
     {
         $dealerId = Auth::guard('dealer')->id();
@@ -39,13 +47,95 @@ class RetailSaleController extends Controller
 
     public function create()
     {
+        $dealer = Auth::guard('dealer')->user();
+        $commissionPercentage = (float) ($dealer->commission_percentage ?? 0);
+
+        return $this->render('dealer/retail-sales/create', compact('commissionPercentage'));
+    }
+
+    /**
+     * Search products available in the dealer's stock.
+     *
+     * GET /dealer/products/search?q=...
+     */
+    public function productSearch(Request $request): JsonResponse
+    {
+        $dealer = Auth::guard('dealer')->user();
+        $q = trim((string) $request->query('q', ''));
+
+        if (mb_strlen($q) < 2) {
+            return response()->json(['results' => []]);
+        }
+
+        $escaped = '%'.addcslashes($q, '%_\\').'%';
+
         $products = Product::query()
-            ->select(['id', 'title', 'sku', 'price', 'manage_stock'])
+            ->select(['id', 'title', 'sku', 'price'])
+            ->where(function ($query) use ($escaped) {
+                $query->where('title', 'like', $escaped)
+                    ->orWhere('sku', 'like', $escaped);
+            })
             ->orderBy('title')
-            ->limit(200)
+            ->limit(30)
             ->get();
 
-        return $this->render('dealer/retail-sales/create', compact('products'));
+        return response()->json([
+            'results' => $products->map(fn (Product $p) => [
+                'id' => $p->id,
+                'label' => $p->sku ? "{$p->title} ({$p->sku})" : $p->title,
+                'purchase_price' => $this->dealerPurchasePrice($dealer->id, $p->id) ?? $p->price,
+            ]),
+        ]);
+    }
+
+    /**
+     * Return available serial numbers for a product in the dealer's default rack.
+     *
+     * GET /dealer/products/{product}/serials
+     */
+    public function productSerials(Product $product, DefaultLocationService $defaultLocation): JsonResponse
+    {
+        $dealer = Auth::guard('dealer')->user();
+        $rack = $defaultLocation->ensureDealerDefaultRack($dealer);
+
+        $serials = SerialNumber::where('product_id', $product->id)
+            ->where('rack_id', $rack->id)
+            ->where('status', 'available')
+            ->orderBy('serial_number')
+            ->pluck('serial_number');
+
+        return response()->json(['serial_numbers' => $serials]);
+    }
+
+    /**
+     * Return the dealer's purchase price for a product (from their most recent order).
+     *
+     * GET /dealer/products/{product}/price
+     */
+    public function productPrice(Product $product): JsonResponse
+    {
+        $dealer = Auth::guard('dealer')->user();
+        $purchasePrice = $this->dealerPurchasePrice($dealer->id, $product->id) ?? $product->price;
+
+        return response()->json([
+            'purchase_price' => $purchasePrice,
+        ]);
+    }
+
+    /**
+     * Resolve the unit price the dealer last paid for a product via a dealer order.
+     * Falls back to null if no order history exists.
+     */
+    private function dealerPurchasePrice(int $dealerId, int $productId): ?float
+    {
+        $price = DB::table('dealer_order_items')
+            ->join('dealer_orders', 'dealer_orders.id', '=', 'dealer_order_items.dealer_order_id')
+            ->where('dealer_orders.dealer_id', $dealerId)
+            ->where('dealer_order_items.product_id', $productId)
+            ->orderByDesc('dealer_order_items.id')
+            ->value('dealer_order_items.unit_price');
+
+        return $price !== null ? (float) $price : null;
     }
 
     public function store(DealerRetailSaleStoreRequest $request, StockTransferService $stockTransfer, DefaultLocationService $defaultLocation): RedirectResponse
@@ -57,48 +147,23 @@ class RetailSaleController extends Controller
 
         try {
             $sale = DB::transaction(function () use ($validated, $dealer, $stockTransfer, $defaultLocation) {
-                $itemsInput = collect($validated['items'])->map(function ($row) {
-                    return [
-                        'product_id' => (int) $row['product_id'],
-                        'quantity' => (int) $row['quantity'],
-                        'unit_price' => $row['unit_price'] ?? null,
-                    ];
-                });
+                $product = Product::findOrFail((int) $validated['product_id']);
 
-                /** @var Collection<int,Product> $products */
-                $products = Product::query()
-                    ->whereIn('id', $itemsInput->pluck('product_id'))
-                    ->get()
-                    ->keyBy('id');
-
-                $lineItems = $itemsInput->map(function (array $item) use ($products) {
-                    $product = $products->get($item['product_id']);
-                    if (! $product || $product->price === null) {
-                        abort(422, 'Price not set for one or more products.');
-                    }
-
-                    $base = (float) $product->price;
-                    $override = $item['unit_price'] !== null ? (float) $item['unit_price'] : null;
-                    $unitPrice = $override ?? $base;
-                    $subtotal = $unitPrice * $item['quantity'];
-
-                    return [
-                        'product_id' => $item['product_id'],
-                        'quantity' => $item['quantity'],
-                        'unit_price' => $unitPrice,
-                        'subtotal' => $subtotal,
-                    ];
-                });
-
-                $subtotalAmount = (float) $lineItems->sum('subtotal');
+                $base = $this->dealerPurchasePrice($dealer->id, $product->id) ?? (float) ($product->price ?? 0);
+                $override = isset($validated['unit_price']) && $validated['unit_price'] !== null
+                    ? (float) $validated['unit_price']
+                    : null;
+                $unitPrice = $override ?? $base;
+                $quantity = (int) $validated['quantity'];
+                $subtotal = $unitPrice * $quantity;
 
                 $sale = DealerRetailSale::create([
                     'sale_number' => DealerRetailSale::generateSaleNumber(),
                     'status' => 'completed',
                     'dealer_id' => $dealer->id,
                     'created_by_dealer_id' => $dealer->id,
-                    'subtotal_amount' => $subtotalAmount,
-                    'total_amount' => $subtotalAmount,
+                    'subtotal_amount' => $subtotal,
+                    'total_amount' => $subtotal,
                     'customer_name' => $validated['customer_name'],
                     'customer_email' => $validated['customer_email'] ?? null,
                     'customer_phone' => $validated['customer_phone'],
@@ -111,44 +176,41 @@ class RetailSaleController extends Controller
                     'customer_gstin' => $validated['customer_gstin'] ?? null,
                 ]);
 
-                $sale->items()->createMany($lineItems->map(fn ($li) => [
-                    'product_id' => $li['product_id'],
-                    'quantity' => $li['quantity'],
-                    'unit_price' => $li['unit_price'],
-                    'subtotal' => $li['subtotal'],
-                ])->all());
+                $saleItem = $sale->items()->create([
+                    'product_id' => $product->id,
+                    'quantity' => $quantity,
+                    'unit_price' => $unitPrice,
+                    'subtotal' => $subtotal,
+                ]);
+
+                $serialNumbers = $validated['serial_numbers'] ?? [];
+                $serialNumbersBySaleItemId = [];
+
+                if (! empty($serialNumbers)) {
+                    $this->serialNumberMovementService->validateAndConsume(
+                        serialNumber: $serialNumbers[0],
+                        productId: $product->id,
+                        saleItem: $saleItem,
+                        actor: $dealer,
+                    );
+                    $serialNumbersBySaleItemId[$saleItem->id] = $serialNumbers[0];
+                }
 
                 $rack = $defaultLocation->ensureDealerDefaultRack($dealer);
 
-                $consumeItems = $itemsInput->map(fn ($x) => [
-                    'product_id' => $x['product_id'],
-                    'quantity' => $x['quantity'],
-                ]);
-
                 $stockTransfer->consumeStock(
                     $rack->id,
-                    $consumeItems,
+                    collect([['product_id' => $product->id, 'quantity' => $quantity]]),
                     $sale,
-                    "Retail sale #{$sale->sale_number}"
+                    "Retail sale #{$sale->sale_number}",
                 );
+
+                app(WarrantyCardService::class)->generateForSale($sale, $serialNumbersBySaleItemId);
 
                 return $sale;
             });
         } catch (RuntimeException $e) {
-            $msg = $e->getMessage();
-            $messages = ['items' => [$msg]];
-
-            if (preg_match('/product\s+(\d+)/i', $msg, $m)) {
-                $productId = (int) $m[1];
-                foreach ($validated['items'] as $idx => $row) {
-                    if ((int) ($row['product_id'] ?? 0) === $productId) {
-                        $messages["items.$idx.quantity"] = [$msg];
-                        break;
-                    }
-                }
-            }
-
-            throw ValidationException::withMessages($messages);
+            throw ValidationException::withMessages(['product_id' => [$e->getMessage()]]);
         }
 
         return redirect()->route('dealer.retail-sales.show', $sale)->with('success', 'Retail sale recorded.');
@@ -159,7 +221,7 @@ class RetailSaleController extends Controller
         $dealerId = Auth::guard('dealer')->id();
         abort_unless($retail_sale->dealer_id === $dealerId, 403);
 
-        $retail_sale->loadMissing(['items.product']);
+        $retail_sale->loadMissing(['items.product', 'warrantyCards.serialNumber', 'warrantyCards.product']);
 
         $data = [
             'id' => $retail_sale->id,
@@ -184,6 +246,16 @@ class RetailSaleController extends Controller
                 'quantity' => $item->quantity,
                 'unit_price' => $item->unit_price,
                 'subtotal' => $item->subtotal,
+            ]),
+            'warranty_cards' => $retail_sale->warrantyCards->map(fn ($card) => [
+                'id' => $card->id,
+                'card_number' => $card->card_number,
+                'product_title' => $card->product?->title,
+                'serial_number' => $card->serialNumber?->serial_number,
+                'purchase_date' => $card->purchase_date?->format('M d, Y'),
+                'warranty_expires_at' => $card->warranty_expires_at?->format('M d, Y'),
+                'is_expired' => $card->isExpired(),
+                'terms_snapshot' => $card->terms_snapshot,
             ]),
             'created_at' => $retail_sale->created_at?->format('M d, Y H:i'),
         ];

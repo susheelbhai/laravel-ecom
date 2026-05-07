@@ -9,14 +9,11 @@ import TableCard from '@/components/table/table-card';
 import TBody from '@/components/table/tbody';
 import THead from '@/components/table/thead';
 import { useFormatMoney } from '@/hooks/use-format-money';
+import OrderSummaryCard from '@/components/order/OrderSummaryCard';
+import OrderDetailItem from '@/components/order/OrderDetailItem';
+import PaymentSummarySection from '@/components/payment/PaymentSummarySection';
 
 type AddItemForm = { product_id: string; quantity: string };
-
-const statusUi: Record<string, { label: string; className: string }> = {
-    pending: { label: 'Pending', className: 'bg-amber-50 text-amber-700 ring-amber-200' },
-    approved: { label: 'Approved', className: 'bg-emerald-50 text-emerald-700 ring-emerald-200' },
-    rejected: { label: 'Rejected', className: 'bg-rose-50 text-rose-700 ring-rose-200' },
-};
 
 const thead = [
     { title: 'Product', className: 'p-3' },
@@ -41,32 +38,26 @@ export default function DistributorPurchaseOrderShow() {
         method: 'POST',
     });
 
-    const statusMeta = statusUi[data?.status] ?? { label: data?.status ?? '—', className: 'bg-gray-50 text-gray-700 ring-gray-200' };
-
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title={data?.order_number ?? 'Purchase order'} />
 
             <div className="w-full space-y-6 p-4">
-                <div className="flex flex-wrap items-center gap-2">
-                    <h1 className="text-xl font-semibold">{data?.order_number}</h1>
-                    <span className={['inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ring-1 ring-inset', statusMeta.className].join(' ')}>
-                        {statusMeta.label}
-                    </span>
-                    <span className="text-sm text-gray-500">· Placed {data.created_at}</span>
-                </div>
-
-                {isPending && (
-                    <div className="rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
-                        Awaiting admin review. You can still add more items below.
-                    </div>
-                )}
-
-                {data?.status === 'rejected' && data.rejection_note && (
-                    <div className="rounded-md border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">
-                        <span className="font-medium">Rejection reason:</span> {data.rejection_note}
-                    </div>
-                )}
+                <OrderSummaryCard
+                    orderNumber={data?.order_number ?? 'Order'}
+                    status={data?.status ?? ''}
+                    rejectionNote={data?.status === 'rejected' ? data.rejection_note : null}
+                    notice={
+                        isPending ? (
+                            <div className="rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+                                Awaiting admin review. You can still add more items below.
+                            </div>
+                        ) : undefined
+                    }
+                >
+                    <OrderDetailItem label="Total">{formatMoney(data.total_amount)}</OrderDetailItem>
+                    <OrderDetailItem label="Created">{data.created_at}</OrderDetailItem>
+                </OrderSummaryCard>
 
                 <TableCard>
                     <Table>
@@ -113,6 +104,15 @@ export default function DistributorPurchaseOrderShow() {
                             />
                         </FormContainer>
                     </div>
+                )}
+
+                {data.payment_summary && (
+                    <PaymentSummarySection
+                        summary={data.payment_summary}
+                        storeRoute="distributor.purchase-orders.show"
+                        storeRouteParams={{}}
+                        canAddPayment={false}
+                    />
                 )}
             </div>
         </AppLayout>
