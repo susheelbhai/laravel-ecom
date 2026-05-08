@@ -50,7 +50,7 @@ const AddressIndex = () => {
                         {addresses.map((address: Address) => (
                             <div
                                 key={address.id}
-                                className={`relative rounded-lg border p-6 ${
+                                className={`relative rounded-div border p-6 ${
                                     address.is_default
                                         ? 'border-primary bg-primary/10'
                                         : ''

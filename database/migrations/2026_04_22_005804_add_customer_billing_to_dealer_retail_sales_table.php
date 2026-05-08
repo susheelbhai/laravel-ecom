@@ -15,8 +15,8 @@ return new class extends Migration
             $table->string('billing_address_line1')->nullable()->after('customer_phone');
             $table->string('billing_address_line2')->nullable()->after('billing_address_line1');
             $table->string('billing_city')->nullable()->after('billing_address_line2');
-            $table->string('billing_state')->nullable()->after('billing_city');
-            $table->string('billing_pincode', 16)->nullable()->after('billing_state');
+            $table->foreignId('billing_state_id')->nullable()->constrained('states')->nullOnDelete()->after('billing_city');
+            $table->string('billing_pincode', 16)->nullable()->after('billing_state_id');
             $table->string('billing_country', 64)->nullable()->after('billing_pincode');
             $table->string('customer_gstin', 32)->nullable()->after('billing_country');
         });
@@ -32,7 +32,7 @@ return new class extends Migration
                 'billing_address_line1',
                 'billing_address_line2',
                 'billing_city',
-                'billing_state',
+                'billing_state_id',
                 'billing_pincode',
                 'billing_country',
                 'customer_gstin',

@@ -13,7 +13,7 @@ export default function TeamSection(data: any) {
                     {data.data.map((team: any) => (
                         <div
                             key={team.id}
-                            className="rounded-lg bg-background2 p-6"
+                            className="rounded-div bg-background2 p-6"
                         >
                             <img
                                 src={`${team.image_converted.small}`}

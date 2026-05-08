@@ -31,7 +31,7 @@ export default function Create() {
                                 className="group"
                                 key={blog.id}
                             >
-                                <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
+                                <div className="flex h-full flex-col rounded-div border border-border bg-card p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
                                     {blog.display_img && (
                                         <div className="mb-4 flex justify-center">
                                             <img

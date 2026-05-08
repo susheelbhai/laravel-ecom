@@ -23,6 +23,7 @@ class DealerOrder extends Model
         'dealer_id',
         'placed_by_distributor_id',
         'subtotal_amount',
+        'tax_amount',
         'total_amount',
         'payment_status',
         'amount_paid',
@@ -30,6 +31,7 @@ class DealerOrder extends Model
 
     protected $casts = [
         'subtotal_amount' => 'float',
+        'tax_amount' => 'float',
         'total_amount' => 'float',
         'amount_paid' => 'float',
     ];

@@ -68,7 +68,7 @@ export default function TrustBadgesSettings({ trustBadges }: { trustBadges: any[
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="rounded-2xl bg-card p-6 shadow-md ring-1 ring-border">
+                    <div className="rounded-div bg-card p-6 shadow-md ring-1 ring-border">
                         <div className="mb-4 flex items-center justify-between">
                             <h2 className="text-lg font-semibold text-foreground">
                                 Badges ({badges.length}/6)
@@ -89,7 +89,7 @@ export default function TrustBadgesSettings({ trustBadges }: { trustBadges: any[
                             {badges.map((badge, index) => (
                                 <div
                                     key={index}
-                                    className="rounded-xl border border-border bg-muted/30 p-4"
+                                    className="rounded-div border border-border bg-muted/30 p-4"
                                 >
                                     <div className="mb-3 flex items-center justify-between">
                                         <h3 className="font-medium text-foreground">
@@ -120,7 +120,7 @@ export default function TrustBadgesSettings({ trustBadges }: { trustBadges: any[
                                                         e.target.value,
                                                     )
                                                 }
-                                                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground"
+                                                className="w-full rounded-div border border-border bg-background px-3 py-2 text-sm text-foreground"
                                             >
                                                 {availableIcons.map((icon) => (
                                                     <option key={icon} value={icon}>
@@ -144,7 +144,7 @@ export default function TrustBadgesSettings({ trustBadges }: { trustBadges: any[
                                                         e.target.value,
                                                     )
                                                 }
-                                                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground"
+                                                className="w-full rounded-div border border-border bg-background px-3 py-2 text-sm text-foreground"
                                                 placeholder="e.g., Free Shipping"
                                             />
                                         </div>
@@ -163,7 +163,7 @@ export default function TrustBadgesSettings({ trustBadges }: { trustBadges: any[
                                                         e.target.value,
                                                     )
                                                 }
-                                                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground"
+                                                className="w-full rounded-div border border-border bg-background px-3 py-2 text-sm text-foreground"
                                                 placeholder="e.g., On orders over ₹500"
                                             />
                                         </div>
@@ -178,7 +178,7 @@ export default function TrustBadgesSettings({ trustBadges }: { trustBadges: any[
                             ))}
 
                             {badges.length === 0 && (
-                                <div className="rounded-xl border-2 border-dashed border-border bg-muted/20 p-8 text-center">
+                                <div className="rounded-div border-2 border-dashed border-border bg-muted/20 p-8 text-center">
                                     <p className="text-muted-foreground">
                                         No badges added yet. Click "Add Badge" to create one.
                                     </p>
@@ -191,7 +191,7 @@ export default function TrustBadgesSettings({ trustBadges }: { trustBadges: any[
                         <Button
                             type="submit"
                             disabled={processing || badges.length === 0}
-                            className="rounded-2xl"
+                            className="rounded-button"
                         >
                             {processing ? 'Saving...' : 'Save Changes'}
                         </Button>

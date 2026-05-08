@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('address_line1');
             $table->string('address_line2')->nullable();
             $table->string('city');
-            $table->string('state');
+            $table->foreignId('state_id')->constrained('states');
             $table->string('pincode', 10);
             $table->string('country')->default('India');
             $table->boolean('is_default')->default(false);

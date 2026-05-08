@@ -32,6 +32,10 @@ return new class extends Migration
             $table->decimal('original_price', 10, 2)->nullable();
             $table->decimal('mrp', 10, 2)->nullable();
 
+            // GST
+            $table->string('hsn_code', 8)->nullable();
+            $table->decimal('gst_rate', 5, 2)->nullable()->comment('GST percentage e.g. 18.00');
+
             // inventory
             $table->integer('stock')->default(0);
             $table->boolean('manage_stock')->default(true);

@@ -25,9 +25,9 @@ export default function CategoriesSection({ data }: { data: any }) {
                             href={route('product.index', { category: category.slug })}
                             className="group"
                         >
-                            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/5 to-primary/10 p-6 shadow-md ring-1 ring-border transition-all hover:shadow-lg hover:ring-primary/30">
+                            <div className="relative overflow-hidden rounded-div bg-gradient-to-br from-primary/5 to-primary/10 p-6 shadow-md ring-1 ring-border transition-all hover:shadow-lg hover:ring-primary/30">
                                 {category.icon ? (
-                                    <div className="mb-3 overflow-hidden rounded-xl">
+                                    <div className="mb-3 overflow-hidden rounded-div">
                                         <img
                                             src={category.icon}
                                             alt={category.name}
@@ -35,7 +35,7 @@ export default function CategoriesSection({ data }: { data: any }) {
                                         />
                                     </div>
                                 ) : (
-                                    <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 transition-transform group-hover:scale-110">
+                                    <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-div bg-primary/10 transition-transform group-hover:scale-110">
                                         <span className="text-2xl font-bold text-primary">
                                             {category.name?.charAt(0) || '?'}
                                         </span>

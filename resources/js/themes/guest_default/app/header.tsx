@@ -241,7 +241,7 @@ export default function Header({
                             <Link
                                 key={item.name}
                                 href={route(item.routeName)}
-                                className="rounded-lg px-3 py-2 transition-colors hover:bg-muted hover:text-primary"
+                                className="rounded-div px-3 py-2 transition-colors hover:bg-muted hover:text-primary"
                                 onClick={() => setMenuOpen(false)}
                             >
                                 {item.name}

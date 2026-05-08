@@ -55,8 +55,8 @@ export default function Create() {
                             </h2>
                             <div className="grid gap-6 md:grid-cols-3">
                                 {/* Objective */}
-                                <div className="group rounded-2xl bg-muted p-5 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-md">
-                                    <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-card shadow-sm">
+                                <div className="group rounded-div bg-muted p-5 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-md">
+                                    <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-div bg-card shadow-sm">
                                         <Target className="h-5 w-5 text-primary" />
                                     </div>
                                     <h3 className="mb-2 text-base font-semibold">
@@ -72,8 +72,8 @@ export default function Create() {
                                 </div>
 
                                 {/* Mission */}
-                                <div className="group rounded-2xl bg-muted p-5 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-md">
-                                    <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-card shadow-sm">
+                                <div className="group rounded-div bg-muted p-5 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-md">
+                                    <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-div bg-card shadow-sm">
                                         <Flag className="h-5 w-5 text-primary" />
                                     </div>
                                     <h3 className="mb-2 text-base font-semibold">
@@ -89,8 +89,8 @@ export default function Create() {
                                 </div>
 
                                 {/* Vision */}
-                                <div className="group rounded-2xl bg-muted p-5 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-md">
-                                    <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-card shadow-sm">
+                                <div className="group rounded-div bg-muted p-5 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-md">
+                                    <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-div bg-card shadow-sm">
                                         <Eye className="h-5 w-5 text-primary" />
                                     </div>
                                     <h3 className="mb-2 text-base font-semibold">

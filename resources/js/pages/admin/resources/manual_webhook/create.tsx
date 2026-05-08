@@ -153,7 +153,7 @@ export default function Create({ shipments, statusOptions }: Props) {
             </FormContainer>
 
             {/* Info Section */}
-            <div className="mt-6 bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="mt-6 bg-gray-50 border border-gray-200 rounded-div p-4">
                 <h3 className="text-sm font-medium text-gray-900 mb-2">How it works:</h3>
                 <ol className="list-decimal list-inside text-sm text-gray-600 space-y-1">
                     <li>Select a shipment with Mock provider</li>
@@ -171,7 +171,7 @@ export default function Create({ shipments, statusOptions }: Props) {
                     <h3 className="text-lg font-medium text-gray-900 mb-4">
                         Available Mock Shipments
                     </h3>
-                    <div className="bg-white shadow overflow-hidden sm:rounded-md">
+                    <div className="bg-white shadow overflow-hidden sm:rounded-div">
                         <ul className="divide-y divide-gray-200">
                             {shipments.map((shipment) => (
                                 <li key={shipment.id} className="px-4 py-4">

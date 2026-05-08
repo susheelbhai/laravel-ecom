@@ -18,7 +18,7 @@ export default function ExternalZoomOverlay({
     return (
         <div className="pointer-events-none absolute left-0 right-0 top-0 bottom-0 z-50 hidden lg:block">
             <div
-                className="h-full w-full overflow-hidden rounded-xl border-2 border-primary bg-white shadow-2xl"
+                className="h-full w-full overflow-hidden rounded-div border-2 border-primary bg-white shadow-2xl"
                 style={{
                     backgroundImage: `url(${src})`,
                     backgroundSize: `${zoomScale * 100}%`,

@@ -88,9 +88,11 @@ Route::middleware(['web', HandleInertiaRequests::class])->group(function () {
         Route::patch('/distributor/{distributor}/approve', [DistributorController::class, 'approve'])->name('distributor.approve');
         Route::patch('/distributor/{distributor}/reject', [DistributorController::class, 'reject'])->name('distributor.reject');
         Route::get('/dealer', [DealerController::class, 'index'])->name('dealer.index');
+        Route::get('/dealer/{dealer}', [DealerController::class, 'show'])->name('dealer.show');
         Route::patch('/dealer/{dealer}/approve', [DealerController::class, 'approve'])->name('dealer.approve');
         Route::patch('/dealer/{dealer}/reject', [DealerController::class, 'reject'])->name('dealer.reject');
         Route::get('/technician', [TechnicianController::class, 'index'])->name('technician.index');
+        Route::get('/technician/{technician}', [TechnicianController::class, 'show'])->name('technician.show');
         Route::patch('/technician/{technician}/approve', [TechnicianController::class, 'approve'])->name('technician.approve');
         Route::patch('/technician/{technician}/reject', [TechnicianController::class, 'reject'])->name('technician.reject');
 
@@ -100,6 +102,7 @@ Route::middleware(['web', HandleInertiaRequests::class])->group(function () {
         Route::get('/distributor-orders/products/{product}/pricing', [DistributorOrderController::class, 'productPricing'])->name('distributor-orders.products.pricing');
         Route::get('/distributor-orders/products/{product}/serials', [DistributorOrderController::class, 'productSerials'])->name('distributor-orders.products.serials');
         Route::get('/distributor-orders/{distributor_order}', [DistributorOrderController::class, 'show'])->name('distributor-orders.show');
+        Route::get('/distributor-orders/{distributor_order}/invoice', [DistributorOrderController::class, 'invoice'])->name('distributor-orders.invoice');
         Route::get('/distributor-orders/{distributor_order}/approve', [DistributorOrderController::class, 'approveForm'])->name('distributor-orders.approve.form');
         Route::patch('/distributor-orders/{distributor_order}/approve', [DistributorOrderController::class, 'approve'])->name('distributor-orders.approve');
         Route::patch('/distributor-orders/{distributor_order}/reject', [DistributorOrderController::class, 'reject'])->name('distributor-orders.reject');

@@ -128,7 +128,7 @@ export default function Profile({
                                     {/* Profile Details Section */}
                                     <div className="space-y-6 lg:col-span-2">
                                         <div className="grid gap-6 sm:grid-cols-2">
-                                            <div className="rounded-2xl bg-muted/50 p-4 transition-colors hover:bg-muted/70">
+                                            <div className="rounded-div bg-muted/50 p-4 transition-colors hover:bg-muted/70">
                                                 <p className="mb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wide">
                                                     Full Name
                                                 </p>
@@ -137,7 +137,7 @@ export default function Profile({
                                                 </p>
                                             </div>
 
-                                            <div className="rounded-2xl bg-muted/50 p-4 transition-colors hover:bg-muted/70">
+                                            <div className="rounded-div bg-muted/50 p-4 transition-colors hover:bg-muted/70">
                                                 <p className="mb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wide">
                                                     Email Address
                                                 </p>
@@ -146,7 +146,7 @@ export default function Profile({
                                                 </p>
                                             </div>
 
-                                            <div className="rounded-2xl bg-muted/50 p-4 transition-colors hover:bg-muted/70">
+                                            <div className="rounded-div bg-muted/50 p-4 transition-colors hover:bg-muted/70">
                                                 <p className="mb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wide">
                                                     Phone Number
                                                 </p>
@@ -159,7 +159,7 @@ export default function Profile({
                                                 </p>
                                             </div>
 
-                                            <div className="rounded-2xl bg-muted/50 p-4 transition-colors hover:bg-muted/70">
+                                            <div className="rounded-div bg-muted/50 p-4 transition-colors hover:bg-muted/70">
                                                 <p className="mb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wide">
                                                     Account Status
                                                 </p>
@@ -176,7 +176,7 @@ export default function Profile({
                                             <Button
                                                 type="button"
                                                 onClick={() => setIsEditing(true)}
-                                                className="rounded-2xl"
+                                                className="rounded-button"
                                             >
                                                 Edit Profile
                                             </Button>
@@ -256,7 +256,7 @@ export default function Profile({
                                     />
 
                                     <div className="flex items-center gap-3 pt-4">
-                                        <Button disabled={processing} className="rounded-2xl">
+                                        <Button disabled={processing} className="rounded-button">
                                             {processing ? 'Saving...' : 'Save Changes'}
                                         </Button>
                                         <Button
@@ -264,7 +264,7 @@ export default function Profile({
                                             variant="outline"
                                             onClick={() => setIsEditing(false)}
                                             disabled={processing}
-                                            className="rounded-2xl"
+                                            className="rounded-button"
                                         >
                                             Cancel
                                         </Button>
@@ -276,7 +276,7 @@ export default function Profile({
 
                     {/* Email Verification Alert */}
                     {mustVerifyEmail && auth.user.email_verified_at === null && (
-                        <div className="mt-6 rounded-2xl border border-yellow-200 bg-yellow-50 p-4 dark:border-yellow-900/50 dark:bg-yellow-900/20">
+                        <div className="mt-6 rounded-div border border-yellow-200 bg-yellow-50 p-4 dark:border-yellow-900/50 dark:bg-yellow-900/20">
                             <div className="flex items-start gap-3">
                                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-yellow-100 dark:bg-yellow-900/40">
                                     <svg className="h-5 w-5 text-yellow-600 dark:text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">

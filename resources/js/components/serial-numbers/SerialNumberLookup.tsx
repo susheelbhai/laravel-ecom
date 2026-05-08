@@ -44,7 +44,7 @@ export default function SerialNumberLookup({
     return (
         <div className="flex flex-col gap-6">
             {/* Search form */}
-            <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+            <div className="rounded-div border border-border bg-card p-6 shadow-sm">
                 <h1 className="mb-4 text-lg font-semibold text-foreground">Serial Number Lookup</h1>
                 <form onSubmit={handleSearch} className="flex gap-2">
                     <input
@@ -53,12 +53,12 @@ export default function SerialNumberLookup({
                         value={searchForm.data.q}
                         onChange={(e) => searchForm.setData('q', e.target.value)}
                         placeholder="Enter serial number (e.g. SN-0001)"
-                        className="flex-1 rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                        className="flex-1 rounded-div border border-input bg-background px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                     />
                     <button
                         type="submit"
                         disabled={searchForm.processing}
-                        className="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90 focus:outline-none disabled:opacity-50"
+                        className="inline-flex items-center rounded-button bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90 focus:outline-none disabled:opacity-50"
                     >
                         Search
                     </button>
@@ -79,7 +79,7 @@ export default function SerialNumberLookup({
                             <MovementTimeline movements={movements} />
                         </>
                     ) : (
-                        <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+                        <div className="rounded-div border border-border bg-card p-6 shadow-sm">
                             <p className="text-sm text-muted-foreground">
                                 No serial number found for{' '}
                                 <span className="font-medium text-foreground">

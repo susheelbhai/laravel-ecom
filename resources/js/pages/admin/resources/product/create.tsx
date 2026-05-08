@@ -31,6 +31,9 @@ export default function Create() {
         price: 0,
         original_price: 0,
         mrp: 0,
+        distributor_price: 0,
+        hsn_code: '',
+        gst_rate: 0,
 
         manage_stock: 1,
 

@@ -61,7 +61,7 @@ const OrderSuccess = ({ order }: OrderSuccessProps) => {
             <Container className="py-8">
                 <div className="mx-auto max-w-3xl">
                     {/* Success Message */}
-                    <div className="mb-6 rounded-lg border border-accent/30 bg-accent/10 p-6 text-center">
+                    <div className="mb-6 rounded-div border border-accent/30 bg-accent/10 p-6 text-center">
                         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-accent">
                             <div className="text-3xl text-white">✓</div>
                         </div>
@@ -75,7 +75,7 @@ const OrderSuccess = ({ order }: OrderSuccessProps) => {
                     </div>
 
                     {/* Order Details */}
-                    <div className="mb-6 rounded-lg bg-white p-6 shadow">
+                    <div className="mb-6 rounded-div bg-white p-6 shadow">
                         <h2 className="mb-4 text-xl font-bold">
                             Order Details
                         </h2>
@@ -118,7 +118,7 @@ const OrderSuccess = ({ order }: OrderSuccessProps) => {
                     </div>
 
                     {/* Delivery Address */}
-                    <div className="mb-6 rounded-lg bg-white p-6 shadow">
+                    <div className="mb-6 rounded-div bg-white p-6 shadow">
                         <h2 className="mb-4 text-xl font-bold">
                             Delivery Address
                         </h2>
@@ -153,7 +153,7 @@ const OrderSuccess = ({ order }: OrderSuccessProps) => {
                     </div>
 
                     {/* Order Items */}
-                    <div className="mb-6 rounded-lg bg-white p-6 shadow">
+                    <div className="mb-6 rounded-div bg-white p-6 shadow">
                         <h2 className="mb-4 text-xl font-bold">
                             Order Items ({order.items.length})
                         </h2>

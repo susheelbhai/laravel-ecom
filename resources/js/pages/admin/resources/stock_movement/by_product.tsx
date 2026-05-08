@@ -120,9 +120,9 @@ export default function StockMovementByProduct() {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title={`Stock Movements - ${product.title}`} />
 
-            <div className="mb-6 rounded-lg border bg-white p-6">
+            <div className="mb-6 rounded-div border bg-white p-6">
                 <div className="flex items-start gap-4">
-                    <div className="rounded-lg bg-blue-100 p-3">
+                    <div className="rounded-div bg-blue-100 p-3">
                         <Package className="h-8 w-8 text-blue-600" />
                     </div>
                     <div>

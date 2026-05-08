@@ -3,7 +3,7 @@ export default function ScanCleanResult() {
         <div
             role="status"
             aria-live="polite"
-            className="flex flex-col items-center gap-3 rounded-2xl border-2 border-green-300 bg-green-50 p-6 text-center dark:border-green-700 dark:bg-green-950"
+            className="flex flex-col items-center gap-3 rounded-div border-2 border-green-300 bg-green-50 p-6 text-center dark:border-green-700 dark:bg-green-950"
         >
             <span className="flex h-14 w-14 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
                 <svg

@@ -70,7 +70,7 @@ export default function RechargeModal({
 
     return (
         <div className="fixed inset-0 bg-black/70 bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+            <div className="bg-white rounded-div p-6 max-w-md w-full mx-4">
                 <h3 className="text-lg font-semibold mb-4">Recharge Wallet</h3>
 
                 {!rechargeResult ? (
@@ -85,7 +85,7 @@ export default function RechargeModal({
                                 step="0.01"
                                 value={rechargeAmount}
                                 onChange={(e) => setRechargeAmount(e.target.value)}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-div focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 placeholder="Enter amount"
                                 required
                                 disabled={processing}
@@ -94,7 +94,7 @@ export default function RechargeModal({
                         </div>
 
                         {error && (
-                            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
+                            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-div">
                                 <p className="text-sm text-red-600">{error}</p>
                             </div>
                         )}
@@ -103,14 +103,14 @@ export default function RechargeModal({
                             <button
                                 type="button"
                                 onClick={handleClose}
-                                className="flex-1 px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 transition"
+                                className="flex-1 px-4 py-2 border border-gray-300 rounded-button hover:bg-gray-50 transition"
                                 disabled={processing}
                             >
                                 Cancel
                             </button>
                             <button
                                 type="submit"
-                                className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition disabled:opacity-50"
+                                className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-button hover:bg-blue-700 transition disabled:opacity-50"
                                 disabled={processing}
                             >
                                 {processing ? 'Processing...' : 'Recharge'}
@@ -119,7 +119,7 @@ export default function RechargeModal({
                     </form>
                 ) : (
                     <div className="space-y-4">
-                        <div className="p-4 bg-green-50 border border-green-200 rounded-md">
+                        <div className="p-4 bg-green-50 border border-green-200 rounded-div">
                             <h4 className="font-medium text-green-800 mb-2">Recharge Successful!</h4>
                             <dl className="space-y-1 text-sm text-green-700">
                                 <div className="flex justify-between">

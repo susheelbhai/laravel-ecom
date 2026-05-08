@@ -83,7 +83,7 @@ class RegisterTechnicianRequest extends FormRequest
 
             'address' => ['required', 'string', 'max:65535'],
             'city' => ['required', 'string', 'max:255'],
-            'state' => ['required', 'string', 'max:255'],
+            'state_id' => ['required', 'integer', 'exists:states,id'],
             'pincode' => ['required', 'string', 'regex:/^[1-9][0-9]{5}$/'],
 
             'id_type' => ['required', 'string', Rule::in(self::idTypes())],

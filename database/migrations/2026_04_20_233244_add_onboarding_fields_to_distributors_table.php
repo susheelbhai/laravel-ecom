@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('kyc_id_number', 64)->nullable()->after('kyc_id_type');
             $table->string('pan_number', 10)->nullable()->after('kyc_id_number');
             $table->string('gstin', 15)->nullable()->after('pan_number');
-            $table->string('pincode', 12)->nullable()->after('state');
+            $table->string('pincode', 12)->nullable()->after('state_id');
             $table->text('warehouse_address')->nullable()->after('address');
             $table->string('tan_number', 20)->nullable()->after('gstin');
             $table->string('msme_udyam_number', 32)->nullable()->after('tan_number');

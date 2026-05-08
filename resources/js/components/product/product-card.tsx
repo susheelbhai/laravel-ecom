@@ -43,7 +43,7 @@ export function ProductCard({ product, lazyLoad = true }: ProductCardProps) {
     return (
         <Link
             href={route('product.show', product.slug)}
-            className="group block overflow-hidden rounded-lg border border-border bg-card transition-all hover:shadow-lg"
+            className="group block overflow-hidden rounded-div border border-border bg-card transition-all hover:shadow-lg"
         >
             {/* Image */}
             <div className="relative h-48 w-full overflow-hidden bg-muted">

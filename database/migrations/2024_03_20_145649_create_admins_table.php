@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->longText('address')->nullable();
             $table->string('city')->nullable();
-            $table->string('state')->nullable();
+            $table->foreignId('state_id')->nullable()->constrained('states')->nullOnDelete();
             $table->string('dob')->nullable();
             $table->string('avatar')->nullable();
             $table->rememberToken();

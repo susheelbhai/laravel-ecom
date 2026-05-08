@@ -11,7 +11,7 @@ export default function BrandsSection({ data }: { data: any }) {
                     {data?.map((brand: any, index: number) => (
                         <div
                             key={index}
-                            className="rounded-lg bg-card p-4 shadow-md ring-1 ring-border"
+                            className="rounded-div bg-card p-4 shadow-md ring-1 ring-border"
                         >
                             <img
                                 src={brand.logo}

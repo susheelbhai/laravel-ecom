@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Distributor;
 
+use App\Events\DealerOrderPaymentRecorded;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\B2B\StoreDealerOrderPaymentRequest;
 use App\Models\DealerOrder;
@@ -25,11 +26,13 @@ class DealerOrderPaymentController extends Controller
             'You are not authorised to record payments for this order.'
         );
 
-        $paymentService->recordDealerOrderPayment(
+        $payment = $paymentService->recordDealerOrderPayment(
             $dealer_order,
             $request->validated(),
             $distributor,
         );
+
+        DealerOrderPaymentRecorded::dispatch($dealer_order->fresh(), $payment, $distributor);
 
         return redirect()
             ->route('distributor.dealer-orders.show', $dealer_order)

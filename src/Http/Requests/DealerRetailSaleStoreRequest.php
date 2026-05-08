@@ -36,7 +36,7 @@ class DealerRetailSaleStoreRequest extends FormRequest
             'billing_address_line1' => ['required', 'string', 'max:255'],
             'billing_address_line2' => ['nullable', 'string', 'max:255'],
             'billing_city' => ['required', 'string', 'max:120'],
-            'billing_state' => ['required', 'string', 'max:120'],
+            'billing_state_id' => ['required', 'integer', 'exists:states,id'],
             'billing_pincode' => ['required', 'string', 'max:16'],
             'billing_country' => ['nullable', 'string', 'max:64'],
             'customer_gstin' => ['nullable', 'string', 'max:32'],

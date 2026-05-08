@@ -41,7 +41,7 @@ export default function EditStockRecord() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Edit Stock Record" />
-            <div className="mb-4 rounded-lg bg-gray-50 p-4">
+            <div className="mb-4 rounded-div bg-gray-50 p-4">
                 <h3 className="font-semibold">Stock Record Details</h3>
                 <div className="mt-2 text-sm text-gray-600">
                     <p>

@@ -116,7 +116,7 @@ export function ConfigList({
                     <div key={config.id}>
                         {/* Show placeholder at hover position */}
                         {showPlaceholderBefore && (
-                            <div className="mb-4 h-20 rounded-lg border-2 border-dashed border-secondary/30 bg-secondary/5 transition-all duration-200" />
+                            <div className="mb-4 h-20 rounded-div border-2 border-dashed border-secondary/30 bg-secondary/5 transition-all duration-200" />
                         )}
                         
                         {/* Actual item (keep visible but mark with data attribute) */}

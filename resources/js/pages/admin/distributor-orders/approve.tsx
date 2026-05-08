@@ -142,7 +142,7 @@ export default function AdminDistributorOrderApprove() {
 
                 <FormContainer onSubmit={submit} processing={processing} buttonLabel="Approve & transfer stock" className="space-y-6">
                     {(errors as any).items && (
-                        <div className="rounded-md border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700 dark:border-rose-500/30 dark:bg-rose-500/10 dark:text-rose-300">
+                        <div className="rounded-div border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700 dark:border-rose-500/30 dark:bg-rose-500/10 dark:text-rose-300">
                             {(errors as any).items}
                         </div>
                     )}
@@ -163,7 +163,7 @@ export default function AdminDistributorOrderApprove() {
                             const serials = availableSerials[idx] ?? [];
                             const isSerialized = serials.length > 0;
                             return (
-                                <div key={row.id} className="rounded-lg border border-gray-200 p-3 space-y-3">
+                                <div key={row.id} className="rounded-div border border-gray-200 p-3 space-y-3">
                                     <div className="font-medium text-sm">{order.items[idx]?.product_title}</div>
                                     <div className="grid grid-cols-2 gap-3">
                                         {!isSerialized && (
@@ -181,7 +181,7 @@ export default function AdminDistributorOrderApprove() {
                                                 </span>
                                                 <span className="text-xs text-gray-500">{row.serial_numbers.length} of {serials.length} selected</span>
                                             </div>
-                                            <div className="max-h-40 overflow-y-auto rounded-lg border border-gray-200 bg-gray-50 p-2">
+                                            <div className="max-h-40 overflow-y-auto rounded-div border border-gray-200 bg-gray-50 p-2">
                                                 {serials.map((sn) => (
                                                     <label key={sn} className="flex cursor-pointer items-center gap-2 rounded px-2 py-1 hover:bg-gray-100">
                                                         <input type="checkbox" checked={row.serial_numbers.includes(sn)} onChange={() => toggleSerial(idx, sn)} className="h-4 w-4 rounded border-gray-300 text-blue-600" />

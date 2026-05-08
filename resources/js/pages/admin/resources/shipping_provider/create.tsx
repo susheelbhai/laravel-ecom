@@ -75,7 +75,7 @@ export default function Create({ availableAdapters }: Props) {
             <FormContainer onSubmit={submit} processing={processing} buttonLabel="Create Provider">
                 {/* Display general errors */}
                 {Object.keys(inputDivData.errors || {}).length > 0 && (
-                    <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-md">
+                    <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-div">
                         <p className="text-sm font-medium text-red-800 mb-2">Please fix the following errors:</p>
                         <ul className="list-disc list-inside text-sm text-red-600">
                             {Object.entries(inputDivData.errors).map(([field, messages]) => (

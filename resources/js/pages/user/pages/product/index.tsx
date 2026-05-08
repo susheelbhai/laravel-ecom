@@ -156,7 +156,7 @@ export default function Products() {
                             {/* Top Bar */}
                             <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                                 {/* View Toggle */}
-                                <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-1">
+                                <div className="flex items-center gap-2 rounded-div border border-border bg-card p-1">
                                     <button
                                         onClick={() => setViewMode('grid-2')}
                                         className={`rounded p-2 transition-colors ${
@@ -278,7 +278,7 @@ export default function Products() {
                                                 },
                                             });
                                         }}
-                                        className="rounded-lg border border-border bg-card px-3 py-2 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                                        className="rounded-div border border-border bg-card px-3 py-2 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                                     >
                                         <option value="latest">
                                             Latest

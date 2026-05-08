@@ -37,7 +37,7 @@ class Order extends Model
         'shipping_address_line1',
         'shipping_address_line2',
         'shipping_city',
-        'shipping_state',
+        'shipping_state_id',
         'shipping_country',
         'shipping_pincode',
         'shipping_landmark',
@@ -49,7 +49,7 @@ class Order extends Model
         'pickup_address_line1',
         'pickup_address_line2',
         'pickup_city',
-        'pickup_state',
+        'pickup_state_id',
         'pickup_country',
         'pickup_pincode',
     ];
@@ -100,6 +100,16 @@ class Order extends Model
         return $this->belongsTo(Warehouse::class);
     }
 
+    public function shippingState(): BelongsTo
+    {
+        return $this->belongsTo(State::class, 'shipping_state_id');
+    }
+
+    public function pickupState(): BelongsTo
+    {
+        return $this->belongsTo(State::class, 'pickup_state_id');
+    }
+
     /**
      * Get the payments for the order.
      */
@@ -118,7 +128,7 @@ class Order extends Model
             $this->shipping_address_line2,
             $this->shipping_landmark,
             $this->shipping_city,
-            $this->shipping_state,
+            $this->shippingState?->name,
             $this->shipping_country,
             $this->shipping_pincode,
         ];
@@ -135,7 +145,7 @@ class Order extends Model
             $this->pickup_address_line1,
             $this->pickup_address_line2,
             $this->pickup_city,
-            $this->pickup_state,
+            $this->pickupState?->name,
             $this->pickup_country,
             $this->pickup_pincode,
         ];

@@ -5,13 +5,13 @@ import { useState } from 'react';
 
 import { FormContainer } from '@/components/form/container/form-container';
 import InputError from '@/components/form/input/input-error';
-import TextLink from '@/components/ui/button/text-link';
 import Button from '@/components/ui/button/button';
 import { Input } from '@/components/form/input/input';
 import { Label } from '@/components/form/input/label';
-import AuthLayout from '@/layouts/distributor/auth-layout';
+import AuthLayout from '@/layouts/distributor/register-layout';
 import { cn } from '@/lib/utils';
 
+import { Container } from '@/components/ui/layout/container';
 type Option = { value: string; label: string };
 
 type RegisterForm = {
@@ -29,7 +29,7 @@ type RegisterForm = {
     dob: string;
     address: string;
     city: string;
-    state: string;
+    state_id: string;
     pincode: string;
     warehouse_address: string;
     pan_number: string;
@@ -48,12 +48,12 @@ type RegisterForm = {
 };
 
 const selectClassName = cn(
-    'border-input flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-xs outline-none md:text-sm',
+    'border-input flex h-9 w-full rounded-div border bg-transparent px-3 py-1 text-base shadow-xs outline-none md:text-sm',
     'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]',
 );
 
 const textAreaClassName = cn(
-    'border-input placeholder:text-muted-foreground flex min-h-[88px] w-full rounded-md border bg-transparent px-3 py-2 text-base shadow-xs outline-none md:text-sm',
+    'border-input placeholder:text-muted-foreground flex min-h-[88px] w-full rounded-div border bg-transparent px-3 py-2 text-base shadow-xs outline-none md:text-sm',
     'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]',
 );
 
@@ -61,25 +61,52 @@ function Section({
     title,
     description,
     children,
+    cols = 2,
 }: {
     title: string;
     description?: string;
     children: ReactNode;
+    cols?: 2 | 3;
 }) {
     return (
-        <section className="space-y-4 rounded-lg border border-border bg-card/30 p-4">
+        <section className="space-y-4 rounded-div border border-border bg-card/30 p-4">
             <div>
-                <h2 className="text-base font-semibold text-foreground">
-                    {title}
-                </h2>
-                {description ? (
-                    <p className="mt-1 text-sm text-muted-foreground">
-                        {description}
-                    </p>
-                ) : null}
+                <h2 className="text-base font-semibold text-foreground">{title}</h2>
+                {description && (
+                    <p className="mt-1 text-sm text-muted-foreground">{description}</p>
+                )}
             </div>
-            <div className="grid gap-4">{children}</div>
+            <div className={`grid grid-cols-1 gap-4 ${cols === 3 ? 'md:grid-cols-3' : 'md:grid-cols-2'}`}>
+                {children}
+            </div>
         </section>
+    );
+}
+
+function Field({
+    label,
+    error,
+    required,
+    full,
+    span2,
+    children,
+}: {
+    label: string;
+    error?: string;
+    required?: boolean;
+    full?: boolean;
+    span2?: boolean;
+    children: ReactNode;
+}) {
+    return (
+        <div className={cn('grid gap-1.5', full && 'md:col-span-3', span2 && 'md:col-span-2')}>
+            <Label>
+                {label}
+                {required && <span className="ml-0.5 text-destructive">*</span>}
+            </Label>
+            {children}
+            {error && <InputError message={error} />}
+        </div>
     );
 }
 
@@ -88,14 +115,14 @@ export default function Register({ submitUrl }: { submitUrl?: string }) {
         businessConstitutions?: Option[];
         kycIdTypes?: Option[];
         purchaseBands?: Option[];
+        states?: Option[];
     }>();
     const businessConstitutions = page.props.businessConstitutions ?? [];
     const kycIdTypes = page.props.kycIdTypes ?? [];
     const purchaseBands = page.props.purchaseBands ?? [];
+    const states = page.props.states ?? [];
 
-    const { data, setData, post, processing, errors } = useForm<
-        Required<RegisterForm>
-    >({
+    const { data, setData, post, processing, errors } = useForm<Required<RegisterForm>>({
         name: '',
         email: '',
         phone: '',
@@ -110,7 +137,7 @@ export default function Register({ submitUrl }: { submitUrl?: string }) {
         dob: '',
         address: '',
         city: '',
-        state: '',
+        state_id: '',
         pincode: '',
         warehouse_address: '',
         pan_number: '',
@@ -132,9 +159,7 @@ export default function Register({ submitUrl }: { submitUrl?: string }) {
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
-        if (submitUrl) {
-            post(submitUrl);
-        }
+        if (submitUrl) post(submitUrl);
     };
 
     return (
@@ -144,577 +169,321 @@ export default function Register({ submitUrl }: { submitUrl?: string }) {
             description="Provide KYC, business, tax, and bank details as on your official documents. An administrator will verify your application before you can access the dashboard."
         >
             <Head title="Register" />
-            <FormContainer
-                onSubmit={submit}
-                processing={processing}
-                buttonLabel="Submit application"
-                className="w-full space-y-6"
-            >
-                <div className="grid w-full gap-6">
+            <Container>
+                <FormContainer
+                    onSubmit={submit}
+                    processing={processing}
+                    buttonLabel="Submit application"
+                    className="w-full space-y-6"
+                >
+                    {/* ── 1. Account & contact ── */}
                     <Section
                         title="Account & primary contact"
                         description="Login credentials and the main person we should contact."
+                        cols={3}
                     >
-                        <div className="grid gap-2 md:grid-cols-2">
-                            <div className="grid gap-2 md:col-span-2">
-                                <Label htmlFor="name">
-                                    Authorized signatory full name
-                                </Label>
+                        <Field label="Authorized signatory full name" error={errors.name} required full>
+                            <Input
+                                value={data.name}
+                                onChange={(e) => setData('name', e.target.value)}
+                                autoComplete="name"
+                            />
+                        </Field>
+                        <Field label="Business email" error={errors.email} required>
+                            <Input
+                                type="email"
+                                value={data.email}
+                                onChange={(e) => setData('email', e.target.value)}
+                                autoComplete="email"
+                            />
+                        </Field>
+                        <Field label="Mobile number" error={errors.phone} required>
+                            <Input
+                                type="tel"
+                                value={data.phone}
+                                onChange={(e) => setData('phone', e.target.value)}
+                                autoComplete="tel"
+                            />
+                        </Field>
+                        <Field label="Password" error={errors.password} required>
+                            <div className="relative">
                                 <Input
-                                    id="name"
-                                    value={data.name}
-                                    onChange={(e) =>
-                                        setData('name', e.target.value)
-                                    }
-                                    required
-                                    autoComplete="name"
-                                />
-                                <InputError message={errors.name} />
-                            </div>
-                            <div className="grid gap-2">
-                                <Label htmlFor="email">Business email</Label>
-                                <Input
-                                    id="email"
-                                    type="email"
-                                    value={data.email}
-                                    onChange={(e) =>
-                                        setData('email', e.target.value)
-                                    }
-                                    required
-                                    autoComplete="email"
-                                />
-                                <InputError message={errors.email} />
-                            </div>
-                            <div className="grid gap-2">
-                                <Label htmlFor="phone">Mobile number</Label>
-                                <Input
-                                    id="phone"
-                                    type="tel"
-                                    value={data.phone}
-                                    onChange={(e) =>
-                                        setData('phone', e.target.value)
-                                    }
-                                    required
-                                    autoComplete="tel"
-                                />
-                                <InputError message={errors.phone} />
-                            </div>
-                            <div className="grid gap-2">
-                                <Label htmlFor="password">Password</Label>
-                                <div className="relative">
-                                    <Input
-                                        id="password"
-                                        type={
-                                            showPassword ? 'text' : 'password'
-                                        }
-                                        value={data.password}
-                                        onChange={(e) =>
-                                            setData('password', e.target.value)
-                                        }
-                                        required
-                                        autoComplete="new-password"
-                                        className="pr-10"
-                                    />
-                                    <Button
-                                        type="button"
-                                        variant="ghost"
-                                        size="sm"
-                                        className="absolute top-0 right-0 h-full px-3 py-2 hover:bg-transparent"
-                                        onClick={() =>
-                                            setShowPassword(!showPassword)
-                                        }
-                                        tabIndex={-1}
-                                    >
-                                        {showPassword ? (
-                                            <EyeOff className="h-4 w-4 text-gray-500" />
-                                        ) : (
-                                            <Eye className="h-4 w-4 text-gray-500" />
-                                        )}
-                                    </Button>
-                                </div>
-                                <InputError message={errors.password} />
-                            </div>
-                            <div className="grid gap-2">
-                                <Label htmlFor="password_confirmation">
-                                    Confirm password
-                                </Label>
-                                <Input
-                                    id="password_confirmation"
-                                    type="password"
-                                    value={data.password_confirmation}
-                                    onChange={(e) =>
-                                        setData(
-                                            'password_confirmation',
-                                            e.target.value,
-                                        )
-                                    }
-                                    required
+                                    type={showPassword ? 'text' : 'password'}
+                                    value={data.password}
+                                    onChange={(e) => setData('password', e.target.value)}
                                     autoComplete="new-password"
+                                    className="pr-10"
                                 />
-                                <InputError
-                                    message={errors.password_confirmation}
-                                />
+                                <Button
+                                    type="button"
+                                    variant="ghost"
+                                    size="sm"
+                                    className="absolute top-0 right-0 h-full px-3 py-2 hover:bg-transparent"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    tabIndex={-1}
+                                >
+                                    {showPassword
+                                        ? <EyeOff className="h-4 w-4 text-gray-500" />
+                                        : <Eye className="h-4 w-4 text-gray-500" />}
+                                </Button>
                             </div>
-                        </div>
+                        </Field>
+                        <Field label="Confirm password" error={errors.password_confirmation} required>
+                            <Input
+                                type="password"
+                                value={data.password_confirmation}
+                                onChange={(e) => setData('password_confirmation', e.target.value)}
+                                autoComplete="new-password"
+                            />
+                        </Field>
                     </Section>
 
+                    {/* ── 2. Business details ── */}
                     <Section
                         title="Business / shop details"
                         description="Legal entity name and constitution as per registration."
+                        cols={3}
                     >
-                        <div className="grid gap-2 md:col-span-2">
-                            <Label htmlFor="legal_business_name">
-                                Legal business name
-                            </Label>
+                        <Field label="Legal business name" error={errors.legal_business_name} required span2>
                             <Input
-                                id="legal_business_name"
                                 value={data.legal_business_name}
-                                onChange={(e) =>
-                                    setData(
-                                        'legal_business_name',
-                                        e.target.value,
-                                    )
-                                }
-                                required
+                                onChange={(e) => setData('legal_business_name', e.target.value)}
                                 placeholder="As per GST / incorporation certificate"
                             />
-                            <InputError message={errors.legal_business_name} />
-                        </div>
-                        <div className="grid gap-2 md:col-span-2">
-                            <Label htmlFor="trade_name">
-                                Trade / shop name (optional)
-                            </Label>
+                        </Field>
+                        <Field label="Trade / shop name (optional)" error={errors.trade_name}>
                             <Input
-                                id="trade_name"
                                 value={data.trade_name}
-                                onChange={(e) =>
-                                    setData('trade_name', e.target.value)
-                                }
+                                onChange={(e) => setData('trade_name', e.target.value)}
                                 placeholder="If different from legal name"
                             />
-                            <InputError message={errors.trade_name} />
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="business_constitution">
-                                Constitution of business
-                            </Label>
+                        </Field>
+                        <Field label="Constitution of business" error={errors.business_constitution} required>
                             <select
-                                id="business_constitution"
                                 className={selectClassName}
                                 value={data.business_constitution}
-                                onChange={(e) =>
-                                    setData(
-                                        'business_constitution',
-                                        e.target.value,
-                                    )
-                                }
-                                required
+                                onChange={(e) => setData('business_constitution', e.target.value)}
                             >
                                 <option value="">Select…</option>
                                 {businessConstitutions.map((o) => (
-                                    <option key={o.value} value={o.value}>
-                                        {o.label}
-                                    </option>
+                                    <option key={o.value} value={o.value}>{o.label}</option>
                                 ))}
                             </select>
-                            <InputError message={errors.business_constitution} />
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="authorized_signatory_designation">
-                                Designation of signatory
-                            </Label>
+                        </Field>
+                        <Field label="Designation of signatory" error={errors.authorized_signatory_designation} required>
                             <Input
-                                id="authorized_signatory_designation"
                                 value={data.authorized_signatory_designation}
-                                onChange={(e) =>
-                                    setData(
-                                        'authorized_signatory_designation',
-                                        e.target.value,
-                                    )
-                                }
-                                required
+                                onChange={(e) => setData('authorized_signatory_designation', e.target.value)}
                                 placeholder="e.g. Proprietor, Managing Director"
                             />
-                            <InputError
-                                message={
-                                    errors.authorized_signatory_designation
-                                }
-                            />
-                        </div>
-                        <div className="grid gap-2 md:col-span-2">
-                            <Label htmlFor="nature_of_business">
-                                Nature of business & product categories
-                            </Label>
+                        </Field>
+                        <Field label="Nature of business & product categories" error={errors.nature_of_business} required full>
                             <textarea
-                                id="nature_of_business"
                                 className={textAreaClassName}
                                 value={data.nature_of_business}
-                                onChange={(e) =>
-                                    setData(
-                                        'nature_of_business',
-                                        e.target.value,
-                                    )
-                                }
-                                required
-                                rows={4}
+                                onChange={(e) => setData('nature_of_business', e.target.value)}
+                                rows={3}
                                 placeholder="Describe goods you distribute, territories, and relevant experience."
                             />
-                            <InputError message={errors.nature_of_business} />
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="years_in_business">
-                                Years in business (optional)
-                            </Label>
+                        </Field>
+                        <Field label="Years in business (optional)" error={errors.years_in_business}>
                             <Input
-                                id="years_in_business"
                                 type="number"
                                 min={0}
                                 max={100}
                                 value={data.years_in_business}
-                                onChange={(e) =>
-                                    setData(
-                                        'years_in_business',
-                                        e.target.value,
-                                    )
-                                }
+                                onChange={(e) => setData('years_in_business', e.target.value)}
                             />
-                            <InputError message={errors.years_in_business} />
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="expected_monthly_purchase_band">
-                                Expected monthly purchase (optional)
-                            </Label>
+                        </Field>
+                        <Field label="Expected monthly purchase (optional)" error={errors.expected_monthly_purchase_band}>
                             <select
-                                id="expected_monthly_purchase_band"
                                 className={selectClassName}
                                 value={data.expected_monthly_purchase_band}
-                                onChange={(e) =>
-                                    setData(
-                                        'expected_monthly_purchase_band',
-                                        e.target.value,
-                                    )
-                                }
+                                onChange={(e) => setData('expected_monthly_purchase_band', e.target.value)}
                             >
                                 <option value="">Select…</option>
                                 {purchaseBands.map((o) => (
-                                    <option key={o.value} value={o.value}>
-                                        {o.label}
-                                    </option>
+                                    <option key={o.value} value={o.value}>{o.label}</option>
                                 ))}
                             </select>
-                            <InputError
-                                message={errors.expected_monthly_purchase_band}
-                            />
-                        </div>
-                        <div className="grid gap-2 md:col-span-2">
-                            <Label htmlFor="referral_source">
-                                How did you hear about us? (optional)
-                            </Label>
+                        </Field>
+                        <Field label="How did you hear about us? (optional)" error={errors.referral_source}>
                             <Input
-                                id="referral_source"
                                 value={data.referral_source}
-                                onChange={(e) =>
-                                    setData('referral_source', e.target.value)
-                                }
+                                onChange={(e) => setData('referral_source', e.target.value)}
                             />
-                            <InputError message={errors.referral_source} />
-                        </div>
+                        </Field>
                     </Section>
 
+                    {/* ── 3. Address ── */}
                     <Section
                         title="Principal place of business"
                         description="Registered office or main shop address."
+                        cols={3}
                     >
-                        <div className="grid gap-2 md:col-span-2">
-                            <Label htmlFor="address">Street address</Label>
+                        <Field label="Street address" error={errors.address} required full>
                             <textarea
-                                id="address"
                                 className={textAreaClassName}
                                 value={data.address}
-                                onChange={(e) =>
-                                    setData('address', e.target.value)
-                                }
-                                required
-                                rows={3}
+                                onChange={(e) => setData('address', e.target.value)}
+                                rows={2}
                             />
-                            <InputError message={errors.address} />
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="city">City / district</Label>
+                        </Field>
+                        <Field label="City / district" error={errors.city} required>
                             <Input
-                                id="city"
                                 value={data.city}
-                                onChange={(e) =>
-                                    setData('city', e.target.value)
-                                }
-                                required
+                                onChange={(e) => setData('city', e.target.value)}
                             />
-                            <InputError message={errors.city} />
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="state">State / UT</Label>
+                        </Field>
+                        <Field label="State / UT" error={errors.state_id} required>
+                            <select
+                                className={selectClassName}
+                                value={data.state_id}
+                                onChange={(e) => setData('state_id', e.target.value)}
+                            >
+                                <option value="">Select state…</option>
+                                {states.map((s) => (
+                                    <option key={s.value} value={s.value}>{s.label}</option>
+                                ))}
+                            </select>
+                        </Field>
+                        <Field label="PIN code" error={errors.pincode} required>
                             <Input
-                                id="state"
-                                value={data.state}
-                                onChange={(e) =>
-                                    setData('state', e.target.value)
-                                }
-                                required
-                            />
-                            <InputError message={errors.state} />
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="pincode">PIN code</Label>
-                            <Input
-                                id="pincode"
                                 inputMode="numeric"
                                 maxLength={6}
                                 value={data.pincode}
-                                onChange={(e) =>
-                                    setData('pincode', e.target.value)
-                                }
-                                required
+                                onChange={(e) => setData('pincode', e.target.value)}
                                 placeholder="6-digit PIN"
                             />
-                            <InputError message={errors.pincode} />
-                        </div>
-                        <div className="grid gap-2 md:col-span-2">
-                            <Label htmlFor="warehouse_address">
-                                Additional warehouse / branch address (optional)
-                            </Label>
+                        </Field>
+                        <Field label="Additional warehouse / branch address (optional)" error={errors.warehouse_address} full>
                             <textarea
-                                id="warehouse_address"
                                 className={textAreaClassName}
                                 value={data.warehouse_address}
-                                onChange={(e) =>
-                                    setData(
-                                        'warehouse_address',
-                                        e.target.value,
-                                    )
-                                }
-                                rows={3}
+                                onChange={(e) => setData('warehouse_address', e.target.value)}
+                                rows={2}
                             />
-                            <InputError message={errors.warehouse_address} />
-                        </div>
+                        </Field>
                     </Section>
 
+                    {/* ── 4. KYC ── */}
                     <Section
                         title="KYC — authorized person"
-                        description="Government ID for the person named above. Details should match supporting documents you can provide on request."
+                        description="Government ID for the person named above."
+                        cols={3}
                     >
-                        <div className="grid gap-2">
-                            <Label htmlFor="kyc_id_type">ID type</Label>
+                        <Field label="ID type" error={errors.kyc_id_type} required>
                             <select
-                                id="kyc_id_type"
                                 className={selectClassName}
                                 value={data.kyc_id_type}
-                                onChange={(e) =>
-                                    setData('kyc_id_type', e.target.value)
-                                }
-                                required
+                                onChange={(e) => setData('kyc_id_type', e.target.value)}
                             >
                                 <option value="">Select…</option>
                                 {kycIdTypes.map((o) => (
-                                    <option key={o.value} value={o.value}>
-                                        {o.label}
-                                    </option>
+                                    <option key={o.value} value={o.value}>{o.label}</option>
                                 ))}
                             </select>
-                            <InputError message={errors.kyc_id_type} />
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="kyc_id_number">ID number</Label>
+                        </Field>
+                        <Field label="ID number" error={errors.kyc_id_number} required>
                             <Input
-                                id="kyc_id_number"
                                 value={data.kyc_id_number}
-                                onChange={(e) =>
-                                    setData('kyc_id_number', e.target.value)
-                                }
-                                required
+                                onChange={(e) => setData('kyc_id_number', e.target.value)}
                                 autoComplete="off"
                             />
-                            <InputError message={errors.kyc_id_number} />
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="dob">Date of birth (optional)</Label>
+                        </Field>
+                        <Field label="Date of birth (optional)" error={errors.dob}>
                             <Input
-                                id="dob"
                                 type="text"
                                 value={data.dob}
-                                onChange={(e) =>
-                                    setData('dob', e.target.value)
-                                }
+                                onChange={(e) => setData('dob', e.target.value)}
                                 placeholder="DD-MM-YYYY or as on ID"
                             />
-                            <InputError message={errors.dob} />
-                        </div>
+                        </Field>
                     </Section>
 
+                    {/* ── 5. Tax & compliance ── */}
                     <Section
                         title="Tax & compliance (India)"
-                        description="PAN and GSTIN must match your business records. TAN / Udyam are optional."
+                        description="PAN and GSTIN must match your business records."
+                        cols={3}
                     >
-                        <div className="grid gap-2 md:col-span-2">
-                            <Label htmlFor="pan_number">PAN (10 characters)</Label>
+                        <Field label="PAN (10 characters)" error={errors.pan_number} required>
                             <Input
-                                id="pan_number"
                                 value={data.pan_number}
-                                onChange={(e) =>
-                                    setData(
-                                        'pan_number',
-                                        e.target.value.toUpperCase(),
-                                    )
-                                }
-                                required
+                                onChange={(e) => setData('pan_number', e.target.value.toUpperCase())}
                                 maxLength={10}
                                 className="font-mono uppercase"
                                 placeholder="ABCDE1234F"
                             />
-                            <InputError message={errors.pan_number} />
-                        </div>
-                        <div className="grid gap-2 md:col-span-2">
-                            <Label htmlFor="gstin">GSTIN (15 characters)</Label>
+                        </Field>
+                        <Field label="GSTIN (15 characters)" error={errors.gstin} required>
                             <Input
-                                id="gstin"
                                 value={data.gstin}
-                                onChange={(e) =>
-                                    setData(
-                                        'gstin',
-                                        e.target.value
-                                            .toUpperCase()
-                                            .replace(/\s/g, ''),
-                                    )
-                                }
-                                required
+                                onChange={(e) => setData('gstin', e.target.value.toUpperCase().replace(/\s/g, ''))}
                                 maxLength={15}
                                 className="font-mono uppercase"
                                 placeholder="As on GST registration certificate"
                             />
-                            <InputError message={errors.gstin} />
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="tan_number">TAN (optional)</Label>
+                        </Field>
+                        <Field label="TAN (optional)" error={errors.tan_number}>
                             <Input
-                                id="tan_number"
                                 value={data.tan_number}
-                                onChange={(e) =>
-                                    setData(
-                                        'tan_number',
-                                        e.target.value.toUpperCase(),
-                                    )
-                                }
+                                onChange={(e) => setData('tan_number', e.target.value.toUpperCase())}
                                 className="font-mono uppercase"
                             />
-                            <InputError message={errors.tan_number} />
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="msme_udyam_number">
-                                MSME Udyam (optional)
-                            </Label>
+                        </Field>
+                        <Field label="MSME Udyam (optional)" error={errors.msme_udyam_number}>
                             <Input
-                                id="msme_udyam_number"
                                 value={data.msme_udyam_number}
-                                onChange={(e) =>
-                                    setData(
-                                        'msme_udyam_number',
-                                        e.target.value,
-                                    )
-                                }
+                                onChange={(e) => setData('msme_udyam_number', e.target.value)}
                             />
-                            <InputError message={errors.msme_udyam_number} />
-                        </div>
+                        </Field>
                     </Section>
 
+                    {/* ── 6. Bank details ── */}
                     <Section
                         title="Bank details for settlements"
-                        description="Account must be in the name of the business or authorized signatory as per your mandate."
+                        description="Account must be in the name of the business or authorized signatory."
+                        cols={3}
                     >
-                        <div className="grid gap-2 md:col-span-2">
-                            <Label htmlFor="bank_account_holder_name">
-                                Account holder name
-                            </Label>
+                        <Field label="Account holder name" error={errors.bank_account_holder_name} required full>
                             <Input
-                                id="bank_account_holder_name"
                                 value={data.bank_account_holder_name}
-                                onChange={(e) =>
-                                    setData(
-                                        'bank_account_holder_name',
-                                        e.target.value,
-                                    )
-                                }
-                                required
+                                onChange={(e) => setData('bank_account_holder_name', e.target.value)}
                             />
-                            <InputError
-                                message={errors.bank_account_holder_name}
-                            />
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="bank_name">Bank name</Label>
+                        </Field>
+                        <Field label="Bank name" error={errors.bank_name} required>
                             <Input
-                                id="bank_name"
                                 value={data.bank_name}
-                                onChange={(e) =>
-                                    setData('bank_name', e.target.value)
-                                }
-                                required
+                                onChange={(e) => setData('bank_name', e.target.value)}
                             />
-                            <InputError message={errors.bank_name} />
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="bank_branch">Branch</Label>
+                        </Field>
+                        <Field label="Branch" error={errors.bank_branch} required>
                             <Input
-                                id="bank_branch"
                                 value={data.bank_branch}
-                                onChange={(e) =>
-                                    setData('bank_branch', e.target.value)
-                                }
-                                required
+                                onChange={(e) => setData('bank_branch', e.target.value)}
                             />
-                            <InputError message={errors.bank_branch} />
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="bank_account_number">
-                                Account number
-                            </Label>
+                        </Field>
+                        <Field label="Account number" error={errors.bank_account_number} required>
                             <Input
-                                id="bank_account_number"
                                 value={data.bank_account_number}
-                                onChange={(e) =>
-                                    setData(
-                                        'bank_account_number',
-                                        e.target.value,
-                                    )
-                                }
-                                required
+                                onChange={(e) => setData('bank_account_number', e.target.value)}
                                 autoComplete="off"
+                                className="font-mono"
                             />
-                            <InputError message={errors.bank_account_number} />
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="bank_ifsc">IFSC code</Label>
+                        </Field>
+                        <Field label="IFSC code" error={errors.bank_ifsc} required>
                             <Input
-                                id="bank_ifsc"
                                 value={data.bank_ifsc}
-                                onChange={(e) =>
-                                    setData(
-                                        'bank_ifsc',
-                                        e.target.value.toUpperCase(),
-                                    )
-                                }
-                                required
-                                maxLength={11}
+                                onChange={(e) => setData('bank_ifsc', e.target.value.toUpperCase())}
                                 className="font-mono uppercase"
-                                placeholder="e.g. HDFC0000123"
+                                placeholder="SBIN0001234"
                             />
-                            <InputError message={errors.bank_ifsc} />
-                        </div>
+                        </Field>
                     </Section>
-                </div>
-            </FormContainer>
-            <div className="mt-4 space-x-1 text-center text-sm text-muted-foreground">
-                <span>Already approved?</span>
-                <TextLink href={route('distributor.login')}>Log in</TextLink>
-            </div>
+
+                </FormContainer>
+            </Container>
         </AuthLayout>
     );
 }

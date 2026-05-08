@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('shipping_address_line1')->nullable();
             $table->text('shipping_address_line2')->nullable();
             $table->string('shipping_city')->nullable();
-            $table->string('shipping_state')->nullable();
+            $table->foreignId('shipping_state_id')->nullable()->constrained('states')->nullOnDelete();
             $table->string('shipping_country')->nullable();
             $table->string('shipping_pincode')->nullable();
             $table->string('shipping_landmark')->nullable();
@@ -32,7 +32,7 @@ return new class extends Migration
             $table->text('pickup_address_line1')->nullable();
             $table->text('pickup_address_line2')->nullable();
             $table->string('pickup_city')->nullable();
-            $table->string('pickup_state')->nullable();
+            $table->foreignId('pickup_state_id')->nullable()->constrained('states')->nullOnDelete();
             $table->string('pickup_country')->nullable();
             $table->string('pickup_pincode')->nullable();
         });
@@ -52,7 +52,7 @@ return new class extends Migration
                 'shipping_address_line1',
                 'shipping_address_line2',
                 'shipping_city',
-                'shipping_state',
+                'shipping_state_id',
                 'shipping_country',
                 'shipping_pincode',
                 'shipping_landmark',
@@ -63,7 +63,7 @@ return new class extends Migration
                 'pickup_address_line1',
                 'pickup_address_line2',
                 'pickup_city',
-                'pickup_state',
+                'pickup_state_id',
                 'pickup_country',
                 'pickup_pincode',
             ]);

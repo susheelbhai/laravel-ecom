@@ -30,7 +30,7 @@ export const AddressSelector = ({
     error,
 }: AddressSelectorProps) => {
     return (
-        <div className="mb-6 rounded-lg border border-border bg-card p-6 shadow-sm">
+        <div className="mb-6 rounded-div border border-border bg-card p-6 shadow-sm">
             <div className="mb-4 flex items-center justify-between">
                 <h2 className="text-xl font-bold text-foreground">
                     Select Delivery Address
@@ -49,7 +49,7 @@ export const AddressSelector = ({
                         <div
                             key={address.id}
                             onClick={() => onAddressSelect(address.id)}
-                            className={`cursor-pointer rounded-lg border p-4 pb-2 transition-all ${
+                            className={`cursor-pointer rounded-div border p-4 pb-2 transition-all ${
                                 selectedAddressId === address.id
                                     ? 'border-primary bg-primary/10'
                                     : 'border-border hover:border-primary/50'

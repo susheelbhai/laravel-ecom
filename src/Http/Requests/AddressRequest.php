@@ -29,7 +29,7 @@ class AddressRequest extends FormRequest
             'address_line1' => ['required', 'string', 'max:500'],
             'address_line2' => ['nullable', 'string', 'max:500'],
             'city' => ['required', 'string', 'max:255'],
-            'state' => ['required', 'string', 'max:255'],
+            'state_id' => ['required', 'integer', 'exists:states,id'],
             'country' => ['required', 'string', 'max:255'],
             'pincode' => ['required', 'string', 'max:10'],
             'landmark' => ['nullable', 'string', 'max:255'],
@@ -50,8 +50,7 @@ class AddressRequest extends FormRequest
             'phone.required' => 'Phone number is required.',
             'address_line1.required' => 'Address line 1 is required.',
             'city.required' => 'City is required.',
-            'state.required' => 'State is required.',
-            'country.required' => 'Country is required.',
+            'state.required' => 'State is required.',            'country.required' => 'Country is required.',
             'pincode.required' => 'Pincode is required.',
         ];
     }

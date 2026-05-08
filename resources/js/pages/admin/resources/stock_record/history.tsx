@@ -119,9 +119,9 @@ export default function StockRecordHistory() {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Stock Movement History" />
 
-            <div className="mb-6 rounded-lg border bg-white p-6">
+            <div className="mb-6 rounded-div border bg-white p-6">
                 <div className="flex items-start gap-4">
-                    <div className="rounded-lg bg-indigo-100 p-3">
+                    <div className="rounded-div bg-indigo-100 p-3">
                         <History className="h-8 w-8 text-indigo-600" />
                     </div>
                     <div className="flex-1">

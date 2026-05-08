@@ -13,6 +13,11 @@ class Setting extends BaseInternalMediaModel
 
     protected $appends = ['favicon', 'square_dark_logo', 'square_dark_logo_converted', 'square_light_logo', 'square_light_logo_converted', 'dark_logo', 'dark_logo_converted', 'light_logo', 'light_logo_converted'];
 
+    public function state(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(\App\Models\State::class);
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('square_dark_logo')

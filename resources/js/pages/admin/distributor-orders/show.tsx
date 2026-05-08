@@ -66,7 +66,7 @@ export default function AdminDistributorOrderShow() {
                         <>
                             <a
                                 href={route('admin.distributor-orders.approve.form', data.id)}
-                                className="inline-flex items-center rounded-md bg-emerald-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-emerald-700 focus:outline-none"
+                                className="inline-flex items-center rounded-div bg-emerald-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-emerald-700 focus:outline-none"
                             >
                                 Approve
                             </a>
@@ -74,11 +74,20 @@ export default function AdminDistributorOrderShow() {
                                 type="button"
                                 disabled={rejectForm.processing}
                                 onClick={handleReject}
-                                className="inline-flex items-center rounded-md border border-rose-300 bg-white px-4 py-2 text-sm font-medium text-rose-700 shadow-sm hover:bg-rose-50 focus:outline-none disabled:opacity-50"
+                                className="inline-flex items-center rounded-button border border-rose-300 bg-white px-4 py-2 text-sm font-medium text-rose-700 shadow-sm hover:bg-rose-50 focus:outline-none disabled:opacity-50"
                             >
                                 Reject
                             </button>
                         </>
+                    ) : data.status === 'approved' ? (
+                        <a
+                            href={route('admin.distributor-orders.invoice', data.id)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center rounded-div border border-border bg-background px-4 py-2 text-sm font-medium text-foreground shadow-sm hover:bg-muted focus:outline-none"
+                        >
+                            View Invoice
+                        </a>
                     ) : undefined
                 }
             >
@@ -150,7 +159,7 @@ export default function AdminDistributorOrderShow() {
                 </Table>
             </TableCard>
 
-            {data.payment_summary && (
+            {data.status === 'approved' && data.payment_summary && (
                 <PaymentSummarySection
                     summary={data.payment_summary}
                     storeRoute="admin.distributor-orders.payments.store"

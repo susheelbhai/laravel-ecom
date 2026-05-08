@@ -24,7 +24,7 @@ export default function ScanStolenResult({ alert }: Props) {
         <div
             role="alert"
             aria-live="assertive"
-            className="flex flex-col gap-4 rounded-2xl border-2 border-red-400 bg-red-50 p-6 dark:border-red-700 dark:bg-red-950"
+            className="flex flex-col gap-4 rounded-div border-2 border-red-400 bg-red-50 p-6 dark:border-red-700 dark:bg-red-950"
         >
             <div className="flex items-center gap-3">
                 <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-red-100 dark:bg-red-900">
@@ -48,7 +48,7 @@ export default function ScanStolenResult({ alert }: Props) {
                 </p>
             </div>
 
-            <dl className="grid grid-cols-1 gap-3 rounded-xl bg-red-100 p-4 text-sm dark:bg-red-900/50 sm:grid-cols-2">
+            <dl className="grid grid-cols-1 gap-3 rounded-div bg-red-100 p-4 text-sm dark:bg-red-900/50 sm:grid-cols-2">
                 <div>
                     <dt className="font-semibold text-red-700 dark:text-red-300">Serial Number</dt>
                     <dd className="mt-0.5 font-mono text-red-900 dark:text-red-100">{alert.serial_number}</dd>

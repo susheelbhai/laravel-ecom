@@ -71,8 +71,8 @@ export default function Create() {
 
                             <div className="space-y-4">
                                 {/* Phone */}
-                                <div className="flex gap-3 rounded-2xl bg-muted/80 p-3.5">
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10">
+                                <div className="flex gap-3 rounded-div bg-muted/80 p-3.5">
+                                    <div className="flex h-10 w-10 items-center justify-center rounded-div bg-primary/10">
                                         <Phone className="h-5 w-5 text-primary" />
                                     </div>
                                     <div>
@@ -89,8 +89,8 @@ export default function Create() {
                                 </div>
 
                                 {/* Email */}
-                                <div className="flex gap-3 rounded-2xl bg-muted/80 p-3.5">
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10">
+                                <div className="flex gap-3 rounded-div bg-muted/80 p-3.5">
+                                    <div className="flex h-10 w-10 items-center justify-center rounded-div bg-primary/10">
                                         <Mail className="h-5 w-5 text-primary" />
                                     </div>
                                     <div>
@@ -107,8 +107,8 @@ export default function Create() {
                                 </div>
 
                                 {/* Address */}
-                                <div className="flex gap-3 rounded-2xl bg-muted/80 p-3.5">
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10">
+                                <div className="flex gap-3 rounded-div bg-muted/80 p-3.5">
+                                    <div className="flex h-10 w-10 items-center justify-center rounded-div bg-primary/10">
                                         <MapPin className="h-5 w-5 text-primary" />
                                     </div>
                                     <div>
@@ -122,8 +122,8 @@ export default function Create() {
                                 </div>
 
                                 {/* Working Hours */}
-                                <div className="flex gap-3 rounded-2xl bg-muted/80 p-3.5">
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10">
+                                <div className="flex gap-3 rounded-div bg-muted/80 p-3.5">
+                                    <div className="flex h-10 w-10 items-center justify-center rounded-div bg-primary/10">
                                         <Clock className="h-5 w-5 text-primary" />
                                     </div>
                                     <div>
@@ -199,7 +199,7 @@ export default function Create() {
                                 <div className="pt-2">
                                     <Button
                                         type="submit"
-                                        className="relative mt-2 flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground shadow hover:bg-accent/90 disabled:opacity-70 md:w-auto"
+                                        className="relative mt-2 flex w-full items-center justify-center gap-2 rounded-button bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground shadow hover:bg-accent/90 disabled:opacity-70 md:w-auto"
                                         tabIndex={4}
                                         disabled={processing1}
                                     >

@@ -23,7 +23,7 @@ export default function FeatureSection({ data }: any) {
                     <img
                         src={data?.why_us_image_converted.medium}
                         alt="About"
-                        className="w-full rounded-md"
+                        className="w-full rounded-div"
                     />
                 </div>
             </Container>

@@ -31,6 +31,9 @@ export default function Edit() {
         price: Number(product.price ?? 0),
         original_price: Number(product.original_price ?? 0),
         mrp: Number(product.mrp ?? 0),
+        distributor_price: Number(product.distributor_price ?? 0),
+        hsn_code: product.hsn_code ?? '',
+        gst_rate: Number(product.gst_rate ?? 0),
 
         manage_stock: Number(product.manage_stock ?? 1),
 

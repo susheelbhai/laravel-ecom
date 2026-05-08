@@ -88,7 +88,7 @@ function ProductCard({
         : 0;
 
     return (
-        <div className="group relative overflow-hidden rounded-lg border border-border bg-card transition-all hover:shadow-lg">
+        <div className="group relative overflow-hidden rounded-div border border-border bg-card transition-all hover:shadow-lg">
             {/* Badges */}
             <div className="absolute left-3 top-3 z-10 flex flex-col gap-2">
                 {product.is_new && (
@@ -188,11 +188,11 @@ function ProductListItem({
         : 0;
 
     return (
-        <div className="group flex gap-4 overflow-hidden rounded-lg border border-border bg-card p-4 transition-all hover:shadow-lg">
+        <div className="group flex gap-4 overflow-hidden rounded-div border border-border bg-card p-4 transition-all hover:shadow-lg">
             {/* Image */}
             <Link
                 href={route('product.show', product.slug)}
-                className="relative h-32 w-32 flex-shrink-0 overflow-hidden rounded-lg"
+                className="relative h-32 w-32 flex-shrink-0 overflow-hidden rounded-div"
             >
                 <div className="relative h-full w-full bg-muted">
                     <img

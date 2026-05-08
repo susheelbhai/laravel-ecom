@@ -37,7 +37,7 @@ export default function DealerWarrantyCardShow() {
                 {/* Printable warranty card */}
                 <div
                     id="warranty-card-print"
-                    className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-950 print:border-gray-300 print:shadow-none"
+                    className="rounded-div border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-950 print:border-gray-300 print:shadow-none"
                 >
                     {/* Card header */}
                     <div className="border-b border-gray-200 pb-4 dark:border-gray-700">
@@ -167,16 +167,17 @@ export default function DealerWarrantyCardShow() {
 
                 {/* Actions */}
                 <div className="flex gap-3">
-                    <button
-                        type="button"
-                        onClick={() => window.print()}
-                        className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-300"
+                    <a
+                        href={route('dealer.warranty-cards.print', data?.id)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-button bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-300"
                     >
                         Print / Save as PDF
-                    </button>
+                    </a>
                     <Link
                         href={route('dealer.warranty-cards.index')}
-                        className="rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+                        className="rounded-div border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
                     >
                         Back to list
                     </Link>

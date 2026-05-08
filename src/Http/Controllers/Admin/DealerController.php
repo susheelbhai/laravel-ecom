@@ -39,6 +39,31 @@ class DealerController extends Controller
         return $this->render('admin/resources/dealer/index', compact('data'));
     }
 
+    public function show(Dealer $dealer)
+    {
+        $dealer->loadMissing(['distributor:id,name,email', 'approvedByAdmin:id,name']);
+
+        $data = [
+            'id' => $dealer->id,
+            'name' => $dealer->name,
+            'email' => $dealer->email,
+            'phone' => $dealer->phone,
+            'avatar' => $dealer->profile_pic,
+            'application_status' => $dealer->application_status,
+            'commission_percentage' => $dealer->commission_percentage,
+            'distributor_id' => $dealer->distributor_id,
+            'distributor_name' => $dealer->distributor?->name,
+            'distributor_email' => $dealer->distributor?->email,
+            'approved_at' => $dealer->approved_at?->format('d M Y'),
+            'approved_by_name' => $dealer->approvedByAdmin?->name,
+            'rejected_at' => $dealer->rejected_at?->format('d M Y'),
+            'rejection_note' => $dealer->rejection_note,
+            'created_at' => $dealer->created_at?->format('d M Y'),
+        ];
+
+        return $this->render('admin/resources/dealer/show', compact('data'));
+    }
+
     public function approve(Dealer $dealer): RedirectResponse
     {
         if ($dealer->application_status !== Dealer::STATUS_PENDING) {

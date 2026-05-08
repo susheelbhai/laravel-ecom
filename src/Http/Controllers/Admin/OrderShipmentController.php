@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\ShipmentBooked;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Susheelbhai\Laraship\Facades\Laraship;
@@ -75,6 +76,8 @@ class OrderShipmentController extends Controller
 
             // Use the facade to book courier with specific provider
             $booking = Laraship::bookCourierWithProvider($order, $provider->name, $request->service_type);
+
+            ShipmentBooked::dispatch($order, $booking->trackingNumber);
 
             return redirect()->back()->with('success', 'Shipment booked successfully! Tracking: '.$booking->trackingNumber);
         } catch (\Exception $e) {

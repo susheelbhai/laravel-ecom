@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Distributor;
 
 use App\Actions\SerialNumberAuthorization;
 use App\Contracts\SerialNumberMovementServiceInterface;
+use App\Events\SerialMarkedDamaged;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MarkDamagedRequest;
@@ -120,6 +121,8 @@ class SerialNumberController extends Controller
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors());
         }
+
+        SerialMarkedDamaged::dispatch($serialNumber, Auth::guard('distributor')->user());
 
         return redirect()->back()->with('success', 'Serial number marked as damaged.');
     }

@@ -120,9 +120,9 @@ export default function StockMovementByWarehouse() {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title={`Stock Movements - ${warehouse.name}`} />
 
-            <div className="mb-6 rounded-lg border bg-white p-6">
+            <div className="mb-6 rounded-div border bg-white p-6">
                 <div className="flex items-start gap-4">
-                    <div className="rounded-lg bg-purple-100 p-3">
+                    <div className="rounded-div bg-purple-100 p-3">
                         <Warehouse className="h-8 w-8 text-purple-600" />
                     </div>
                     <div>

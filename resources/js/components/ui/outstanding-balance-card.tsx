@@ -35,7 +35,7 @@ export default function OutstandingBalanceCard({ balance, description }: Props) 
     const s = styles(balance);
 
     return (
-        <div className={`rounded-lg border p-5 shadow-sm ${s.card}`}>
+        <div className={`rounded-div border p-5 shadow-sm ${s.card}`}>
             <p className={`text-xs font-semibold uppercase tracking-wide ${s.label}`}>
                 Total Outstanding Balance
             </p>

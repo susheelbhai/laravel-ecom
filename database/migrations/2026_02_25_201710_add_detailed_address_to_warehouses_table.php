@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('address_line1')->nullable();
             $table->text('address_line2')->nullable();
             $table->string('city')->nullable();
-            $table->string('state')->nullable();
+            $table->foreignId('state_id')->nullable()->constrained('states')->nullOnDelete();
             $table->string('country')->nullable();
             $table->string('pincode')->nullable();
         });
@@ -35,7 +35,7 @@ return new class extends Migration
                 'address_line1',
                 'address_line2',
                 'city',
-                'state',
+                'state_id',
                 'country',
                 'pincode',
             ]);

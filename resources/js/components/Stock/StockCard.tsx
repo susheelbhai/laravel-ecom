@@ -12,7 +12,7 @@ export default function StockCard({ id, product_title, sku, quantity, thumbnail,
     const isLimited = quantity > 0 && quantity <= 10;
 
     return (
-        <div className="overflow-hidden rounded-2xl border bg-white shadow-sm">
+        <div className="overflow-hidden rounded-div border bg-white shadow-sm">
             {/* Image */}
             <div className="relative aspect-[16/9] w-full bg-gray-100">
                 {thumbnail ? (

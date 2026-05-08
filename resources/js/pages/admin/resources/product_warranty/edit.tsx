@@ -72,7 +72,7 @@ export default function ProductWarrantyEdit() {
                             <Label htmlFor="duration_unit">Unit</Label>
                             <select
                                 id="duration_unit"
-                                className="mt-1 h-9 w-full rounded-md border border-input bg-transparent px-3 text-sm"
+                                className="mt-1 h-9 w-full rounded-div border border-input bg-transparent px-3 text-sm"
                                 value={data.duration_unit}
                                 onChange={(e) => setData('duration_unit', e.target.value)}
                             >
@@ -92,7 +92,7 @@ export default function ProductWarrantyEdit() {
                         <textarea
                             id="terms"
                             rows={8}
-                            className="mt-1 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                            className="mt-1 w-full rounded-div border border-input bg-transparent px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                             value={data.terms}
                             onChange={(e) => setData('terms', e.target.value)}
                             placeholder="e.g. This warranty covers manufacturing defects only. Damage due to misuse is not covered..."

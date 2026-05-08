@@ -69,7 +69,7 @@ export default function ProductCartActions({
             {isInCart ? (
                 <Link
                     href={route('cart.index')}
-                    className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 font-semibold text-white transition-all hover:bg-primary/90 hover:shadow-lg"
+                    className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-div bg-primary px-6 py-3 font-semibold text-white transition-all hover:bg-primary/90 hover:shadow-lg"
                 >
                     <ShoppingCart className="h-5 w-5" />
                     Go to Cart
@@ -78,7 +78,7 @@ export default function ProductCartActions({
                 <button
                     onClick={addToCart}
                     disabled={isAddingToCart}
-                    className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 font-semibold text-white transition-all hover:bg-primary/90 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-button bg-primary px-6 py-3 font-semibold text-white transition-all hover:bg-primary/90 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
                 >
                     <ShoppingCart className="h-5 w-5" />
                     {isAddingToCart ? 'Adding...' : 'Add to Cart'}
@@ -87,7 +87,7 @@ export default function ProductCartActions({
 
             <button
                 onClick={buyNow}
-                className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-primary bg-white px-6 py-3 font-semibold text-primary transition-all hover:bg-primary hover:text-white hover:shadow-lg"
+                className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-button border-2 border-primary bg-white px-6 py-3 font-semibold text-primary transition-all hover:bg-primary hover:text-white hover:shadow-lg"
             >
                 <Zap className="h-5 w-5" />
                 Buy Now

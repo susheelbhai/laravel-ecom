@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('dealer_id')->constrained('dealers')->cascadeOnDelete();
             $table->foreignId('placed_by_distributor_id')->constrained('distributors')->cascadeOnDelete();
             $table->decimal('subtotal_amount', 10, 2)->default(0);
+            $table->decimal('tax_amount', 10, 2)->default(0);
             $table->decimal('total_amount', 10, 2)->default(0);
             $table->timestamps();
 
@@ -29,6 +30,8 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained('products')->restrictOnDelete();
             $table->unsignedInteger('quantity');
             $table->decimal('unit_price', 10, 2);
+            $table->decimal('gst_rate', 5, 2)->default(0)->comment('GST % at time of order');
+            $table->decimal('tax_amount', 10, 2)->default(0);
             $table->decimal('subtotal', 10, 2);
             $table->string('price_source')->default('product_distributor_price');
             $table->timestamps();

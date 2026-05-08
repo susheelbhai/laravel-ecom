@@ -23,9 +23,9 @@ export default function StockDashboard() {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Stock Dashboard" />
 
-            <div className="flex h-full flex-1 flex-col gap-4 rounded-xl ">
+            <div className="flex h-full flex-1 flex-col gap-4 rounded-div ">
                 <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                    <div className="relative overflow-hidden rounded-xl border border-sidebar-border/70 bg-white p-6 dark:border-sidebar-border">
+                    <div className="relative overflow-hidden rounded-div border border-sidebar-border/70 bg-white p-6 dark:border-sidebar-border">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600">
@@ -48,7 +48,7 @@ export default function StockDashboard() {
                         </div>
                     </div>
 
-                    <div className="relative overflow-hidden rounded-xl border border-sidebar-border/70 bg-white p-6 dark:border-sidebar-border">
+                    <div className="relative overflow-hidden rounded-div border border-sidebar-border/70 bg-white p-6 dark:border-sidebar-border">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600">
@@ -64,7 +64,7 @@ export default function StockDashboard() {
                         </div>
                     </div>
 
-                    <div className="relative overflow-hidden rounded-xl border border-sidebar-border/70 bg-white p-6 dark:border-sidebar-border">
+                    <div className="relative overflow-hidden rounded-div border border-sidebar-border/70 bg-white p-6 dark:border-sidebar-border">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600">
@@ -87,7 +87,7 @@ export default function StockDashboard() {
                 </div>
 
                 {lowStockAlerts && lowStockAlerts.length > 0 && (
-                    <div className="relative overflow-hidden rounded-xl border border-sidebar-border/70 bg-white p-6 dark:border-sidebar-border">
+                    <div className="relative overflow-hidden rounded-div border border-sidebar-border/70 bg-white p-6 dark:border-sidebar-border">
                         <div className="mb-4 flex items-center">
                             <AlertTriangle className="mr-2 h-5 w-5 text-yellow-500" />
                             <h2 className="text-xl font-semibold">

@@ -114,7 +114,7 @@ export default function Moderation({ pendingReviews }: ModerationProps) {
                             Approve or reject pending product reviews
                         </p>
                     </div>
-                    <div className="rounded-lg bg-primary/10 px-4 py-2">
+                    <div className="rounded-div bg-primary/10 px-4 py-2">
                         <span className="text-sm font-medium text-primary">
                             {pendingReviews.total} Pending Review
                             {pendingReviews.total !== 1 ? 's' : ''}
@@ -123,7 +123,7 @@ export default function Moderation({ pendingReviews }: ModerationProps) {
                 </div>
 
                 {pendingReviews.data.length === 0 ? (
-                    <div className="flex flex-1 items-center justify-center rounded-xl border border-border bg-card p-12">
+                    <div className="flex flex-1 items-center justify-center rounded-div border border-border bg-card p-12">
                         <div className="text-center">
                             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
                                 <Check className="h-8 w-8 text-green-600" />
@@ -152,7 +152,7 @@ export default function Moderation({ pendingReviews }: ModerationProps) {
                             return (
                                 <div
                                     key={review.id}
-                                    className="rounded-xl border border-border bg-card p-6 shadow-sm"
+                                    className="rounded-div border border-border bg-card p-6 shadow-sm"
                                 >
                                     <div className="space-y-4">
                                         {/* Header with Product and User Info */}
@@ -236,7 +236,7 @@ export default function Moderation({ pendingReviews }: ModerationProps) {
                                                 disabled={
                                                     processingId === review.id
                                                 }
-                                                className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                                                className="flex items-center gap-2 rounded-div bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
                                             >
                                                 <Check className="h-4 w-4" />
                                                 Approve
@@ -248,7 +248,7 @@ export default function Moderation({ pendingReviews }: ModerationProps) {
                                                 disabled={
                                                     processingId === review.id
                                                 }
-                                                className="flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                                                className="flex items-center gap-2 rounded-div bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed"
                                             >
                                                 <X className="h-4 w-4" />
                                                 Reject

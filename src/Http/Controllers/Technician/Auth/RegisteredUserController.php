@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Technician\Auth;
 use App\Events\TechnicianRegistered;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterTechnicianRequest;
+use App\Models\State;
 use App\Models\Technician;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,9 @@ class RegisteredUserController extends Controller
                 ['value' => 'national_id', 'label' => 'National ID'],
                 ['value' => 'other', 'label' => 'Other Government ID'],
             ],
+            'states' => State::orderBy('name')->get(['id', 'name', 'gst_state_code'])
+                ->map(fn ($s) => ['value' => (string) $s->id, 'label' => "{$s->name} ({$s->gst_state_code})"])
+                ->all(),
         ]);
     }
 

@@ -52,7 +52,7 @@ const CartIndex = () => {
                         Shopping Cart
                     </h1>
                     {cart && cart.items && cart.items.length > 0 ? (
-                        <div className="overflow-hidden rounded-lg border border-border bg-card shadow-sm">
+                        <div className="overflow-hidden rounded-div border border-border bg-card shadow-sm">
                             {/* Header */}
                             <div className="grid grid-cols-12 gap-4 border-b border-border bg-muted px-6 py-4 font-semibold text-muted-foreground">
                                 <div className="col-span-5">ITEM NAME</div>
@@ -92,7 +92,7 @@ const CartIndex = () => {
                                                     }
                                                     alt={item.product.title}
                                                     onError={handleProductImageError}
-                                                    className="h-20 w-20 rounded-lg border border-border object-cover"
+                                                    className="h-20 w-20 rounded-div border border-border object-cover"
                                                 />
                                             </Link>
                                             <Link
@@ -186,13 +186,13 @@ const CartIndex = () => {
                                 <div className="mt-6 flex justify-end gap-4">
                                     <Link
                                         href={route('product.index')}
-                                        className="rounded-lg border-2 border-border bg-card px-6 py-3 font-semibold text-foreground transition-colors hover:bg-muted"
+                                        className="rounded-div border-2 border-border bg-card px-6 py-3 font-semibold text-foreground transition-colors hover:bg-muted"
                                     >
                                         Continue Shopping
                                     </Link>
                                     <Link
                                         href={route('checkout.index')}
-                                        className="rounded-lg bg-primary px-6 py-3 font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+                                        className="rounded-div bg-primary px-6 py-3 font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
                                     >
                                         Proceed to Checkout
                                     </Link>
@@ -200,13 +200,13 @@ const CartIndex = () => {
                             </div>
                         </div>
                     ) : (
-                        <div className="rounded-lg border border-border bg-card p-12 text-center shadow-sm">
+                        <div className="rounded-div border border-border bg-card p-12 text-center shadow-sm">
                             <p className="mb-4 text-lg text-muted-foreground">
                                 Your cart is empty.
                             </p>
                             <Link
                                 href={route('product.index')}
-                                className="inline-block rounded-lg bg-primary px-6 py-3 font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+                                className="inline-block rounded-div bg-primary px-6 py-3 font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
                             >
                                 Start Shopping
                             </Link>

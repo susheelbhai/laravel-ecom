@@ -33,6 +33,7 @@ Route::middleware(['web', HandleInertiaRequests::class])->group(function () {
 
         Route::get('/warranty-cards', [WarrantyCardController::class, 'index'])->name('warranty-cards.index');
         Route::get('/warranty-cards/{warranty_card}', [WarrantyCardController::class, 'show'])->name('warranty-cards.show');
+        Route::get('/warranty-cards/{warranty_card}/print', [WarrantyCardController::class, 'print'])->name('warranty-cards.print');
 
         Route::get('/serial-numbers/lookup', [SerialNumberController::class, 'lookup'])->name('serial-numbers.lookup');
         Route::post('/serial-numbers/{serialNumber}/mark-stolen', [SerialNumberController::class, 'markStolen'])->name('serial-numbers.mark-stolen');

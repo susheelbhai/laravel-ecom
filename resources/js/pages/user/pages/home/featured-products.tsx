@@ -33,7 +33,7 @@ export default function FeaturedProductsSection({ data }: { data: any }) {
                             href={route('product.show', product.slug)}
                             className="group"
                         >
-                            <div className="overflow-hidden rounded-2xl bg-card shadow-md ring-1 ring-border transition-all hover:shadow-xl hover:ring-primary/20">
+                            <div className="overflow-hidden rounded-div bg-card shadow-md ring-1 ring-border transition-all hover:shadow-xl hover:ring-primary/20">
                                 <div className="relative overflow-hidden">
                                     <img
                                         src={product.image || FALLBACK_IMAGE}
@@ -63,7 +63,7 @@ export default function FeaturedProductsSection({ data }: { data: any }) {
                                                 showDecimals: false,
                                             })}
                                         </p>
-                                        <button className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary transition-all hover:bg-primary hover:text-primary-foreground">
+                                        <button className="flex h-9 w-9 items-center justify-center rounded-button bg-primary/10 text-primary transition-all hover:bg-primary hover:text-primary-foreground">
                                             <ShoppingCart className="h-4 w-4" />
                                         </button>
                                     </div>

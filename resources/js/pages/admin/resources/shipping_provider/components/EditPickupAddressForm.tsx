@@ -29,7 +29,7 @@ export default function EditPickupAddressForm({
     error
 }: EditPickupAddressFormProps) {
     return (
-        <div className="mb-6 p-4 border border-blue-200 rounded-lg bg-blue-50">
+        <div className="mb-6 p-4 border border-blue-200 rounded-div bg-blue-50">
             <div className="flex justify-between items-center mb-4">
                 <h3 className="text-lg font-medium">Edit Pickup Address</h3>
                 <button

@@ -27,7 +27,7 @@ export default function SerialsModal({ open, onClose, productTitle, serials, loo
                     {serials.length} available serial{serials.length !== 1 ? 's' : ''}
                 </p>
 
-                <ul className="max-h-72 divide-y divide-border overflow-y-auto rounded-lg border border-border">
+                <ul className="max-h-72 divide-y divide-border overflow-y-auto rounded-div border border-border">
                     {serials.map((sn) => (
                         <li key={sn} className="flex items-center justify-between px-3 py-2">
                             <a

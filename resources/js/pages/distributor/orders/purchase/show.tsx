@@ -49,7 +49,7 @@ export default function DistributorPurchaseOrderShow() {
                     rejectionNote={data?.status === 'rejected' ? data.rejection_note : null}
                     notice={
                         isPending ? (
-                            <div className="rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+                            <div className="rounded-div border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
                                 Awaiting admin review. You can still add more items below.
                             </div>
                         ) : undefined
@@ -80,7 +80,7 @@ export default function DistributorPurchaseOrderShow() {
                 </TableCard>
 
                 {isPending && (
-                    <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-950">
+                    <div className="rounded-div border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-950">
                         <div className="mb-3 text-sm font-medium">Add another item</div>
                         <FormContainer onSubmit={submit} processing={processing} buttonLabel="Add item">
                             <InputDiv
@@ -106,7 +106,7 @@ export default function DistributorPurchaseOrderShow() {
                     </div>
                 )}
 
-                {data.payment_summary && (
+                {data.status === 'approved' && data.payment_summary && (
                     <PaymentSummarySection
                         summary={data.payment_summary}
                         storeRoute="distributor.purchase-orders.show"

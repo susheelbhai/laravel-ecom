@@ -13,6 +13,7 @@ class A_TestingDatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call(StateSeeder::class);
         $this->call([
             LarashipSeeder::class,
         ]);
@@ -72,7 +73,6 @@ class A_TestingDatabaseSeeder extends Seeder
         $this->call(TechnicianSeeder::class);
         $this->call(ProjectSeeder::class);
         $this->call(ServiceSeeder::class);
-        $this->call(StateSeeder::class);
         $this->call(ProductWarrantySeeder::class);
         $this->call(SerialNumberSeeder::class);
         $this->call(SerialNumberMovementSeeder::class);

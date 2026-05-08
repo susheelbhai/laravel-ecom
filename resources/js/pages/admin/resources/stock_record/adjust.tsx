@@ -50,7 +50,7 @@ export default function AdjustStockRecord() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Adjust Stock Quantity" />
-            <div className="mb-4 rounded-lg bg-gray-50 p-4">
+            <div className="mb-4 rounded-div bg-gray-50 p-4">
                 <h3 className="font-semibold">Stock Record Details</h3>
                 <div className="mt-2 text-sm text-gray-600">
                     <p>
@@ -81,7 +81,7 @@ export default function AdjustStockRecord() {
                     inputDivData={inputDivData}
                     placeholder="e.g., 10 or -5"
                 />
-                <div className="rounded-lg bg-blue-50 p-3 text-sm">
+                <div className="rounded-div bg-blue-50 p-3 text-sm">
                     <p className="font-medium text-blue-900">
                         New Quantity: {newQuantity}
                     </p>

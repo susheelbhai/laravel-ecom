@@ -27,7 +27,7 @@ export default function Create() {
                             <img
                                 src={blog.display_img}
                                 alt={blog.title}
-                                className="mb-4 w-full rounded-xl shadow"
+                                className="mb-4 w-full rounded-div shadow"
                             />
                         )}
 
@@ -67,12 +67,12 @@ export default function Create() {
                         <a
                             href={blog.ad_url}
                             target="_blank"
-                            className="mb-6 block space-y-4 overflow-hidden rounded-xl bg-background2 shadow"
+                            className="mb-6 block space-y-4 overflow-hidden rounded-div bg-background2 shadow"
                         >
                             <img src={blog.ad_img} alt="" />
                         </a>
 
-                        <div className="space-y-4 rounded-xl border border-sidebar-border bg-sidebar p-6 shadow">
+                        <div className="space-y-4 rounded-div border border-sidebar-border bg-sidebar p-6 shadow">
                             <h3 className="mb-2 text-xl font-semibold text-sidebar-foreground">
                                 Related Blogs
                             </h3>

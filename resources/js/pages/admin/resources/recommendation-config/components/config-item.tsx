@@ -32,7 +32,7 @@ export function ConfigItem({
 
     return (
         <div
-            className={`flex items-center gap-4 rounded-lg border border-border bg-background p-4 transition-shadow duration-200 ${
+            className={`flex items-center gap-4 rounded-div border border-border bg-background p-4 transition-shadow duration-200 ${
                 isDragging
                     ? 'shadow-2xl ring-2 ring-secondary/50'
                     : 'hover:shadow-md'

@@ -14,7 +14,7 @@ $addresses = array(
 
 /* `ecom24`.`admins` */
 $admins = array(
-  array('id' => '1','created_at' => '2024-03-23 09:22:02','updated_at' => '2026-05-04 23:27:49','name' => 'Aamir','email' => 'sangamararia@gmail.com','phone' => '9661375409','email_verified_at' => '2024-03-23 09:22:02','password' => '$2y$12$RDw7BtQ9tuafmA52zx6YveURX34h6KIAKcH4sea.Glb0HO7bFLej.','address' => NULL,'city' => NULL,'state' => NULL,'dob' => NULL,'avatar' => NULL,'remember_token' => 'tHjRyJ4fphXVKUrTp3lrqUfEpCUZYGznP6AmUD2c6KxTJ4RY1wDRuwvU8xmJ','google_id' => NULL,'facebook_id' => NULL,'x_id' => NULL,'linkedin_id' => NULL,'github_id' => NULL,'gitlab_id' => NULL,'bitbucket_id' => NULL,'slack_id' => NULL,'apple_id' => NULL,'amazon_id' => NULL)
+  array('id' => '1','created_at' => '2024-03-23 09:22:02','updated_at' => '2026-05-04 23:27:49','name' => 'Aamir','email' => 'sangamararia@gmail.com','phone' => '9661375409','email_verified_at' => '2024-03-23 09:22:02','password' => '$2y$12$RDw7BtQ9tuafmA52zx6YveURX34h6KIAKcH4sea.Glb0HO7bFLej.','address' => NULL,'city' => NULL,'state_id' => 10,'dob' => NULL,'avatar' => NULL,'remember_token' => 'tHjRyJ4fphXVKUrTp3lrqUfEpCUZYGznP6AmUD2c6KxTJ4RY1wDRuwvU8xmJ','google_id' => NULL,'facebook_id' => NULL,'x_id' => NULL,'linkedin_id' => NULL,'github_id' => NULL,'gitlab_id' => NULL,'bitbucket_id' => NULL,'slack_id' => NULL,'apple_id' => NULL,'amazon_id' => NULL)
 );
 
 /* `ecom24`.`blogs` */
@@ -592,6 +592,44 @@ $slider1 = array(
 
 /* `ecom24`.`states` */
 $states = array(
+  array('id' => '1','name' => 'Jammu and Kashmir','gst_state_code' => '01','gst_state_short_name' => 'JK'),
+  array('id' => '2','name' => 'Himachal Pradesh','gst_state_code' => '02','gst_state_short_name' => 'HP'),
+  array('id' => '3','name' => 'Punjab','gst_state_code' => '03','gst_state_short_name' => 'PB'),
+  array('id' => '4','name' => 'Chandigarh','gst_state_code' => '04','gst_state_short_name' => 'CH'),
+  array('id' => '5','name' => 'Uttarakhand','gst_state_code' => '05','gst_state_short_name' => 'UA'),
+  array('id' => '6','name' => 'Haryana','gst_state_code' => '06','gst_state_short_name' => 'HR'),
+  array('id' => '7','name' => 'Delhi','gst_state_code' => '07','gst_state_short_name' => 'DL'),
+  array('id' => '8','name' => 'Rajasthan','gst_state_code' => '08','gst_state_short_name' => 'RJ'),
+  array('id' => '9','name' => 'Uttar Pradesh','gst_state_code' => '09','gst_state_short_name' => 'UP'),
+  array('id' => '10','name' => 'Bihar','gst_state_code' => '10','gst_state_short_name' => 'BR'),
+  array('id' => '11','name' => 'Sikkim','gst_state_code' => '11','gst_state_short_name' => 'SK'),
+  array('id' => '12','name' => 'Arunachal Pradesh','gst_state_code' => '12','gst_state_short_name' => 'AP'),
+  array('id' => '13','name' => 'Nagaland','gst_state_code' => '13','gst_state_short_name' => 'NL'),
+  array('id' => '14','name' => 'Manipur','gst_state_code' => '14','gst_state_short_name' => 'MN'),
+  array('id' => '15','name' => 'Mizoram','gst_state_code' => '15','gst_state_short_name' => 'MZ'),
+  array('id' => '16','name' => 'Tripura','gst_state_code' => '16','gst_state_short_name' => 'TR'),
+  array('id' => '17','name' => 'Meghalaya','gst_state_code' => '17','gst_state_short_name' => 'ML'),
+  array('id' => '18','name' => 'Assam','gst_state_code' => '18','gst_state_short_name' => 'AS'),
+  array('id' => '19','name' => 'West Bengal','gst_state_code' => '19','gst_state_short_name' => 'WB'),
+  array('id' => '20','name' => 'Jharkhand','gst_state_code' => '20','gst_state_short_name' => 'JH'),
+  array('id' => '21','name' => 'Odisha','gst_state_code' => '21','gst_state_short_name' => 'OR'),
+  array('id' => '22','name' => 'Chattisgarh','gst_state_code' => '22','gst_state_short_name' => 'CT'),
+  array('id' => '23','name' => 'Madhya Pradesh','gst_state_code' => '23','gst_state_short_name' => 'MP'),
+  array('id' => '24','name' => 'Gujarat','gst_state_code' => '24','gst_state_short_name' => 'GJ'),
+  array('id' => '25','name' => 'Daman & Diu','gst_state_code' => '25','gst_state_short_name' => 'DD'),
+  array('id' => '26','name' => 'Dadra & Nagar Haveli','gst_state_code' => '26','gst_state_short_name' => 'DN'),
+  array('id' => '27','name' => 'Maharashtra','gst_state_code' => '27','gst_state_short_name' => 'MH'),
+  array('id' => '28','name' => 'Andhra Pradesh','gst_state_code' => '28','gst_state_short_name' => 'AP'),
+  array('id' => '29','name' => 'Karnataka','gst_state_code' => '29','gst_state_short_name' => 'KA'),
+  array('id' => '30','name' => 'Goa','gst_state_code' => '30','gst_state_short_name' => 'GA'),
+  array('id' => '31','name' => 'Lakshadweep','gst_state_code' => '31','gst_state_short_name' => 'LD'),
+  array('id' => '32','name' => 'Kerala','gst_state_code' => '32','gst_state_short_name' => 'KL'),
+  array('id' => '33','name' => 'Tamil Nadu','gst_state_code' => '33','gst_state_short_name' => 'TN'),
+  array('id' => '34','name' => 'Puducherry','gst_state_code' => '34','gst_state_short_name' => 'PY'),
+  array('id' => '35','name' => 'Andaman & Nicobar Islands','gst_state_code' => '35','gst_state_short_name' => 'AN'),
+  array('id' => '36','name' => 'Telangana','gst_state_code' => '36','gst_state_short_name' => 'TL'),
+  array('id' => '37','name' => 'Hyderabad GST Commissionerate','gst_state_code' => '37','gst_state_short_name' => 'AD'),
+  array('id' => '38','name' => 'Kurnool GST Commissionerate','gst_state_code' => '38','gst_state_short_name' => 'LA')
 );
 
 /* `ecom24`.`stock_movements` */

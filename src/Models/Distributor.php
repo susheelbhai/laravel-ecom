@@ -84,7 +84,7 @@ class Distributor extends BaseInternalAuthenticatable
         'password',
         'address',
         'city',
-        'state',
+        'state_id',
         'dob',
         'google_id',
         'facebook_id',
@@ -137,6 +137,11 @@ class Distributor extends BaseInternalAuthenticatable
     public function approvedByAdmin(): BelongsTo
     {
         return $this->belongsTo(Admin::class, 'approved_by');
+    }
+
+    public function state(): BelongsTo
+    {
+        return $this->belongsTo(State::class);
     }
 
     /**

@@ -81,7 +81,7 @@ export default function ImageSlider({ images, productTitle }: ImageSliderProps) 
                         <button
                             key={index}
                             onClick={() => goToImage(index)}
-                            className={`relative flex-shrink-0 overflow-hidden rounded-div transition-all ${
+                            className={`relative flex-shrink-0 overflow-hidden rounded-button transition-all ${
                                 index === currentImageIndex
                                     ? 'ring-2 ring-primary ring-offset-2'
                                     : 'opacity-60 hover:opacity-100'

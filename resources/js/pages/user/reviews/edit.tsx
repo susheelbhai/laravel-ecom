@@ -166,7 +166,7 @@ export default function EditReview({ review, product }: EditReviewProps) {
 
                 {/* Display general errors */}
                 {Object.keys(errors).length > 0 && (
-                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-div">
                         <h3 className="text-red-800 font-semibold mb-2">Please fix the following errors:</h3>
                         <ul className="list-disc list-inside text-red-700 text-sm space-y-1">
                             {Object.entries(errors).map(([key, value]) => (
@@ -176,7 +176,7 @@ export default function EditReview({ review, product }: EditReviewProps) {
                     </div>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-lg border border-gray-200">
+                <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-div border border-gray-200">
                     {/* Rating */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -207,7 +207,7 @@ export default function EditReview({ review, product }: EditReviewProps) {
                             onChange={(e) => setData('title', e.target.value)}
                             placeholder="Summarize your experience"
                             maxLength={255}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-div focus:outline-none focus:ring-2 focus:ring-primary"
                         />
                         {errors.title && (
                             <p className="text-sm text-red-600 mt-1">{errors.title}</p>
@@ -226,7 +226,7 @@ export default function EditReview({ review, product }: EditReviewProps) {
                             placeholder="Share your experience with this product..."
                             rows={6}
                             maxLength={maxCharacters}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-div focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                         />
                         <div className="flex justify-between items-center mt-1">
                             <div>
@@ -304,7 +304,7 @@ export default function EditReview({ review, product }: EditReviewProps) {
                                 <button
                                     type="button"
                                     onClick={() => imageInputRef.current?.click()}
-                                    className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                                    className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-button hover:bg-gray-50 transition-colors"
                                 >
                                     <ImageIcon className="h-5 w-5" />
                                     <span>Add Images</span>
@@ -381,7 +381,7 @@ export default function EditReview({ review, product }: EditReviewProps) {
                                 <button
                                     type="button"
                                     onClick={() => videoInputRef.current?.click()}
-                                    className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                                    className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-button hover:bg-gray-50 transition-colors"
                                 >
                                     <VideoIcon className="h-5 w-5" />
                                     <span>Add Videos</span>
@@ -406,7 +406,7 @@ export default function EditReview({ review, product }: EditReviewProps) {
                         <button
                             type="button"
                             onClick={handleDelete}
-                            className="flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                            className="flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-red-50 rounded-button transition-colors"
                         >
                             <Trash2 className="h-4 w-4" />
                             Delete Review
@@ -415,7 +415,7 @@ export default function EditReview({ review, product }: EditReviewProps) {
                             <button
                                 type="button"
                                 onClick={() => router.visit(route('product.show', product.slug))}
-                                className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                                className="px-6 py-2 border border-gray-300 rounded-button hover:bg-gray-50 transition-colors"
                             >
                                 Cancel
                             </button>
@@ -423,7 +423,7 @@ export default function EditReview({ review, product }: EditReviewProps) {
                                 type="submit"
                                 disabled={processing || data.rating === 0 || data.content.length < 10}
                                 className={cn(
-                                    'px-6 py-2 rounded-lg font-medium transition-colors',
+                                    'px-6 py-2 rounded-button font-medium transition-colors',
                                     processing || data.rating === 0 || data.content.length < 10
                                         ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                                         : 'bg-primary text-white hover:bg-primary/90',

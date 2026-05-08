@@ -261,7 +261,7 @@ export default function AdminDistributorOrderCreate() {
                     <div className="space-y-3">
                         <div className="text-sm font-medium">Items</div>
                         {itemsArray.map((row, idx) => (
-                            <div key={idx} className="rounded-lg border border-gray-200 p-3 space-y-3">
+                            <div key={idx} className="rounded-div border border-gray-200 p-3 space-y-3">
                                 {/* Product / Qty / Price row */}
                                 <div className="grid grid-cols-12 items-start gap-3">
                                     <div className="col-span-6">
@@ -326,7 +326,7 @@ export default function AdminDistributorOrderCreate() {
                                             </span>
                                         </div>
 
-                                        <div className="max-h-48 overflow-y-auto rounded-lg border border-gray-200 bg-gray-50 p-2">
+                                        <div className="max-h-48 overflow-y-auto rounded-div border border-gray-200 bg-gray-50 p-2">
                                             {row.available_serials.map((sn) => (
                                                 <label
                                                     key={sn}

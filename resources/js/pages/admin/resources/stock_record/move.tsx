@@ -76,7 +76,7 @@ export default function MoveStockRecord() {
             <Head title="Move Stock Record" />
 
             {/* Current location summary */}
-            <div className="mb-4 rounded-lg bg-gray-50 p-4">
+            <div className="mb-4 rounded-div bg-gray-50 p-4">
                 <h3 className="font-semibold">Current Location</h3>
                 <div className="mt-2 text-sm text-gray-600">
                     <p>
@@ -150,7 +150,7 @@ export default function MoveStockRecord() {
                             </span>
                         </div>
 
-                        <div className="max-h-64 overflow-y-auto rounded-lg border border-gray-200 bg-gray-50 p-3">
+                        <div className="max-h-64 overflow-y-auto rounded-div border border-gray-200 bg-gray-50 p-3">
                             {serialOptions.map((opt) => {
                                 const checked = selectedSerials.includes(opt.serial_number);
                                 return (

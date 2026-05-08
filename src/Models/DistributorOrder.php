@@ -38,6 +38,7 @@ class DistributorOrder extends Model
         'approved_at',
         'rejected_at',
         'subtotal_amount',
+        'tax_amount',
         'total_amount',
         'payment_status',
         'amount_paid',
@@ -45,6 +46,7 @@ class DistributorOrder extends Model
 
     protected $casts = [
         'subtotal_amount' => 'float',
+        'tax_amount' => 'float',
         'total_amount' => 'float',
         'amount_paid' => 'float',
         'approved_at' => 'datetime',
@@ -54,6 +56,16 @@ class DistributorOrder extends Model
     public function isPending(): bool
     {
         return $this->status === self::STATUS_PENDING;
+    }
+
+    public function isApproved(): bool
+    {
+        return $this->status === self::STATUS_APPROVED;
+    }
+
+    public function isRejected(): bool
+    {
+        return $this->status === self::STATUS_REJECTED;
     }
 
     public function distributor(): BelongsTo

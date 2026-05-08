@@ -23,7 +23,7 @@ const EVENT_TYPE_COLORS: Record<string, string> = {
 export default function MovementTimeline({ movements }: { movements: Movement[] }) {
     if (movements.length === 0) {
         return (
-            <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+            <div className="rounded-div border border-border bg-card p-6 shadow-sm">
                 <h3 className="mb-2 text-base font-semibold text-foreground">Movement History</h3>
                 <p className="text-sm text-muted-foreground">No movements recorded.</p>
             </div>
@@ -31,7 +31,7 @@ export default function MovementTimeline({ movements }: { movements: Movement[] 
     }
 
     return (
-        <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+        <div className="rounded-div border border-border bg-card p-6 shadow-sm">
             <h3 className="mb-4 text-base font-semibold text-foreground">Movement History</h3>
             <ol className="relative border-l border-border">
                 {movements.map((movement, index) => {

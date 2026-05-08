@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Dealer;
 
 use App\Http\Controllers\Controller;
 use App\Models\WarrantyCard;
+use App\Models\Setting;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class WarrantyCardController extends Controller
@@ -39,7 +41,8 @@ class WarrantyCardController extends Controller
         $warranty_card->loadMissing([
             'product:id,title,sku',
             'serialNumber:id,serial_number',
-            'sale:id,sale_number,customer_name,customer_phone,customer_email,billing_address_line1,billing_address_line2,billing_city,billing_state,billing_pincode,billing_country',
+            'sale:id,sale_number,customer_name,customer_phone,customer_email,billing_address_line1,billing_address_line2,billing_city,billing_state_id,billing_pincode,billing_country',
+            'sale.billingState:id,name',
             'dealer:id,name',
         ]);
 
@@ -57,7 +60,7 @@ class WarrantyCardController extends Controller
             'billing_address_line1' => $warranty_card->sale?->billing_address_line1,
             'billing_address_line2' => $warranty_card->sale?->billing_address_line2,
             'billing_city' => $warranty_card->sale?->billing_city,
-            'billing_state' => $warranty_card->sale?->billing_state,
+            'billing_state' => $warranty_card->sale?->billingState?->name,
             'billing_pincode' => $warranty_card->sale?->billing_pincode,
             'billing_country' => $warranty_card->sale?->billing_country,
             'purchase_date' => $warranty_card->purchase_date?->format('M d, Y'),
@@ -67,5 +70,26 @@ class WarrantyCardController extends Controller
         ];
 
         return $this->render('dealer/warranty-cards/show', compact('data'));
+    }
+
+    public function print(WarrantyCard $warranty_card): Response
+    {
+        $dealerId = Auth::guard('dealer')->id();
+        abort_unless($warranty_card->dealer_id === $dealerId, 403);
+
+        $warranty_card->loadMissing([
+            'product:id,title,sku',
+            'serialNumber:id,serial_number',
+            'sale:id,sale_number,customer_name,customer_phone,customer_email,billing_address_line1,billing_address_line2,billing_city,billing_state_id,billing_pincode,billing_country',
+            'sale.billingState:id,name',
+            'dealer:id,name',
+        ]);
+
+        $setting = Setting::first();
+
+        return response()->view('printable.warranty-card', [
+            'card' => $warranty_card,
+            'setting' => $setting,
+        ]);
     }
 }

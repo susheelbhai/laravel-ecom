@@ -34,6 +34,10 @@ class ProductRequest extends FormRequest
 
             'price' => 'required|numeric|min:0',
             'mrp' => 'nullable|numeric|min:0',
+            'original_price' => 'nullable|numeric|min:0',
+            'distributor_price' => 'nullable|numeric|min:0',
+            'hsn_code' => 'nullable|string|max:8',
+            'gst_rate' => 'nullable|numeric|min:0|max:100',
 
             'manage_stock' => 'required|in:0,1',
 

@@ -38,7 +38,7 @@ export default function FilterPanel({
     onClearFilters,
 }: FilterPanelProps) {
     return (
-        <div className="space-y-4 rounded-xl border border-border bg-card p-6">
+        <div className="space-y-4 rounded-div border border-border bg-card p-6">
             <div className="mb-4 flex items-center justify-between">
                 <h3 className="text-lg font-semibold">Filters</h3>
                 {hasActiveFilters && (
@@ -62,7 +62,7 @@ export default function FilterPanel({
                     <select
                         value={sortBy}
                         onChange={(e) => setSortBy(e.target.value)}
-                        className="w-full rounded-lg border border-border bg-background px-4 py-2 text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none"
+                        className="w-full rounded-div border border-border bg-background px-4 py-2 text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none"
                     >
                         <option value="latest">Latest First</option>
                         <option value="oldest">Oldest First</option>
@@ -86,7 +86,7 @@ export default function FilterPanel({
                             onChange={(e) =>
                                 setSelectedCategory(e.target.value)
                             }
-                            className="w-full rounded-lg border border-border bg-background px-4 py-2 text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none"
+                            className="w-full rounded-div border border-border bg-background px-4 py-2 text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none"
                         >
                             <option value="">All Categories</option>
                             {categories.map((category: any) => (
@@ -109,7 +109,7 @@ export default function FilterPanel({
                         placeholder={`Min: ${priceRange?.min_price || 0}`}
                         value={minPrice}
                         onChange={(e) => setMinPrice(e.target.value)}
-                        className="w-full rounded-lg border border-border bg-background px-4 py-2 text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none"
+                        className="w-full rounded-div border border-border bg-background px-4 py-2 text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none"
                     />
                 </div>
 
@@ -123,7 +123,7 @@ export default function FilterPanel({
                         placeholder={`Max: ${priceRange?.max_price || 0}`}
                         value={maxPrice}
                         onChange={(e) => setMaxPrice(e.target.value)}
-                        className="w-full rounded-lg border border-border bg-background px-4 py-2 text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none"
+                        className="w-full rounded-div border border-border bg-background px-4 py-2 text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none"
                     />
                 </div>
 
@@ -136,7 +136,7 @@ export default function FilterPanel({
                     <select
                         value={minRating}
                         onChange={(e) => setMinRating(e.target.value)}
-                        className="w-full rounded-lg border border-border bg-background px-4 py-2 text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none"
+                        className="w-full rounded-div border border-border bg-background px-4 py-2 text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none"
                     >
                         <option value="">All Ratings</option>
                         <option value="4.5">4.5+ Stars</option>

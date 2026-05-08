@@ -41,6 +41,8 @@ class DealerController extends Controller
         $distributorId = Auth::guard('distributor')->id();
         abort_unless($dealer->distributor_id === $distributorId, 403);
 
+        $dealer->loadMissing(['distributor:id,name,email', 'approvedByAdmin:id,name']);
+
         $totalOutstandingBalance = (float) DealerOrder::query()
             ->where('dealer_id', $dealer->id)
             ->where('distributor_id', $distributorId)
@@ -51,8 +53,15 @@ class DealerController extends Controller
             'name' => $dealer->name,
             'email' => $dealer->email,
             'phone' => $dealer->phone,
+            'avatar' => $dealer->profile_pic,
             'application_status' => $dealer->application_status,
-            'created_at' => $dealer->created_at?->format('M d, Y'),
+            'commission_percentage' => $dealer->commission_percentage,
+            'distributor_name' => $dealer->distributor?->name,
+            'approved_at' => $dealer->approved_at?->format('d M Y'),
+            'approved_by_name' => $dealer->approvedByAdmin?->name,
+            'rejected_at' => $dealer->rejected_at?->format('d M Y'),
+            'rejection_note' => $dealer->rejection_note,
+            'created_at' => $dealer->created_at?->format('d M Y'),
             'total_outstanding_balance' => $totalOutstandingBalance,
         ];
 

@@ -60,7 +60,7 @@ export default function Login({
         >
             <Head title="Log in" />
             {flashError && (
-                <div className="mb-4 rounded-md border border-red-200 bg-red-50 p-3 text-center text-sm text-red-900 dark:border-red-900 dark:bg-red-950 dark:text-red-100">
+                <div className="mb-4 rounded-div border border-red-200 bg-red-50 p-3 text-center text-sm text-red-900 dark:border-red-900 dark:bg-red-950 dark:text-red-100">
                     {flashError}
                 </div>
             )}

@@ -91,7 +91,7 @@ export default function Create() {
                                 <li key={index}>{feature}</li>
                             ))}
                         </ul>
-                        <button className="mt-6 w-full rounded-div bg-sidebar-primary py-2 text-sidebar-primary-foreground transition hover:bg-sidebar-primary/90">
+                        <button className="mt-6 w-full rounded-button bg-sidebar-primary py-2 text-sidebar-primary-foreground transition hover:bg-sidebar-primary/90">
                             Book Now
                         </button>
                     </div>

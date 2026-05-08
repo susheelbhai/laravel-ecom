@@ -3,7 +3,7 @@ export default function ScanNotFoundResult() {
         <div
             role="status"
             aria-live="polite"
-            className="flex flex-col items-center gap-3 rounded-2xl border-2 border-yellow-300 bg-yellow-50 p-6 text-center dark:border-yellow-700 dark:bg-yellow-950"
+            className="flex flex-col items-center gap-3 rounded-div border-2 border-yellow-300 bg-yellow-50 p-6 text-center dark:border-yellow-700 dark:bg-yellow-950"
         >
             <span className="flex h-14 w-14 items-center justify-center rounded-full bg-yellow-100 dark:bg-yellow-900">
                 <svg

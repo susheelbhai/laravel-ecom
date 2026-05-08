@@ -16,7 +16,7 @@ $addresses = [
 
 /* `sangam-motors`.`admins` */
 $admins = [
-    ['id' => '1', 'created_at' => '2024-03-23 09:22:02', 'updated_at' => '2026-05-04 23:27:49', 'name' => 'Aamir', 'email' => 'admin@gmail.com', 'phone' => '9661375409', 'email_verified_at' => '2024-03-23 09:22:02', 'password' => '$2y$12$mMzM7K5HZ2bT.q8PBzx32OuKqXvFjvcgDfdgL/UJNMkXfCQuj4Coi', 'address' => null, 'city' => null, 'state' => null, 'dob' => null, 'avatar' => null, 'remember_token' => 'tHjRyJ4fphXVKUrTp3lrqUfEpCUZYGznP6AmUD2c6KxTJ4RY1wDRuwvU8xmJ', 'google_id' => null, 'facebook_id' => null, 'x_id' => null, 'linkedin_id' => null, 'github_id' => null, 'gitlab_id' => null, 'bitbucket_id' => null, 'slack_id' => null, 'apple_id' => null, 'amazon_id' => null],
+    ['id' => '1', 'created_at' => '2024-03-23 09:22:02', 'updated_at' => '2026-05-04 23:27:49', 'name' => 'Aamir', 'email' => 'admin@gmail.com', 'phone' => '9661375409', 'email_verified_at' => '2024-03-23 09:22:02', 'password' => '$2y$12$mMzM7K5HZ2bT.q8PBzx32OuKqXvFjvcgDfdgL/UJNMkXfCQuj4Coi', 'address' => null, 'city' => null, 'state_id' => 10, 'dob' => null, 'avatar' => null, 'remember_token' => 'tHjRyJ4fphXVKUrTp3lrqUfEpCUZYGznP6AmUD2c6KxTJ4RY1wDRuwvU8xmJ', 'google_id' => null, 'facebook_id' => null, 'x_id' => null, 'linkedin_id' => null, 'github_id' => null, 'gitlab_id' => null, 'bitbucket_id' => null, 'slack_id' => null, 'apple_id' => null, 'amazon_id' => null],
 ];
 
 /* `sangam-motors`.`blogs` */
@@ -86,7 +86,7 @@ $dealer_retail_sale_items = [
 
 /* `sangam-motors`.`distributors` */
 $distributors = [
-    ['id' => '1', 'created_at' => '2026-05-06 07:48:45', 'updated_at' => '2026-05-06 07:49:07', 'name' => 'Susheel Kumar Singh', 'legal_business_name' => 'DIGAMITE PRIVATE LIMITED', 'trade_name' => 'Sandra Mcfarland', 'business_constitution' => 'partnership', 'kyc_id_type' => 'passport', 'kyc_id_number' => '87979', 'pan_number' => 'EZIPS8151P', 'gstin' => '07AAICD5565A1ZT', 'tan_number' => null, 'msme_udyam_number' => null, 'nature_of_business' => 'kljl', 'years_in_business' => '12', 'expected_monthly_purchase_band' => '1l_5l', 'referral_source' => null, 'authorized_signatory_designation' => 'Sapiente autem elit', 'bank_account_holder_name' => 'Kay Kirkland', 'bank_name' => 'Ray Little', 'bank_branch' => 'Nihil in reiciendis', 'bank_account_number' => '7897979879', 'bank_ifsc' => 'SBIN0002322', 'email' => 'test@example.com', 'phone' => '9999999999', 'email_verified_at' => null, 'password' => '$2y$12$mMzM7K5HZ2bT.q8PBzx32OuKqXvFjvcgDfdgL/UJNMkXfCQuj4Coi', 'address' => 'vill- pandh, post- chakbahauddin, district- samastipur', 'warehouse_address' => null, 'city' => 'dalsingh sarai', 'state' => 'BR', 'pincode' => '848114', 'dob' => '06-Apr-2025', 'avatar' => null, 'application_status' => 'approved', 'approved_at' => '2026-05-06 07:49:07', 'approved_by' => '1', 'rejected_at' => null, 'rejection_note' => null, 'google_id' => null, 'facebook_id' => null, 'x_id' => null, 'linkedin_id' => null, 'github_id' => null, 'gitlab_id' => null, 'bitbucket_id' => null, 'slack_id' => null, 'apple_id' => null, 'amazon_id' => null, 'remember_token' => null],
+    ['id' => '1', 'created_at' => '2026-05-06 07:48:45', 'updated_at' => '2026-05-06 07:49:07', 'name' => 'Susheel Kumar Singh', 'legal_business_name' => 'DIGAMITE PRIVATE LIMITED', 'trade_name' => 'Sandra Mcfarland', 'business_constitution' => 'partnership', 'kyc_id_type' => 'passport', 'kyc_id_number' => '87979', 'pan_number' => 'EZIPS8151P', 'gstin' => '07AAICD5565A1ZT', 'tan_number' => null, 'msme_udyam_number' => null, 'nature_of_business' => 'kljl', 'years_in_business' => '12', 'expected_monthly_purchase_band' => '1l_5l', 'referral_source' => null, 'authorized_signatory_designation' => 'Sapiente autem elit', 'bank_account_holder_name' => 'Kay Kirkland', 'bank_name' => 'Ray Little', 'bank_branch' => 'Nihil in reiciendis', 'bank_account_number' => '7897979879', 'bank_ifsc' => 'SBIN0002322', 'email' => 'test@example.com', 'phone' => '9999999999', 'email_verified_at' => null, 'password' => '$2y$12$mMzM7K5HZ2bT.q8PBzx32OuKqXvFjvcgDfdgL/UJNMkXfCQuj4Coi', 'address' => 'vill- pandh, post- chakbahauddin, district- samastipur', 'warehouse_address' => null, 'city' => 'dalsingh sarai', 'state_id' => 10, 'pincode' => '848114', 'dob' => '06-Apr-2025', 'avatar' => null, 'application_status' => 'approved', 'approved_at' => '2026-05-06 07:49:07', 'approved_by' => '1', 'rejected_at' => null, 'rejection_note' => null, 'google_id' => null, 'facebook_id' => null, 'x_id' => null, 'linkedin_id' => null, 'github_id' => null, 'gitlab_id' => null, 'bitbucket_id' => null, 'slack_id' => null, 'apple_id' => null, 'amazon_id' => null, 'remember_token' => null],
 ];
 
 /* `sangam-motors`.`distributor_orders` */
@@ -673,8 +673,46 @@ $slider1 = [
 ];
 
 /* `sangam-motors`.`states` */
-$states = [
-];
+$states = array(
+  array('id' => '1','name' => 'Jammu and Kashmir','gst_state_code' => '01','gst_state_short_name' => 'JK'),
+  array('id' => '2','name' => 'Himachal Pradesh','gst_state_code' => '02','gst_state_short_name' => 'HP'),
+  array('id' => '3','name' => 'Punjab','gst_state_code' => '03','gst_state_short_name' => 'PB'),
+  array('id' => '4','name' => 'Chandigarh','gst_state_code' => '04','gst_state_short_name' => 'CH'),
+  array('id' => '5','name' => 'Uttarakhand','gst_state_code' => '05','gst_state_short_name' => 'UA'),
+  array('id' => '6','name' => 'Haryana','gst_state_code' => '06','gst_state_short_name' => 'HR'),
+  array('id' => '7','name' => 'Delhi','gst_state_code' => '07','gst_state_short_name' => 'DL'),
+  array('id' => '8','name' => 'Rajasthan','gst_state_code' => '08','gst_state_short_name' => 'RJ'),
+  array('id' => '9','name' => 'Uttar Pradesh','gst_state_code' => '09','gst_state_short_name' => 'UP'),
+  array('id' => '10','name' => 'Bihar','gst_state_code' => '10','gst_state_short_name' => 'BR'),
+  array('id' => '11','name' => 'Sikkim','gst_state_code' => '11','gst_state_short_name' => 'SK'),
+  array('id' => '12','name' => 'Arunachal Pradesh','gst_state_code' => '12','gst_state_short_name' => 'AP'),
+  array('id' => '13','name' => 'Nagaland','gst_state_code' => '13','gst_state_short_name' => 'NL'),
+  array('id' => '14','name' => 'Manipur','gst_state_code' => '14','gst_state_short_name' => 'MN'),
+  array('id' => '15','name' => 'Mizoram','gst_state_code' => '15','gst_state_short_name' => 'MZ'),
+  array('id' => '16','name' => 'Tripura','gst_state_code' => '16','gst_state_short_name' => 'TR'),
+  array('id' => '17','name' => 'Meghalaya','gst_state_code' => '17','gst_state_short_name' => 'ML'),
+  array('id' => '18','name' => 'Assam','gst_state_code' => '18','gst_state_short_name' => 'AS'),
+  array('id' => '19','name' => 'West Bengal','gst_state_code' => '19','gst_state_short_name' => 'WB'),
+  array('id' => '20','name' => 'Jharkhand','gst_state_code' => '20','gst_state_short_name' => 'JH'),
+  array('id' => '21','name' => 'Odisha','gst_state_code' => '21','gst_state_short_name' => 'OR'),
+  array('id' => '22','name' => 'Chattisgarh','gst_state_code' => '22','gst_state_short_name' => 'CT'),
+  array('id' => '23','name' => 'Madhya Pradesh','gst_state_code' => '23','gst_state_short_name' => 'MP'),
+  array('id' => '24','name' => 'Gujarat','gst_state_code' => '24','gst_state_short_name' => 'GJ'),
+  array('id' => '25','name' => 'Daman & Diu','gst_state_code' => '25','gst_state_short_name' => 'DD'),
+  array('id' => '26','name' => 'Dadra & Nagar Haveli','gst_state_code' => '26','gst_state_short_name' => 'DN'),
+  array('id' => '27','name' => 'Maharashtra','gst_state_code' => '27','gst_state_short_name' => 'MH'),
+  array('id' => '28','name' => 'Andhra Pradesh','gst_state_code' => '28','gst_state_short_name' => 'AP'),
+  array('id' => '29','name' => 'Karnataka','gst_state_code' => '29','gst_state_short_name' => 'KA'),
+  array('id' => '30','name' => 'Goa','gst_state_code' => '30','gst_state_short_name' => 'GA'),
+  array('id' => '31','name' => 'Lakshadweep','gst_state_code' => '31','gst_state_short_name' => 'LD'),
+  array('id' => '32','name' => 'Kerala','gst_state_code' => '32','gst_state_short_name' => 'KL'),
+  array('id' => '33','name' => 'Tamil Nadu','gst_state_code' => '33','gst_state_short_name' => 'TN'),
+  array('id' => '34','name' => 'Puducherry','gst_state_code' => '34','gst_state_short_name' => 'PY'),
+  array('id' => '35','name' => 'Andaman & Nicobar Islands','gst_state_code' => '35','gst_state_short_name' => 'AN'),
+  array('id' => '36','name' => 'Telangana','gst_state_code' => '36','gst_state_short_name' => 'TL'),
+  array('id' => '37','name' => 'Hyderabad GST Commissionerate','gst_state_code' => '37','gst_state_short_name' => 'AD'),
+  array('id' => '38','name' => 'Kurnool GST Commissionerate','gst_state_code' => '38','gst_state_short_name' => 'LA')
+);
 
 /* `sangam-motors`.`stock_movements` */
 $stock_movements = [
@@ -690,7 +728,7 @@ $team = [
 
 /* `sangam-motors`.`technicians` */
 $technicians = [
-    ['id' => '1', 'created_at' => '2026-05-06 07:52:12', 'updated_at' => '2026-05-06 07:52:29', 'name' => 'Susheel Kumar Singh', 'email' => 'test@example.com', 'phone' => '9999999999', 'specialization' => 'electrical', 'experience_years' => '5', 'certification' => 'Tempora incididunt v', 'address' => 'vill- pandh, post- chakbahauddin, district- samastipur', 'city' => 'dalsingh sarai', 'state' => 'BR', 'pincode' => '848114', 'id_type' => 'passport', 'id_number' => '876', 'referral_source' => null, 'email_verified_at' => null, 'password' => '$2y$12$qvTPhFP3lRKnHJTysVNH8eE3ueNBAjZ0QIRPSjuFJxfpcHDkygHvW', 'application_status' => 'approved', 'approved_at' => '2026-05-06 07:52:29', 'approved_by' => '1', 'rejected_at' => null, 'rejection_note' => null, 'remember_token' => null],
+    ['id' => '1', 'created_at' => '2026-05-06 07:52:12', 'updated_at' => '2026-05-06 07:52:29', 'name' => 'Susheel Kumar Singh', 'email' => 'test@example.com', 'phone' => '9999999999', 'specialization' => 'electrical', 'experience_years' => '5', 'certification' => 'Tempora incididunt v', 'address' => 'vill- pandh, post- chakbahauddin, district- samastipur', 'city' => 'dalsingh sarai', 'state_id' => 10, 'pincode' => '848114', 'id_type' => 'passport', 'id_number' => '876', 'referral_source' => null, 'email_verified_at' => null, 'password' => '$2y$12$qvTPhFP3lRKnHJTysVNH8eE3ueNBAjZ0QIRPSjuFJxfpcHDkygHvW', 'application_status' => 'approved', 'approved_at' => '2026-05-06 07:52:29', 'approved_by' => '1', 'rejected_at' => null, 'rejection_note' => null, 'remember_token' => null],
 ];
 
 /* `sangam-motors`.`technician_scans` */
@@ -724,9 +762,9 @@ $visitors = [
 
 /* `sangam-motors`.`warehouses` */
 $warehouses = [
-    ['id' => '1', 'name' => 'Main Road, Araria', 'address' => 'Araria', 'phone' => null, 'created_at' => '2026-05-05 13:19:56', 'updated_at' => '2026-05-05 13:19:56', 'email' => null, 'address_line1' => null, 'address_line2' => null, 'city' => null, 'state' => null, 'country' => null, 'pincode' => null, 'owner_type' => 'admin', 'owner_id' => null],
-    ['id' => '2', 'name' => 'Distributor-1', 'address' => 'Auto-created distributor warehouse', 'phone' => null, 'created_at' => '2026-05-06 07:49:07', 'updated_at' => '2026-05-06 07:49:07', 'email' => null, 'address_line1' => null, 'address_line2' => null, 'city' => null, 'state' => null, 'country' => null, 'pincode' => null, 'owner_type' => 'distributor', 'owner_id' => '1'],
-    ['id' => '3', 'name' => 'Dealer-1', 'address' => 'Auto-created dealer warehouse', 'phone' => null, 'created_at' => '2026-05-06 07:49:54', 'updated_at' => '2026-05-06 07:49:54', 'email' => null, 'address_line1' => null, 'address_line2' => null, 'city' => null, 'state' => null, 'country' => null, 'pincode' => null, 'owner_type' => 'dealer', 'owner_id' => '1'],
+    ['id' => '1', 'name' => 'Main Road, Araria', 'address' => 'Araria', 'phone' => null, 'created_at' => '2026-05-05 13:19:56', 'updated_at' => '2026-05-05 13:19:56', 'email' => null, 'address_line1' => null, 'address_line2' => null, 'city' => null, 'state_id' => 10, 'country' => null, 'pincode' => null, 'owner_type' => 'admin', 'owner_id' => null],
+    ['id' => '2', 'name' => 'Distributor-1', 'address' => 'Auto-created distributor warehouse', 'phone' => null, 'created_at' => '2026-05-06 07:49:07', 'updated_at' => '2026-05-06 07:49:07', 'email' => null, 'address_line1' => null, 'address_line2' => null, 'city' => null, 'state_id' => 10, 'country' => null, 'pincode' => null, 'owner_type' => 'distributor', 'owner_id' => '1'],
+    ['id' => '3', 'name' => 'Dealer-1', 'address' => 'Auto-created dealer warehouse', 'phone' => null, 'created_at' => '2026-05-06 07:49:54', 'updated_at' => '2026-05-06 07:49:54', 'email' => null, 'address_line1' => null, 'address_line2' => null, 'city' => null, 'state_id' => 10, 'country' => null, 'pincode' => null, 'owner_type' => 'dealer', 'owner_id' => '1'],
 ];
 
 /* `sangam-motors`.`warehouse_racks` */

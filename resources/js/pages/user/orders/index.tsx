@@ -78,7 +78,7 @@ const OrdersIndex = () => {
                             <Link
                                 key={order.id}
                                 href={route('orders.show', order.id)}
-                                className="block cursor-pointer rounded-lg bg-white p-6 shadow transition-shadow hover:shadow-lg"
+                                className="block cursor-pointer rounded-div bg-white p-6 shadow transition-shadow hover:shadow-lg"
                             >
                                 {/* Order Header */}
                                 <div className="flex flex-col md:flex-row md:items-start md:justify-between">
@@ -134,7 +134,7 @@ const OrdersIndex = () => {
                         ))}
                     </div>
                 ) : (
-                    <div className="rounded-lg bg-white py-12 text-center shadow">
+                    <div className="rounded-div bg-white py-12 text-center shadow">
                         <p className="mb-4 text-gray-600">
                             You haven't placed any orders yet.
                         </p>

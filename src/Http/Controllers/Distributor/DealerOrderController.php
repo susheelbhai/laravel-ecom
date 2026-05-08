@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Distributor;
 
 use App\Contracts\SerialNumberMovementServiceInterface;
+use App\Events\DealerOrderCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\B2B\DealerSaleOrderStoreRequest;
 use App\Models\Dealer;
@@ -109,7 +110,9 @@ class DealerOrderController extends Controller
                     : null;
                 $unitPrice = $override ?? $base;
                 $quantity = (int) $validated['quantity'];
+                $gstRate = (float) ($product->gst_rate ?? 0);
                 $subtotal = $unitPrice * $quantity;
+                $itemTax = round($subtotal * $gstRate / 100, 2);
 
                 $order = DealerOrder::create([
                     'order_number' => DealerOrder::generateOrderNumber(),
@@ -118,13 +121,16 @@ class DealerOrderController extends Controller
                     'dealer_id' => $dealer->id,
                     'placed_by_distributor_id' => $distributor->id,
                     'subtotal_amount' => $subtotal,
-                    'total_amount' => $subtotal,
+                    'tax_amount' => $itemTax,
+                    'total_amount' => $subtotal + $itemTax,
                 ]);
 
                 $order->items()->create([
                     'product_id' => $product->id,
                     'quantity' => $quantity,
                     'unit_price' => $unitPrice,
+                    'gst_rate' => $gstRate,
+                    'tax_amount' => $itemTax,
                     'subtotal' => $subtotal,
                     'price_source' => $override !== null ? 'distributor_override' : 'product_distributor_price',
                 ]);
@@ -180,6 +186,8 @@ class DealerOrderController extends Controller
         } catch (RuntimeException $e) {
             throw ValidationException::withMessages(['product_id' => [$e->getMessage()]]);
         }
+
+        DealerOrderCreated::dispatch($order, $distributor);
 
         return redirect()->route('distributor.dealer-orders.show', $order)->with('success', 'Dealer order placed.');
     }

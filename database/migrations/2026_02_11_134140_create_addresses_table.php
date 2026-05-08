@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('address_line1');
             $table->text('address_line2')->nullable();
             $table->string('city');
-            $table->string('state');
+            $table->foreignId('state_id')->constrained('states');
             $table->string('country')->default('India');
             $table->string('pincode');
             $table->string('landmark')->nullable();

@@ -38,7 +38,7 @@ export default function ProductCategoryShow() {
                         <div className="flex w-full max-w-5xl flex-row items-center justify-center gap-8">
                             {/* Icon left */}
                             {category.icon && (
-                                <div className="hidden h-32 w-32 items-center justify-center overflow-hidden rounded-2xl bg-white/80 shadow-lg md:flex">
+                                <div className="hidden h-32 w-32 items-center justify-center overflow-hidden rounded-div bg-white/80 shadow-lg md:flex">
                                     <img
                                         src={category.icon}
                                         alt={category.title}

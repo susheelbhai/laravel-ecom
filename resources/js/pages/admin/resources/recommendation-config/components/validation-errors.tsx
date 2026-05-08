@@ -8,7 +8,7 @@ export function ValidationErrors({ errors }: ValidationErrorsProps) {
     }
 
     return (
-        <div className="mb-6 rounded-lg border border-red-300 bg-red-50 p-4">
+        <div className="mb-6 rounded-div border border-red-300 bg-red-50 p-4">
             <h3 className="mb-2 font-semibold text-red-800">
                 Validation Errors:
             </h3>

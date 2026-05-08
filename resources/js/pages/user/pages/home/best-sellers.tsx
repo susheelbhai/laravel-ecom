@@ -34,7 +34,7 @@ export default function BestSellersSection({ data }: { data: any }) {
                             href={route('product.show', product.slug)}
                             className="group"
                         >
-                            <div className="overflow-hidden rounded-2xl bg-card shadow-md ring-1 ring-border transition-all hover:shadow-lg hover:ring-primary/20">
+                            <div className="overflow-hidden rounded-div bg-card shadow-md ring-1 ring-border transition-all hover:shadow-lg hover:ring-primary/20">
                                 <div className="relative overflow-hidden">
                                     <img
                                         src={product.image || FALLBACK_IMAGE}

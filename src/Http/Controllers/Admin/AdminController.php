@@ -54,7 +54,7 @@ class AdminController extends Controller
         $admin->dob = $request->dob;
         $admin->address = $request->address;
         $admin->city = $request->city;
-        $admin->state = $request->state;
+        $admin->state_id = $request->state_id;
         $admin->email = $request->email;
         $admin->phone = $request->phone;
         // password = phone
@@ -136,7 +136,7 @@ class AdminController extends Controller
         $admin->dob = $request->dob;
         $admin->address = $request->address;
         $admin->city = $request->city;
-        $admin->state = $request->state;
+        $admin->state_id = $request->state_id;
         $admin->email = $request->email;
         $admin->phone = $request->phone;
         $admin->save();

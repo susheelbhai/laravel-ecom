@@ -73,7 +73,7 @@ const WishlistIndex = () => {
                                 return (
                                     <div
                                         key={item.id}
-                                        className="group relative overflow-hidden rounded-lg border border-border bg-card transition-all hover:shadow-lg"
+                                        className="group relative overflow-hidden rounded-div border border-border bg-card transition-all hover:shadow-lg"
                                     >
                                         {/* Remove Button */}
                                         <button
@@ -139,7 +139,7 @@ const WishlistIndex = () => {
                                             {isInCart ? (
                                                 <Link
                                                     href={route('cart.index')}
-                                                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-secondary px-4 py-2.5 text-sm font-semibold text-secondary-foreground transition-colors hover:bg-secondary/90"
+                                                    className="flex w-full items-center justify-center gap-2 rounded-div bg-secondary px-4 py-2.5 text-sm font-semibold text-secondary-foreground transition-colors hover:bg-secondary/90"
                                                 >
                                                     <ShoppingCart className="h-4 w-4" />
                                                     Go to Cart
@@ -151,7 +151,7 @@ const WishlistIndex = () => {
                                                             item.product,
                                                         )
                                                     }
-                                                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-secondary px-4 py-2.5 text-sm font-semibold text-secondary-foreground transition-colors hover:bg-secondary/90"
+                                                    className="flex w-full items-center justify-center gap-2 rounded-div bg-secondary px-4 py-2.5 text-sm font-semibold text-secondary-foreground transition-colors hover:bg-secondary/90"
                                                 >
                                                     <ShoppingCart className="h-4 w-4" />
                                                     Add to Cart
@@ -163,7 +163,7 @@ const WishlistIndex = () => {
                             })}
                         </div>
                     ) : (
-                        <div className="flex min-h-[400px] flex-col items-center justify-center rounded-lg border border-border bg-card p-12 text-center">
+                        <div className="flex min-h-[400px] flex-col items-center justify-center rounded-div border border-border bg-card p-12 text-center">
                             <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-muted">
                                 <Heart className="h-10 w-10 text-muted-foreground" />
                             </div>
@@ -176,7 +176,7 @@ const WishlistIndex = () => {
                             </p>
                             <Link
                                 href={route('product.index')}
-                                className="inline-flex items-center gap-2 rounded-lg bg-secondary px-6 py-3 font-semibold text-secondary-foreground transition-colors hover:bg-secondary/90"
+                                className="inline-flex items-center gap-2 rounded-div bg-secondary px-6 py-3 font-semibold text-secondary-foreground transition-colors hover:bg-secondary/90"
                             >
                                 <ShoppingCart className="h-5 w-5" />
                                 Start Shopping

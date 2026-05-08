@@ -26,7 +26,7 @@ export default function PaymentInitialSection({ data, setData, errors, totalAmou
     const showMethodField = paymentStatus === 'partial' || paymentStatus === 'paid';
 
     return (
-        <div className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-700 dark:bg-gray-900">
+        <div className="rounded-div border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-700 dark:bg-gray-900">
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
                 Payment
             </h3>
@@ -74,7 +74,7 @@ export default function PaymentInitialSection({ data, setData, errors, totalAmou
                         max={totalAmount}
                         value={data.amount_paid ?? ''}
                         onChange={(e) => setData('amount_paid', e.target.value)}
-                        className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
+                        className="w-full rounded-div border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
                         placeholder="0.00"
                     />
                     {errors.amount_paid && (
@@ -92,7 +92,7 @@ export default function PaymentInitialSection({ data, setData, errors, totalAmou
                     <select
                         value={data.payment_method ?? ''}
                         onChange={(e) => setData('payment_method', e.target.value)}
-                        className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
+                        className="w-full rounded-div border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
                     >
                         <option value="">Select method…</option>
                         {PAYMENT_METHODS.map((m) => (
@@ -118,7 +118,7 @@ export default function PaymentInitialSection({ data, setData, errors, totalAmou
                         onChange={(e) => setData('note', e.target.value)}
                         rows={2}
                         maxLength={2000}
-                        className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
+                        className="w-full rounded-div border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
                         placeholder="Optional note…"
                     />
                     {errors.note && (

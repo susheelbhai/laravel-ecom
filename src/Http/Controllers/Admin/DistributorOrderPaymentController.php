@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\DistributorOrderPaymentRecorded;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\B2B\StoreDistributorOrderPaymentRequest;
 use App\Models\DistributorOrder;
@@ -19,11 +20,13 @@ class DistributorOrderPaymentController extends Controller
         $admin = Auth::guard('admin')->user();
         abort_unless($admin, 401);
 
-        $paymentService->recordDistributorOrderPayment(
+        $payment = $paymentService->recordDistributorOrderPayment(
             $distributor_order,
             $request->validated(),
             $admin,
         );
+
+        DistributorOrderPaymentRecorded::dispatch($distributor_order->fresh(), $payment, $admin);
 
         return redirect()
             ->route('admin.distributor-orders.show', $distributor_order)

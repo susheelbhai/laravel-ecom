@@ -57,20 +57,10 @@ class EcomServiceProvider extends ServiceProvider
             __DIR__.'/../config' => config_path('/'),
             __DIR__.'/../routes' => base_path('routes'),
             __DIR__.'/../resources/views' => base_path('resources/views'),
-            __DIR__.'/../resources/css' => base_path('resources/css'),
             __DIR__.'/../resources/js' => base_path('resources/js'),
-            __DIR__.'/../resources/react_views' => base_path('resources/views'),
             __DIR__.'/../resources/mail_views' => base_path('resources/views'),
             __DIR__.'/../resources/data' => base_path('resources/data'),
 
-            __DIR__.'/../assets/storage_public/media' => storage_path('app/public'),
-            __DIR__.'/../assets/storage_public/.gitignore' => storage_path('app/public/.gitignore'),
-            __DIR__.'/../assets/storage_public/.sync-exclude.lst' => storage_path('.sync-exclude.lst'),
-            __DIR__.'/../assets/storage' => storage_path('/'),
-
-            __DIR__.'/../assets/public/css' => public_path('css'),
-            __DIR__.'/../assets/public/themes/ck_editor' => public_path('themes/ck_editor'),
-            __DIR__.'/../assets/public/themes/tinymce' => public_path('themes/tinymce'),
             __DIR__.'/../tests' => base_path('tests'),
         ];
 

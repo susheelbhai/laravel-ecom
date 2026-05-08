@@ -17,7 +17,7 @@ export const PaymentMethodSelector = ({
             <div className="space-y-3">
                 <div
                     onClick={() => onPaymentMethodChange('cod')}
-                    className={`cursor-pointer rounded-lg border p-4 transition-all ${
+                    className={`cursor-pointer rounded-div border p-4 transition-all ${
                         paymentMethod === 'cod'
                             ? 'border-primary bg-primary/10'
                             : 'border-border hover:border-primary/50'
@@ -43,7 +43,7 @@ export const PaymentMethodSelector = ({
 
                 <div
                     onClick={() => onPaymentMethodChange('online')}
-                    className={`cursor-pointer rounded-lg border p-4 transition-all ${
+                    className={`cursor-pointer rounded-div border p-4 transition-all ${
                         paymentMethod === 'online'
                             ? 'border-primary bg-primary/10'
                             : 'border-border hover:border-primary/50'

@@ -69,6 +69,7 @@ export default function DealerIndex() {
                         date={row.created_at}
                         subtitle={row.distributor_name ? `Distributor: ${row.distributor_name}` : undefined}
                         rejectionNote={row.rejection_note}
+                        href={route('admin.dealer.show', row.id)}
                         actions={
                             row.application_status === 'pending' ? (
                                 <>

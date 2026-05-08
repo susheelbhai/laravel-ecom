@@ -94,7 +94,7 @@ export default function Index() {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Recommendation Configuration" />
 
-            <div className="rounded-lg border border-border bg-card p-6">
+            <div className="rounded-div border border-border bg-card p-6">
                 <h1 className="mb-6 text-2xl font-bold text-foreground">
                     Recommendation Configuration
                 </h1>

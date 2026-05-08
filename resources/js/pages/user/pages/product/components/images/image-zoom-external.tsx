@@ -149,7 +149,7 @@ export function ImageZoomPanel({
     return (
         <div className="absolute inset-0 hidden lg:block">
             <div
-                className="h-full w-full overflow-hidden rounded-xl border-2 border-border bg-white shadow-2xl"
+                className="h-full w-full overflow-hidden rounded-div border-2 border-border bg-white shadow-2xl"
                 style={{
                     backgroundImage: `url(${src})`,
                     backgroundSize: `${zoomScale * 100}%`,

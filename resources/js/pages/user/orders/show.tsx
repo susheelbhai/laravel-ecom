@@ -102,7 +102,7 @@ const OrderShow = () => {
                 </div>
 
                 {/* Order Header */}
-                <div className="mb-6 rounded-lg bg-white p-6 shadow">
+                <div className="mb-6 rounded-div bg-white p-6 shadow">
                     <div className="flex flex-col md:flex-row md:items-start md:justify-between">
                         <div className="mb-4 md:mb-0">
                             <h1 className="mb-2 text-2xl font-bold">
@@ -138,7 +138,7 @@ const OrderShow = () => {
                 </div>
 
                 {/* Order Summary */}
-                <div className="mb-6 rounded-lg bg-white p-6 shadow">
+                <div className="mb-6 rounded-div bg-white p-6 shadow">
                     <h2 className="mb-4 text-xl font-bold">
                         Order Summary
                     </h2>
@@ -185,7 +185,7 @@ const OrderShow = () => {
                 </div>
 
                 {/* Delivery Address */}
-                <div className="mb-6 rounded-lg bg-white p-6 shadow">
+                <div className="mb-6 rounded-div bg-white p-6 shadow">
                     <h2 className="mb-4 text-xl font-bold">
                         Delivery Address
                     </h2>
@@ -225,7 +225,7 @@ const OrderShow = () => {
                 </div>
 
                 {/* Order Items */}
-                <div className="rounded-lg bg-white p-6 shadow">
+                <div className="rounded-div bg-white p-6 shadow">
                     <h2 className="mb-4 text-xl font-bold">
                         Order Items ({order.items.length})
                     </h2>

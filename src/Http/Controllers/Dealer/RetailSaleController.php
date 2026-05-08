@@ -8,6 +8,7 @@ use App\Http\Requests\DealerRetailSaleStoreRequest;
 use App\Models\DealerRetailSale;
 use App\Models\Product;
 use App\Models\SerialNumber;
+use App\Models\State;
 use App\Services\Inventory\DefaultLocationService;
 use App\Services\Inventory\StockTransferService;
 use App\Services\WarrantyCardService;
@@ -49,8 +50,9 @@ class RetailSaleController extends Controller
     {
         $dealer = Auth::guard('dealer')->user();
         $commissionPercentage = (float) ($dealer->commission_percentage ?? 0);
+        $states = State::orderBy('name')->get(['id', 'name', 'gst_state_code']);
 
-        return $this->render('dealer/retail-sales/create', compact('commissionPercentage'));
+        return $this->render('dealer/retail-sales/create', compact('commissionPercentage', 'states'));
     }
 
     /**
@@ -170,7 +172,7 @@ class RetailSaleController extends Controller
                     'billing_address_line1' => $validated['billing_address_line1'],
                     'billing_address_line2' => $validated['billing_address_line2'] ?? null,
                     'billing_city' => $validated['billing_city'],
-                    'billing_state' => $validated['billing_state'],
+                    'billing_state_id' => $validated['billing_state_id'],
                     'billing_pincode' => $validated['billing_pincode'],
                     'billing_country' => $validated['billing_country'] ?? 'India',
                     'customer_gstin' => $validated['customer_gstin'] ?? null,
@@ -221,7 +223,7 @@ class RetailSaleController extends Controller
         $dealerId = Auth::guard('dealer')->id();
         abort_unless($retail_sale->dealer_id === $dealerId, 403);
 
-        $retail_sale->loadMissing(['items.product', 'warrantyCards.serialNumber', 'warrantyCards.product']);
+        $retail_sale->loadMissing(['items.product', 'warrantyCards.serialNumber', 'warrantyCards.product', 'billingState']);
 
         $data = [
             'id' => $retail_sale->id,
@@ -235,7 +237,7 @@ class RetailSaleController extends Controller
             'billing_address_line1' => $retail_sale->billing_address_line1,
             'billing_address_line2' => $retail_sale->billing_address_line2,
             'billing_city' => $retail_sale->billing_city,
-            'billing_state' => $retail_sale->billing_state,
+            'billing_state' => $retail_sale->billingState?->name,
             'billing_pincode' => $retail_sale->billing_pincode,
             'billing_country' => $retail_sale->billing_country,
             'customer_gstin' => $retail_sale->customer_gstin,

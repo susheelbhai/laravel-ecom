@@ -27,7 +27,7 @@ export const OrderItemsList = ({ items }: OrderItemsListProps) => {
     const { formatMoney } = useFormatMoney();
 
     return (
-        <div className="rounded-lg border border-border bg-card p-6 shadow-sm">
+        <div className="rounded-div border border-border bg-card p-6 shadow-sm">
             <h2 className="mb-4 text-xl font-bold text-foreground">
                 Order Items ({items.length})
             </h2>

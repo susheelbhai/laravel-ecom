@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Warehouse extends Model
@@ -18,7 +19,7 @@ class Warehouse extends Model
         'address_line1',
         'address_line2',
         'city',
-        'state',
+        'state_id',
         'country',
         'pincode',
         'owner_type',
@@ -35,16 +36,18 @@ class Warehouse extends Model
         return $this->hasMany(Order::class);
     }
 
-    /**
-     * Get the full address as a single string.
-     */
+    public function state(): BelongsTo
+    {
+        return $this->belongsTo(State::class);
+    }
+
     public function getFullAddressAttribute(): string
     {
         $parts = [
             $this->address_line1 ?: $this->address,
             $this->address_line2,
             $this->city,
-            $this->state,
+            $this->state?->name,
             $this->country,
             $this->pincode,
         ];

@@ -49,7 +49,7 @@ export default function RackIndex() {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title={`Racks - ${warehouse?.name}`} />
 
-            <div className="mb-4 rounded-lg bg-white p-4 shadow">
+            <div className="mb-4 rounded-div bg-white p-4 shadow">
                 <h2 className="text-xl font-semibold">{warehouse?.name}</h2>
                 <p className="text-sm text-gray-600">{warehouse?.address}</p>
             </div>

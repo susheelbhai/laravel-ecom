@@ -8,7 +8,7 @@ export default function AboutSection({ data }: any) {
                     <img
                         src={data?.about_image_converted.medium}
                         alt="About"
-                        className="w-full rounded-md"
+                        className="w-full rounded-div"
                     />
                 </div>
                 <div>

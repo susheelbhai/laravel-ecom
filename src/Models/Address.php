@@ -20,7 +20,7 @@ class Address extends Model
         'address_line1',
         'address_line2',
         'city',
-        'state',
+        'state_id',
         'country',
         'pincode',
         'landmark',
@@ -31,17 +31,16 @@ class Address extends Model
         'is_default' => 'boolean',
     ];
 
-    /**
-     * Get the user that owns the address.
-     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * Get the full address as a single string.
-     */
+    public function state(): BelongsTo
+    {
+        return $this->belongsTo(State::class);
+    }
+
     public function getFullAddressAttribute(): string
     {
         $parts = [
@@ -49,7 +48,7 @@ class Address extends Model
             $this->address_line2,
             $this->landmark,
             $this->city,
-            $this->state,
+            $this->state?->name,
             $this->country,
             $this->pincode,
         ];

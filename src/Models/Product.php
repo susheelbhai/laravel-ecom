@@ -19,8 +19,34 @@ class Product extends BaseExternalMediaModel
 
     protected $appends = ['images', 'thumbnail', 'display_img'];
 
+    protected $fillable = [
+        'seller_id',
+        'product_category_id',
+        'title',
+        'slug',
+        'sku',
+        'short_description',
+        'description',
+        'long_description2',
+        'long_description3',
+        'features',
+        'price',
+        'original_price',
+        'mrp',
+        'distributor_price',
+        'hsn_code',
+        'gst_rate',
+        'manage_stock',
+        'is_active',
+        'is_featured',
+        'meta_title',
+        'meta_description',
+        'created_by_admin_id',
+    ];
+
     protected $casts = [
         'features' => 'array',
+        'gst_rate' => 'float',
     ];
 
     public function registerMediaCollections(): void

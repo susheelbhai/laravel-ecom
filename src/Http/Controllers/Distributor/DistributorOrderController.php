@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Distributor;
 
+use App\Events\DistributorPurchaseOrderCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\B2B\DistributorPurchaseOrderAddItemRequest;
 use App\Http\Requests\B2B\DistributorPurchaseOrderStoreRequest;
@@ -45,23 +46,31 @@ class DistributorOrderController extends Controller
         $product = Product::findOrFail((int) $validated['product_id']);
         $unitPrice = (float) ($product->distributor_price ?? $product->price ?? 0);
         $quantity = (int) $validated['quantity'];
+        $gstRate = (float) ($product->gst_rate ?? 0);
+        $itemSubtotal = $unitPrice * $quantity;
+        $itemTax = round($itemSubtotal * $gstRate / 100, 2);
 
         $order = DistributorOrder::create([
             'order_number' => DistributorOrder::generateOrderNumber(),
             'status' => DistributorOrder::STATUS_PENDING,
             'distributor_id' => $distributor->id,
             'placed_by_distributor_id' => $distributor->id,
-            'subtotal_amount' => $unitPrice * $quantity,
-            'total_amount' => $unitPrice * $quantity,
+            'subtotal_amount' => $itemSubtotal,
+            'tax_amount' => $itemTax,
+            'total_amount' => $itemSubtotal + $itemTax,
         ]);
 
         $order->items()->create([
             'product_id' => $product->id,
             'quantity' => $quantity,
             'unit_price' => $unitPrice,
-            'subtotal' => $unitPrice * $quantity,
+            'gst_rate' => $gstRate,
+            'tax_amount' => $itemTax,
+            'subtotal' => $itemSubtotal,
             'price_source' => 'product_distributor_price',
         ]);
+
+        DistributorPurchaseOrderCreated::dispatch($order, $distributor);
 
         return redirect()
             ->route('distributor.purchase-orders.show', $order)
@@ -78,17 +87,27 @@ class DistributorOrderController extends Controller
         $product = Product::findOrFail((int) $validated['product_id']);
         $unitPrice = (float) ($product->distributor_price ?? $product->price ?? 0);
         $quantity = (int) $validated['quantity'];
+        $gstRate = (float) ($product->gst_rate ?? 0);
+        $itemSubtotal = $unitPrice * $quantity;
+        $itemTax = round($itemSubtotal * $gstRate / 100, 2);
 
         $purchase_order->items()->create([
             'product_id' => $product->id,
             'quantity' => $quantity,
             'unit_price' => $unitPrice,
-            'subtotal' => $unitPrice * $quantity,
+            'gst_rate' => $gstRate,
+            'tax_amount' => $itemTax,
+            'subtotal' => $itemSubtotal,
             'price_source' => 'product_distributor_price',
         ]);
 
-        $newTotal = (float) $purchase_order->items()->sum(DB::raw('unit_price * quantity'));
-        $purchase_order->update(['subtotal_amount' => $newTotal, 'total_amount' => $newTotal]);
+        $newSubtotal = (float) $purchase_order->items()->sum(DB::raw('unit_price * quantity'));
+        $newTax = (float) $purchase_order->items()->sum('tax_amount');
+        $purchase_order->update([
+            'subtotal_amount' => $newSubtotal,
+            'tax_amount' => $newTax,
+            'total_amount' => $newSubtotal + $newTax,
+        ]);
 
         return redirect()
             ->route('distributor.purchase-orders.show', $purchase_order)
@@ -137,10 +156,10 @@ class DistributorOrderController extends Controller
             ]),
             'created_at' => $purchase_order->created_at?->format('M d, Y H:i'),
             'payment_summary' => [
-                'payment_status' => $purchase_order->payment_status ?? 'unpaid',
-                'amount_paid' => (float) ($purchase_order->amount_paid ?? 0),
-                'remaining_balance' => (float) $purchase_order->total_amount - (float) ($purchase_order->amount_paid ?? 0),
-                'payments' => $payments,
+                'payment_status' => $purchase_order->isApproved() ? ($purchase_order->payment_status ?? 'unpaid') : null,
+                'amount_paid' => $purchase_order->isApproved() ? (float) ($purchase_order->amount_paid ?? 0) : null,
+                'remaining_balance' => $purchase_order->isApproved() ? max(0.0, (float) $purchase_order->total_amount - (float) ($purchase_order->amount_paid ?? 0)) : null,
+                'payments' => $purchase_order->isApproved() ? $payments : [],
             ],
         ];
 

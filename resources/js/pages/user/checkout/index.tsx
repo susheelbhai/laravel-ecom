@@ -130,7 +130,7 @@ const Checkout = ({ cart, addresses, total }: CheckoutProps) => {
 
                         {/* Order Summary Sidebar */}
                         <div className="lg:col-span-1">
-                            <div className="mb-4 rounded-lg border border-border bg-card p-6 shadow-sm">
+                            <div className="mb-4 rounded-div border border-border bg-card p-6 shadow-sm">
                                 <PaymentMethodSelector
                                     paymentMethod={paymentMethod}
                                     onPaymentMethodChange={

@@ -37,7 +37,7 @@ export default function DealsSection({ data }: { data: any }) {
                             href={route('product.show', product.slug)}
                             className="group"
                         >
-                            <div className="overflow-hidden rounded-2xl bg-card shadow-lg ring-1 ring-border transition-all hover:shadow-xl hover:ring-primary/20">
+                            <div className="overflow-hidden rounded-div bg-card shadow-lg ring-1 ring-border transition-all hover:shadow-xl hover:ring-primary/20">
                                 <div className="relative overflow-hidden">
                                     <img
                                         src={product.image || FALLBACK_IMAGE}
@@ -62,7 +62,7 @@ export default function DealsSection({ data }: { data: any }) {
                                                 })}
                                             </p>
                                         </div>
-                                        <button className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
+                                        <button className="rounded-button bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105">
                                             Shop Now
                                         </button>
                                     </div>

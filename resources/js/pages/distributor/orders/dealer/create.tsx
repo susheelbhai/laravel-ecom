@@ -117,7 +117,7 @@ export default function DistributorDealerOrderCreate() {
             />
 
             {commissionPercentage > 0 && (
-                <div className="mb-4 rounded-md border border-blue-200 bg-blue-50 px-4 py-2 text-sm text-blue-700 dark:border-blue-800 dark:bg-blue-950/40 dark:text-blue-300">
+                <div className="mb-4 rounded-div border border-blue-200 bg-blue-50 px-4 py-2 text-sm text-blue-700 dark:border-blue-800 dark:bg-blue-950/40 dark:text-blue-300">
                     Commission: <span className="font-semibold">{commissionPercentage}%</span> — sell price is auto-calculated as purchase price + commission, rounded up to the next integer.
                 </div>
             )}
@@ -154,7 +154,7 @@ export default function DistributorDealerOrderCreate() {
 
                 {/* Serial number selector */}
                 {isSerialized ? (
-                    <div className="space-y-2 rounded-lg border border-blue-200 bg-blue-50 p-3 dark:border-blue-800 dark:bg-blue-950/40">
+                    <div className="space-y-2 rounded-div border border-blue-200 bg-blue-50 p-3 dark:border-blue-800 dark:bg-blue-950/40">
                         <div className="flex items-center justify-between">
                             <span className="text-sm font-medium text-blue-800 dark:text-blue-300">
                                 Select serial numbers to transfer
@@ -164,7 +164,7 @@ export default function DistributorDealerOrderCreate() {
                                 {data.serial_numbers.length} of {availableSerials.length} selected
                             </span>
                         </div>
-                        <div className="max-h-48 overflow-y-auto rounded-lg border border-gray-200 bg-white p-2 dark:border-gray-700 dark:bg-gray-900">
+                        <div className="max-h-48 overflow-y-auto rounded-div border border-gray-200 bg-white p-2 dark:border-gray-700 dark:bg-gray-900">
                             {availableSerials.map((sn) => (
                                 <label key={sn} className="flex cursor-pointer items-center gap-2 rounded px-2 py-1 hover:bg-gray-50 dark:hover:bg-gray-800">
                                     <input

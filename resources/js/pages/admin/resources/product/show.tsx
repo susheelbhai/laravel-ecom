@@ -184,7 +184,7 @@ export default function Show() {
             </TableCard>
 
             {/* Warranty Section */}
-            <div className="mt-6 rounded-lg border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-gray-950">
+            <div className="mt-6 rounded-div border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-gray-950">
                 <div className="flex items-center justify-between">
                     <div>
                         <div className="text-sm font-semibold text-gray-900 dark:text-gray-100">
@@ -196,7 +196,7 @@ export default function Show() {
                     </div>
                     <a
                         href={route('admin.product.warranty.edit', product.id)}
-                        className="rounded-md bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+                        className="rounded-div bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
                     >
                         {product.warranty ? 'Edit warranty' : 'Add warranty'}
                     </a>

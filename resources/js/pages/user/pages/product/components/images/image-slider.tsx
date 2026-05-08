@@ -192,7 +192,7 @@ export default function ImageSlider({
                         <button
                             key={index}
                             onClick={() => goToImage(index)}
-                            className={`relative shrink-0 cursor-pointer overflow-hidden rounded-lg transition-all ${
+                            className={`relative shrink-0 cursor-pointer overflow-hidden rounded-button transition-all ${
                                 index === currentImageIndex
                                     ? 'ring-2 ring-primary ring-offset-2'
                                     : 'opacity-60 hover:opacity-100'
@@ -216,7 +216,7 @@ export default function ImageSlider({
 
             {/* Carousel Container */}
             <div
-                className="relative h-full flex-1 cursor-grab overflow-hidden rounded-xl shadow-lg select-none active:cursor-grabbing"
+                className="relative h-full flex-1 cursor-grab overflow-hidden rounded-div shadow-lg select-none active:cursor-grabbing"
                 onMouseDown={handleDragStart}
                 onMouseMove={handleDragMove}
                 onMouseUp={handleDragEnd}

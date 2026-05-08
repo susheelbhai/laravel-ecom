@@ -6,6 +6,7 @@ use App\Events\DistributorRegistered;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterDistributorRequest;
 use App\Models\Distributor;
+use App\Models\State;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,9 @@ class RegisteredUserController extends Controller
                 ['value' => '25l_1cr', 'label' => '₹25 lakh – ₹1 crore'],
                 ['value' => 'above_1cr', 'label' => 'Above ₹1 crore'],
             ],
+            'states' => State::orderBy('name')->get(['id', 'name', 'gst_state_code'])
+                ->map(fn ($s) => ['value' => (string) $s->id, 'label' => "{$s->name} ({$s->gst_state_code})"])
+                ->all(),
         ]);
     }
 

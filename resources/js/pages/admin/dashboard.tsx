@@ -96,7 +96,7 @@ export default function Dashboard() {
                         <a
                             key={index}
                             href={stat.href}
-                            className="group relative overflow-hidden rounded-xl border border-border bg-card p-6 shadow-sm transition-all hover:border-primary/50 hover:shadow-md"
+                            className="group relative overflow-hidden rounded-div border border-border bg-card p-6 shadow-sm transition-all hover:border-primary/50 hover:shadow-md"
                         >
                             <div className="flex items-start justify-between">
                                 <div className="flex-1">
@@ -111,7 +111,7 @@ export default function Dashboard() {
                                     </p>
                                 </div>
                                 <div
-                                    className={`${stat.color} rounded-lg p-3 text-white transition-transform group-hover:scale-110`}
+                                    className={`${stat.color} rounded-div p-3 text-white transition-transform group-hover:scale-110`}
                                 >
                                     <stat.icon className="h-6 w-6" />
                                 </div>
@@ -123,7 +123,7 @@ export default function Dashboard() {
                 {/* Two Column Layout */}
                 <div className="grid gap-6 lg:grid-cols-2">
                     {/* Recent Orders */}
-                    <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+                    <div className="rounded-div border border-border bg-card p-6 shadow-sm">
                         <div className="mb-4 flex items-center justify-between">
                             <h3 className="text-lg font-semibold text-foreground">
                                 Recent Orders
@@ -140,7 +140,7 @@ export default function Dashboard() {
                                 recentOrders.map((order) => (
                                     <div
                                         key={order.id}
-                                        className="flex items-center justify-between rounded-lg border border-border p-3 transition-colors hover:bg-muted/50"
+                                        className="flex items-center justify-between rounded-div border border-border p-3 transition-colors hover:bg-muted/50"
                                     >
                                         <div className="flex-1">
                                             <p className="font-medium text-foreground">
@@ -183,7 +183,7 @@ export default function Dashboard() {
                     </div>
 
                     {/* Low Stock Products */}
-                    <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+                    <div className="rounded-div border border-border bg-card p-6 shadow-sm">
                         <div className="mb-4 flex items-center justify-between">
                             <h3 className="flex items-center gap-2 text-lg font-semibold text-foreground">
                                 <AlertTriangle className="h-5 w-5 text-red-500" />
@@ -201,7 +201,7 @@ export default function Dashboard() {
                                 lowStockProducts.map((product) => (
                                     <div
                                         key={product.id}
-                                        className="flex items-center justify-between rounded-lg border border-border p-3 transition-colors hover:bg-muted/50"
+                                        className="flex items-center justify-between rounded-div border border-border p-3 transition-colors hover:bg-muted/50"
                                     >
                                         <div className="flex-1">
                                             <p className="line-clamp-1 font-medium text-foreground">
@@ -240,7 +240,7 @@ export default function Dashboard() {
                 </div>
 
                 {/* Top Selling Products - Full Width */}
-                <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+                <div className="rounded-div border border-border bg-card p-6 shadow-sm">
                     <div className="mb-4 flex items-center justify-between">
                         <h3 className="flex items-center gap-2 text-lg font-semibold text-foreground">
                             <TrendingUp className="h-5 w-5 text-green-500" />
@@ -252,7 +252,7 @@ export default function Dashboard() {
                             topProducts.map((product, index) => (
                                 <div
                                     key={product.id}
-                                    className="flex items-center gap-3 rounded-lg border border-border p-3 transition-colors hover:bg-muted/50"
+                                    className="flex items-center gap-3 rounded-div border border-border p-3 transition-colors hover:bg-muted/50"
                                 >
                                     <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
                                         {index + 1}

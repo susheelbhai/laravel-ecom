@@ -65,7 +65,7 @@ export default function TechnicianScan() {
 
             <div className="flex flex-col gap-6 p-4 sm:p-6">
                 <div className="mx-auto w-full max-w-lg">
-                    <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+                    <div className="rounded-div border border-border bg-card p-6 shadow-sm">
                         <h1 className="mb-1 text-xl font-bold text-foreground">
                             Scan Serial Number
                         </h1>
@@ -90,7 +90,7 @@ export default function TechnicianScan() {
                                     autoFocus
                                     required
                                     aria-describedby={errors.serial_number ? 'serial_number_error' : undefined}
-                                    className="h-12 rounded-xl border border-input bg-background px-4 text-base shadow-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                                    className="h-12 rounded-div border border-input bg-background px-4 text-base shadow-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                                 />
                                 {errors.serial_number && (
                                     <p id="serial_number_error" role="alert" className="text-sm text-destructive">
@@ -112,14 +112,14 @@ export default function TechnicianScan() {
                                     onChange={(e) => setData('location', e.target.value)}
                                     placeholder="e.g. Workshop Bay 3"
                                     autoComplete="off"
-                                    className="h-12 rounded-xl border border-input bg-background px-4 text-base shadow-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                                    className="h-12 rounded-div border border-input bg-background px-4 text-base shadow-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                                 />
                             </div>
 
                             <button
                                 type="submit"
                                 disabled={processing || !data.serial_number.trim()}
-                                className="flex h-12 w-full items-center justify-center rounded-xl bg-primary px-6 text-base font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                                className="flex h-12 w-full items-center justify-center rounded-button bg-primary px-6 text-base font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
                             >
                                 {processing ? 'Scanning…' : 'Scan'}
                             </button>

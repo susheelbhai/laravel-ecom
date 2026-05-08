@@ -40,13 +40,13 @@ export default function HeroBanner(props: any) {
                     
                     <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                         <Link href={route('product.index')}>
-                            <button className="group flex items-center gap-2 rounded-2xl bg-primary px-8 py-4 font-semibold text-primary-foreground shadow-lg transition-all hover:scale-105 hover:bg-primary/90 hover:shadow-xl">
+                            <button className="group flex items-center gap-2 rounded-button bg-primary px-8 py-4 font-semibold text-primary-foreground shadow-lg transition-all hover:scale-105 hover:bg-primary/90 hover:shadow-xl">
                                 <ShoppingBag className="h-5 w-5 transition-transform group-hover:scale-110" />
                                 Shop Now
                             </button>
                         </Link>
                         <Link href={route('product.index')}>
-                            <button className="rounded-2xl border-2 border-border bg-card px-8 py-4 font-semibold text-foreground transition-all hover:border-primary hover:bg-card/80">
+                            <button className="rounded-button border-2 border-border bg-card px-8 py-4 font-semibold text-foreground transition-all hover:border-primary hover:bg-card/80">
                                 Browse Categories
                             </button>
                         </Link>

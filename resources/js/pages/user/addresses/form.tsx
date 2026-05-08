@@ -70,7 +70,7 @@ const AddressForm = ({ address }: FormProps) => {
 
                 <form
                     onSubmit={submit}
-                    className="space-y-6 rounded-lg bg-white p-6 shadow"
+                    className="space-y-6 rounded-div bg-white p-6 shadow"
                 >
                     <div>
                         <label
@@ -84,7 +84,7 @@ const AddressForm = ({ address }: FormProps) => {
                             id="type"
                             value={data.type}
                             onChange={(e) => setData('type', e.target.value)}
-                            className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
+                            className="w-full rounded-div border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
                         >
                             <option value="home">Home</option>
                             <option value="office">Office</option>
@@ -108,7 +108,7 @@ const AddressForm = ({ address }: FormProps) => {
                             onChange={(e) =>
                                 setData('full_name', e.target.value)
                             }
-                            className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
+                            className="w-full rounded-div border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
                             placeholder="Enter full name"
                         />
                         <InputError
@@ -133,7 +133,7 @@ const AddressForm = ({ address }: FormProps) => {
                                 onChange={(e) =>
                                     setData('phone', e.target.value)
                                 }
-                                className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
+                                className="w-full rounded-div border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
                                 placeholder="Enter phone number"
                             />
                             <InputError
@@ -156,7 +156,7 @@ const AddressForm = ({ address }: FormProps) => {
                                 onChange={(e) =>
                                     setData('alternate_phone', e.target.value)
                                 }
-                                className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
+                                className="w-full rounded-div border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
                                 placeholder="Enter alternate phone"
                             />
                             <InputError
@@ -181,7 +181,7 @@ const AddressForm = ({ address }: FormProps) => {
                             onChange={(e) =>
                                 setData('address_line1', e.target.value)
                             }
-                            className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
+                            className="w-full rounded-div border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
                             placeholder="HouseNo., Building Name"
                         />
                         <InputError
@@ -204,7 +204,7 @@ const AddressForm = ({ address }: FormProps) => {
                             onChange={(e) =>
                                 setData('address_line2', e.target.value)
                             }
-                            className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
+                            className="w-full rounded-div border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
                             placeholder="Road Name, Area, Colony"
                         />
                         <InputError
@@ -227,7 +227,7 @@ const AddressForm = ({ address }: FormProps) => {
                             onChange={(e) =>
                                 setData('landmark', e.target.value)
                             }
-                            className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
+                            className="w-full rounded-div border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
                             placeholder="Nearby landmark"
                         />
                         <InputError
@@ -251,7 +251,7 @@ const AddressForm = ({ address }: FormProps) => {
                                 onChange={(e) =>
                                     setData('city', e.target.value)
                                 }
-                                className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
+                                className="w-full rounded-div border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
                                 placeholder="City"
                             />
                             <InputError
@@ -275,7 +275,7 @@ const AddressForm = ({ address }: FormProps) => {
                                 onChange={(e) =>
                                     setData('state', e.target.value)
                                 }
-                                className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
+                                className="w-full rounded-div border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
                                 placeholder="State"
                             />
                             <InputError
@@ -299,7 +299,7 @@ const AddressForm = ({ address }: FormProps) => {
                                 onChange={(e) =>
                                     setData('pincode', e.target.value)
                                 }
-                                className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
+                                className="w-full rounded-div border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
                                 placeholder="Pincode"
                             />
                             <InputError
@@ -321,7 +321,7 @@ const AddressForm = ({ address }: FormProps) => {
                             id="country"
                             value={data.country}
                             onChange={(e) => setData('country', e.target.value)}
-                            className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
+                            className="w-full rounded-div border border-gray-300 px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
                             placeholder="Country"
                         />
                         <InputError message={errors.country} className="mt-1" />

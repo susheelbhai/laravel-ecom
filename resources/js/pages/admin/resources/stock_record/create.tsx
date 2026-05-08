@@ -156,11 +156,11 @@ export default function CreateStockRecord() {
                 />
 
                 {useSerialNumbers && quantity > 0 && (
-                    <div className="space-y-4 rounded-lg border border-gray-200 bg-gray-50/60 p-4 dark:border-gray-700 dark:bg-gray-900/40">
+                    <div className="space-y-4 rounded-div border border-gray-200 bg-gray-50/60 p-4 dark:border-gray-700 dark:bg-gray-900/40">
 
                         {/* Auto-generate panel — only shown when qty > threshold */}
                         {showAutoGenerate && (
-                            <div className="rounded-md border border-blue-200 bg-blue-50 p-3 dark:border-blue-800 dark:bg-blue-950/40">
+                            <div className="rounded-div border border-blue-200 bg-blue-50 p-3 dark:border-blue-800 dark:bg-blue-950/40">
                                 <label className="flex items-center gap-2 text-sm font-medium text-blue-800 dark:text-blue-300">
                                     <input
                                         type="checkbox"

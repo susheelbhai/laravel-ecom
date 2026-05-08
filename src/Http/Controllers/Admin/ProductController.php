@@ -63,6 +63,9 @@ class ProductController extends Controller
         $data->price = $request->price;
         $data->original_price = $request->original_price;
         $data->mrp = $request->mrp;
+        $data->distributor_price = $request->distributor_price;
+        $data->hsn_code = $request->hsn_code;
+        $data->gst_rate = $request->gst_rate;
 
         $data->manage_stock = (int) $request->manage_stock;
 
@@ -158,6 +161,9 @@ class ProductController extends Controller
         $data->price = $request->price;
         $data->original_price = $request->original_price;
         $data->mrp = $request->mrp;
+        $data->distributor_price = $request->distributor_price;
+        $data->hsn_code = $request->hsn_code;
+        $data->gst_rate = $request->gst_rate;
 
         $data->manage_stock = (int) $request->manage_stock;
 

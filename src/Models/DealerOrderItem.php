@@ -16,6 +16,8 @@ class DealerOrderItem extends Model
         'product_id',
         'quantity',
         'unit_price',
+        'gst_rate',
+        'tax_amount',
         'subtotal',
         'price_source',
     ];
@@ -23,6 +25,8 @@ class DealerOrderItem extends Model
     protected $casts = [
         'quantity' => 'int',
         'unit_price' => 'float',
+        'gst_rate' => 'float',
+        'tax_amount' => 'float',
         'subtotal' => 'float',
     ];
 

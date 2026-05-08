@@ -80,7 +80,7 @@ export function AddToCartButton({
             <button
                 onClick={handleAddToCart}
                 disabled={isAddingToCart}
-                className={`flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${
+                className={`flex w-full items-center justify-center gap-2 rounded-button px-4 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${
                     isInCart
                         ? 'bg-secondary text-white hover:bg-secondary/90'
                         : 'bg-secondary text-white hover:bg-secondary/90'
@@ -101,7 +101,7 @@ export function AddToCartButton({
         <button
             onClick={handleAddToCart}
             disabled={isAddingToCart}
-            className={`flex items-center justify-center gap-2 rounded-lg px-6 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${
+            className={`flex items-center justify-center gap-2 rounded-button px-6 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${
                 isInCart
                     ? 'bg-secondary text-white hover:bg-secondary/90'
                     : 'bg-secondary text-white hover:bg-secondary/90'

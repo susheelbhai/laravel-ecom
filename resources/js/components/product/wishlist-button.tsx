@@ -94,7 +94,7 @@ export function WishlistButton({
             <button
                 onClick={handleToggleWishlist}
                 disabled={isTogglingWishlist}
-                className={`flex w-full items-center justify-center gap-2 rounded-lg border-2 px-6 py-3 font-semibold transition-all hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50 ${isInWishlist
+                className={`flex w-full items-center justify-center gap-2 rounded-button border-2 px-6 py-3 font-semibold transition-all hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50 ${isInWishlist
                         ? 'border-destructive bg-destructive text-destructive-foreground hover:bg-destructive/90'
                         : 'border-border bg-card text-foreground hover:border-destructive hover:text-destructive'
                     } ${className}`}

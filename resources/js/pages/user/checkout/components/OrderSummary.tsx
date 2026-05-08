@@ -23,7 +23,7 @@ export const OrderSummary = ({
     const { formatMoney } = useFormatMoney();
 
     return (
-        <div className="sticky top-4 rounded-lg border border-border bg-card p-6 shadow-sm">
+        <div className="sticky top-4 rounded-div border border-border bg-card p-6 shadow-sm">
             <h2 className="mb-4 text-xl font-bold text-foreground">
                 Order Summary
             </h2>

@@ -35,7 +35,7 @@ export default function ProductReviewsSection({
 
             {/* Average Rating Display */}
             {reviewCount > 0 && (
-                <div className="mb-8 rounded-lg bg-gray-50 p-6">
+                <div className="mb-8 rounded-div bg-gray-50 p-6">
                     <AverageRating
                         averageRating={averageRating}
                         reviewCount={reviewCount}
@@ -58,14 +58,14 @@ export default function ProductReviewsSection({
                         />
                     </div>
                 ) : hasPurchased ? (
-                    <div className="mb-8 rounded-lg border border-blue-200 bg-blue-50 p-4">
+                    <div className="mb-8 rounded-div border border-blue-200 bg-blue-50 p-4">
                         <p className="text-blue-800">
                             You have already submitted a review for this
                             product.
                         </p>
                     </div>
                 ) : (
-                    <div className="mb-8 rounded-lg border border-yellow-200 bg-yellow-50 p-4">
+                    <div className="mb-8 rounded-div border border-yellow-200 bg-yellow-50 p-4">
                         <p className="text-yellow-800">
                             You must purchase this product before you can review
                             it.
@@ -73,7 +73,7 @@ export default function ProductReviewsSection({
                     </div>
                 )
             ) : (
-                <div className="mb-8 rounded-lg border border-gray-200 bg-gray-50 p-4">
+                <div className="mb-8 rounded-div border border-gray-200 bg-gray-50 p-4">
                     <p className="text-gray-700">
                         <Link
                             href="/login"

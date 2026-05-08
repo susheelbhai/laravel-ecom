@@ -11,7 +11,7 @@ export default function CustomerReviewsSection({ data }: { data: any }) {
                     {data?.map((review: any, index: number) => (
                         <div
                             key={index}
-                            className="rounded-lg bg-card p-6 shadow-md ring-1 ring-border"
+                            className="rounded-div bg-card p-6 shadow-md ring-1 ring-border"
                         >
                             <p className="text-muted-foreground">"{review.comment}"</p>
                             <p className="mt-4 font-semibold text-foreground">

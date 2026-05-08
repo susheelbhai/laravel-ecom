@@ -60,13 +60,13 @@ export default function Login({
         >
             <Head title="Log in" />
             {status === 'registration-pending' && (
-                <div className="mb-4 rounded-md border border-amber-200 bg-amber-50 p-3 text-center text-sm text-amber-900 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-100">
+                <div className="mb-4 rounded-div border border-amber-200 bg-amber-50 p-3 text-center text-sm text-amber-900 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-100">
                     Thank you for registering. An administrator will review
                     your application before you can sign in.
                 </div>
             )}
             {flashError && (
-                <div className="mb-4 rounded-md border border-red-200 bg-red-50 p-3 text-center text-sm text-red-900 dark:border-red-900 dark:bg-red-950 dark:text-red-100">
+                <div className="mb-4 rounded-div border border-red-200 bg-red-50 p-3 text-center text-sm text-red-900 dark:border-red-900 dark:bg-red-950 dark:text-red-100">
                     {flashError}
                 </div>
             )}

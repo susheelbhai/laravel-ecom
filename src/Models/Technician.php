@@ -65,7 +65,7 @@ class Technician extends BaseInternalAuthenticatable
         'certification',
         'address',
         'city',
-        'state',
+        'state_id',
         'pincode',
         'id_type',
         'id_number',
@@ -98,6 +98,11 @@ class Technician extends BaseInternalAuthenticatable
     public function approvedByAdmin(): BelongsTo
     {
         return $this->belongsTo(Admin::class, 'approved_by');
+    }
+
+    public function state(): BelongsTo
+    {
+        return $this->belongsTo(State::class);
     }
 
     public function sendPasswordResetNotification($token): void

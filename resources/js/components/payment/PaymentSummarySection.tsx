@@ -65,7 +65,7 @@ export default function PaymentSummarySection({
     return (
         <div className="space-y-6">
             {/* Payment Summary Card */}
-            <div className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-700 dark:bg-gray-900">
+            <div className="rounded-div border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-700 dark:bg-gray-900">
                 <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
                     Payment Summary
                 </h3>
@@ -93,7 +93,7 @@ export default function PaymentSummarySection({
 
             {/* Add Payment Form (shown only when partial and canAddPayment) */}
             {showAddPayment && (
-                <div className="rounded-lg border border-blue-200 bg-blue-50 p-5 dark:border-blue-700 dark:bg-blue-900/20">
+                <div className="rounded-div border border-blue-200 bg-blue-50 p-5 dark:border-blue-700 dark:bg-blue-900/20">
                     <h3 className="mb-4 text-sm font-semibold text-blue-800 dark:text-blue-300">
                         Record Payment
                     </h3>
@@ -110,7 +110,7 @@ export default function PaymentSummarySection({
                                     max={summary.remaining_balance}
                                     value={form.data.amount}
                                     onChange={(e) => form.setData('amount', e.target.value)}
-                                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
+                                    className="w-full rounded-div border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
                                     placeholder={`Max: ${formatMoney(summary.remaining_balance)}`}
                                 />
                                 {form.errors.amount && (
@@ -124,7 +124,7 @@ export default function PaymentSummarySection({
                                 <select
                                     value={form.data.payment_method}
                                     onChange={(e) => form.setData('payment_method', e.target.value)}
-                                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
+                                    className="w-full rounded-div border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
                                 >
                                     <option value="">Select method…</option>
                                     {PAYMENT_METHODS.map((m) => (
@@ -147,7 +147,7 @@ export default function PaymentSummarySection({
                                 onChange={(e) => form.setData('note', e.target.value)}
                                 rows={2}
                                 maxLength={2000}
-                                className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
+                                className="w-full rounded-div border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
                                 placeholder="Optional note…"
                             />
                         </div>
@@ -171,7 +171,7 @@ export default function PaymentSummarySection({
                             <button
                                 type="submit"
                                 disabled={form.processing}
-                                className="inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none disabled:opacity-50"
+                                className="inline-flex items-center rounded-button bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none disabled:opacity-50"
                             >
                                 {form.processing ? 'Recording…' : 'Record Payment'}
                             </button>
@@ -182,7 +182,7 @@ export default function PaymentSummarySection({
 
             {/* Payment History Table */}
             {summary.payments.length > 0 && (
-                <div className="rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-900">
+                <div className="rounded-div border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-900">
                     <div className="border-b border-gray-200 px-5 py-3 dark:border-gray-700">
                         <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
                             Payment History

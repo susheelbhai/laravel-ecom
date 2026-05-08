@@ -53,6 +53,11 @@ class Admin extends BaseInternalAuthenticatable
         'name',
         'email',
         'password',
+        'address',
+        'city',
+        'state_id',
+        'dob',
+        'phone',
         'google_id',
         'facebook_id',
         'x_id',
@@ -104,5 +109,10 @@ class Admin extends BaseInternalAuthenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
+    }
+
+    public function state(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(\App\Models\State::class);
     }
 }

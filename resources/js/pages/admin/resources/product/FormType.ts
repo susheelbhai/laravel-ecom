@@ -15,6 +15,9 @@ type FormType = {
     price: number;
     original_price: number;
     mrp: number;
+    distributor_price: number;
+    hsn_code: string;
+    gst_rate: number;
 
     manage_stock: number;
 

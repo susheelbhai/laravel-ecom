@@ -30,7 +30,7 @@ class AdminRequest extends FormRequest
             'dob' => 'nullable|date',
             'address' => 'nullable|string',
             'city' => 'nullable|string',
-            'state' => 'nullable|string',
+            'state_id' => 'nullable|integer|exists:states,id',
             'roles' => 'nullable|array',
             'permissions' => 'nullable|array',
         ];

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Contracts\SerialNumberMovementServiceInterface;
+use App\Events\DistributorOrderApproved;
+use App\Events\DistributorOrderCreatedByAdmin;
+use App\Events\DistributorOrderRejected;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\B2B\AdminDistributorOrderApproveRequest;
 use App\Http\Requests\B2B\AdminDistributorOrderStoreRequest;
@@ -10,6 +13,7 @@ use App\Models\Distributor;
 use App\Models\DistributorOrder;
 use App\Models\Product;
 use App\Models\SerialNumber;
+use App\Models\Setting;
 use App\Models\Warehouse;
 use App\Models\WarehouseRack;
 use App\Services\B2BPaymentService;
@@ -18,6 +22,7 @@ use App\Services\Inventory\StockTransferService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -30,10 +35,11 @@ class DistributorOrderController extends Controller
         private readonly SerialNumberMovementServiceInterface $serialNumberMovementService,
     ) {}
 
-    public function index()
+    public function index(Request $request)
     {
         $data = DistributorOrder::query()
             ->with('distributor:id,name,email')
+            ->when($request->integer('distributor_id'), fn ($q, $id) => $q->where('distributor_id', $id))
             ->latest('id')
             ->paginate(15)
             ->through(fn (DistributorOrder $order) => [
@@ -44,9 +50,9 @@ class DistributorOrderController extends Controller
                 'distributor_email' => $order->distributor?->email,
                 'subtotal_amount' => $order->subtotal_amount,
                 'total_amount' => $order->total_amount,
-                'payment_status' => $order->payment_status ?? 'unpaid',
-                'amount_paid' => (float) ($order->amount_paid ?? 0),
-                'remaining_balance' => (float) $order->total_amount - (float) ($order->amount_paid ?? 0),
+                'payment_status' => $order->isApproved() ? ($order->payment_status ?? 'unpaid') : null,
+                'amount_paid' => $order->isApproved() ? (float) ($order->amount_paid ?? 0) : null,
+                'remaining_balance' => $order->isApproved() ? max(0.0, (float) $order->total_amount - (float) ($order->amount_paid ?? 0)) : null,
                 'created_at' => $order->created_at?->format('M d, Y'),
             ]);
 
@@ -156,17 +162,23 @@ class DistributorOrderController extends Controller
                     $override = $item['unit_price'] !== null ? (float) $item['unit_price'] : null;
                     $unitPrice = $override ?? $base;
                     $priceSource = $override !== null ? 'admin_override' : 'product_distributor_price';
+                    $gstRate = (float) ($product->gst_rate ?? 0);
+                    $itemSubtotal = $unitPrice * $item['quantity'];
+                    $itemTax = round($itemSubtotal * $gstRate / 100, 2);
 
                     return [
                         'product_id' => $item['product_id'],
                         'quantity' => $item['quantity'],
                         'unit_price' => $unitPrice,
-                        'subtotal' => $unitPrice * $item['quantity'],
+                        'gst_rate' => $gstRate,
+                        'tax_amount' => $itemTax,
+                        'subtotal' => $itemSubtotal,
                         'price_source' => $priceSource,
                     ];
                 });
 
                 $subtotalAmount = (float) $lineItems->sum('subtotal');
+                $taxAmount = (float) $lineItems->sum('tax_amount');
 
                 $order = DistributorOrder::create([
                     'order_number' => DistributorOrder::generateOrderNumber(),
@@ -178,7 +190,8 @@ class DistributorOrderController extends Controller
                     'approved_by_admin_id' => $adminId,
                     'approved_at' => now(),
                     'subtotal_amount' => $subtotalAmount,
-                    'total_amount' => $subtotalAmount,
+                    'tax_amount' => $taxAmount,
+                    'total_amount' => $subtotalAmount + $taxAmount,
                 ]);
 
                 $order->items()->createMany($lineItems->all());
@@ -257,11 +270,12 @@ class DistributorOrderController extends Controller
             throw ValidationException::withMessages($messages);
         }
 
+        DistributorOrderCreatedByAdmin::dispatch($order, Auth::guard('admin')->user());
+
         return redirect()->route('admin.distributor-orders.show', $order)->with('success', 'Distributor order placed.');
     }
 
-    public function show(DistributorOrder $distributor_order)
-    {
+    public function show(DistributorOrder $distributor_order)    {
         $distributor_order->loadMissing([
             'items.product',
             'distributor',
@@ -320,10 +334,10 @@ class DistributorOrderController extends Controller
             'approved_at' => $distributor_order->approved_at?->format('M d, Y H:i'),
             'rejected_at' => $distributor_order->rejected_at?->format('M d, Y H:i'),
             'payment_summary' => [
-                'payment_status' => $distributor_order->payment_status ?? 'unpaid',
-                'amount_paid' => (float) ($distributor_order->amount_paid ?? 0),
-                'remaining_balance' => (float) $distributor_order->total_amount - (float) ($distributor_order->amount_paid ?? 0),
-                'payments' => $payments,
+                'payment_status' => $distributor_order->isApproved() ? ($distributor_order->payment_status ?? 'unpaid') : null,
+                'amount_paid' => $distributor_order->isApproved() ? (float) ($distributor_order->amount_paid ?? 0) : null,
+                'remaining_balance' => $distributor_order->isApproved() ? max(0.0, (float) $distributor_order->total_amount - (float) ($distributor_order->amount_paid ?? 0)) : null,
+                'payments' => $distributor_order->isApproved() ? $payments : [],
             ],
         ];
 
@@ -431,11 +445,16 @@ class DistributorOrderController extends Controller
 
                     $unitPrice = $override ?? (float) $item->unit_price;
                     $priceSource = $override !== null ? 'admin_override' : $item->price_source;
+                    $gstRate = (float) ($item->gst_rate ?? 0);
+                    $itemSubtotal = $unitPrice * $newQty;
+                    $itemTax = round($itemSubtotal * $gstRate / 100, 2);
 
                     $item->update([
                         'quantity' => $newQty,
                         'unit_price' => $unitPrice,
-                        'subtotal' => $unitPrice * $newQty,
+                        'gst_rate' => $gstRate,
+                        'tax_amount' => $itemTax,
+                        'subtotal' => $itemSubtotal,
                         'price_source' => $priceSource,
                     ]);
 
@@ -448,6 +467,7 @@ class DistributorOrderController extends Controller
                 $subtotalAmount = (float) $distributor_order->items()->sum(
                     DB::raw('unit_price * quantity')
                 );
+                $taxAmount = (float) $distributor_order->items()->sum('tax_amount');
 
                 $distributor_order->update([
                     'status' => DistributorOrder::STATUS_APPROVED,
@@ -459,7 +479,8 @@ class DistributorOrderController extends Controller
                     'rejected_at' => null,
                     'rejection_note' => null,
                     'subtotal_amount' => $subtotalAmount,
-                    'total_amount' => $subtotalAmount,
+                    'tax_amount' => $taxAmount,
+                    'total_amount' => $subtotalAmount + $taxAmount,
                 ]);
 
                 $toRack = $defaultLocation->ensureDistributorDefaultRack($distributor_order->distributor);
@@ -508,6 +529,8 @@ class DistributorOrderController extends Controller
             throw ValidationException::withMessages(['items' => [$e->getMessage()]]);
         }
 
+        DistributorOrderApproved::dispatch($distributor_order, Auth::guard('admin')->user());
+
         return redirect()
             ->route('admin.distributor-orders.show', $distributor_order)
             ->with('success', 'Order approved and stock transferred.');
@@ -537,8 +560,34 @@ class DistributorOrderController extends Controller
             'approved_at' => null,
         ]);
 
+        DistributorOrderRejected::dispatch($distributor_order, Auth::guard('admin')->user());
+
         return redirect()
             ->route('admin.distributor-orders.show', $distributor_order)
             ->with('success', 'Order rejected.');
+    }
+
+    /**
+     * Render a printable invoice for an approved distributor order.
+     */
+    public function invoice(DistributorOrder $distributor_order): Response
+    {
+        abort_unless($distributor_order->isApproved(), 404, 'Invoice is only available for approved orders.');
+
+        $distributor_order->loadMissing([
+            'items.product',
+            'distributor.state',
+            'sourceWarehouse.state',
+            'payments',
+            'placedByAdmin',
+            'approvedByAdmin',
+        ]);
+
+        $setting = Setting::with('state')->first();
+
+        return response()->view('printable.distributor-order-invoice', [
+            'order' => $distributor_order,
+            'setting' => $setting,
+        ]);
     }
 }

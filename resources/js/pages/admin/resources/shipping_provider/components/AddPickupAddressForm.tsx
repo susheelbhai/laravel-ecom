@@ -16,7 +16,7 @@ export default function AddPickupAddressForm({
     error
 }: AddPickupAddressFormProps) {
     return (
-        <div className="mb-6 p-4 border border-gray-200 rounded-lg bg-gray-50">
+        <div className="mb-6 p-4 border border-gray-200 rounded-div bg-gray-50">
             <h3 className="text-lg font-medium mb-4">Add Pickup Address from Database</h3>
             {error && (
                 <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded text-red-700">

@@ -37,7 +37,7 @@ export default function PersonCard({
     actions,
 }: PersonCardProps) {
     return (
-        <div className="flex flex-col rounded-xl border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-900">
+        <div className="flex flex-col rounded-div border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-900">
             {/* Card body */}
             <div className="flex flex-1 flex-col gap-3 p-4">
                 {/* Name + status */}
@@ -100,7 +100,7 @@ export default function PersonCard({
 
                 {/* Rejection note */}
                 {rejectionNote && status === 'rejected' && (
-                    <p className="rounded-md bg-rose-50 px-2.5 py-1.5 text-xs text-rose-700 dark:bg-rose-900/20 dark:text-rose-300">
+                    <p className="rounded-div bg-rose-50 px-2.5 py-1.5 text-xs text-rose-700 dark:bg-rose-900/20 dark:text-rose-300">
                         {rejectionNote}
                     </p>
                 )}

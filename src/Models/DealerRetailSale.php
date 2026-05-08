@@ -29,7 +29,7 @@ class DealerRetailSale extends Model
         'billing_address_line1',
         'billing_address_line2',
         'billing_city',
-        'billing_state',
+        'billing_state_id',
         'billing_pincode',
         'billing_country',
         'customer_gstin',
@@ -48,6 +48,11 @@ class DealerRetailSale extends Model
     public function createdByDealer(): BelongsTo
     {
         return $this->belongsTo(Dealer::class, 'created_by_dealer_id');
+    }
+
+    public function billingState(): BelongsTo
+    {
+        return $this->belongsTo(State::class, 'billing_state_id');
     }
 
     public function items(): HasMany

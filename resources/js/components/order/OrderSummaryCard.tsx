@@ -22,7 +22,7 @@ export default function OrderSummaryCard({
     notice,
 }: Props) {
     return (
-        <div className="mb-6 rounded-xl border border-border bg-card p-6 shadow-sm">
+        <div className="mb-6 rounded-div border border-border bg-card p-6 shadow-sm">
             {/* Title row */}
             <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
@@ -43,7 +43,7 @@ export default function OrderSummaryCard({
 
             {/* Rejection note */}
             {rejectionNote && (
-                <div className="mt-4 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+                <div className="mt-4 rounded-div border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
                     <span className="font-medium">Rejection reason:</span> {rejectionNote}
                 </div>
             )}

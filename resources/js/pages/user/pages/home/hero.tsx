@@ -51,7 +51,7 @@ export default function HeroSection(
 
                     <div className="mt-8 flex space-x-4">
                         <a href={route('product.index')}>
-                            <button className="cursor-pointer rounded-md bg-primary px-6 py-3 font-semibold text-primary-foreground hover:bg-primary/80">
+                            <button className="cursor-pointer rounded-button bg-primary px-6 py-3 font-semibold text-primary-foreground hover:bg-primary/80">
                                 See Products
                             </button>
                         </a>
@@ -60,7 +60,7 @@ export default function HeroSection(
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <button className="cursor-pointer rounded-md border border-primary px-6 py-3 font-semibold text-primary hover:bg-primary hover:text-primary-foreground">
+                            <button className="cursor-pointer rounded-button border border-primary px-6 py-3 font-semibold text-primary hover:bg-primary hover:text-primary-foreground">
                                 <FaWhatsapp className="mr-2 inline-block" />
                                 Contact Us
                             </button>

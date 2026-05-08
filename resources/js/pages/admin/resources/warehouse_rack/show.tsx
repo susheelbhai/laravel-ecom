@@ -34,7 +34,7 @@ export default function RackShow() {
             <Head title={`Rack: ${rack?.identifier}`} />
 
             {/* Rack header */}
-            <div className="mb-4 rounded-lg border border-border bg-card p-4 shadow-sm">
+            <div className="mb-4 rounded-div border border-border bg-card p-4 shadow-sm">
                 <div className="flex items-baseline gap-3">
                     <h1 className="text-xl font-semibold">{rack?.identifier}</h1>
                     <span className="text-sm text-muted-foreground">{rack?.warehouse?.name}</span>

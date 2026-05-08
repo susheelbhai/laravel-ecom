@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('certification')->nullable()->after('experience_years');
             $table->longText('address')->nullable()->after('certification');
             $table->string('city')->nullable()->after('address');
-            $table->string('state')->nullable()->after('city');
-            $table->string('pincode', 10)->nullable()->after('state');
+            $table->foreignId('state_id')->nullable()->constrained('states')->nullOnDelete()->after('city');
+            $table->string('pincode', 10)->nullable()->after('state_id');
             $table->string('id_type')->nullable()->after('pincode');
             $table->string('id_number')->nullable()->after('id_type');
             $table->string('referral_source')->nullable()->after('id_number');
@@ -37,7 +37,7 @@ return new class extends Migration
                 'certification',
                 'address',
                 'city',
-                'state',
+                'state_id',
                 'pincode',
                 'id_type',
                 'id_number',

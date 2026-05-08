@@ -49,7 +49,7 @@ export default function SerialNumberCard({ serialNumber, onMarkStolen, onMarkDam
     }
 
     return (
-        <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+        <div className="rounded-div border border-border bg-card p-6 shadow-sm">
             <div className="mb-4 flex flex-wrap items-start justify-between gap-4">
                 <div>
                     <h2 className="font-mono text-lg font-semibold text-foreground">
@@ -89,7 +89,7 @@ export default function SerialNumberCard({ serialNumber, onMarkStolen, onMarkDam
                             type="button"
                             disabled={processing}
                             onClick={confirmMarkStolen}
-                            className="inline-flex items-center rounded-md bg-red-600 px-3 py-1.5 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none disabled:opacity-50"
+                            className="inline-flex items-center rounded-button bg-red-600 px-3 py-1.5 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none disabled:opacity-50"
                         >
                             Mark as Stolen
                         </button>
@@ -99,7 +99,7 @@ export default function SerialNumberCard({ serialNumber, onMarkStolen, onMarkDam
                             type="button"
                             disabled={processing}
                             onClick={confirmMarkDamaged}
-                            className="inline-flex items-center rounded-md bg-orange-500 px-3 py-1.5 text-sm font-medium text-white shadow-sm hover:bg-orange-600 focus:outline-none disabled:opacity-50"
+                            className="inline-flex items-center rounded-button bg-orange-500 px-3 py-1.5 text-sm font-medium text-white shadow-sm hover:bg-orange-600 focus:outline-none disabled:opacity-50"
                         >
                             Mark as Damaged
                         </button>

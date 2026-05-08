@@ -76,7 +76,7 @@ export default function DealerRetailSaleShow() {
                         </div>
                     </div>
 
-                    <div className="rounded-lg border border-gray-200 bg-white p-3 shadow-sm dark:border-gray-800 dark:bg-gray-950">
+                    <div className="rounded-div border border-gray-200 bg-white p-3 shadow-sm dark:border-gray-800 dark:bg-gray-950">
                         <div className="text-xs text-gray-500 dark:text-gray-400">Total</div>
                         <div className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                             {formatMoney(data.total_amount, { showDecimals: true })}
@@ -85,7 +85,7 @@ export default function DealerRetailSaleShow() {
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-                    <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-950 lg:col-span-2">
+                    <div className="rounded-div border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-950 lg:col-span-2">
                         <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
                             Bill to / warranty contact
                         </div>
@@ -145,7 +145,7 @@ export default function DealerRetailSaleShow() {
                         )}
                     </div>
 
-                    <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-950">
+                    <div className="rounded-div border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-950">
                         <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
                             Summary
                         </div>
@@ -211,7 +211,7 @@ export default function DealerRetailSaleShow() {
 
                 {/* Warranty Cards */}
                 {data.warranty_cards && data.warranty_cards.length > 0 && (
-                    <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-950">
+                    <div className="rounded-div border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-950">
                         <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
                             Warranty Cards
                         </div>
@@ -222,7 +222,7 @@ export default function DealerRetailSaleShow() {
                             {data.warranty_cards.map((card: any) => (
                                 <div
                                     key={card.id}
-                                    className="flex items-center justify-between rounded-md border border-gray-200 bg-gray-50/60 p-3 dark:border-gray-700 dark:bg-gray-900/40"
+                                    className="flex items-center justify-between rounded-div border border-gray-200 bg-gray-50/60 p-3 dark:border-gray-700 dark:bg-gray-900/40"
                                 >
                                     <div className="min-w-0 flex-1">
                                         <div className="flex items-center gap-2">

@@ -43,7 +43,7 @@ const Payment = ({ order, paymentData }: PaymentProps) => {
         <AppLayout>
             <Container className="py-8">
                 <div className="mx-auto max-w-md">
-                    <div className="rounded-lg bg-white p-8 text-center shadow">
+                    <div className="rounded-div bg-white p-8 text-center shadow">
                         <div className="mb-6">
                             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/20">
                                 <svg

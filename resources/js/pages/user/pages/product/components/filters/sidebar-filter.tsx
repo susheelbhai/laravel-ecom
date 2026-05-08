@@ -122,7 +122,7 @@ export default function SidebarFilter({
     return (
         <div className="space-y-6">
             {/* Filter By Price */}
-            <div className="rounded-lg border border-border bg-card p-4">
+            <div className="rounded-div border border-border bg-card p-4">
                 <h3 className="mb-4 text-lg font-semibold text-foreground">
                     Filter By Price
                 </h3>
@@ -130,11 +130,11 @@ export default function SidebarFilter({
                     {/* Dual Range Slider Container */}
                     <div className="relative h-2">
                         {/* Background track */}
-                        <div className="absolute top-0 h-2 w-full rounded-lg bg-gray-200"></div>
+                        <div className="absolute top-0 h-2 w-full rounded-div bg-gray-200"></div>
                         
                         {/* Active range track */}
                         <div
-                            className="absolute top-0 h-2 rounded-lg bg-secondary"
+                            className="absolute top-0 h-2 rounded-div bg-secondary"
                             style={{
                                 left: `${((parseInt(localMinPrice.toString()) - (priceRange?.min_price || 0)) / ((priceRange?.max_price || 500) - (priceRange?.min_price || 0))) * 100}%`,
                                 right: `${100 - ((parseInt(localMaxPrice.toString()) - (priceRange?.min_price || 0)) / ((priceRange?.max_price || 500) - (priceRange?.min_price || 0))) * 100}%`,
@@ -184,7 +184,7 @@ export default function SidebarFilter({
 
             {/* Categories */}
             {categoryOptions.length > 0 && (
-                <div className="rounded-lg border border-border bg-card p-4">
+                <div className="rounded-div border border-border bg-card p-4">
                     <h3 className="mb-4 text-lg font-semibold text-foreground">
                         Categories
                     </h3>
@@ -243,7 +243,7 @@ export default function SidebarFilter({
             )}
 
             {/* Minimum Rating Filter */}
-            <div className="rounded-lg border border-border bg-card p-4">
+            <div className="rounded-div border border-border bg-card p-4">
                 <h3 className="mb-4 text-lg font-semibold text-foreground">
                     Minimum Rating
                 </h3>
@@ -341,7 +341,7 @@ export default function SidebarFilter({
             </div>
 
             {/* Stock Availability Filter */}
-            <div className="rounded-lg border border-border bg-card p-4">
+            <div className="rounded-div border border-border bg-card p-4">
                 <h3 className="mb-4 text-lg font-semibold text-foreground">
                     Availability
                 </h3>

@@ -22,7 +22,7 @@ type FormType = {
     billing_address_line1: string;
     billing_address_line2: string;
     billing_city: string;
-    billing_state: string;
+    billing_state_id: string;
     billing_pincode: string;
     billing_country: string;
     customer_gstin: string;
@@ -30,6 +30,7 @@ type FormType = {
 
 type Props = {
     commissionPercentage: number;
+    states: { id: number; name: string; gst_state_code: string }[];
 };
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -46,7 +47,7 @@ function applyCommission(purchasePrice: number, commissionPct: number): number {
 }
 
 export default function DealerRetailSaleCreate() {
-    const { commissionPercentage } = usePage<SharedData>().props as any as Props;
+    const { commissionPercentage, states } = usePage<SharedData>().props as any as Props;
 
     const [availableSerials, setAvailableSerials] = useState<string[]>([]);
     const [purchasePrice, setPurchasePrice] = useState<number | null>(null);
@@ -62,7 +63,7 @@ export default function DealerRetailSaleCreate() {
         billing_address_line1: '',
         billing_address_line2: '',
         billing_city: '',
-        billing_state: '',
+        billing_state_id: '',
         billing_pincode: '',
         billing_country: 'India',
         customer_gstin: '',
@@ -126,7 +127,7 @@ export default function DealerRetailSaleCreate() {
             />
 
             {commissionPercentage > 0 && (
-                <div className="mb-4 rounded-md border border-blue-200 bg-blue-50 px-4 py-2 text-sm text-blue-700 dark:border-blue-800 dark:bg-blue-950/40 dark:text-blue-300">
+                <div className="mb-4 rounded-div border border-blue-200 bg-blue-50 px-4 py-2 text-sm text-blue-700 dark:border-blue-800 dark:bg-blue-950/40 dark:text-blue-300">
                     Commission: <span className="font-semibold">{commissionPercentage}%</span> — sell price is auto-calculated as purchase price + commission, rounded up to the next integer.
                 </div>
             )}
@@ -192,9 +193,10 @@ export default function DealerRetailSaleCreate() {
                         required
                     />
                     <InputDiv
-                        type="text"
-                        label="State / province"
-                        name="billing_state"
+                        type="select"
+                        label="State"
+                        name="billing_state_id"
+                        options={states.map(s => ({ id: s.id, title: `${s.name} (${s.gst_state_code})` }))}
                         inputDivData={inputDivData}
                         required
                     />
@@ -251,7 +253,7 @@ export default function DealerRetailSaleCreate() {
 
                 {/* Serial number selector (checkbox style) */}
                 {isSerialized ? (
-                    <div className="space-y-2 rounded-lg border border-blue-200 bg-blue-50 p-3 dark:border-blue-800 dark:bg-blue-950/40">
+                    <div className="space-y-2 rounded-div border border-blue-200 bg-blue-50 p-3 dark:border-blue-800 dark:bg-blue-950/40">
                         <div className="flex items-center justify-between">
                             <span className="text-sm font-medium text-blue-800 dark:text-blue-300">
                                 Select serial numbers to sell
@@ -261,7 +263,7 @@ export default function DealerRetailSaleCreate() {
                                 {data.serial_numbers.length} of {availableSerials.length} selected
                             </span>
                         </div>
-                        <div className="max-h-48 overflow-y-auto rounded-lg border border-gray-200 bg-white p-2 dark:border-gray-700 dark:bg-gray-900">
+                        <div className="max-h-48 overflow-y-auto rounded-div border border-gray-200 bg-white p-2 dark:border-gray-700 dark:bg-gray-900">
                             {availableSerials.map((sn) => (
                                 <label
                                     key={sn}
